@@ -10,8 +10,9 @@ import time
 # Configure logging
 logging.basicConfig(level=logging.INFO, format='%(asctime)s - %(levelname)s - %(message)s')
 
-# Setup requests session with retries
+# Setup requests session with retries and custom User-Agent
 session = requests.Session()
+session.headers.update({"User-Agent": "CityHealth360-Bot/1.0 (saurabh_jss169@yahoo.co.in)"})
 retries = Retry(total=5, backoff_factor=1, status_forcelist=[ 429, 500, 502, 503, 504 ])
 session.mount('https://', HTTPAdapter(max_retries=retries))
 session.mount('http://', HTTPAdapter(max_retries=retries))
@@ -169,12 +170,15 @@ CITIES = [
 CSV_PATH = os.path.join("data", "city_health.csv")
 OS_PATH_DATA = "data"
 
-def fetch_weather_data(lat, lon):
-    """Fetch weather data from Open-Meteo."""
+def fetch_weather_bulk(chunk):
+    """Fetch weather data for a chunk of cities."""
+    lats = ",".join([str(city["lat"]) for city in chunk])
+    lons = ",".join([str(city["lon"]) for city in chunk])
+    
     url = "https://api.open-meteo.com/v1/forecast"
     params = {
-        "latitude": lat,
-        "longitude": lon,
+        "latitude": lats,
+        "longitude": lons,
         "current": ["temperature_2m", "relative_humidity_2m", "rain", "surface_pressure", "dew_point_2m"],
         "daily": ["uv_index_max"],
         "timezone": "Asia/Kolkata",
@@ -185,15 +189,18 @@ def fetch_weather_data(lat, lon):
         response.raise_for_status()
         return response.json()
     except Exception as e:
-        logging.error(f"Error fetching weather data for {lat}, {lon}: {e}")
+        logging.error(f"Error fetching weather data in bulk: {e}")
         return None
 
-def fetch_air_quality(lat, lon):
-    """Fetch AQI data from Open-Meteo."""
+def fetch_aqi_bulk(chunk):
+    """Fetch AQI data for a chunk of cities."""
+    lats = ",".join([str(city["lat"]) for city in chunk])
+    lons = ",".join([str(city["lon"]) for city in chunk])
+    
     url = "https://air-quality-api.open-meteo.com/v1/air-quality"
     params = {
-        "latitude": lat,
-        "longitude": lon,
+        "latitude": lats,
+        "longitude": lons,
         "current": ["us_aqi"],
         "timezone": "Asia/Kolkata"
     }
@@ -202,7 +209,7 @@ def fetch_air_quality(lat, lon):
         response.raise_for_status()
         return response.json()
     except Exception as e:
-        logging.error(f"Error fetching AQI data for {lat}, {lon}: {e}")
+        logging.error(f"Error fetching AQI data in bulk: {e}")
         return None
 
 def calculate_mosquito_risk(temp, humidity, rain):
@@ -260,67 +267,82 @@ def main():
         os.makedirs(OS_PATH_DATA)
     
     city_data_list = []
+    chunk_size = 33
 
-    for city in CITIES:
-        name = city["name"]
-        lat = city["lat"]
-        lon = city["lon"]
-        
-        logging.info(f"Processing {name}...")
-        
-        weather = fetch_weather_data(lat, lon)
-        aqi_data = fetch_air_quality(lat, lon)
-        
-        if not weather or not aqi_data:
-            logging.warning(f"Skipping {name} due to data fetch error.")
+    for i in range(0, len(CITIES), chunk_size):
+        chunk = CITIES[i:i + chunk_size]
+        logging.info(f"Processing cities chunk {i // chunk_size + 1}...")
+
+        weather_res = fetch_weather_bulk(chunk)
+        aqi_res = fetch_aqi_bulk(chunk)
+
+        if not weather_res or not aqi_res:
+            logging.warning("Skipping chunk due to data fetch error.")
             continue
-            
-        try:
-            # Extract metrics
-            current_weather = weather.get("current", {})
-            daily_weather = weather.get("daily", {})
-            current_aqi = aqi_data.get("current", {})
+        
+        # Open-Meteo returns a list of objects if multiple coordinates are passed,
+        # or a single object if only 1 coordinate is passed (last chunk could be 1 element under certain conditions)
+        if isinstance(weather_res, dict):
+             weather_res = [weather_res]
+        if isinstance(aqi_res, dict):
+             aqi_res = [aqi_res]
 
-            temp = current_weather.get("temperature_2m", 0)
-            humidity = current_weather.get("relative_humidity_2m", 0)
-            rain = current_weather.get("rain", 0)
-            pressure = current_weather.get("surface_pressure", 1013)
-            dew_point = current_weather.get("dew_point_2m", 0)
-            
-            # UV index is daily max in the API response usually
-            uv_index = 0
-            if "uv_index_max" in daily_weather and daily_weather["uv_index_max"]:
-                 uv_index = daily_weather["uv_index_max"][0]
+        for idx, city in enumerate(chunk):
+            name = city["name"]
+            lat = city["lat"]
+            lon = city["lon"]
 
-            aqi = current_aqi.get("us_aqi", 0)
+            try:
+                # Type hints to appease the linter (we guarantee lists above)
+                weather: dict = weather_res[idx] # type: ignore
+                aqi_data: dict = aqi_res[idx] # type: ignore
 
-            # Calculate Risks
-            mosquito_risk = calculate_mosquito_risk(temp, humidity, rain)
-            arthritis_risk = calculate_arthritis_risk(pressure, humidity, temp)
-            migraine_risk = calculate_migraine_risk(uv_index, temp, pressure)
-            frizz_risk = calculate_frizz_risk(dew_point)
+                current_weather = weather.get("current", {})
+                daily_weather = weather.get("daily", {})
+                current_aqi = aqi_data.get("current", {})
 
-            city_data_list.append({
-                "city": name,
-                "latitude": lat,
-                "longitude": lon,
-                "temp": temp,
-                "humidity": humidity,
-                "rain": rain,
-                "pressure": pressure,
-                "uv_index": uv_index,
-                "aqi": aqi,
-                "mosquito_risk": mosquito_risk,
-                "arthritis_risk": arthritis_risk,
-                "migraine_risk": migraine_risk,
-                "frizz_risk": frizz_risk,
-                "updated_at": datetime.now().isoformat()
-            })
-            time.sleep(0.5) # Be polite to the API
+                temp = current_weather.get("temperature_2m", 0)
+                humidity = current_weather.get("relative_humidity_2m", 0)
+                rain = current_weather.get("rain", 0)
+                pressure = current_weather.get("surface_pressure", 1013)
+                dew_point = current_weather.get("dew_point_2m", 0)
+                
+                uv_index = 0
+                if "uv_index_max" in daily_weather and daily_weather["uv_index_max"]:
+                     uv_index = daily_weather["uv_index_max"][0]
 
-        except Exception as e:
-            logging.error(f"Error processing data for {name}: {e}")
-            continue
+                aqi = current_aqi.get("us_aqi", 0)
+
+                mosquito_risk = calculate_mosquito_risk(temp, humidity, rain)
+                arthritis_risk = calculate_arthritis_risk(pressure, humidity, temp)
+                migraine_risk = calculate_migraine_risk(uv_index, temp, pressure)
+                frizz_risk = calculate_frizz_risk(dew_point)
+
+                city_data_list.append({
+                    "city": name,
+                    "latitude": lat,
+                    "longitude": lon,
+                    "temp": temp,
+                    "humidity": humidity,
+                    "rain": rain,
+                    "pressure": pressure,
+                    "uv_index": uv_index,
+                    "aqi": aqi,
+                    "mosquito_risk": mosquito_risk,
+                    "arthritis_risk": arthritis_risk,
+                    "migraine_risk": migraine_risk,
+                    "frizz_risk": frizz_risk,
+                    "updated_at": datetime.now().isoformat()
+                })
+
+            except Exception as e:
+                logging.error(f"Error processing data for {name}: {e}")
+                continue
+        
+        # Be polite to the API between chunks
+        if i + chunk_size < len(CITIES):
+            logging.info("Sleeping for 3 seconds before next chunk...")
+            time.sleep(3)
 
     # Create DataFrame and save to CSV
     if city_data_list:
