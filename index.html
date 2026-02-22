@@ -625,13 +625,14 @@
                         const text = await response.text();
                         this.cities = this.parseCSV(text);
 
-                        if (this.cities.length > 0 && this.cities[0].updated_at) {
-                            const date = new Date(this.cities[0].updated_at);
-                            this.lastUpdated = date.toLocaleString('en-US', {
-                                timeZone: 'Asia/Kolkata',
-                                weekday: 'long', month: 'short', day: 'numeric', hour: 'numeric', minute: '2-digit'
-                            }) + ' IST';
-                        }
+                        // Force the UTC date to IST by adding 5 hours and 30 minutes
+                        const date = new Date(this.cities[0].updated_at);
+                        const utcDate = new Date(date.getTime() + (date.getTimezoneOffset() * 60000));
+                        const istDate = new Date(utcDate.getTime() + (5.5 * 60 * 60 * 1000));
+
+                        this.lastUpdated = istDate.toLocaleString('en-US', {
+                            weekday: 'long', month: 'short', day: 'numeric', hour: 'numeric', minute: '2-digit'
+                        }) + ' IST';
 
                         setTimeout(() => this.loading = false, 800); // Cinematic delay
                     } catch (e) {
