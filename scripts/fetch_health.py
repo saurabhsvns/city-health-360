@@ -1,11 +1,21 @@
 import requests
+from requests.adapters import HTTPAdapter
+from urllib3.util.retry import Retry
 import pandas as pd
 from datetime import datetime
 import os
 import logging
+import time
 
 # Configure logging
 logging.basicConfig(level=logging.INFO, format='%(asctime)s - %(levelname)s - %(message)s')
+
+# Setup requests session with retries
+session = requests.Session()
+retries = Retry(total=5, backoff_factor=1, status_forcelist=[ 429, 500, 502, 503, 504 ])
+session.mount('https://', HTTPAdapter(max_retries=retries))
+session.mount('http://', HTTPAdapter(max_retries=retries))
+
 
 # Constants
 CITIES = [
@@ -171,7 +181,7 @@ def fetch_weather_data(lat, lon):
         "forecast_days": 1
     }
     try:
-        response = requests.get(url, params=params)
+        response = session.get(url, params=params, timeout=15)
         response.raise_for_status()
         return response.json()
     except Exception as e:
@@ -188,7 +198,7 @@ def fetch_air_quality(lat, lon):
         "timezone": "Asia/Kolkata"
     }
     try:
-        response = requests.get(url, params=params)
+        response = session.get(url, params=params, timeout=15)
         response.raise_for_status()
         return response.json()
     except Exception as e:
@@ -306,6 +316,7 @@ def main():
                 "frizz_risk": frizz_risk,
                 "updated_at": datetime.now().isoformat()
             })
+            time.sleep(0.5) # Be polite to the API
 
         except Exception as e:
             logging.error(f"Error processing data for {name}: {e}")
