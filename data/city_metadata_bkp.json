@@ -1,0 +1,2510 @@
+{
+    "Delhi": {
+        "description": "The capital city, a mix of history and modernity, often battling diverse weather extremes from heatwaves to smog.",
+        "hospitals": [
+            "AIIMS Delhi",
+            "Max Super Speciality, Saket",
+            "Apollo Hospital, Sarita Vihar"
+        ],
+        "safe_areas": [
+            "Chanakyapuri",
+            "Vasant Vihar",
+            "Jor Bagh"
+        ],
+        "green_zones": [
+            "Lodhi Gardens",
+            "Deer Park",
+            "Sunder Nursery"
+        ],
+        "travel_tip": "Carry N95 masks during winter months due to high AQI."
+    },
+    "Mumbai": {
+        "description": "The bustling financial capital, known for its humid tropical climate and heavy monsoon rains.",
+        "hospitals": [
+            "Lilavati Hospital",
+            "Kokilaben Dhirubhai Ambani Hospital",
+            "Breach Candy Hospital"
+        ],
+        "safe_areas": [
+            "Bandra West",
+            "Juhu",
+            "South Mumbai"
+        ],
+        "green_zones": [
+            "Sanjay Gandhi National Park",
+            "Hanging Gardens",
+            "Aarey Colony"
+        ],
+        "travel_tip": "Carry an umbrella and waterproof footwear, especially from June to September."
+    },
+    "Bangalore": {
+        "description": "The Silicon Valley of India, famous for its pleasant weather year-round, though traffic can be congested.",
+        "hospitals": [
+            "Manipal Hospital",
+            "Narayana Health City",
+            "Fortis Hospital, Bannerghatta"
+        ],
+        "safe_areas": [
+            "Indiranagar",
+            "Koramangala",
+            "Sadashivnagar"
+        ],
+        "green_zones": [
+            "Cubbon Park",
+            "Lalbagh Botanical Garden",
+            "Bannerghatta Biological Park"
+        ],
+        "travel_tip": "Light woolens might be needed for early mornings and late nights."
+    },
+    "Hyderabad": {
+        "description": "A hub of history and technology, experiencing hot summers and pleasant winters.",
+        "hospitals": [
+            "Apollo Health City",
+            "Yashoda Hospitals",
+            "KIMS Hospitals"
+        ],
+        "safe_areas": [
+            "Banjara Hills",
+            "Jubilee Hills",
+            "Gachibowli"
+        ],
+        "green_zones": [
+            "KBR National Park",
+            "NTR Gardens",
+            "Lumbini Park"
+        ],
+        "travel_tip": "Stay hydrated during the summer months; the heat can be intense."
+    },
+    "Chennai": {
+        "description": "A coastal metropolis with a hot and humid climate, rich in culture and heritage.",
+        "hospitals": [
+            "Apollo Main Hospital",
+            "MIOT International",
+            "Fortis Malar"
+        ],
+        "safe_areas": [
+            "Adyar",
+            "Anna Nagar",
+            "Besant Nagar"
+        ],
+        "green_zones": [
+            "Guindy National Park",
+            "Semmozhi Poonga",
+            "Theosophical Society Gardens"
+        ],
+        "travel_tip": "Cotton clothing is recommended year-round due to high humidity."
+    },
+    "Kolkata": {
+        "description": "The City of Joy, with a tropical wet-and-dry climate, warm summers, and moderate winters.",
+        "hospitals": [
+            "Apollo Gleneagles",
+            "Fortis Hospital, Anandapur",
+            "Medica Superspecialty"
+        ],
+        "safe_areas": [
+            "Salt Lake City",
+            "Alipore",
+            "Ballygunge"
+        ],
+        "green_zones": [
+            "Maidan",
+            "Eco Park",
+            "Botanical Garden"
+        ],
+        "travel_tip": "Be prepared for sudden showers during the monsoon season."
+    },
+    "Pune": {
+        "description": "The cultural capital of Maharashtra, known for its moderate climate and educational institutions.",
+        "hospitals": [
+            "Ruby Hall Clinic",
+            "Jehangir Hospital",
+            "Aditya Birla Memorial Hospital"
+        ],
+        "safe_areas": [
+            "Koregaon Park",
+            "Kalyani Nagar",
+            "Aundh"
+        ],
+        "green_zones": [
+            "Osho Teerth Park",
+            "Pu La Deshpande Garden",
+            "Empress Garden"
+        ],
+        "travel_tip": "Evenings can be breezy, so a light jacket is useful."
+    },
+    "Ahmedabad": {
+        "description": "A rapidly growing city with a semi-arid climate, known for very hot summers.",
+        "hospitals": [
+            "Zydus Hospital",
+            "Apollo Hospitals City Centre",
+            "Sterling Hospital"
+        ],
+        "safe_areas": [
+            "Satellite",
+            "Bodakdev",
+            "Navrangpura"
+        ],
+        "green_zones": [
+            "Law Garden",
+            "Parimal Garden",
+            "Sabarmati Riverfront"
+        ],
+        "travel_tip": "Avoid outdoor activities during peak afternoon hours in summer."
+    },
+    "Jaipur": {
+        "description": "The Pink City, experiencing a hot semi-arid climate with hot summers and mild winters.",
+        "hospitals": [
+            "Fortis Escorts",
+            "Narayana Multispeciality",
+            "SMS Hospital"
+        ],
+        "safe_areas": [
+            "C-Scheme",
+            "Malviya Nagar",
+            "Vaishali Nagar"
+        ],
+        "green_zones": [
+            "Central Park",
+            "Jawahar Circle",
+            "Ram Niwas Garden"
+        ],
+        "travel_tip": "Sunscreen and sunglasses are essential due to high UV levels."
+    },
+    "Lucknow": {
+        "description": "The City of Nawabs, with a humid subtropical climate, hot summers, and cool winters.",
+        "hospitals": [
+            "Medanta Lucknow",
+            "Sahara Hospital",
+            "Apollo Medics"
+        ],
+        "safe_areas": [
+            "Gomti Nagar",
+            "Hazratganj",
+            "Aliganj"
+        ],
+        "green_zones": [
+            "Janeshwar Mishra Park",
+            "Dr. Ram Manohar Lohia Park",
+            "Ambedkar Memorial Park"
+        ],
+        "travel_tip": "Winters can be quite cold; warm clothing is advised."
+    },
+    "Kanpur": {
+        "description": "An industrial hub on the banks of the Ganges, with extreme temperatures in summer and winter.",
+        "hospitals": [
+            "Regency Hospital",
+            "LLR Hospital",
+            "Apollo Spectra"
+        ],
+        "safe_areas": [
+            "Swaroop Nagar",
+            "Civil Lines",
+            "Kakadeo"
+        ],
+        "green_zones": [
+            "Nana Rao Park",
+            "Phool Bagh",
+            "Moti Jheel"
+        ],
+        "travel_tip": "Protect yourself from dust and pollution in industrial areas."
+    },
+    "Nagpur": {
+        "description": "The Orange City, geographically central, with very hot summers and mild winters.",
+        "hospitals": [
+            "Kingsway Hospitals",
+            "Wockhardt Hospitals",
+            "Orange City Hospital"
+        ],
+        "safe_areas": [
+            "Dharampeth",
+            "Ramdaspeth",
+            "Civil Lines"
+        ],
+        "green_zones": [
+            "Ambazari Garden",
+            "Seminary Hills",
+            "Japanese Garden"
+        ],
+        "travel_tip": "Carry plenty of water if traveling during the summer."
+    },
+    "Indore": {
+        "description": "Cleanest city in India, with a transitional climate between tropical wet-dry and humid subtropical.",
+        "hospitals": [
+            "CHL Apollo",
+            "Bombay Hospital",
+            "Choithram Hospital"
+        ],
+        "safe_areas": [
+            "Vijay Nagar",
+            "Saket Nagar",
+            "Palasia"
+        ],
+        "green_zones": [
+            "Pipliyapala Regional Park",
+            "Meghdoot Upvan",
+            "Kamla Nehru Prani Sangrahalaya"
+        ],
+        "travel_tip": "Enjoy the street food at Sarafa Bazaar, but check hygiene first."
+    },
+    "Thane": {
+        "description": "A city of lakes, strictly neighboring Mumbai, sharing its humid climate.",
+        "hospitals": [
+            "Jupiter Hospital",
+            "Bethany Hospital",
+            "Hiranandani Hospital"
+        ],
+        "safe_areas": [
+            "Hiranandani Estate",
+            "Vasant Vihar",
+            "Ghodbunder Road"
+        ],
+        "green_zones": [
+            "Upvan Lake area",
+            "Gawand Baug",
+            "Sanjay Gandhi National Park (Side)"
+        ],
+        "travel_tip": "Traffic can be heavy during peak hours; plan travel accordingly."
+    },
+    "Bhopal": {
+        "description": "The City of Lakes, known for its greenery and humid subtropical climate.",
+        "hospitals": [
+            "Bansal Hospital",
+            "Narmada Trauma Centre",
+            "AIIMS Bhopal"
+        ],
+        "safe_areas": [
+            "Arera Colony",
+            "Kohefiza",
+            "Saket Nagar"
+        ],
+        "green_zones": [
+            "Van Vihar National Park",
+            "Boat Club",
+            "Chinar Park"
+        ],
+        "travel_tip": "Pleasant evenings by the lake are a highlight."
+    },
+    "Visakhapatnam": {
+        "description": "A coastal jewel with a tropical wet and dry climate, generally humid.",
+        "hospitals": [
+            "Apollo Hospitals",
+            "Care Hospitals",
+            "KIMS Icon"
+        ],
+        "safe_areas": [
+            "MVP Colony",
+            "Siripuram",
+            "Beach Road"
+        ],
+        "green_zones": [
+            "Kailasagiri",
+            "Vuda Park",
+            "Tenneti Park"
+        ],
+        "travel_tip": "Beach safety is important; heed lifeguards' warnings."
+    },
+    "Patna": {
+        "description": "An ancient city on the Ganges, with hot summers and mild winters.",
+        "hospitals": [
+            "IGIMS",
+            "Paras HMRI",
+            "Ruban Memorial Hospital"
+        ],
+        "safe_areas": [
+            "Patliputra Colony",
+            "Boring Road",
+            "Kankarbagh"
+        ],
+        "green_zones": [
+            "Eco Park",
+            "Sanjay Gandhi Jaivik Udyan",
+            "Buddha Smriti Park"
+        ],
+        "travel_tip": "Mosquito repellent is recommended, especially in the evenings."
+    },
+    "Vadodara": {
+        "description": "The cultural capital of Gujarat, with a semi-arid climate.",
+        "hospitals": [
+            "Sterling Hospital",
+            "Bhailal Amin General Hospital",
+            "Sunshine Global"
+        ],
+        "safe_areas": [
+            "Alkapuri",
+            "Vasna Road",
+            "Old Padra Road"
+        ],
+        "green_zones": [
+            "Sayaji Baug",
+            "Ajwa Garden",
+            "Kamati Baug"
+        ],
+        "travel_tip": "Historical sites are best visited in the early morning."
+    },
+    "Varanasi": {
+        "description": "The spiritual capital, crowded and vibrant, with significant seasonal temperature variations.",
+        "hospitals": [
+            "Sir Sunderlal Hospital (BHU)",
+            "Heritage Hospital",
+            "Apex Super Speciality"
+        ],
+        "safe_areas": [
+            "Cantonment",
+            "Mahmoorganj",
+            "Sigra"
+        ],
+        "green_zones": [
+            "BHU Campus",
+            "Ravidas Park",
+            "Nehru Park"
+        ],
+        "travel_tip": "Respect local customs and dress modestly near ghats."
+    },
+    "Srinagar": {
+        "description": "The summer capital of J&K, famous for its gardens and lakes, with cold winters.",
+        "hospitals": [
+            "SKIMS",
+            "SMHS Hospital",
+            "Florence Hospital"
+        ],
+        "safe_areas": [
+            "Rajbagh",
+            "Hyderpora",
+            "Gogji Bagh"
+        ],
+        "green_zones": [
+            "Shalimar Bagh",
+            "Nishat Bagh",
+            "Tulip Garden"
+        ],
+        "travel_tip": "Heavy woolens are a must in winter; light woolens for summer evenings."
+    },
+    "Chandigarh": {
+        "description": "Detailed health and environment report for Chandigarh, India. Famous for its local culture and landmarks.",
+        "hospitals": [
+            "District Hospital Chandigarh",
+            "Chandigarh General Hospital",
+            "City Medical Centre"
+        ],
+        "safe_areas": [
+            "City Center",
+            "Main Market Area",
+            "Civil Lines"
+        ],
+        "green_zones": [
+            "Chandigarh Park",
+            "Gandhi Maidan",
+            "Nehru Garden"
+        ],
+        "travel_tip": "Stay hydrated and carry a mask if AQI is high. Check local news for latest updates."
+    },
+    "Jammu": {
+        "description": "Detailed health and environment report for Jammu, India. Famous for its local culture and landmarks.",
+        "hospitals": [
+            "District Hospital Jammu",
+            "Jammu General Hospital",
+            "City Medical Centre"
+        ],
+        "safe_areas": [
+            "City Center",
+            "Main Market Area",
+            "Civil Lines"
+        ],
+        "green_zones": [
+            "Jammu Park",
+            "Gandhi Maidan",
+            "Nehru Garden"
+        ],
+        "travel_tip": "Stay hydrated and carry a mask if AQI is high. Check local news for latest updates."
+    },
+    "Amritsar": {
+        "description": "Detailed health and environment report for Amritsar, India. Famous for its local culture and landmarks.",
+        "hospitals": [
+            "District Hospital Amritsar",
+            "Amritsar General Hospital",
+            "City Medical Centre"
+        ],
+        "safe_areas": [
+            "City Center",
+            "Main Market Area",
+            "Civil Lines"
+        ],
+        "green_zones": [
+            "Amritsar Park",
+            "Gandhi Maidan",
+            "Nehru Garden"
+        ],
+        "travel_tip": "Stay hydrated and carry a mask if AQI is high. Check local news for latest updates."
+    },
+    "Ludhiana": {
+        "description": "Detailed health and environment report for Ludhiana, India. Famous for its local culture and landmarks.",
+        "hospitals": [
+            "District Hospital Ludhiana",
+            "Ludhiana General Hospital",
+            "City Medical Centre"
+        ],
+        "safe_areas": [
+            "City Center",
+            "Main Market Area",
+            "Civil Lines"
+        ],
+        "green_zones": [
+            "Ludhiana Park",
+            "Gandhi Maidan",
+            "Nehru Garden"
+        ],
+        "travel_tip": "Stay hydrated and carry a mask if AQI is high. Check local news for latest updates."
+    },
+    "Jalandhar": {
+        "description": "Detailed health and environment report for Jalandhar, India. Famous for its local culture and landmarks.",
+        "hospitals": [
+            "District Hospital Jalandhar",
+            "Jalandhar General Hospital",
+            "City Medical Centre"
+        ],
+        "safe_areas": [
+            "City Center",
+            "Main Market Area",
+            "Civil Lines"
+        ],
+        "green_zones": [
+            "Jalandhar Park",
+            "Gandhi Maidan",
+            "Nehru Garden"
+        ],
+        "travel_tip": "Stay hydrated and carry a mask if AQI is high. Check local news for latest updates."
+    },
+    "Dehradun": {
+        "description": "Detailed health and environment report for Dehradun, India. Famous for its local culture and landmarks.",
+        "hospitals": [
+            "District Hospital Dehradun",
+            "Dehradun General Hospital",
+            "City Medical Centre"
+        ],
+        "safe_areas": [
+            "City Center",
+            "Main Market Area",
+            "Civil Lines"
+        ],
+        "green_zones": [
+            "Dehradun Park",
+            "Gandhi Maidan",
+            "Nehru Garden"
+        ],
+        "travel_tip": "Stay hydrated and carry a mask if AQI is high. Check local news for latest updates."
+    },
+    "Shimla": {
+        "description": "Detailed health and environment report for Shimla, India. Famous for its local culture and landmarks.",
+        "hospitals": [
+            "District Hospital Shimla",
+            "Shimla General Hospital",
+            "City Medical Centre"
+        ],
+        "safe_areas": [
+            "City Center",
+            "Main Market Area",
+            "Civil Lines"
+        ],
+        "green_zones": [
+            "Shimla Park",
+            "Gandhi Maidan",
+            "Nehru Garden"
+        ],
+        "travel_tip": "Stay hydrated and carry a mask if AQI is high. Check local news for latest updates."
+    },
+    "Manali": {
+        "description": "Detailed health and environment report for Manali, India. Famous for its local culture and landmarks.",
+        "hospitals": [
+            "District Hospital Manali",
+            "Manali General Hospital",
+            "City Medical Centre"
+        ],
+        "safe_areas": [
+            "City Center",
+            "Main Market Area",
+            "Civil Lines"
+        ],
+        "green_zones": [
+            "Manali Park",
+            "Gandhi Maidan",
+            "Nehru Garden"
+        ],
+        "travel_tip": "Stay hydrated and carry a mask if AQI is high. Check local news for latest updates."
+    },
+    "Gurgaon": {
+        "description": "Detailed health and environment report for Gurgaon, India. Famous for its local culture and landmarks.",
+        "hospitals": [
+            "District Hospital Gurgaon",
+            "Gurgaon General Hospital",
+            "City Medical Centre"
+        ],
+        "safe_areas": [
+            "City Center",
+            "Main Market Area",
+            "Civil Lines"
+        ],
+        "green_zones": [
+            "Gurgaon Park",
+            "Gandhi Maidan",
+            "Nehru Garden"
+        ],
+        "travel_tip": "Stay hydrated and carry a mask if AQI is high. Check local news for latest updates."
+    },
+    "Noida": {
+        "description": "Detailed health and environment report for Noida, India. Famous for its local culture and landmarks.",
+        "hospitals": [
+            "District Hospital Noida",
+            "Noida General Hospital",
+            "City Medical Centre"
+        ],
+        "safe_areas": [
+            "City Center",
+            "Main Market Area",
+            "Civil Lines"
+        ],
+        "green_zones": [
+            "Noida Park",
+            "Gandhi Maidan",
+            "Nehru Garden"
+        ],
+        "travel_tip": "Stay hydrated and carry a mask if AQI is high. Check local news for latest updates."
+    },
+    "Ghaziabad": {
+        "description": "Detailed health and environment report for Ghaziabad, India. Famous for its local culture and landmarks.",
+        "hospitals": [
+            "District Hospital Ghaziabad",
+            "Ghaziabad General Hospital",
+            "City Medical Centre"
+        ],
+        "safe_areas": [
+            "City Center",
+            "Main Market Area",
+            "Civil Lines"
+        ],
+        "green_zones": [
+            "Ghaziabad Park",
+            "Gandhi Maidan",
+            "Nehru Garden"
+        ],
+        "travel_tip": "Stay hydrated and carry a mask if AQI is high. Check local news for latest updates."
+    },
+    "Faridabad": {
+        "description": "Detailed health and environment report for Faridabad, India. Famous for its local culture and landmarks.",
+        "hospitals": [
+            "District Hospital Faridabad",
+            "Faridabad General Hospital",
+            "City Medical Centre"
+        ],
+        "safe_areas": [
+            "City Center",
+            "Main Market Area",
+            "Civil Lines"
+        ],
+        "green_zones": [
+            "Faridabad Park",
+            "Gandhi Maidan",
+            "Nehru Garden"
+        ],
+        "travel_tip": "Stay hydrated and carry a mask if AQI is high. Check local news for latest updates."
+    },
+    "Meerut": {
+        "description": "Detailed health and environment report for Meerut, India. Famous for its local culture and landmarks.",
+        "hospitals": [
+            "District Hospital Meerut",
+            "Meerut General Hospital",
+            "City Medical Centre"
+        ],
+        "safe_areas": [
+            "City Center",
+            "Main Market Area",
+            "Civil Lines"
+        ],
+        "green_zones": [
+            "Meerut Park",
+            "Gandhi Maidan",
+            "Nehru Garden"
+        ],
+        "travel_tip": "Stay hydrated and carry a mask if AQI is high. Check local news for latest updates."
+    },
+    "Agra": {
+        "description": "Detailed health and environment report for Agra, India. Famous for its local culture and landmarks.",
+        "hospitals": [
+            "District Hospital Agra",
+            "Agra General Hospital",
+            "City Medical Centre"
+        ],
+        "safe_areas": [
+            "City Center",
+            "Main Market Area",
+            "Civil Lines"
+        ],
+        "green_zones": [
+            "Agra Park",
+            "Gandhi Maidan",
+            "Nehru Garden"
+        ],
+        "travel_tip": "Stay hydrated and carry a mask if AQI is high. Check local news for latest updates."
+    },
+    "Prayagraj": {
+        "description": "Detailed health and environment report for Prayagraj, India. Famous for its local culture and landmarks.",
+        "hospitals": [
+            "District Hospital Prayagraj",
+            "Prayagraj General Hospital",
+            "City Medical Centre"
+        ],
+        "safe_areas": [
+            "City Center",
+            "Main Market Area",
+            "Civil Lines"
+        ],
+        "green_zones": [
+            "Prayagraj Park",
+            "Gandhi Maidan",
+            "Nehru Garden"
+        ],
+        "travel_tip": "Stay hydrated and carry a mask if AQI is high. Check local news for latest updates."
+    },
+    "Gorakhpur": {
+        "description": "Detailed health and environment report for Gorakhpur, India. Famous for its local culture and landmarks.",
+        "hospitals": [
+            "District Hospital Gorakhpur",
+            "Gorakhpur General Hospital",
+            "City Medical Centre"
+        ],
+        "safe_areas": [
+            "City Center",
+            "Main Market Area",
+            "Civil Lines"
+        ],
+        "green_zones": [
+            "Gorakhpur Park",
+            "Gandhi Maidan",
+            "Nehru Garden"
+        ],
+        "travel_tip": "Stay hydrated and carry a mask if AQI is high. Check local news for latest updates."
+    },
+    "Bareilly": {
+        "description": "Detailed health and environment report for Bareilly, India. Famous for its local culture and landmarks.",
+        "hospitals": [
+            "District Hospital Bareilly",
+            "Bareilly General Hospital",
+            "City Medical Centre"
+        ],
+        "safe_areas": [
+            "City Center",
+            "Main Market Area",
+            "Civil Lines"
+        ],
+        "green_zones": [
+            "Bareilly Park",
+            "Gandhi Maidan",
+            "Nehru Garden"
+        ],
+        "travel_tip": "Stay hydrated and carry a mask if AQI is high. Check local news for latest updates."
+    },
+    "Aligarh": {
+        "description": "Detailed health and environment report for Aligarh, India. Famous for its local culture and landmarks.",
+        "hospitals": [
+            "District Hospital Aligarh",
+            "Aligarh General Hospital",
+            "City Medical Centre"
+        ],
+        "safe_areas": [
+            "City Center",
+            "Main Market Area",
+            "Civil Lines"
+        ],
+        "green_zones": [
+            "Aligarh Park",
+            "Gandhi Maidan",
+            "Nehru Garden"
+        ],
+        "travel_tip": "Stay hydrated and carry a mask if AQI is high. Check local news for latest updates."
+    },
+    "Moradabad": {
+        "description": "Detailed health and environment report for Moradabad, India. Famous for its local culture and landmarks.",
+        "hospitals": [
+            "District Hospital Moradabad",
+            "Moradabad General Hospital",
+            "City Medical Centre"
+        ],
+        "safe_areas": [
+            "City Center",
+            "Main Market Area",
+            "Civil Lines"
+        ],
+        "green_zones": [
+            "Moradabad Park",
+            "Gandhi Maidan",
+            "Nehru Garden"
+        ],
+        "travel_tip": "Stay hydrated and carry a mask if AQI is high. Check local news for latest updates."
+    },
+    "Saharanpur": {
+        "description": "Detailed health and environment report for Saharanpur, India. Famous for its local culture and landmarks.",
+        "hospitals": [
+            "District Hospital Saharanpur",
+            "Saharanpur General Hospital",
+            "City Medical Centre"
+        ],
+        "safe_areas": [
+            "City Center",
+            "Main Market Area",
+            "Civil Lines"
+        ],
+        "green_zones": [
+            "Saharanpur Park",
+            "Gandhi Maidan",
+            "Nehru Garden"
+        ],
+        "travel_tip": "Stay hydrated and carry a mask if AQI is high. Check local news for latest updates."
+    },
+    "Jhansi": {
+        "description": "Detailed health and environment report for Jhansi, India. Famous for its local culture and landmarks.",
+        "hospitals": [
+            "District Hospital Jhansi",
+            "Jhansi General Hospital",
+            "City Medical Centre"
+        ],
+        "safe_areas": [
+            "City Center",
+            "Main Market Area",
+            "Civil Lines"
+        ],
+        "green_zones": [
+            "Jhansi Park",
+            "Gandhi Maidan",
+            "Nehru Garden"
+        ],
+        "travel_tip": "Stay hydrated and carry a mask if AQI is high. Check local news for latest updates."
+    },
+    "Surat": {
+        "description": "Detailed health and environment report for Surat, India. Famous for its local culture and landmarks.",
+        "hospitals": [
+            "District Hospital Surat",
+            "Surat General Hospital",
+            "City Medical Centre"
+        ],
+        "safe_areas": [
+            "City Center",
+            "Main Market Area",
+            "Civil Lines"
+        ],
+        "green_zones": [
+            "Surat Park",
+            "Gandhi Maidan",
+            "Nehru Garden"
+        ],
+        "travel_tip": "Stay hydrated and carry a mask if AQI is high. Check local news for latest updates."
+    },
+    "Rajkot": {
+        "description": "Detailed health and environment report for Rajkot, India. Famous for its local culture and landmarks.",
+        "hospitals": [
+            "District Hospital Rajkot",
+            "Rajkot General Hospital",
+            "City Medical Centre"
+        ],
+        "safe_areas": [
+            "City Center",
+            "Main Market Area",
+            "Civil Lines"
+        ],
+        "green_zones": [
+            "Rajkot Park",
+            "Gandhi Maidan",
+            "Nehru Garden"
+        ],
+        "travel_tip": "Stay hydrated and carry a mask if AQI is high. Check local news for latest updates."
+    },
+    "Nashik": {
+        "description": "Detailed health and environment report for Nashik, India. Famous for its local culture and landmarks.",
+        "hospitals": [
+            "District Hospital Nashik",
+            "Nashik General Hospital",
+            "City Medical Centre"
+        ],
+        "safe_areas": [
+            "City Center",
+            "Main Market Area",
+            "Civil Lines"
+        ],
+        "green_zones": [
+            "Nashik Park",
+            "Gandhi Maidan",
+            "Nehru Garden"
+        ],
+        "travel_tip": "Stay hydrated and carry a mask if AQI is high. Check local news for latest updates."
+    },
+    "Aurangabad": {
+        "description": "Detailed health and environment report for Aurangabad, India. Famous for its local culture and landmarks.",
+        "hospitals": [
+            "District Hospital Aurangabad",
+            "Aurangabad General Hospital",
+            "City Medical Centre"
+        ],
+        "safe_areas": [
+            "City Center",
+            "Main Market Area",
+            "Civil Lines"
+        ],
+        "green_zones": [
+            "Aurangabad Park",
+            "Gandhi Maidan",
+            "Nehru Garden"
+        ],
+        "travel_tip": "Stay hydrated and carry a mask if AQI is high. Check local news for latest updates."
+    },
+    "Solapur": {
+        "description": "Detailed health and environment report for Solapur, India. Famous for its local culture and landmarks.",
+        "hospitals": [
+            "District Hospital Solapur",
+            "Solapur General Hospital",
+            "City Medical Centre"
+        ],
+        "safe_areas": [
+            "City Center",
+            "Main Market Area",
+            "Civil Lines"
+        ],
+        "green_zones": [
+            "Solapur Park",
+            "Gandhi Maidan",
+            "Nehru Garden"
+        ],
+        "travel_tip": "Stay hydrated and carry a mask if AQI is high. Check local news for latest updates."
+    },
+    "Kolhapur": {
+        "description": "Detailed health and environment report for Kolhapur, India. Famous for its local culture and landmarks.",
+        "hospitals": [
+            "District Hospital Kolhapur",
+            "Kolhapur General Hospital",
+            "City Medical Centre"
+        ],
+        "safe_areas": [
+            "City Center",
+            "Main Market Area",
+            "Civil Lines"
+        ],
+        "green_zones": [
+            "Kolhapur Park",
+            "Gandhi Maidan",
+            "Nehru Garden"
+        ],
+        "travel_tip": "Stay hydrated and carry a mask if AQI is high. Check local news for latest updates."
+    },
+    "Goa": {
+        "description": "Detailed health and environment report for Goa, India. Famous for its local culture and landmarks.",
+        "hospitals": [
+            "District Hospital Goa",
+            "Goa General Hospital",
+            "City Medical Centre"
+        ],
+        "safe_areas": [
+            "City Center",
+            "Main Market Area",
+            "Civil Lines"
+        ],
+        "green_zones": [
+            "Goa Park",
+            "Gandhi Maidan",
+            "Nehru Garden"
+        ],
+        "travel_tip": "Stay hydrated and carry a mask if AQI is high. Check local news for latest updates."
+    },
+    "Jodhpur": {
+        "description": "Detailed health and environment report for Jodhpur, India. Famous for its local culture and landmarks.",
+        "hospitals": [
+            "District Hospital Jodhpur",
+            "Jodhpur General Hospital",
+            "City Medical Centre"
+        ],
+        "safe_areas": [
+            "City Center",
+            "Main Market Area",
+            "Civil Lines"
+        ],
+        "green_zones": [
+            "Jodhpur Park",
+            "Gandhi Maidan",
+            "Nehru Garden"
+        ],
+        "travel_tip": "Stay hydrated and carry a mask if AQI is high. Check local news for latest updates."
+    },
+    "Udaipur": {
+        "description": "Detailed health and environment report for Udaipur, India. Famous for its local culture and landmarks.",
+        "hospitals": [
+            "District Hospital Udaipur",
+            "Udaipur General Hospital",
+            "City Medical Centre"
+        ],
+        "safe_areas": [
+            "City Center",
+            "Main Market Area",
+            "Civil Lines"
+        ],
+        "green_zones": [
+            "Udaipur Park",
+            "Gandhi Maidan",
+            "Nehru Garden"
+        ],
+        "travel_tip": "Stay hydrated and carry a mask if AQI is high. Check local news for latest updates."
+    },
+    "Kota": {
+        "description": "Detailed health and environment report for Kota, India. Famous for its local culture and landmarks.",
+        "hospitals": [
+            "District Hospital Kota",
+            "Kota General Hospital",
+            "City Medical Centre"
+        ],
+        "safe_areas": [
+            "City Center",
+            "Main Market Area",
+            "Civil Lines"
+        ],
+        "green_zones": [
+            "Kota Park",
+            "Gandhi Maidan",
+            "Nehru Garden"
+        ],
+        "travel_tip": "Stay hydrated and carry a mask if AQI is high. Check local news for latest updates."
+    },
+    "Bikaner": {
+        "description": "Detailed health and environment report for Bikaner, India. Famous for its local culture and landmarks.",
+        "hospitals": [
+            "District Hospital Bikaner",
+            "Bikaner General Hospital",
+            "City Medical Centre"
+        ],
+        "safe_areas": [
+            "City Center",
+            "Main Market Area",
+            "Civil Lines"
+        ],
+        "green_zones": [
+            "Bikaner Park",
+            "Gandhi Maidan",
+            "Nehru Garden"
+        ],
+        "travel_tip": "Stay hydrated and carry a mask if AQI is high. Check local news for latest updates."
+    },
+    "Ajmer": {
+        "description": "Detailed health and environment report for Ajmer, India. Famous for its local culture and landmarks.",
+        "hospitals": [
+            "District Hospital Ajmer",
+            "Ajmer General Hospital",
+            "City Medical Centre"
+        ],
+        "safe_areas": [
+            "City Center",
+            "Main Market Area",
+            "Civil Lines"
+        ],
+        "green_zones": [
+            "Ajmer Park",
+            "Gandhi Maidan",
+            "Nehru Garden"
+        ],
+        "travel_tip": "Stay hydrated and carry a mask if AQI is high. Check local news for latest updates."
+    },
+    "Gwalior": {
+        "description": "Detailed health and environment report for Gwalior, India. Famous for its local culture and landmarks.",
+        "hospitals": [
+            "District Hospital Gwalior",
+            "Gwalior General Hospital",
+            "City Medical Centre"
+        ],
+        "safe_areas": [
+            "City Center",
+            "Main Market Area",
+            "Civil Lines"
+        ],
+        "green_zones": [
+            "Gwalior Park",
+            "Gandhi Maidan",
+            "Nehru Garden"
+        ],
+        "travel_tip": "Stay hydrated and carry a mask if AQI is high. Check local news for latest updates."
+    },
+    "Jabalpur": {
+        "description": "Detailed health and environment report for Jabalpur, India. Famous for its local culture and landmarks.",
+        "hospitals": [
+            "District Hospital Jabalpur",
+            "Jabalpur General Hospital",
+            "City Medical Centre"
+        ],
+        "safe_areas": [
+            "City Center",
+            "Main Market Area",
+            "Civil Lines"
+        ],
+        "green_zones": [
+            "Jabalpur Park",
+            "Gandhi Maidan",
+            "Nehru Garden"
+        ],
+        "travel_tip": "Stay hydrated and carry a mask if AQI is high. Check local news for latest updates."
+    },
+    "Ujjain": {
+        "description": "Detailed health and environment report for Ujjain, India. Famous for its local culture and landmarks.",
+        "hospitals": [
+            "District Hospital Ujjain",
+            "Ujjain General Hospital",
+            "City Medical Centre"
+        ],
+        "safe_areas": [
+            "City Center",
+            "Main Market Area",
+            "Civil Lines"
+        ],
+        "green_zones": [
+            "Ujjain Park",
+            "Gandhi Maidan",
+            "Nehru Garden"
+        ],
+        "travel_tip": "Stay hydrated and carry a mask if AQI is high. Check local news for latest updates."
+    },
+    "Vijayawada": {
+        "description": "Detailed health and environment report for Vijayawada, India. Famous for its local culture and landmarks.",
+        "hospitals": [
+            "District Hospital Vijayawada",
+            "Vijayawada General Hospital",
+            "City Medical Centre"
+        ],
+        "safe_areas": [
+            "City Center",
+            "Main Market Area",
+            "Civil Lines"
+        ],
+        "green_zones": [
+            "Vijayawada Park",
+            "Gandhi Maidan",
+            "Nehru Garden"
+        ],
+        "travel_tip": "Stay hydrated and carry a mask if AQI is high. Check local news for latest updates."
+    },
+    "Guntur": {
+        "description": "Detailed health and environment report for Guntur, India. Famous for its local culture and landmarks.",
+        "hospitals": [
+            "District Hospital Guntur",
+            "Guntur General Hospital",
+            "City Medical Centre"
+        ],
+        "safe_areas": [
+            "City Center",
+            "Main Market Area",
+            "Civil Lines"
+        ],
+        "green_zones": [
+            "Guntur Park",
+            "Gandhi Maidan",
+            "Nehru Garden"
+        ],
+        "travel_tip": "Stay hydrated and carry a mask if AQI is high. Check local news for latest updates."
+    },
+    "Nellore": {
+        "description": "Detailed health and environment report for Nellore, India. Famous for its local culture and landmarks.",
+        "hospitals": [
+            "District Hospital Nellore",
+            "Nellore General Hospital",
+            "City Medical Centre"
+        ],
+        "safe_areas": [
+            "City Center",
+            "Main Market Area",
+            "Civil Lines"
+        ],
+        "green_zones": [
+            "Nellore Park",
+            "Gandhi Maidan",
+            "Nehru Garden"
+        ],
+        "travel_tip": "Stay hydrated and carry a mask if AQI is high. Check local news for latest updates."
+    },
+    "Kurnool": {
+        "description": "Detailed health and environment report for Kurnool, India. Famous for its local culture and landmarks.",
+        "hospitals": [
+            "District Hospital Kurnool",
+            "Kurnool General Hospital",
+            "City Medical Centre"
+        ],
+        "safe_areas": [
+            "City Center",
+            "Main Market Area",
+            "Civil Lines"
+        ],
+        "green_zones": [
+            "Kurnool Park",
+            "Gandhi Maidan",
+            "Nehru Garden"
+        ],
+        "travel_tip": "Stay hydrated and carry a mask if AQI is high. Check local news for latest updates."
+    },
+    "Kakinada": {
+        "description": "Detailed health and environment report for Kakinada, India. Famous for its local culture and landmarks.",
+        "hospitals": [
+            "District Hospital Kakinada",
+            "Kakinada General Hospital",
+            "City Medical Centre"
+        ],
+        "safe_areas": [
+            "City Center",
+            "Main Market Area",
+            "Civil Lines"
+        ],
+        "green_zones": [
+            "Kakinada Park",
+            "Gandhi Maidan",
+            "Nehru Garden"
+        ],
+        "travel_tip": "Stay hydrated and carry a mask if AQI is high. Check local news for latest updates."
+    },
+    "Tirupati": {
+        "description": "Detailed health and environment report for Tirupati, India. Famous for its local culture and landmarks.",
+        "hospitals": [
+            "District Hospital Tirupati",
+            "Tirupati General Hospital",
+            "City Medical Centre"
+        ],
+        "safe_areas": [
+            "City Center",
+            "Main Market Area",
+            "Civil Lines"
+        ],
+        "green_zones": [
+            "Tirupati Park",
+            "Gandhi Maidan",
+            "Nehru Garden"
+        ],
+        "travel_tip": "Stay hydrated and carry a mask if AQI is high. Check local news for latest updates."
+    },
+    "Warangal": {
+        "description": "Detailed health and environment report for Warangal, India. Famous for its local culture and landmarks.",
+        "hospitals": [
+            "District Hospital Warangal",
+            "Warangal General Hospital",
+            "City Medical Centre"
+        ],
+        "safe_areas": [
+            "City Center",
+            "Main Market Area",
+            "Civil Lines"
+        ],
+        "green_zones": [
+            "Warangal Park",
+            "Gandhi Maidan",
+            "Nehru Garden"
+        ],
+        "travel_tip": "Stay hydrated and carry a mask if AQI is high. Check local news for latest updates."
+    },
+    "Nizamabad": {
+        "description": "Detailed health and environment report for Nizamabad, India. Famous for its local culture and landmarks.",
+        "hospitals": [
+            "District Hospital Nizamabad",
+            "Nizamabad General Hospital",
+            "City Medical Centre"
+        ],
+        "safe_areas": [
+            "City Center",
+            "Main Market Area",
+            "Civil Lines"
+        ],
+        "green_zones": [
+            "Nizamabad Park",
+            "Gandhi Maidan",
+            "Nehru Garden"
+        ],
+        "travel_tip": "Stay hydrated and carry a mask if AQI is high. Check local news for latest updates."
+    },
+    "Mysore": {
+        "description": "Detailed health and environment report for Mysore, India. Famous for its local culture and landmarks.",
+        "hospitals": [
+            "District Hospital Mysore",
+            "Mysore General Hospital",
+            "City Medical Centre"
+        ],
+        "safe_areas": [
+            "City Center",
+            "Main Market Area",
+            "Civil Lines"
+        ],
+        "green_zones": [
+            "Mysore Park",
+            "Gandhi Maidan",
+            "Nehru Garden"
+        ],
+        "travel_tip": "Stay hydrated and carry a mask if AQI is high. Check local news for latest updates."
+    },
+    "Mangalore": {
+        "description": "Detailed health and environment report for Mangalore, India. Famous for its local culture and landmarks.",
+        "hospitals": [
+            "District Hospital Mangalore",
+            "Mangalore General Hospital",
+            "City Medical Centre"
+        ],
+        "safe_areas": [
+            "City Center",
+            "Main Market Area",
+            "Civil Lines"
+        ],
+        "green_zones": [
+            "Mangalore Park",
+            "Gandhi Maidan",
+            "Nehru Garden"
+        ],
+        "travel_tip": "Stay hydrated and carry a mask if AQI is high. Check local news for latest updates."
+    },
+    "Hubli-Dharwad": {
+        "description": "Detailed health and environment report for Hubli-Dharwad, India. Famous for its local culture and landmarks.",
+        "hospitals": [
+            "District Hospital Hubli-Dharwad",
+            "Hubli-Dharwad General Hospital",
+            "City Medical Centre"
+        ],
+        "safe_areas": [
+            "City Center",
+            "Main Market Area",
+            "Civil Lines"
+        ],
+        "green_zones": [
+            "Hubli-Dharwad Park",
+            "Gandhi Maidan",
+            "Nehru Garden"
+        ],
+        "travel_tip": "Stay hydrated and carry a mask if AQI is high. Check local news for latest updates."
+    },
+    "Belgaum": {
+        "description": "Detailed health and environment report for Belgaum, India. Famous for its local culture and landmarks.",
+        "hospitals": [
+            "District Hospital Belgaum",
+            "Belgaum General Hospital",
+            "City Medical Centre"
+        ],
+        "safe_areas": [
+            "City Center",
+            "Main Market Area",
+            "Civil Lines"
+        ],
+        "green_zones": [
+            "Belgaum Park",
+            "Gandhi Maidan",
+            "Nehru Garden"
+        ],
+        "travel_tip": "Stay hydrated and carry a mask if AQI is high. Check local news for latest updates."
+    },
+    "Coimbatore": {
+        "description": "Detailed health and environment report for Coimbatore, India. Famous for its local culture and landmarks.",
+        "hospitals": [
+            "District Hospital Coimbatore",
+            "Coimbatore General Hospital",
+            "City Medical Centre"
+        ],
+        "safe_areas": [
+            "City Center",
+            "Main Market Area",
+            "Civil Lines"
+        ],
+        "green_zones": [
+            "Coimbatore Park",
+            "Gandhi Maidan",
+            "Nehru Garden"
+        ],
+        "travel_tip": "Stay hydrated and carry a mask if AQI is high. Check local news for latest updates."
+    },
+    "Madurai": {
+        "description": "Detailed health and environment report for Madurai, India. Famous for its local culture and landmarks.",
+        "hospitals": [
+            "District Hospital Madurai",
+            "Madurai General Hospital",
+            "City Medical Centre"
+        ],
+        "safe_areas": [
+            "City Center",
+            "Main Market Area",
+            "Civil Lines"
+        ],
+        "green_zones": [
+            "Madurai Park",
+            "Gandhi Maidan",
+            "Nehru Garden"
+        ],
+        "travel_tip": "Stay hydrated and carry a mask if AQI is high. Check local news for latest updates."
+    },
+    "Trichy": {
+        "description": "Detailed health and environment report for Trichy, India. Famous for its local culture and landmarks.",
+        "hospitals": [
+            "District Hospital Trichy",
+            "Trichy General Hospital",
+            "City Medical Centre"
+        ],
+        "safe_areas": [
+            "City Center",
+            "Main Market Area",
+            "Civil Lines"
+        ],
+        "green_zones": [
+            "Trichy Park",
+            "Gandhi Maidan",
+            "Nehru Garden"
+        ],
+        "travel_tip": "Stay hydrated and carry a mask if AQI is high. Check local news for latest updates."
+    },
+    "Salem": {
+        "description": "Detailed health and environment report for Salem, India. Famous for its local culture and landmarks.",
+        "hospitals": [
+            "District Hospital Salem",
+            "Salem General Hospital",
+            "City Medical Centre"
+        ],
+        "safe_areas": [
+            "City Center",
+            "Main Market Area",
+            "Civil Lines"
+        ],
+        "green_zones": [
+            "Salem Park",
+            "Gandhi Maidan",
+            "Nehru Garden"
+        ],
+        "travel_tip": "Stay hydrated and carry a mask if AQI is high. Check local news for latest updates."
+    },
+    "Tirunelveli": {
+        "description": "Detailed health and environment report for Tirunelveli, India. Famous for its local culture and landmarks.",
+        "hospitals": [
+            "District Hospital Tirunelveli",
+            "Tirunelveli General Hospital",
+            "City Medical Centre"
+        ],
+        "safe_areas": [
+            "City Center",
+            "Main Market Area",
+            "Civil Lines"
+        ],
+        "green_zones": [
+            "Tirunelveli Park",
+            "Gandhi Maidan",
+            "Nehru Garden"
+        ],
+        "travel_tip": "Stay hydrated and carry a mask if AQI is high. Check local news for latest updates."
+    },
+    "Vellore": {
+        "description": "Detailed health and environment report for Vellore, India. Famous for its local culture and landmarks.",
+        "hospitals": [
+            "District Hospital Vellore",
+            "Vellore General Hospital",
+            "City Medical Centre"
+        ],
+        "safe_areas": [
+            "City Center",
+            "Main Market Area",
+            "Civil Lines"
+        ],
+        "green_zones": [
+            "Vellore Park",
+            "Gandhi Maidan",
+            "Nehru Garden"
+        ],
+        "travel_tip": "Stay hydrated and carry a mask if AQI is high. Check local news for latest updates."
+    },
+    "Erode": {
+        "description": "Detailed health and environment report for Erode, India. Famous for its local culture and landmarks.",
+        "hospitals": [
+            "District Hospital Erode",
+            "Erode General Hospital",
+            "City Medical Centre"
+        ],
+        "safe_areas": [
+            "City Center",
+            "Main Market Area",
+            "Civil Lines"
+        ],
+        "green_zones": [
+            "Erode Park",
+            "Gandhi Maidan",
+            "Nehru Garden"
+        ],
+        "travel_tip": "Stay hydrated and carry a mask if AQI is high. Check local news for latest updates."
+    },
+    "Kochi": {
+        "description": "Detailed health and environment report for Kochi, India. Famous for its local culture and landmarks.",
+        "hospitals": [
+            "District Hospital Kochi",
+            "Kochi General Hospital",
+            "City Medical Centre"
+        ],
+        "safe_areas": [
+            "City Center",
+            "Main Market Area",
+            "Civil Lines"
+        ],
+        "green_zones": [
+            "Kochi Park",
+            "Gandhi Maidan",
+            "Nehru Garden"
+        ],
+        "travel_tip": "Stay hydrated and carry a mask if AQI is high. Check local news for latest updates."
+    },
+    "Thiruvananthapuram": {
+        "description": "Detailed health and environment report for Thiruvananthapuram, India. Famous for its local culture and landmarks.",
+        "hospitals": [
+            "District Hospital Thiruvananthapuram",
+            "Thiruvananthapuram General Hospital",
+            "City Medical Centre"
+        ],
+        "safe_areas": [
+            "City Center",
+            "Main Market Area",
+            "Civil Lines"
+        ],
+        "green_zones": [
+            "Thiruvananthapuram Park",
+            "Gandhi Maidan",
+            "Nehru Garden"
+        ],
+        "travel_tip": "Stay hydrated and carry a mask if AQI is high. Check local news for latest updates."
+    },
+    "Kozhikode": {
+        "description": "Detailed health and environment report for Kozhikode, India. Famous for its local culture and landmarks.",
+        "hospitals": [
+            "District Hospital Kozhikode",
+            "Kozhikode General Hospital",
+            "City Medical Centre"
+        ],
+        "safe_areas": [
+            "City Center",
+            "Main Market Area",
+            "Civil Lines"
+        ],
+        "green_zones": [
+            "Kozhikode Park",
+            "Gandhi Maidan",
+            "Nehru Garden"
+        ],
+        "travel_tip": "Stay hydrated and carry a mask if AQI is high. Check local news for latest updates."
+    },
+    "Thrissur": {
+        "description": "Detailed health and environment report for Thrissur, India. Famous for its local culture and landmarks.",
+        "hospitals": [
+            "District Hospital Thrissur",
+            "Thrissur General Hospital",
+            "City Medical Centre"
+        ],
+        "safe_areas": [
+            "City Center",
+            "Main Market Area",
+            "Civil Lines"
+        ],
+        "green_zones": [
+            "Thrissur Park",
+            "Gandhi Maidan",
+            "Nehru Garden"
+        ],
+        "travel_tip": "Stay hydrated and carry a mask if AQI is high. Check local news for latest updates."
+    },
+    "Kannur": {
+        "description": "Detailed health and environment report for Kannur, India. Famous for its local culture and landmarks.",
+        "hospitals": [
+            "District Hospital Kannur",
+            "Kannur General Hospital",
+            "City Medical Centre"
+        ],
+        "safe_areas": [
+            "City Center",
+            "Main Market Area",
+            "Civil Lines"
+        ],
+        "green_zones": [
+            "Kannur Park",
+            "Gandhi Maidan",
+            "Nehru Garden"
+        ],
+        "travel_tip": "Stay hydrated and carry a mask if AQI is high. Check local news for latest updates."
+    },
+    "Gaya": {
+        "description": "Detailed health and environment report for Gaya, India. Famous for its local culture and landmarks.",
+        "hospitals": [
+            "District Hospital Gaya",
+            "Gaya General Hospital",
+            "City Medical Centre"
+        ],
+        "safe_areas": [
+            "City Center",
+            "Main Market Area",
+            "Civil Lines"
+        ],
+        "green_zones": [
+            "Gaya Park",
+            "Gandhi Maidan",
+            "Nehru Garden"
+        ],
+        "travel_tip": "Stay hydrated and carry a mask if AQI is high. Check local news for latest updates."
+    },
+    "Muzaffarpur": {
+        "description": "Detailed health and environment report for Muzaffarpur, India. Famous for its local culture and landmarks.",
+        "hospitals": [
+            "District Hospital Muzaffarpur",
+            "Muzaffarpur General Hospital",
+            "City Medical Centre"
+        ],
+        "safe_areas": [
+            "City Center",
+            "Main Market Area",
+            "Civil Lines"
+        ],
+        "green_zones": [
+            "Muzaffarpur Park",
+            "Gandhi Maidan",
+            "Nehru Garden"
+        ],
+        "travel_tip": "Stay hydrated and carry a mask if AQI is high. Check local news for latest updates."
+    },
+    "Bhagalpur": {
+        "description": "Detailed health and environment report for Bhagalpur, India. Famous for its local culture and landmarks.",
+        "hospitals": [
+            "District Hospital Bhagalpur",
+            "Bhagalpur General Hospital",
+            "City Medical Centre"
+        ],
+        "safe_areas": [
+            "City Center",
+            "Main Market Area",
+            "Civil Lines"
+        ],
+        "green_zones": [
+            "Bhagalpur Park",
+            "Gandhi Maidan",
+            "Nehru Garden"
+        ],
+        "travel_tip": "Stay hydrated and carry a mask if AQI is high. Check local news for latest updates."
+    },
+    "Ranchi": {
+        "description": "Detailed health and environment report for Ranchi, India. Famous for its local culture and landmarks.",
+        "hospitals": [
+            "District Hospital Ranchi",
+            "Ranchi General Hospital",
+            "City Medical Centre"
+        ],
+        "safe_areas": [
+            "City Center",
+            "Main Market Area",
+            "Civil Lines"
+        ],
+        "green_zones": [
+            "Ranchi Park",
+            "Gandhi Maidan",
+            "Nehru Garden"
+        ],
+        "travel_tip": "Stay hydrated and carry a mask if AQI is high. Check local news for latest updates."
+    },
+    "Jamshedpur": {
+        "description": "Detailed health and environment report for Jamshedpur, India. Famous for its local culture and landmarks.",
+        "hospitals": [
+            "District Hospital Jamshedpur",
+            "Jamshedpur General Hospital",
+            "City Medical Centre"
+        ],
+        "safe_areas": [
+            "City Center",
+            "Main Market Area",
+            "Civil Lines"
+        ],
+        "green_zones": [
+            "Jamshedpur Park",
+            "Gandhi Maidan",
+            "Nehru Garden"
+        ],
+        "travel_tip": "Stay hydrated and carry a mask if AQI is high. Check local news for latest updates."
+    },
+    "Dhanbad": {
+        "description": "Detailed health and environment report for Dhanbad, India. Famous for its local culture and landmarks.",
+        "hospitals": [
+            "District Hospital Dhanbad",
+            "Dhanbad General Hospital",
+            "City Medical Centre"
+        ],
+        "safe_areas": [
+            "City Center",
+            "Main Market Area",
+            "Civil Lines"
+        ],
+        "green_zones": [
+            "Dhanbad Park",
+            "Gandhi Maidan",
+            "Nehru Garden"
+        ],
+        "travel_tip": "Stay hydrated and carry a mask if AQI is high. Check local news for latest updates."
+    },
+    "Bokaro": {
+        "description": "Detailed health and environment report for Bokaro, India. Famous for its local culture and landmarks.",
+        "hospitals": [
+            "District Hospital Bokaro",
+            "Bokaro General Hospital",
+            "City Medical Centre"
+        ],
+        "safe_areas": [
+            "City Center",
+            "Main Market Area",
+            "Civil Lines"
+        ],
+        "green_zones": [
+            "Bokaro Park",
+            "Gandhi Maidan",
+            "Nehru Garden"
+        ],
+        "travel_tip": "Stay hydrated and carry a mask if AQI is high. Check local news for latest updates."
+    },
+    "Bhubaneswar": {
+        "description": "Detailed health and environment report for Bhubaneswar, India. Famous for its local culture and landmarks.",
+        "hospitals": [
+            "District Hospital Bhubaneswar",
+            "Bhubaneswar General Hospital",
+            "City Medical Centre"
+        ],
+        "safe_areas": [
+            "City Center",
+            "Main Market Area",
+            "Civil Lines"
+        ],
+        "green_zones": [
+            "Bhubaneswar Park",
+            "Gandhi Maidan",
+            "Nehru Garden"
+        ],
+        "travel_tip": "Stay hydrated and carry a mask if AQI is high. Check local news for latest updates."
+    },
+    "Cuttack": {
+        "description": "Detailed health and environment report for Cuttack, India. Famous for its local culture and landmarks.",
+        "hospitals": [
+            "District Hospital Cuttack",
+            "Cuttack General Hospital",
+            "City Medical Centre"
+        ],
+        "safe_areas": [
+            "City Center",
+            "Main Market Area",
+            "Civil Lines"
+        ],
+        "green_zones": [
+            "Cuttack Park",
+            "Gandhi Maidan",
+            "Nehru Garden"
+        ],
+        "travel_tip": "Stay hydrated and carry a mask if AQI is high. Check local news for latest updates."
+    },
+    "Rourkela": {
+        "description": "Detailed health and environment report for Rourkela, India. Famous for its local culture and landmarks.",
+        "hospitals": [
+            "District Hospital Rourkela",
+            "Rourkela General Hospital",
+            "City Medical Centre"
+        ],
+        "safe_areas": [
+            "City Center",
+            "Main Market Area",
+            "Civil Lines"
+        ],
+        "green_zones": [
+            "Rourkela Park",
+            "Gandhi Maidan",
+            "Nehru Garden"
+        ],
+        "travel_tip": "Stay hydrated and carry a mask if AQI is high. Check local news for latest updates."
+    },
+    "Raipur": {
+        "description": "Detailed health and environment report for Raipur, India. Famous for its local culture and landmarks.",
+        "hospitals": [
+            "District Hospital Raipur",
+            "Raipur General Hospital",
+            "City Medical Centre"
+        ],
+        "safe_areas": [
+            "City Center",
+            "Main Market Area",
+            "Civil Lines"
+        ],
+        "green_zones": [
+            "Raipur Park",
+            "Gandhi Maidan",
+            "Nehru Garden"
+        ],
+        "travel_tip": "Stay hydrated and carry a mask if AQI is high. Check local news for latest updates."
+    },
+    "Bhilai": {
+        "description": "Detailed health and environment report for Bhilai, India. Famous for its local culture and landmarks.",
+        "hospitals": [
+            "District Hospital Bhilai",
+            "Bhilai General Hospital",
+            "City Medical Centre"
+        ],
+        "safe_areas": [
+            "City Center",
+            "Main Market Area",
+            "Civil Lines"
+        ],
+        "green_zones": [
+            "Bhilai Park",
+            "Gandhi Maidan",
+            "Nehru Garden"
+        ],
+        "travel_tip": "Stay hydrated and carry a mask if AQI is high. Check local news for latest updates."
+    },
+    "Guwahati": {
+        "description": "Detailed health and environment report for Guwahati, India. Famous for its local culture and landmarks.",
+        "hospitals": [
+            "District Hospital Guwahati",
+            "Guwahati General Hospital",
+            "City Medical Centre"
+        ],
+        "safe_areas": [
+            "City Center",
+            "Main Market Area",
+            "Civil Lines"
+        ],
+        "green_zones": [
+            "Guwahati Park",
+            "Gandhi Maidan",
+            "Nehru Garden"
+        ],
+        "travel_tip": "Stay hydrated and carry a mask if AQI is high. Check local news for latest updates."
+    },
+    "Agartala": {
+        "description": "Detailed health and environment report for Agartala, India. Famous for its local culture and landmarks.",
+        "hospitals": [
+            "District Hospital Agartala",
+            "Agartala General Hospital",
+            "City Medical Centre"
+        ],
+        "safe_areas": [
+            "City Center",
+            "Main Market Area",
+            "Civil Lines"
+        ],
+        "green_zones": [
+            "Agartala Park",
+            "Gandhi Maidan",
+            "Nehru Garden"
+        ],
+        "travel_tip": "Stay hydrated and carry a mask if AQI is high. Check local news for latest updates."
+    },
+    "Shillong": {
+        "description": "Detailed health and environment report for Shillong, India. Famous for its local culture and landmarks.",
+        "hospitals": [
+            "District Hospital Shillong",
+            "Shillong General Hospital",
+            "City Medical Centre"
+        ],
+        "safe_areas": [
+            "City Center",
+            "Main Market Area",
+            "Civil Lines"
+        ],
+        "green_zones": [
+            "Shillong Park",
+            "Gandhi Maidan",
+            "Nehru Garden"
+        ],
+        "travel_tip": "Stay hydrated and carry a mask if AQI is high. Check local news for latest updates."
+    },
+    "Imphal": {
+        "description": "Detailed health and environment report for Imphal, India. Famous for its local culture and landmarks.",
+        "hospitals": [
+            "District Hospital Imphal",
+            "Imphal General Hospital",
+            "City Medical Centre"
+        ],
+        "safe_areas": [
+            "City Center",
+            "Main Market Area",
+            "Civil Lines"
+        ],
+        "green_zones": [
+            "Imphal Park",
+            "Gandhi Maidan",
+            "Nehru Garden"
+        ],
+        "travel_tip": "Stay hydrated and carry a mask if AQI is high. Check local news for latest updates."
+    },
+    "Aizawl": {
+        "description": "Detailed health and environment report for Aizawl, India. Famous for its local culture and landmarks.",
+        "hospitals": [
+            "District Hospital Aizawl",
+            "Aizawl General Hospital",
+            "City Medical Centre"
+        ],
+        "safe_areas": [
+            "City Center",
+            "Main Market Area",
+            "Civil Lines"
+        ],
+        "green_zones": [
+            "Aizawl Park",
+            "Gandhi Maidan",
+            "Nehru Garden"
+        ],
+        "travel_tip": "Stay hydrated and carry a mask if AQI is high. Check local news for latest updates."
+    },
+    "Kohima": {
+        "description": "Detailed health and environment report for Kohima, India. Famous for its local culture and landmarks.",
+        "hospitals": [
+            "District Hospital Kohima",
+            "Kohima General Hospital",
+            "City Medical Centre"
+        ],
+        "safe_areas": [
+            "City Center",
+            "Main Market Area",
+            "Civil Lines"
+        ],
+        "green_zones": [
+            "Kohima Park",
+            "Gandhi Maidan",
+            "Nehru Garden"
+        ],
+        "travel_tip": "Stay hydrated and carry a mask if AQI is high. Check local news for latest updates."
+    },
+    "Gangtok": {
+        "description": "Detailed health and environment report for Gangtok, India. Famous for its local culture and landmarks.",
+        "hospitals": [
+            "District Hospital Gangtok",
+            "Gangtok General Hospital",
+            "City Medical Centre"
+        ],
+        "safe_areas": [
+            "City Center",
+            "Main Market Area",
+            "Civil Lines"
+        ],
+        "green_zones": [
+            "Gangtok Park",
+            "Gandhi Maidan",
+            "Nehru Garden"
+        ],
+        "travel_tip": "Stay hydrated and carry a mask if AQI is high. Check local news for latest updates."
+    },
+    "Siliguri": {
+        "description": "Detailed health and environment report for Siliguri, India. Famous for its local culture and landmarks.",
+        "hospitals": [
+            "District Hospital Siliguri",
+            "Siliguri General Hospital",
+            "City Medical Centre"
+        ],
+        "safe_areas": [
+            "City Center",
+            "Main Market Area",
+            "Civil Lines"
+        ],
+        "green_zones": [
+            "Siliguri Park",
+            "Gandhi Maidan",
+            "Nehru Garden"
+        ],
+        "travel_tip": "Stay hydrated and carry a mask if AQI is high. Check local news for latest updates."
+    },
+    "Durgapur": {
+        "description": "Detailed health and environment report for Durgapur, India. Famous for its local culture and landmarks.",
+        "hospitals": [
+            "District Hospital Durgapur",
+            "Durgapur General Hospital",
+            "City Medical Centre"
+        ],
+        "safe_areas": [
+            "City Center",
+            "Main Market Area",
+            "Civil Lines"
+        ],
+        "green_zones": [
+            "Durgapur Park",
+            "Gandhi Maidan",
+            "Nehru Garden"
+        ],
+        "travel_tip": "Stay hydrated and carry a mask if AQI is high. Check local news for latest updates."
+    },
+    "Asansol": {
+        "description": "Detailed health and environment report for Asansol, India. Famous for its local culture and landmarks.",
+        "hospitals": [
+            "District Hospital Asansol",
+            "Asansol General Hospital",
+            "City Medical Centre"
+        ],
+        "safe_areas": [
+            "City Center",
+            "Main Market Area",
+            "Civil Lines"
+        ],
+        "green_zones": [
+            "Asansol Park",
+            "Gandhi Maidan",
+            "Nehru Garden"
+        ],
+        "travel_tip": "Stay hydrated and carry a mask if AQI is high. Check local news for latest updates."
+    },
+    "Pondicherry": {
+        "description": "Detailed health and environment report for Pondicherry, India. Famous for its local culture and landmarks.",
+        "hospitals": [
+            "District Hospital Pondicherry",
+            "Pondicherry General Hospital",
+            "City Medical Centre"
+        ],
+        "safe_areas": [
+            "City Center",
+            "Main Market Area",
+            "Civil Lines"
+        ],
+        "green_zones": [
+            "Pondicherry Park",
+            "Gandhi Maidan",
+            "Nehru Garden"
+        ],
+        "travel_tip": "Stay hydrated and carry a mask if AQI is high. Check local news for latest updates."
+    },
+    "Port Blair": {
+        "description": "Detailed health and environment report for Port Blair, India. Famous for its local culture and landmarks.",
+        "hospitals": [
+            "District Hospital Port Blair",
+            "Port Blair General Hospital",
+            "City Medical Centre"
+        ],
+        "safe_areas": [
+            "City Center",
+            "Main Market Area",
+            "Civil Lines"
+        ],
+        "green_zones": [
+            "Port Blair Park",
+            "Gandhi Maidan",
+            "Nehru Garden"
+        ],
+        "travel_tip": "Stay hydrated and carry a mask if AQI is high. Check local news for latest updates."
+    },
+    "Haridwar": {
+        "description": "Detailed health and environment report for Haridwar, India. Famous for its local culture and landmarks.",
+        "hospitals": [
+            "District Hospital Haridwar",
+            "Haridwar General Hospital",
+            "City Medical Centre"
+        ],
+        "safe_areas": [
+            "City Center",
+            "Main Market Area",
+            "Civil Lines"
+        ],
+        "green_zones": [
+            "Haridwar Park",
+            "Gandhi Maidan",
+            "Nehru Garden"
+        ],
+        "travel_tip": "Stay hydrated and carry a mask if AQI is high. Check local news for latest updates."
+    },
+    "Rishikesh": {
+        "description": "Detailed health and environment report for Rishikesh, India. Famous for its local culture and landmarks.",
+        "hospitals": [
+            "District Hospital Rishikesh",
+            "Rishikesh General Hospital",
+            "City Medical Centre"
+        ],
+        "safe_areas": [
+            "City Center",
+            "Main Market Area",
+            "Civil Lines"
+        ],
+        "green_zones": [
+            "Rishikesh Park",
+            "Gandhi Maidan",
+            "Nehru Garden"
+        ],
+        "travel_tip": "Stay hydrated and carry a mask if AQI is high. Check local news for latest updates."
+    },
+    "Nainital": {
+        "description": "Detailed health and environment report for Nainital, India. Famous for its local culture and landmarks.",
+        "hospitals": [
+            "District Hospital Nainital",
+            "Nainital General Hospital",
+            "City Medical Centre"
+        ],
+        "safe_areas": [
+            "City Center",
+            "Main Market Area",
+            "Civil Lines"
+        ],
+        "green_zones": [
+            "Nainital Park",
+            "Gandhi Maidan",
+            "Nehru Garden"
+        ],
+        "travel_tip": "Stay hydrated and carry a mask if AQI is high. Check local news for latest updates."
+    },
+    "Mussoorie": {
+        "description": "Detailed health and environment report for Mussoorie, India. Famous for its local culture and landmarks.",
+        "hospitals": [
+            "District Hospital Mussoorie",
+            "Mussoorie General Hospital",
+            "City Medical Centre"
+        ],
+        "safe_areas": [
+            "City Center",
+            "Main Market Area",
+            "Civil Lines"
+        ],
+        "green_zones": [
+            "Mussoorie Park",
+            "Gandhi Maidan",
+            "Nehru Garden"
+        ],
+        "travel_tip": "Stay hydrated and carry a mask if AQI is high. Check local news for latest updates."
+    },
+    "Dharamshala": {
+        "description": "Detailed health and environment report for Dharamshala, India. Famous for its local culture and landmarks.",
+        "hospitals": [
+            "District Hospital Dharamshala",
+            "Dharamshala General Hospital",
+            "City Medical Centre"
+        ],
+        "safe_areas": [
+            "City Center",
+            "Main Market Area",
+            "Civil Lines"
+        ],
+        "green_zones": [
+            "Dharamshala Park",
+            "Gandhi Maidan",
+            "Nehru Garden"
+        ],
+        "travel_tip": "Stay hydrated and carry a mask if AQI is high. Check local news for latest updates."
+    },
+    "Dalhousie": {
+        "description": "Detailed health and environment report for Dalhousie, India. Famous for its local culture and landmarks.",
+        "hospitals": [
+            "District Hospital Dalhousie",
+            "Dalhousie General Hospital",
+            "City Medical Centre"
+        ],
+        "safe_areas": [
+            "City Center",
+            "Main Market Area",
+            "Civil Lines"
+        ],
+        "green_zones": [
+            "Dalhousie Park",
+            "Gandhi Maidan",
+            "Nehru Garden"
+        ],
+        "travel_tip": "Stay hydrated and carry a mask if AQI is high. Check local news for latest updates."
+    },
+    "Patiala": {
+        "description": "Detailed health and environment report for Patiala, India. Famous for its local culture and landmarks.",
+        "hospitals": [
+            "District Hospital Patiala",
+            "Patiala General Hospital",
+            "City Medical Centre"
+        ],
+        "safe_areas": [
+            "City Center",
+            "Main Market Area",
+            "Civil Lines"
+        ],
+        "green_zones": [
+            "Patiala Park",
+            "Gandhi Maidan",
+            "Nehru Garden"
+        ],
+        "travel_tip": "Stay hydrated and carry a mask if AQI is high. Check local news for latest updates."
+    },
+    "Bhatinda": {
+        "description": "Detailed health and environment report for Bhatinda, India. Famous for its local culture and landmarks.",
+        "hospitals": [
+            "District Hospital Bhatinda",
+            "Bhatinda General Hospital",
+            "City Medical Centre"
+        ],
+        "safe_areas": [
+            "City Center",
+            "Main Market Area",
+            "Civil Lines"
+        ],
+        "green_zones": [
+            "Bhatinda Park",
+            "Gandhi Maidan",
+            "Nehru Garden"
+        ],
+        "travel_tip": "Stay hydrated and carry a mask if AQI is high. Check local news for latest updates."
+    },
+    "Rohtak": {
+        "description": "Detailed health and environment report for Rohtak, India. Famous for its local culture and landmarks.",
+        "hospitals": [
+            "District Hospital Rohtak",
+            "Rohtak General Hospital",
+            "City Medical Centre"
+        ],
+        "safe_areas": [
+            "City Center",
+            "Main Market Area",
+            "Civil Lines"
+        ],
+        "green_zones": [
+            "Rohtak Park",
+            "Gandhi Maidan",
+            "Nehru Garden"
+        ],
+        "travel_tip": "Stay hydrated and carry a mask if AQI is high. Check local news for latest updates."
+    },
+    "Panipat": {
+        "description": "Detailed health and environment report for Panipat, India. Famous for its local culture and landmarks.",
+        "hospitals": [
+            "District Hospital Panipat",
+            "Panipat General Hospital",
+            "City Medical Centre"
+        ],
+        "safe_areas": [
+            "City Center",
+            "Main Market Area",
+            "Civil Lines"
+        ],
+        "green_zones": [
+            "Panipat Park",
+            "Gandhi Maidan",
+            "Nehru Garden"
+        ],
+        "travel_tip": "Stay hydrated and carry a mask if AQI is high. Check local news for latest updates."
+    },
+    "Mathura": {
+        "description": "Detailed health and environment report for Mathura, India. Famous for its local culture and landmarks.",
+        "hospitals": [
+            "District Hospital Mathura",
+            "Mathura General Hospital",
+            "City Medical Centre"
+        ],
+        "safe_areas": [
+            "City Center",
+            "Main Market Area",
+            "Civil Lines"
+        ],
+        "green_zones": [
+            "Mathura Park",
+            "Gandhi Maidan",
+            "Nehru Garden"
+        ],
+        "travel_tip": "Stay hydrated and carry a mask if AQI is high. Check local news for latest updates."
+    },
+    "Vrindavan": {
+        "description": "Detailed health and environment report for Vrindavan, India. Famous for its local culture and landmarks.",
+        "hospitals": [
+            "District Hospital Vrindavan",
+            "Vrindavan General Hospital",
+            "City Medical Centre"
+        ],
+        "safe_areas": [
+            "City Center",
+            "Main Market Area",
+            "Civil Lines"
+        ],
+        "green_zones": [
+            "Vrindavan Park",
+            "Gandhi Maidan",
+            "Nehru Garden"
+        ],
+        "travel_tip": "Stay hydrated and carry a mask if AQI is high. Check local news for latest updates."
+    },
+    "Ayodhya": {
+        "description": "Detailed health and environment report for Ayodhya, India. Famous for its local culture and landmarks.",
+        "hospitals": [
+            "District Hospital Ayodhya",
+            "Ayodhya General Hospital",
+            "City Medical Centre"
+        ],
+        "safe_areas": [
+            "City Center",
+            "Main Market Area",
+            "Civil Lines"
+        ],
+        "green_zones": [
+            "Ayodhya Park",
+            "Gandhi Maidan",
+            "Nehru Garden"
+        ],
+        "travel_tip": "Stay hydrated and carry a mask if AQI is high. Check local news for latest updates."
+    },
+    "Ratlam": {
+        "description": "Detailed health and environment report for Ratlam, India. Famous for its local culture and landmarks.",
+        "hospitals": [
+            "District Hospital Ratlam",
+            "Ratlam General Hospital",
+            "City Medical Centre"
+        ],
+        "safe_areas": [
+            "City Center",
+            "Main Market Area",
+            "Civil Lines"
+        ],
+        "green_zones": [
+            "Ratlam Park",
+            "Gandhi Maidan",
+            "Nehru Garden"
+        ],
+        "travel_tip": "Stay hydrated and carry a mask if AQI is high. Check local news for latest updates."
+    },
+    "Sagar": {
+        "description": "Detailed health and environment report for Sagar, India. Famous for its local culture and landmarks.",
+        "hospitals": [
+            "District Hospital Sagar",
+            "Sagar General Hospital",
+            "City Medical Centre"
+        ],
+        "safe_areas": [
+            "City Center",
+            "Main Market Area",
+            "Civil Lines"
+        ],
+        "green_zones": [
+            "Sagar Park",
+            "Gandhi Maidan",
+            "Nehru Garden"
+        ],
+        "travel_tip": "Stay hydrated and carry a mask if AQI is high. Check local news for latest updates."
+    },
+    "Satna": {
+        "description": "Detailed health and environment report for Satna, India. Famous for its local culture and landmarks.",
+        "hospitals": [
+            "District Hospital Satna",
+            "Satna General Hospital",
+            "City Medical Centre"
+        ],
+        "safe_areas": [
+            "City Center",
+            "Main Market Area",
+            "Civil Lines"
+        ],
+        "green_zones": [
+            "Satna Park",
+            "Gandhi Maidan",
+            "Nehru Garden"
+        ],
+        "travel_tip": "Stay hydrated and carry a mask if AQI is high. Check local news for latest updates."
+    },
+    "Akola": {
+        "description": "Detailed health and environment report for Akola, India. Famous for its local culture and landmarks.",
+        "hospitals": [
+            "District Hospital Akola",
+            "Akola General Hospital",
+            "City Medical Centre"
+        ],
+        "safe_areas": [
+            "City Center",
+            "Main Market Area",
+            "Civil Lines"
+        ],
+        "green_zones": [
+            "Akola Park",
+            "Gandhi Maidan",
+            "Nehru Garden"
+        ],
+        "travel_tip": "Stay hydrated and carry a mask if AQI is high. Check local news for latest updates."
+    },
+    "Amravati": {
+        "description": "Detailed health and environment report for Amravati, India. Famous for its local culture and landmarks.",
+        "hospitals": [
+            "District Hospital Amravati",
+            "Amravati General Hospital",
+            "City Medical Centre"
+        ],
+        "safe_areas": [
+            "City Center",
+            "Main Market Area",
+            "Civil Lines"
+        ],
+        "green_zones": [
+            "Amravati Park",
+            "Gandhi Maidan",
+            "Nehru Garden"
+        ],
+        "travel_tip": "Stay hydrated and carry a mask if AQI is high. Check local news for latest updates."
+    },
+    "Latur": {
+        "description": "Detailed health and environment report for Latur, India. Famous for its local culture and landmarks.",
+        "hospitals": [
+            "District Hospital Latur",
+            "Latur General Hospital",
+            "City Medical Centre"
+        ],
+        "safe_areas": [
+            "City Center",
+            "Main Market Area",
+            "Civil Lines"
+        ],
+        "green_zones": [
+            "Latur Park",
+            "Gandhi Maidan",
+            "Nehru Garden"
+        ],
+        "travel_tip": "Stay hydrated and carry a mask if AQI is high. Check local news for latest updates."
+    },
+    "Nanded": {
+        "description": "Detailed health and environment report for Nanded, India. Famous for its local culture and landmarks.",
+        "hospitals": [
+            "District Hospital Nanded",
+            "Nanded General Hospital",
+            "City Medical Centre"
+        ],
+        "safe_areas": [
+            "City Center",
+            "Main Market Area",
+            "Civil Lines"
+        ],
+        "green_zones": [
+            "Nanded Park",
+            "Gandhi Maidan",
+            "Nehru Garden"
+        ],
+        "travel_tip": "Stay hydrated and carry a mask if AQI is high. Check local news for latest updates."
+    },
+    "Gulbarga": {
+        "description": "Detailed health and environment report for Gulbarga, India. Famous for its local culture and landmarks.",
+        "hospitals": [
+            "District Hospital Gulbarga",
+            "Gulbarga General Hospital",
+            "City Medical Centre"
+        ],
+        "safe_areas": [
+            "City Center",
+            "Main Market Area",
+            "Civil Lines"
+        ],
+        "green_zones": [
+            "Gulbarga Park",
+            "Gandhi Maidan",
+            "Nehru Garden"
+        ],
+        "travel_tip": "Stay hydrated and carry a mask if AQI is high. Check local news for latest updates."
+    },
+    "Bidar": {
+        "description": "Detailed health and environment report for Bidar, India. Famous for its local culture and landmarks.",
+        "hospitals": [
+            "District Hospital Bidar",
+            "Bidar General Hospital",
+            "City Medical Centre"
+        ],
+        "safe_areas": [
+            "City Center",
+            "Main Market Area",
+            "Civil Lines"
+        ],
+        "green_zones": [
+            "Bidar Park",
+            "Gandhi Maidan",
+            "Nehru Garden"
+        ],
+        "travel_tip": "Stay hydrated and carry a mask if AQI is high. Check local news for latest updates."
+    },
+    "Hospet": {
+        "description": "Detailed health and environment report for Hospet, India. Famous for its local culture and landmarks.",
+        "hospitals": [
+            "District Hospital Hospet",
+            "Hospet General Hospital",
+            "City Medical Centre"
+        ],
+        "safe_areas": [
+            "City Center",
+            "Main Market Area",
+            "Civil Lines"
+        ],
+        "green_zones": [
+            "Hospet Park",
+            "Gandhi Maidan",
+            "Nehru Garden"
+        ],
+        "travel_tip": "Stay hydrated and carry a mask if AQI is high. Check local news for latest updates."
+    },
+    "Tirupur": {
+        "description": "Detailed health and environment report for Tirupur, India. Famous for its local culture and landmarks.",
+        "hospitals": [
+            "District Hospital Tirupur",
+            "Tirupur General Hospital",
+            "City Medical Centre"
+        ],
+        "safe_areas": [
+            "City Center",
+            "Main Market Area",
+            "Civil Lines"
+        ],
+        "green_zones": [
+            "Tirupur Park",
+            "Gandhi Maidan",
+            "Nehru Garden"
+        ],
+        "travel_tip": "Stay hydrated and carry a mask if AQI is high. Check local news for latest updates."
+    },
+    "Alappuzha": {
+        "description": "Detailed health and environment report for Alappuzha, India. Famous for its local culture and landmarks.",
+        "hospitals": [
+            "District Hospital Alappuzha",
+            "Alappuzha General Hospital",
+            "City Medical Centre"
+        ],
+        "safe_areas": [
+            "City Center",
+            "Main Market Area",
+            "Civil Lines"
+        ],
+        "green_zones": [
+            "Alappuzha Park",
+            "Gandhi Maidan",
+            "Nehru Garden"
+        ],
+        "travel_tip": "Stay hydrated and carry a mask if AQI is high. Check local news for latest updates."
+    },
+    "Munnar": {
+        "description": "Detailed health and environment report for Munnar, India. Famous for its local culture and landmarks.",
+        "hospitals": [
+            "District Hospital Munnar",
+            "Munnar General Hospital",
+            "City Medical Centre"
+        ],
+        "safe_areas": [
+            "City Center",
+            "Main Market Area",
+            "Civil Lines"
+        ],
+        "green_zones": [
+            "Munnar Park",
+            "Gandhi Maidan",
+            "Nehru Garden"
+        ],
+        "travel_tip": "Stay hydrated and carry a mask if AQI is high. Check local news for latest updates."
+    },
+    "Silchar": {
+        "description": "Detailed health and environment report for Silchar, India. Famous for its local culture and landmarks.",
+        "hospitals": [
+            "District Hospital Silchar",
+            "Silchar General Hospital",
+            "City Medical Centre"
+        ],
+        "safe_areas": [
+            "City Center",
+            "Main Market Area",
+            "Civil Lines"
+        ],
+        "green_zones": [
+            "Silchar Park",
+            "Gandhi Maidan",
+            "Nehru Garden"
+        ],
+        "travel_tip": "Stay hydrated and carry a mask if AQI is high. Check local news for latest updates."
+    },
+    "Dibrugarh": {
+        "description": "Detailed health and environment report for Dibrugarh, India. Famous for its local culture and landmarks.",
+        "hospitals": [
+            "District Hospital Dibrugarh",
+            "Dibrugarh General Hospital",
+            "City Medical Centre"
+        ],
+        "safe_areas": [
+            "City Center",
+            "Main Market Area",
+            "Civil Lines"
+        ],
+        "green_zones": [
+            "Dibrugarh Park",
+            "Gandhi Maidan",
+            "Nehru Garden"
+        ],
+        "travel_tip": "Stay hydrated and carry a mask if AQI is high. Check local news for latest updates."
+    }
+}

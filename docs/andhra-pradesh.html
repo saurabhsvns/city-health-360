@@ -1,0 +1,352 @@
+<!DOCTYPE html>
+<html lang="en" class="dark">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Health & AQI Forecast for Andhra Pradesh Cities | City Health 360</title>
+    <meta name="description"
+        content="Live environmental monitoring, AQI, and Travel Advisories for all cities in Andhra Pradesh.">
+
+    <!-- Tailwind CSS -->
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script>
+        tailwind.config = { darkMode: 'class', theme: { extend: { fontFamily: { sans: ['Inter', 'sans-serif'], display: ['Outfit', 'sans-serif'] } } } };
+    </script>
+
+    <!-- Google Fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link
+        href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600&family=Outfit:wght@400;500;600;700&display=swap"
+        rel="stylesheet">
+
+    <!-- Leaflet CSS -->
+    <link rel="stylesheet" href="https://unpkg.com/leaflet@1.9.4/dist/leaflet.css" crossorigin="" />
+
+    <style>
+        body {
+            background-color: #0f172a;
+            color: #f1f5f9;
+        }
+
+        #map {
+            height: 500px;
+            width: 100%;
+            z-index: 10;
+            border-radius: 1rem;
+        }
+
+        .glass-card {
+            background: rgba(30, 41, 59, 0.7);
+            backdrop-filter: blur(12px);
+            border: 1px solid rgba(255, 255, 255, 0.08);
+        }
+
+        .leaflet-popup-content-wrapper,
+        .leaflet-popup-tip {
+            background-color: #1e293b;
+            color: #f1f5f9;
+            box-shadow: 0 10px 15px -3px rgba(0, 0, 0, 0.5);
+            border: 1px solid rgba(255, 255, 255, 0.1);
+        }
+    </style>
+</head>
+
+<body class="antialiased font-sans">
+
+    <!-- Header -->
+    <header class="bg-slate-900 border-b border-slate-800 sticky top-0 z-50">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 h-20 flex items-center justify-between">
+            <a href="../index.html" class="flex items-center gap-3 hover:opacity-80 transition">
+                <div
+                    class="w-10 h-10 rounded-xl bg-gradient-to-br from-blue-500 to-indigo-600 flex items-center justify-center">
+                    <svg class="w-6 h-6 text-white" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+                            d="M17.657 16.657L13.414 20.9a1.998 1.998 0 01-2.827 0l-4.244-4.243a8 8 0 1111.314 0z" />
+                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+                            d="M15 11a3 3 0 11-6 0 3 3 0 016 0z" />
+                    </svg>
+                </div>
+                <div>
+                    <h1 class="font-display font-bold text-xl tracking-tight text-white">Andhra Pradesh <span
+                            class="text-blue-400">Hub</span></h1>
+                    <p class="text-[10px] font-medium text-slate-400 uppercase tracking-widest">State Overview</p>
+                </div>
+            </a>
+            <div class="flex gap-4 items-center">
+                <div class="hidden lg:block text-right mr-4 border-r border-slate-700 pr-4">
+                    <div class="text-[10px] font-bold text-slate-500 uppercase tracking-widest">Last Update</div>
+                    <div class="text-xs font-mono text-blue-300">Sunday, Feb 22, 2026 08:38 AM</div>
+                </div>
+                <a href="india.html" class="text-sm font-medium text-blue-400 hover:text-blue-300 transition">🌍
+                    National Map</a>
+                <span class="text-slate-600">|</span>
+                <a href="../index.html" class="text-sm text-slate-400 hover:text-white transition">Dashboard</a>
+            </div>
+        </div>
+    </header>
+
+    <main class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-10 space-y-12">
+
+        <!-- Hero Title -->
+        <div class="grid grid-cols-1 lg:grid-cols-3 gap-8">
+            <div class="col-span-1 lg:col-span-1 flex flex-col justify-center">
+                <h2 class="text-4xl md:text-5xl font-display font-bold text-white mb-4">Andhra Pradesh Cities</h2>
+                <p class="text-slate-400 text-lg mb-6">Real-time environmental monitoring across monitored cities in Andhra Pradesh.</p>
+
+                <div class="bg-slate-800/50 p-4 rounded-xl border border-slate-700 inline-block w-fit">
+                    <div class="text-sm text-slate-400 uppercase tracking-wider font-bold mb-1">Total Cities Tracked
+                    </div>
+                    <div class="text-3xl font-display font-light text-blue-300">7</div>
+                </div>
+            </div>
+
+            <!-- The Map -->
+            <div class="col-span-1 lg:col-span-2 glass-card p-2 rounded-2xl shadow-2xl relative overflow-hidden">
+                <div id="map"></div>
+                <!-- Pass state filter context to JS -->
+                <script>const stateFilterContext = "Andhra Pradesh";</script>
+            </div>
+        </div>
+
+        <!-- Leaderboards Section -->
+        <div>
+            <h3 class="text-2xl font-display font-bold text-white mb-6 border-b border-slate-800 pb-2">Regional Health
+                Leaderboards</h3>
+            <div class="grid grid-cols-1 md:grid-cols-3 gap-6">
+
+                <!-- Most Polluted -->
+                <div class="glass-card rounded-xl p-6 border-t-4 border-t-rose-500">
+                    <h4 class="text-lg font-bold text-slate-200 mb-4 flex items-center gap-2">
+                        <span class="text-rose-500">😷</span> Worst Air Quality
+                    </h4>
+                    <ul class="space-y-3">
+                        
+                        <li
+                            class="flex items-center justify-between border-b border-slate-800 pb-2 last:border-0 last:pb-0">
+                            <a href="visakhapatnam.html"
+                                class="font-medium hover:text-blue-400 transition">Visakhapatnam</a>
+                            <span
+                                class="px-2 py-1 bg-rose-500/20 text-rose-400 rounded font-mono text-sm border border-rose-500/30 font-bold">147 AQI</span>
+                        </li>
+                        
+                        <li
+                            class="flex items-center justify-between border-b border-slate-800 pb-2 last:border-0 last:pb-0">
+                            <a href="kakinada.html"
+                                class="font-medium hover:text-blue-400 transition">Kakinada</a>
+                            <span
+                                class="px-2 py-1 bg-rose-500/20 text-rose-400 rounded font-mono text-sm border border-rose-500/30 font-bold">111 AQI</span>
+                        </li>
+                        
+                        <li
+                            class="flex items-center justify-between border-b border-slate-800 pb-2 last:border-0 last:pb-0">
+                            <a href="vijayawada.html"
+                                class="font-medium hover:text-blue-400 transition">Vijayawada</a>
+                            <span
+                                class="px-2 py-1 bg-rose-500/20 text-rose-400 rounded font-mono text-sm border border-rose-500/30 font-bold">102 AQI</span>
+                        </li>
+                        
+                        <li
+                            class="flex items-center justify-between border-b border-slate-800 pb-2 last:border-0 last:pb-0">
+                            <a href="guntur.html"
+                                class="font-medium hover:text-blue-400 transition">Guntur</a>
+                            <span
+                                class="px-2 py-1 bg-rose-500/20 text-rose-400 rounded font-mono text-sm border border-rose-500/30 font-bold">96 AQI</span>
+                        </li>
+                        
+                        <li
+                            class="flex items-center justify-between border-b border-slate-800 pb-2 last:border-0 last:pb-0">
+                            <a href="nellore.html"
+                                class="font-medium hover:text-blue-400 transition">Nellore</a>
+                            <span
+                                class="px-2 py-1 bg-rose-500/20 text-rose-400 rounded font-mono text-sm border border-rose-500/30 font-bold">77 AQI</span>
+                        </li>
+                        
+                    </ul>
+                </div>
+
+                <!-- Safest Cities -->
+                <div class="glass-card rounded-xl p-6 border-t-4 border-t-emerald-500">
+                    <h4 class="text-lg font-bold text-slate-200 mb-4 flex items-center gap-2">
+                        <span class="text-emerald-500">🌿</span> Cleanest Air
+                    </h4>
+                    <ul class="space-y-3">
+                        
+                        <li
+                            class="flex items-center justify-between border-b border-slate-800 pb-2 last:border-0 last:pb-0">
+                            <a href="kurnool.html"
+                                class="font-medium hover:text-blue-400 transition">Kurnool</a>
+                            <span
+                                class="px-2 py-1 bg-emerald-500/20 text-emerald-400 rounded font-mono text-sm border border-emerald-500/30 font-bold">53 AQI</span>
+                        </li>
+                        
+                        <li
+                            class="flex items-center justify-between border-b border-slate-800 pb-2 last:border-0 last:pb-0">
+                            <a href="tirupati.html"
+                                class="font-medium hover:text-blue-400 transition">Tirupati</a>
+                            <span
+                                class="px-2 py-1 bg-emerald-500/20 text-emerald-400 rounded font-mono text-sm border border-emerald-500/30 font-bold">73 AQI</span>
+                        </li>
+                        
+                        <li
+                            class="flex items-center justify-between border-b border-slate-800 pb-2 last:border-0 last:pb-0">
+                            <a href="nellore.html"
+                                class="font-medium hover:text-blue-400 transition">Nellore</a>
+                            <span
+                                class="px-2 py-1 bg-emerald-500/20 text-emerald-400 rounded font-mono text-sm border border-emerald-500/30 font-bold">77 AQI</span>
+                        </li>
+                        
+                        <li
+                            class="flex items-center justify-between border-b border-slate-800 pb-2 last:border-0 last:pb-0">
+                            <a href="guntur.html"
+                                class="font-medium hover:text-blue-400 transition">Guntur</a>
+                            <span
+                                class="px-2 py-1 bg-emerald-500/20 text-emerald-400 rounded font-mono text-sm border border-emerald-500/30 font-bold">96 AQI</span>
+                        </li>
+                        
+                        <li
+                            class="flex items-center justify-between border-b border-slate-800 pb-2 last:border-0 last:pb-0">
+                            <a href="vijayawada.html"
+                                class="font-medium hover:text-blue-400 transition">Vijayawada</a>
+                            <span
+                                class="px-2 py-1 bg-emerald-500/20 text-emerald-400 rounded font-mono text-sm border border-emerald-500/30 font-bold">102 AQI</span>
+                        </li>
+                        
+                    </ul>
+                </div>
+
+                <!-- Dengue Risk -->
+                <div class="glass-card rounded-xl p-6 border-t-4 border-t-orange-500">
+                    <h4 class="text-lg font-bold text-slate-200 mb-4 flex items-center gap-2">
+                        <span class="text-orange-500">🦟</span> Highest Mosquito Risk
+                    </h4>
+                    <ul class="space-y-3">
+                        
+                        <li
+                            class="flex items-center justify-between border-b border-slate-800 pb-2 last:border-0 last:pb-0">
+                            <a href="kakinada.html"
+                                class="font-medium hover:text-blue-400 transition">Kakinada</a>
+                            <span
+                                class="block px-2 py-1 bg-orange-500/20 text-orange-400 rounded text-xs font-bold border border-orange-500/30">7/10</span>
+                        </li>
+                        
+                        <li
+                            class="flex items-center justify-between border-b border-slate-800 pb-2 last:border-0 last:pb-0">
+                            <a href="visakhapatnam.html"
+                                class="font-medium hover:text-blue-400 transition">Visakhapatnam</a>
+                            <span
+                                class="block px-2 py-1 bg-orange-500/20 text-orange-400 rounded text-xs font-bold border border-orange-500/30">3/10</span>
+                        </li>
+                        
+                        <li
+                            class="flex items-center justify-between border-b border-slate-800 pb-2 last:border-0 last:pb-0">
+                            <a href="vijayawada.html"
+                                class="font-medium hover:text-blue-400 transition">Vijayawada</a>
+                            <span
+                                class="block px-2 py-1 bg-orange-500/20 text-orange-400 rounded text-xs font-bold border border-orange-500/30">3/10</span>
+                        </li>
+                        
+                        <li
+                            class="flex items-center justify-between border-b border-slate-800 pb-2 last:border-0 last:pb-0">
+                            <a href="guntur.html"
+                                class="font-medium hover:text-blue-400 transition">Guntur</a>
+                            <span
+                                class="block px-2 py-1 bg-orange-500/20 text-orange-400 rounded text-xs font-bold border border-orange-500/30">3/10</span>
+                        </li>
+                        
+                        <li
+                            class="flex items-center justify-between border-b border-slate-800 pb-2 last:border-0 last:pb-0">
+                            <a href="nellore.html"
+                                class="font-medium hover:text-blue-400 transition">Nellore</a>
+                            <span
+                                class="block px-2 py-1 bg-orange-500/20 text-orange-400 rounded text-xs font-bold border border-orange-500/30">3/10</span>
+                        </li>
+                        
+                    </ul>
+                </div>
+
+            </div>
+        </div>
+    </main>
+
+    <footer class="mt-20 py-10 border-t border-slate-800 bg-slate-900/50 text-center">
+        <p class="text-slate-600 text-sm">&copy; 2026 City Health 360</p>
+    </footer>
+
+    <!-- Leaflet JS -->
+    <script src="https://unpkg.com/leaflet@1.9.4/dist/leaflet.js" crossorigin=""></script>
+    <script>
+        document.addEventListener('DOMContentLoaded', async () => {
+            const map = L.map('map');
+
+            L.tileLayer('https://{s}.basemaps.cartocdn.com/dark_all/{z}/{x}/{y}{r}.png', {
+                attribution: '&copy; OpenStreetMap contributors',
+                subdomains: 'abcd',
+                maxZoom: 20
+            }).addTo(map);
+
+            try {
+                const response = await fetch('data/latest_scores.json?t=' + new Date().getTime());
+                const allCities = await response.json();
+
+                // Filter cities based on the state variable passed via Jinja template
+                const stateCities = allCities.filter(c => c.state === stateFilterContext);
+
+                // Keep track of marker coordinates to fitbounds
+                const latlngs = [];
+
+                stateCities.forEach(city => {
+                    let color = '#10b981';
+                    let fillColor = 'rgba(16, 185, 129, 0.4)';
+
+                    if (city.aqi > 200 || city.mosquito_risk > 8) {
+                        color = '#f43f5e';
+                        fillColor = 'rgba(244, 63, 94, 0.4)';
+                    } else if (city.aqi > 100) {
+                        color = '#f97316';
+                        fillColor = 'rgba(249, 115, 22, 0.4)';
+                    }
+
+                    const marker = L.circleMarker([city.latitude, city.longitude], {
+                        radius: 8, fillColor: fillColor, color: color, weight: 2, opacity: 1, fillOpacity: 0.8
+                    }).addTo(map);
+
+                    latlngs.push([city.latitude, city.longitude]);
+
+                    const slug = city.city.toLowerCase().replace(/ /g, '-');
+                    const popupContent = `
+                        <div class="p-1 min-w-[180px]">
+                            <h3 class="font-bold text-lg text-white font-display">${city.city}</h3>
+                            <div class="grid grid-cols-2 gap-2 mb-3 mt-2">
+                                <div class="bg-slate-800 rounded p-2 text-center border border-slate-700">
+                                    <div class="text-[10px] text-slate-400 uppercase">AQI</div>
+                                    <div class="font-bold text-white text-sm" style="color: ${color}">${city.aqi}</div>
+                                </div>
+                                <div class="bg-slate-800 rounded p-2 text-center border border-slate-700">
+                                    <div class="text-[10px] text-slate-400 uppercase">Temp</div>
+                                    <div class="font-bold text-white text-sm">${Math.round(city.temp)}°</div>
+                                </div>
+                            </div>
+                            <a href="${slug}.html" class="block w-full bg-blue-500 hover:bg-blue-400 text-white text-center py-2 rounded-md text-sm transition font-bold shadow-md mt-1">View Dashboard</a>
+                        </div>
+                    `;
+                    marker.bindPopup(popupContent);
+                });
+
+                // Zoom map to fit all markers of this state automatically
+                if (latlngs.length > 0) {
+                    map.fitBounds(latlngs, { padding: [50, 50] });
+                } else {
+                    // Fallback to center of India if somehow no cities found
+                    map.setView([22.5, 79.5], 5);
+                }
+
+            } catch (e) {
+                console.error("Could not load map data", e);
+            }
+        });
+    </script>
+</body>
+
+</html>

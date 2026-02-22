@@ -1,0 +1,2510 @@
+{
+    "Delhi": {
+        "description": "The capital city, a mix of history and modernity, often battling diverse weather extremes from heatwaves to smog.",
+        "hospitals": [
+            "AIIMS Delhi",
+            "Max Super Speciality, Saket",
+            "Apollo Hospital, Sarita Vihar"
+        ],
+        "safe_areas": [
+            "Chanakyapuri",
+            "Vasant Vihar",
+            "Jor Bagh"
+        ],
+        "green_zones": [
+            "Lodhi Gardens",
+            "Deer Park",
+            "Sunder Nursery"
+        ],
+        "travel_tip": "Carry N95 masks during winter months due to high AQI."
+    },
+    "Mumbai": {
+        "description": "The bustling financial capital, known for its humid tropical climate and heavy monsoon rains.",
+        "hospitals": [
+            "Lilavati Hospital",
+            "Kokilaben Dhirubhai Ambani Hospital",
+            "Breach Candy Hospital"
+        ],
+        "safe_areas": [
+            "Bandra West",
+            "Juhu",
+            "South Mumbai"
+        ],
+        "green_zones": [
+            "Sanjay Gandhi National Park",
+            "Hanging Gardens",
+            "Aarey Colony"
+        ],
+        "travel_tip": "Carry an umbrella and waterproof footwear, especially from June to September."
+    },
+    "Bangalore": {
+        "description": "The Silicon Valley of India, famous for its pleasant weather year-round, though traffic can be congested.",
+        "hospitals": [
+            "Manipal Hospital",
+            "Narayana Health City",
+            "Fortis Hospital, Bannerghatta"
+        ],
+        "safe_areas": [
+            "Indiranagar",
+            "Koramangala",
+            "Sadashivnagar"
+        ],
+        "green_zones": [
+            "Cubbon Park",
+            "Lalbagh Botanical Garden",
+            "Bannerghatta Biological Park"
+        ],
+        "travel_tip": "Light woolens might be needed for early mornings and late nights."
+    },
+    "Hyderabad": {
+        "description": "A hub of history and technology, experiencing hot summers and pleasant winters.",
+        "hospitals": [
+            "Apollo Health City",
+            "Yashoda Hospitals",
+            "KIMS Hospitals"
+        ],
+        "safe_areas": [
+            "Banjara Hills",
+            "Jubilee Hills",
+            "Gachibowli"
+        ],
+        "green_zones": [
+            "KBR National Park",
+            "NTR Gardens",
+            "Lumbini Park"
+        ],
+        "travel_tip": "Stay hydrated during the summer months; the heat can be intense."
+    },
+    "Chennai": {
+        "description": "A coastal metropolis with a hot and humid climate, rich in culture and heritage.",
+        "hospitals": [
+            "Apollo Main Hospital",
+            "MIOT International",
+            "Fortis Malar"
+        ],
+        "safe_areas": [
+            "Adyar",
+            "Anna Nagar",
+            "Besant Nagar"
+        ],
+        "green_zones": [
+            "Guindy National Park",
+            "Semmozhi Poonga",
+            "Theosophical Society Gardens"
+        ],
+        "travel_tip": "Cotton clothing is recommended year-round due to high humidity."
+    },
+    "Kolkata": {
+        "description": "The City of Joy, with a tropical wet-and-dry climate, warm summers, and moderate winters.",
+        "hospitals": [
+            "Apollo Gleneagles",
+            "Fortis Hospital, Anandapur",
+            "Medica Superspecialty"
+        ],
+        "safe_areas": [
+            "Salt Lake City",
+            "Alipore",
+            "Ballygunge"
+        ],
+        "green_zones": [
+            "Maidan",
+            "Eco Park",
+            "Botanical Garden"
+        ],
+        "travel_tip": "Be prepared for sudden showers during the monsoon season."
+    },
+    "Pune": {
+        "description": "The cultural capital of Maharashtra, known for its moderate climate and educational institutions.",
+        "hospitals": [
+            "Ruby Hall Clinic",
+            "Jehangir Hospital",
+            "Aditya Birla Memorial Hospital"
+        ],
+        "safe_areas": [
+            "Koregaon Park",
+            "Kalyani Nagar",
+            "Aundh"
+        ],
+        "green_zones": [
+            "Osho Teerth Park",
+            "Pu La Deshpande Garden",
+            "Empress Garden"
+        ],
+        "travel_tip": "Evenings can be breezy, so a light jacket is useful."
+    },
+    "Ahmedabad": {
+        "description": "A rapidly growing city with a semi-arid climate, known for very hot summers.",
+        "hospitals": [
+            "Zydus Hospital",
+            "Apollo Hospitals City Centre",
+            "Sterling Hospital"
+        ],
+        "safe_areas": [
+            "Satellite",
+            "Bodakdev",
+            "Navrangpura"
+        ],
+        "green_zones": [
+            "Law Garden",
+            "Parimal Garden",
+            "Sabarmati Riverfront"
+        ],
+        "travel_tip": "Avoid outdoor activities during peak afternoon hours in summer."
+    },
+    "Jaipur": {
+        "description": "The Pink City, experiencing a hot semi-arid climate with hot summers and mild winters.",
+        "hospitals": [
+            "Fortis Escorts",
+            "Narayana Multispeciality",
+            "SMS Hospital"
+        ],
+        "safe_areas": [
+            "C-Scheme",
+            "Malviya Nagar",
+            "Vaishali Nagar"
+        ],
+        "green_zones": [
+            "Central Park",
+            "Jawahar Circle",
+            "Ram Niwas Garden"
+        ],
+        "travel_tip": "Sunscreen and sunglasses are essential due to high UV levels."
+    },
+    "Lucknow": {
+        "description": "The City of Nawabs, with a humid subtropical climate, hot summers, and cool winters.",
+        "hospitals": [
+            "Medanta Lucknow",
+            "Sahara Hospital",
+            "Apollo Medics"
+        ],
+        "safe_areas": [
+            "Gomti Nagar",
+            "Hazratganj",
+            "Aliganj"
+        ],
+        "green_zones": [
+            "Janeshwar Mishra Park",
+            "Dr. Ram Manohar Lohia Park",
+            "Ambedkar Memorial Park"
+        ],
+        "travel_tip": "Winters can be quite cold; warm clothing is advised."
+    },
+    "Kanpur": {
+        "description": "An industrial hub on the banks of the Ganges, with extreme temperatures in summer and winter.",
+        "hospitals": [
+            "Regency Hospital",
+            "LLR Hospital",
+            "Apollo Spectra"
+        ],
+        "safe_areas": [
+            "Swaroop Nagar",
+            "Civil Lines",
+            "Kakadeo"
+        ],
+        "green_zones": [
+            "Nana Rao Park",
+            "Phool Bagh",
+            "Moti Jheel"
+        ],
+        "travel_tip": "Protect yourself from dust and pollution in industrial areas."
+    },
+    "Nagpur": {
+        "description": "The Orange City, geographically central, with very hot summers and mild winters.",
+        "hospitals": [
+            "Kingsway Hospitals",
+            "Wockhardt Hospitals",
+            "Orange City Hospital"
+        ],
+        "safe_areas": [
+            "Dharampeth",
+            "Ramdaspeth",
+            "Civil Lines"
+        ],
+        "green_zones": [
+            "Ambazari Garden",
+            "Seminary Hills",
+            "Japanese Garden"
+        ],
+        "travel_tip": "Carry plenty of water if traveling during the summer."
+    },
+    "Indore": {
+        "description": "Cleanest city in India, with a transitional climate between tropical wet-dry and humid subtropical.",
+        "hospitals": [
+            "CHL Apollo",
+            "Bombay Hospital",
+            "Choithram Hospital"
+        ],
+        "safe_areas": [
+            "Vijay Nagar",
+            "Saket Nagar",
+            "Palasia"
+        ],
+        "green_zones": [
+            "Pipliyapala Regional Park",
+            "Meghdoot Upvan",
+            "Kamla Nehru Prani Sangrahalaya"
+        ],
+        "travel_tip": "Enjoy the street food at Sarafa Bazaar, but check hygiene first."
+    },
+    "Thane": {
+        "description": "A city of lakes, neighboring Mumbai, sharing its humid climate and monsoon intensity.",
+        "hospitals": [
+            "Jupiter Hospital",
+            "Bethany Hospital",
+            "Hiranandani Hospital"
+        ],
+        "safe_areas": [
+            "Hiranandani Estate",
+            "Vasant Vihar",
+            "Ghodbunder Road"
+        ],
+        "green_zones": [
+            "Upvan Lake area",
+            "Gawand Baug",
+            "Sanjay Gandhi National Park (Side)"
+        ],
+        "travel_tip": "Traffic can be heavy during peak hours; plan travel accordingly."
+    },
+    "Bhopal": {
+        "description": "The City of Lakes, known for its greenery and humid subtropical climate.",
+        "hospitals": [
+            "Bansal Hospital",
+            "Narmada Trauma Centre",
+            "AIIMS Bhopal"
+        ],
+        "safe_areas": [
+            "Arera Colony",
+            "Kohefiza",
+            "Saket Nagar"
+        ],
+        "green_zones": [
+            "Van Vihar National Park",
+            "Boat Club",
+            "Chinar Park"
+        ],
+        "travel_tip": "Pleasant evenings by the lake are a highlight."
+    },
+    "Visakhapatnam": {
+        "description": "A coastal jewel with a tropical wet and dry climate, generally humid.",
+        "hospitals": [
+            "Apollo Hospitals",
+            "Care Hospitals",
+            "KIMS Icon"
+        ],
+        "safe_areas": [
+            "MVP Colony",
+            "Siripuram",
+            "Beach Road"
+        ],
+        "green_zones": [
+            "Kailasagiri",
+            "Vuda Park",
+            "Tenneti Park"
+        ],
+        "travel_tip": "Beach safety is important; heed lifeguards' warnings."
+    },
+    "Patna": {
+        "description": "An ancient city on the Ganges, with hot summers and mild winters.",
+        "hospitals": [
+            "IGIMS",
+            "Paras HMRI",
+            "Ruban Memorial Hospital"
+        ],
+        "safe_areas": [
+            "Patliputra Colony",
+            "Boring Road",
+            "Kankarbagh"
+        ],
+        "green_zones": [
+            "Eco Park",
+            "Sanjay Gandhi Jaivik Udyan",
+            "Buddha Smriti Park"
+        ],
+        "travel_tip": "Mosquito repellent is recommended, especially in the evenings."
+    },
+    "Vadodara": {
+        "description": "The cultural capital of Gujarat, with a semi-arid climate.",
+        "hospitals": [
+            "Sterling Hospital",
+            "Bhailal Amin General Hospital",
+            "Sunshine Global"
+        ],
+        "safe_areas": [
+            "Alkapuri",
+            "Vasna Road",
+            "Old Padra Road"
+        ],
+        "green_zones": [
+            "Sayaji Baug",
+            "Ajwa Garden",
+            "Kamati Baug"
+        ],
+        "travel_tip": "Historical sites are best visited in the early morning."
+    },
+    "Varanasi": {
+        "description": "The spiritual capital, crowded and vibrant, with significant seasonal temperature variations.",
+        "hospitals": [
+            "Sir Sunderlal Hospital (BHU)",
+            "Heritage Hospital",
+            "Apex Super Speciality"
+        ],
+        "safe_areas": [
+            "Cantonment",
+            "Mahmoorganj",
+            "Sigra"
+        ],
+        "green_zones": [
+            "BHU Campus",
+            "Ravidas Park",
+            "Nehru Park"
+        ],
+        "travel_tip": "Respect local customs and dress modestly near ghats."
+    },
+    "Srinagar": {
+        "description": "The summer capital of J&K, famous for its gardens and lakes, with cold winters.",
+        "hospitals": [
+            "SKIMS",
+            "SMHS Hospital",
+            "Florence Hospital"
+        ],
+        "safe_areas": [
+            "Rajbagh",
+            "Hyderpora",
+            "Gogji Bagh"
+        ],
+        "green_zones": [
+            "Shalimar Bagh",
+            "Nishat Bagh",
+            "Tulip Garden"
+        ],
+        "travel_tip": "Heavy woolens are a must in winter; light woolens for summer evenings."
+    },
+    "Chandigarh": {
+        "description": "India's first planned city, known for its grid-like architecture and green urban design.",
+        "hospitals": [
+            "PGIMER",
+            "Government Medical College Hospital (GMCH)",
+            "Fortis Hospital Mohali"
+        ],
+        "safe_areas": [
+            "Sector 10",
+            "Sector 16",
+            "Sector 35"
+        ],
+        "green_zones": [
+            "Rock Garden",
+            "Sukhna Lake",
+            "Zakir Hussain Rose Garden"
+        ],
+        "travel_tip": "The city is pedestrian-friendly; great for walking tours in non-summer months."
+    },
+    "Jammu": {
+        "description": "The City of Temples, serving as the winter capital of J&K with a subtropical climate.",
+        "hospitals": [
+            "GMC Jammu",
+            "Bee Enn General Hospital",
+            "Narayana Superspeciality"
+        ],
+        "safe_areas": [
+            "Gandhi Nagar",
+            "Trikuta Nagar",
+            "Channi Himmat"
+        ],
+        "green_zones": [
+            "Bagh-e-Bahu",
+            "Manda Zoo Park",
+            "Amar Mahal Grounds"
+        ],
+        "travel_tip": "Summers can get extremely hot; early morning visits to temples are advised."
+    },
+    "Amritsar": {
+        "description": "A spiritual and cultural center in Punjab, home to the Golden Temple.",
+        "hospitals": [
+            "Sri Guru Ram Das Institute",
+            "Fortis Escorts",
+            "Amandeep Hospital"
+        ],
+        "safe_areas": [
+            "Ranjit Avenue",
+            "Green Avenue",
+            "Civil Lines"
+        ],
+        "green_zones": [
+            "Ram Bagh",
+            "Jallianwala Bagh",
+            "Company Bagh"
+        ],
+        "travel_tip": "Cover your head and dress modestly when visiting the Golden Temple."
+    },
+    "Ludhiana": {
+        "description": "Punjab's largest industrial city, known for apparel manufacturing and vibrant markets.",
+        "hospitals": [
+            "DMCH",
+            "CMC Ludhiana",
+            "Fortis Hospital"
+        ],
+        "safe_areas": [
+            "Sarabha Nagar",
+            "Gurdev Nagar",
+            "Civil Lines"
+        ],
+        "green_zones": [
+            "Rakh Bagh Park",
+            "PAU Campus",
+            "Nehru Rose Garden"
+        ],
+        "travel_tip": "Air quality can dip in winter due to industrial activity; wear a mask."
+    },
+    "Jalandhar": {
+        "description": "An ancient city in Punjab known for its sports goods industry and diaspora connections.",
+        "hospitals": [
+            "PIMS",
+            "Sacred Heart Hospital",
+            "Capitol Hospital"
+        ],
+        "safe_areas": [
+            "Model Town",
+            "Jawahar Nagar",
+            "Defence Colony"
+        ],
+        "green_zones": [
+            "Wonderland Theme Park",
+            "Nikku Park",
+            "Model Town Park"
+        ],
+        "travel_tip": "Ideally visited in winter; summers are scorching hot."
+    },
+    "Dehradun": {
+        "description": "Nestled in the Doon Valley, a gateway to Mussoorie with a mild climate.",
+        "hospitals": [
+            "Max Super Speciality",
+            "Graphic Era Hospital",
+            "Synergy Institute"
+        ],
+        "safe_areas": [
+            "Dalanwala",
+            "Rajpur Road",
+            "Vasant Vihar"
+        ],
+        "green_zones": [
+            "Malsi Deer Park",
+            "Gandhi Park",
+            "FRI Campus"
+        ],
+        "travel_tip": "Rainfall can be heavy during monsoons; carry reliable rain gear."
+    },
+    "Shimla": {
+        "description": "The Queen of Hills, a colonial-era summer capital with steep roads and cool weather.",
+        "hospitals": [
+            "IGMC",
+            "Indus Hospital",
+            "Kamla Nehru Hospital"
+        ],
+        "safe_areas": [
+            "Chotta Shimla",
+            "Sanjauli",
+            "Mall Road area"
+        ],
+        "green_zones": [
+            "The Ridge",
+            "Annandale",
+            "Glen Forest"
+        ],
+        "travel_tip": "Be prepared for steep walks; comfortable walking shoes are mandatory."
+    },
+    "Manali": {
+        "description": "A high-altitude resort town famous for backpacking and gateway to adventure sports.",
+        "hospitals": [
+            "Lady Willingdon Hospital",
+            "Civil Hospital Manali",
+            "Mission Hospital"
+        ],
+        "safe_areas": [
+            "Old Manali",
+            "Aleo",
+            "Log Huts Area"
+        ],
+        "green_zones": [
+            "Van Vihar",
+            "Hadimba Temple Forest",
+            "Manali Nature Park"
+        ],
+        "travel_tip": "Altitude sickness can occur; stay hydrated and acclimate slowly."
+    },
+    "Gurgaon": {
+        "description": "A major financial and technology hub near Delhi, featuring modern skylines.",
+        "hospitals": [
+            "Medanta - The Medicity",
+            "Fortis Memorial",
+            "Artemis Hospital"
+        ],
+        "safe_areas": [
+            "Golf Course Road",
+            "DLF Phase 1-5",
+            "Sohna Road"
+        ],
+        "green_zones": [
+            "Leisure Valley Park",
+            "Tau Devi Lal Bio Diversity Park",
+            "Aravalli Biodiversity Park"
+        ],
+        "travel_tip": "Traffic jams are frequent; use the Metro for faster travel."
+    },
+    "Noida": {
+        "description": "A planned IT hub part of the NCR region, known for wide roads and greenery.",
+        "hospitals": [
+            "Jaypee Hospital",
+            "Kailash Hospital",
+            "Felix Hospital"
+        ],
+        "safe_areas": [
+            "Sector 15A",
+            "Sector 44",
+            "Sector 50"
+        ],
+        "green_zones": [
+            "Okhla Bird Sanctuary",
+            "Meghdootam Park",
+            "Noida Golf Course"
+        ],
+        "travel_tip": "Air quality drops significantly in winter; check AQI before outdoor exercise."
+    },
+    "Ghaziabad": {
+        "description": "The gateway to Uttar Pradesh, a rapidly developing industrial and residential city.",
+        "hospitals": [
+            "Yashoda Hospital",
+            "Max Super Speciality Vaishali",
+            "Columbia Asia"
+        ],
+        "safe_areas": [
+            "Indirapuram",
+            "Vaishali",
+            "Raj Nagar"
+        ],
+        "green_zones": [
+            "City Forest",
+            "Swarna Jayanti Park",
+            "Dr. Ram Manohar Lohia Park"
+        ],
+        "travel_tip": "Connectivity to Delhi is good via Metro; preferred for commute."
+    },
+    "Faridabad": {
+        "description": "A major industrial city in Haryana, part of the National Capital Region.",
+        "hospitals": [
+            "Asian Institute of Medical Sciences",
+            "Metro Heart Institute",
+            "Fortis Escorts"
+        ],
+        "safe_areas": [
+            "Sector 15",
+            "Sector 14",
+            "Charmwood Village"
+        ],
+        "green_zones": [
+            "Town Park",
+            "Surajkund Lake area",
+            "Badkhal Lake Park"
+        ],
+        "travel_tip": "Dust levels can be high; carry sunglasses and a scarf."
+    },
+    "Meerut": {
+        "description": "An ancient city with a strong sports goods industry and historical significance.",
+        "hospitals": [
+            "Nutema Hospital",
+            "Anand Hospital",
+            "Jaswant Rai Speciality Hospital"
+        ],
+        "safe_areas": [
+            "Saket",
+            "Civil Lines",
+            "Pallav Puram"
+        ],
+        "green_zones": [
+            "Gandhi Bagh",
+            "Suraj Kund Park",
+            "Ecological Park"
+        ],
+        "travel_tip": "Famous for its cricket gear; good place to shop for sports equipment."
+    },
+    "Agra": {
+        "description": "Home to the Taj Mahal, a historic city on the banks of the Yamuna river.",
+        "hospitals": [
+            "Pushpanjali Hospital",
+            "SN Medical College",
+            "Nayan Hospital"
+        ],
+        "safe_areas": [
+            "Fatehabad Road",
+            "Sadar Bazar",
+            "Dayal Bagh"
+        ],
+        "green_zones": [
+            "Taj Nature Walk",
+            "Mehtab Bagh",
+            "Paliwal Park"
+        ],
+        "travel_tip": "Beware of touts at monuments; use official guides only."
+    },
+    "Prayagraj": {
+        "description": "A major pilgrimage center at the confluence of three rivers (Sangam).",
+        "hospitals": [
+            "Nazareth Hospital",
+            "Swaroop Rani Nehru Hospital",
+            "United Medicity"
+        ],
+        "safe_areas": [
+            "Civil Lines",
+            "Ashok Nagar",
+            "Tagore Town"
+        ],
+        "green_zones": [
+            "Chandra Shekhar Azad Park",
+            "Minto Park",
+            "Company Bagh"
+        ],
+        "travel_tip": "Crowds can be immense during festivals; keep belongings safe."
+    },
+    "Gorakhpur": {
+        "description": "A religious and cultural hub in eastern Uttar Pradesh near the Nepal border.",
+        "hospitals": [
+            "Baba Raghav Das Medical College",
+            "Guru Gorakhnath Hospital",
+            "Life Care Hospital"
+        ],
+        "safe_areas": [
+            "Betiahata",
+            "Civil Lines",
+            "Golghar"
+        ],
+        "green_zones": [
+            "Vindhyavasini Park",
+            "Nehru Vihar",
+            "Rail Museum Park"
+        ],
+        "travel_tip": "Carry insect repellent as vector-borne diseases can occur post-monsoon."
+    },
+    "Bareilly": {
+        "description": "A center for furniture manufacturing and trade in Uttar Pradesh.",
+        "hospitals": [
+            "Clara Swain Mission Hospital",
+            "SRMS Hospital",
+            "Khushlok Hospital"
+        ],
+        "safe_areas": [
+            "Rampur Garden",
+            "Civil Lines",
+            "Rajendra Nagar"
+        ],
+        "green_zones": [
+            "Gandhi Udyan",
+            "Children's Park",
+            "Akshar Vihar"
+        ],
+        "travel_tip": "Famous for 'Surma' (eyeliner) and bamboo furniture."
+    },
+    "Aligarh": {
+        "description": "A university town famous for Aligarh Muslim University and its lock industry.",
+        "hospitals": [
+            "JNMCH",
+            "Varun Hospital",
+            "Mithraj Hospital"
+        ],
+        "safe_areas": [
+            "Civil Lines",
+            "Marris Road",
+            "Swarna Jayanti Nagar"
+        ],
+        "green_zones": [
+            "Naqvi Park",
+            "Sir Syed House Garden",
+            "AMU Campus Gardens"
+        ],
+        "travel_tip": "Winters are foggy; drive carefully if traveling by road."
+    },
+    "Moradabad": {
+        "description": "Known as the Brass City for its famous handicraft industry.",
+        "hospitals": [
+            "Tirthanker Mahavir Hospital",
+            "Bright Star Hospital",
+            "Cosmos Hospital"
+        ],
+        "safe_areas": [
+            "Ram Ganga Vihar",
+            "Civil Lines",
+            "Mansarovar Colony"
+        ],
+        "green_zones": [
+            "Eco Herbal Park",
+            "Prem Wonderland",
+            "Sai Mandir Park"
+        ],
+        "travel_tip": "Great place to buy brass artifacts, but bargain hard."
+    },
+    "Saharanpur": {
+        "description": "Famous for its wood carving cottage industry and agricultural produce.",
+        "hospitals": [
+            "SBD District Hospital",
+            "Medigram Hospital",
+            "Saksham Hospital"
+        ],
+        "safe_areas": [
+            "Gill Colony",
+            "Mission Compound",
+            "Avas Vikas"
+        ],
+        "green_zones": [
+            "Company Garden",
+            "Gandhi Park",
+            "Ambedkar Park"
+        ],
+        "travel_tip": "Wooden handicrafts make for excellent souvenirs here."
+    },
+    "Jhansi": {
+        "description": "A historic city in Bundelkhand, famous for Rani Lakshmi Bai's fortress.",
+        "hospitals": [
+            "Maharani Laxmi Bai Medical College",
+            "St. Jude's Hospital",
+            "Jhansi Orthopaedic Hospital"
+        ],
+        "safe_areas": [
+            "Civil Lines",
+            "Jhokan Bagh",
+            "Sadar Bazar"
+        ],
+        "green_zones": [
+            "Rani Lakshmi Bai Park",
+            "Narayan Bagh",
+            "Panchtantra Park"
+        ],
+        "travel_tip": "Summers are intensely hot; visit the Fort early in the morning."
+    },
+    "Surat": {
+        "description": "The Diamond City, known for textiles, diamonds, and excellent street food.",
+        "hospitals": [
+            "Mahavir Hospital",
+            "Sunshine Global Hospital",
+            "United Green Hospital"
+        ],
+        "safe_areas": [
+            "Vesu",
+            "Adajan",
+            "Piplod"
+        ],
+        "green_zones": [
+            "Sarthana Nature Park",
+            "Gopi Talav",
+            "Dutch Garden"
+        ],
+        "travel_tip": "Try the local Locho and Surti Undhiyu; food hygiene is generally good."
+    },
+    "Rajkot": {
+        "description": "A major industrial hub in the Saurashtra region, known for jewelry and silk.",
+        "hospitals": [
+            "Sterling Hospital",
+            "Wockhardt Hospital",
+            "Civil Hospital Rajkot"
+        ],
+        "safe_areas": [
+            "Kalavad Road",
+            "Race Course Road",
+            "Amin Marg"
+        ],
+        "green_zones": [
+            "Race Course Grounds",
+            "Pradyuman Park",
+            "Aji Dam Garden"
+        ],
+        "travel_tip": "Afternoons are reserved for siesta; many shops close between 1-4 PM."
+    },
+    "Nashik": {
+        "description": "The Wine Capital of India, also a major pilgrimage site for the Kumbh Mela.",
+        "hospitals": [
+            "Wockhardt Hospital",
+            "Sahyadri Hospital",
+            "Apollo Hospitals"
+        ],
+        "safe_areas": [
+            "College Road",
+            "Gangapur Road",
+            "Mahatmanagar"
+        ],
+        "green_zones": [
+            "Godavari Riverbanks",
+            "Pandavleni Caves area",
+            "Someshwar Waterfall"
+        ],
+        "travel_tip": "Visit vineyards during the harvest season (Jan-March) for the best experience."
+    },
+    "Aurangabad": {
+        "description": "A tourism hub, serving as the gateway to the Ajanta and Ellora Caves.",
+        "hospitals": [
+            "MGM Medical Centre",
+            "Kamalnayan Bajaj Hospital",
+            "Sigma Hospital"
+        ],
+        "safe_areas": [
+            "Samarth Nagar",
+            "Osmanpura",
+            "Cidco"
+        ],
+        "green_zones": [
+            "Siddharth Garden",
+            "Bibi Ka Maqbara Gardens",
+            "Salim Ali Lake"
+        ],
+        "travel_tip": "Carry a hat and water when exploring the caves; it involves walking in the sun."
+    },
+    "Solapur": {
+        "description": "A textile hub known for Solapuri sheets and distinct cuisine.",
+        "hospitals": [
+            "Ashwini Sahakari Rugnalaya",
+            "Yashodhara Super Speciality",
+            "Markandey Solapur Sahakari"
+        ],
+        "safe_areas": [
+            "Saat Rasta",
+            "Railway Lines",
+            "Jule Solapur"
+        ],
+        "green_zones": [
+            "Siddheshwar Lake Park",
+            "Smriti Van",
+            "Mahatma Gandhi Park"
+        ],
+        "travel_tip": "Spicy food warning; the local peanut chutney is famous but hot."
+    },
+    "Kolhapur": {
+        "description": "Famous for its Kolhapuri chappals, spicy cuisine, and Mahalaxmi Temple.",
+        "hospitals": [
+            "Aster Aadhar Hospital",
+            "Apple Saraswati Hospital",
+            "DY Patil Hospital"
+        ],
+        "safe_areas": [
+            "Tarabai Park",
+            "Nagala Park",
+            "Rajarampuri"
+        ],
+        "green_zones": [
+            "Rankala Lake",
+            "New Palace Grounds",
+            "Town Hall Garden"
+        ],
+        "travel_tip": "Leather goods are a great buy here; ensure they fit well before purchasing."
+    },
+    "Goa": {
+        "description": "India's premier beach destination, known for its relaxed vibe and Portuguese heritage.",
+        "hospitals": [
+            "Manipal Hospital Goa",
+            "Goa Medical College",
+            "Healthway Hospital"
+        ],
+        "safe_areas": [
+            "Panjim",
+            "Miramar",
+            "Porvorim"
+        ],
+        "green_zones": [
+            "Salim Ali Bird Sanctuary",
+            "Bhagwan Mahavir Sanctuary",
+            "Spice Plantations"
+        ],
+        "travel_tip": "Respect local beach rules; do not drink alcohol in public non-designated areas."
+    },
+    "Jodhpur": {
+        "description": "The Blue City, dominated by the massive Mehrangarh Fort.",
+        "hospitals": [
+            "AIIMS Jodhpur",
+            "Medipulse Hospital",
+            "Goyal Hospital"
+        ],
+        "safe_areas": [
+            "Shastri Nagar",
+            "Ratanada",
+            "Civil Lines"
+        ],
+        "green_zones": [
+            "Mandore Gardens",
+            "Rao Jodha Desert Rock Park",
+            "Umed Garden"
+        ],
+        "travel_tip": "The sun is very strong; high SPF sunscreen is mandatory."
+    },
+    "Udaipur": {
+        "description": "The City of Lakes, romantic and filled with palaces.",
+        "hospitals": [
+            "Geetanjali Hospital",
+            "Paras J.K. Hospital",
+            "GBH American Hospital"
+        ],
+        "safe_areas": [
+            "Fatehpura",
+            "Hiran Magri",
+            "Saheli Nagar"
+        ],
+        "green_zones": [
+            "Saheliyon Ki Bari",
+            "Gulab Bagh",
+            "Fateh Sagar Paal"
+        ],
+        "travel_tip": "Rooftop dining offers the best views; book in advance during tourist season."
+    },
+    "Kota": {
+        "description": "An educational hub on the banks of the Chambal river, famous for coaching centers.",
+        "hospitals": [
+            "Sudha Hospital",
+            "Maitri Hospital",
+            "Kota Heart Institute"
+        ],
+        "safe_areas": [
+            "Talwandi",
+            "Civil Lines",
+            "Dadabari"
+        ],
+        "green_zones": [
+            "Chambal Garden",
+            "Seven Wonders Park",
+            "CV Garden"
+        ],
+        "travel_tip": "Riverfront areas are beautiful but can be slippery; walk with caution."
+    },
+    "Bikaner": {
+        "description": "A desert city famous for its camel festival and savory snacks (Bhujia).",
+        "hospitals": [
+            "PBM Hospital",
+            "Kothari Medical Centre",
+            "Mathuram Hospital"
+        ],
+        "safe_areas": [
+            "Sadul Ganj",
+            "JNV Colony",
+            "Civil Lines"
+        ],
+        "green_zones": [
+            "Public Park",
+            "Ganga Niwas Garden",
+            "Devikund Sagar"
+        ],
+        "travel_tip": "Visit the Karni Mata (Rat) Temple early to avoid crowds."
+    },
+    "Ajmer": {
+        "description": "A pilgrimage city home to the Ajmer Sharif Dargah and gateway to Pushkar.",
+        "hospitals": [
+            "Mittal Hospital",
+            "JLN Hospital",
+            "Kshetrapal Hospital"
+        ],
+        "safe_areas": [
+            "Vaishali Nagar",
+            "Civil Lines",
+            "Panchsheel Nagar"
+        ],
+        "green_zones": [
+            "Subhash Udyan",
+            "Daulat Bagh",
+            "Ana Sagar Lake Promenade"
+        ],
+        "travel_tip": "Dress conservatively when visiting religious sites."
+    },
+    "Gwalior": {
+        "description": "A historic city known for its imposing hilltop fort and musical heritage.",
+        "hospitals": [
+            "BIMR Hospitals",
+            "Apollo Spectra",
+            "JAH Group of Hospitals"
+        ],
+        "safe_areas": [
+            "City Centre",
+            "Lashkar",
+            "Thatipur"
+        ],
+        "green_zones": [
+            "Phool Bagh",
+            "Italian Garden",
+            "Ambedkar Park"
+        ],
+        "travel_tip": "The sound and light show at the Fort is a must-watch in the evening."
+    },
+    "Jabalpur": {
+        "description": "Known for the Dhuandhar Falls and Marble Rocks at Bhedaghat.",
+        "hospitals": [
+            "Metro Hospital",
+            "Jabalpur Hospital",
+            "City Hospital"
+        ],
+        "safe_areas": [
+            "Napier Town",
+            "Wright Town",
+            "Civil Lines"
+        ],
+        "green_zones": [
+            "Bhawartal Garden",
+            "Dumna Nature Reserve",
+            "Tagore Garden"
+        ],
+        "travel_tip": "Boating at Marble Rocks is best done during a full moon."
+    },
+    "Ujjain": {
+        "description": "An ancient city on the Kshipra river, home to the Mahakaleshwar Jyotirlinga.",
+        "hospitals": [
+            "Charak Hospital",
+            "RD Gardi Medical College",
+            "Tejankar Hospital"
+        ],
+        "safe_areas": [
+            "Freeganj",
+            "Vasant Vihar",
+            "Rishi Nagar"
+        ],
+        "green_zones": [
+            "Kothi Road Gardens",
+            "Vikram Vatika",
+            "Ram Ghat area"
+        ],
+        "travel_tip": "Bhasma Aarti booking needs to be done well in advance online."
+    },
+    "Vijayawada": {
+        "description": "A major trading hub on the banks of the Krishna river.",
+        "hospitals": [
+            "Andhra Hospitals",
+            "Ramesh Hospitals",
+            "Manipal Hospital"
+        ],
+        "safe_areas": [
+            "Benz Circle",
+            "Moghalrajpuram",
+            "Patamata"
+        ],
+        "green_zones": [
+            "Rajiv Gandhi Park",
+            "Bhavani Island",
+            "Prakasam Barrage area"
+        ],
+        "travel_tip": "Summers are extremely humid; carry electrolyte powder."
+    },
+    "Guntur": {
+        "description": "Known for its chili trading and rapid urbanization.",
+        "hospitals": [
+            "Ramesh Hospitals",
+            "Tulasi Multispeciality",
+            "NRI General Hospital"
+        ],
+        "safe_areas": [
+            "Lakshmipuram",
+            "Arundelpet",
+            "Brodipet"
+        ],
+        "green_zones": [
+            "NTR Manasa Sarovaram",
+            "Gandhi Park",
+            "Crazy World"
+        ],
+        "travel_tip": "The local cuisine uses a lot of chili; request mild spice levels if sensitive."
+    },
+    "Nellore": {
+        "description": "A city on the Penna river, known for agriculture and aquaculture.",
+        "hospitals": [
+            "Apollo Speciality",
+            "Narayana Medical College",
+            "Medicover Hospitals"
+        ],
+        "safe_areas": [
+            "Magunta Layout",
+            "Dargamitta",
+            "Ramji Nagar"
+        ],
+        "green_zones": [
+            "Children's Park",
+            "Simhapuri Park",
+            "Swarna Ala"
+        ],
+        "travel_tip": "Famous for its specific style of dosa (Neyyi Karam Dosa); give it a try."
+    },
+    "Kurnool": {
+        "description": "The Gateway to Rayalaseema, with historical forts and caves nearby.",
+        "hospitals": [
+            "KIMS Hospitals",
+            "Viswabharathi Super Speciality",
+            "Government General Hospital"
+        ],
+        "safe_areas": [
+            "Gayatri Estates",
+            "Abbas Nagar",
+            "Nandyal Road"
+        ],
+        "green_zones": [
+            "Konda Reddy Fort area",
+            "Orvakal Rock Garden (nearby)",
+            "Children's Park"
+        ],
+        "travel_tip": "Explore the Belum Caves nearby, but wear comfortable footwear."
+    },
+    "Kakinada": {
+        "description": "A planned city known for its deep-water port and Kaja sweet.",
+        "hospitals": [
+            "Apollo Hospitals",
+            "Trust Hospital",
+            "Hope International"
+        ],
+        "safe_areas": [
+            "Rama Rao Peta",
+            "Madhav Nagar",
+            "Gandhinagar"
+        ],
+        "green_zones": [
+            "Vivekananda Park",
+            "Coringa Wildlife Sanctuary (nearby)",
+            "Boat Club"
+        ],
+        "travel_tip": "Visit Coringa Mangroves for a unique boat ride experience."
+    },
+    "Tirupati": {
+        "description": "A major pilgrimage city, home to the Tirumala Venkateswara Temple.",
+        "hospitals": [
+            "SVIMS",
+            "Apollo Speciality",
+            "BIRRD Hospital"
+        ],
+        "safe_areas": [
+            "Bhavani Nagar",
+            "KT Road",
+            "Tirumala Bypass Road"
+        ],
+        "green_zones": [
+            "Kapila Theertham",
+            "SV Zoo Park",
+            "Regional Science Centre Park"
+        ],
+        "travel_tip": "Walking up the steps to Tirumala takes 3-4 hours; stay hydrated."
+    },
+    "Warangal": {
+        "description": "A heritage city known for the Thousand Pillar Temple and Warangal Fort.",
+        "hospitals": [
+            "MGM Hospital",
+            "Maxcare Hospital",
+            "Jaya Hospital"
+        ],
+        "safe_areas": [
+            "Hanamkonda",
+            "Subedari",
+            "Nakkalagutta"
+        ],
+        "green_zones": [
+            "Kakatiya Musical Garden",
+            "Bhadrakali Lake Park",
+            "Public Garden"
+        ],
+        "travel_tip": "Historical sites are spread out; hire a local cab for the day."
+    },
+    "Nizamabad": {
+        "description": "A major city in northern Telangana, known for the Nizam Sagar dam.",
+        "hospitals": [
+            "Government General Hospital",
+            "Pragati Hospital",
+            "Indur Hospital"
+        ],
+        "safe_areas": [
+            "Khaleelwadi",
+            "Pragathi Nagar",
+            "Vinayak Nagar"
+        ],
+        "green_zones": [
+            "Tilak Garden",
+            "Ashok Park",
+            "Ali Sagar Park"
+        ],
+        "travel_tip": "Visit the ancient Dichpally Ramalayam temple nearby."
+    },
+    "Mysore": {
+        "description": "The City of Palaces, known for its royal heritage and clean streets.",
+        "hospitals": [
+            "Apollo BGS",
+            "Columbia Asia (Manipal)",
+            "JSS Hospital"
+        ],
+        "safe_areas": [
+            "Gokulam",
+            "Jayalakshmipuram",
+            "Yadavagiri"
+        ],
+        "green_zones": [
+            "Brindavan Gardens",
+            "Karanji Lake",
+            "Curzon Park"
+        ],
+        "travel_tip": "The Mysore Palace illumination on Sundays is spectacular."
+    },
+    "Mangalore": {
+        "description": "A major port city with diverse culture, beaches, and spicy seafood.",
+        "hospitals": [
+            "KMC Hospital",
+            "AJ Hospital",
+            "Father Muller Hospital"
+        ],
+        "safe_areas": [
+            "Bejai",
+            "Kadri",
+            "Falnir"
+        ],
+        "green_zones": [
+            "Kadri Park",
+            "Pilikula Nisargadhama",
+            "Tannirbhavi Tree Park"
+        ],
+        "travel_tip": "Humidity is very high; frequent showers occur even outside monsoon."
+    },
+    "Hubli-Dharwad": {
+        "description": "Twin cities forming the educational and commercial hub of North Karnataka.",
+        "hospitals": [
+            "SDM Medical College",
+            "KIMS",
+            "Tatwadarsha Hospital"
+        ],
+        "safe_areas": [
+            "Vidyanagar",
+            "Keshwapur",
+            "Saptapur (Dharwad)"
+        ],
+        "green_zones": [
+            "Unkal Lake Park",
+            "Nrupatunga Betta",
+            "Indira Gandhi Glass House"
+        ],
+        "travel_tip": "Try the famous 'Dharwad Peda' sweet."
+    },
+    "Belgaum": {
+        "description": "Known for its pleasant climate and position on the Western Ghats foothills.",
+        "hospitals": [
+            "KLES Dr. Prabhakar Kore Hospital",
+            "Lakeview Hospital",
+            "Belgaum Institute of Medical Sciences"
+        ],
+        "safe_areas": [
+            "Tilakwadi",
+            "Hindwadi",
+            "Sadashiv Nagar"
+        ],
+        "green_zones": [
+            "Fort Lake",
+            "Military Durga Devi Park",
+            "Vaccine Depot Grounds"
+        ],
+        "travel_tip": "Winters are cool and pleasant; ideal for outdoor exploration."
+    },
+    "Coimbatore": {
+        "description": "The Manchester of South India, an industrial hub near Ooty.",
+        "hospitals": [
+            "GKNM Hospital",
+            "KMCH",
+            "PSG Hospitals"
+        ],
+        "safe_areas": [
+            "Race Course",
+            "RS Puram",
+            "Saibaba Colony"
+        ],
+        "green_zones": [
+            "VOC Park",
+            "TNAU Botanical Garden",
+            "Race Course Walkway"
+        ],
+        "travel_tip": "Tap water is generally good (Siruvani water), but filtered water is safer."
+    },
+    "Madurai": {
+        "description": "The Temple City, centered around the magnificent Meenakshi Amman Temple.",
+        "hospitals": [
+            "Apollo Speciality",
+            "Velammal Medical College",
+            "Meenakshi Mission"
+        ],
+        "safe_areas": [
+            "KK Nagar",
+            "Anna Nagar",
+            "TVS Nagar"
+        ],
+        "green_zones": [
+            "Eco Park",
+            "Rajaji Park",
+            "Vandiyur Mariamman Teppakulam"
+        ],
+        "travel_tip": "No electronics allowed inside the main temple; leave them at the hotel."
+    },
+    "Trichy": {
+        "description": "An industrial and educational city dominated by the Rockfort Temple.",
+        "hospitals": [
+            "Kauvery Hospital",
+            "Apollo Speciality",
+            "Frontline Hospital"
+        ],
+        "safe_areas": [
+            "Thillai Nagar",
+            "Cantonment",
+            "K K Nagar"
+        ],
+        "green_zones": [
+            "Butterfly Park",
+            "Puliyancholai (nearby)",
+            "Mukkombu Dam Park"
+        ],
+        "travel_tip": "Climbing the Rockfort involves over 400 steps; go early to avoid heat."
+    },
+    "Salem": {
+        "description": "Known for steel production and mangoes, surrounded by hills.",
+        "hospitals": [
+            "Manipal Hospital",
+            "Kauvery Hospital",
+            "Salem Government Hospital"
+        ],
+        "safe_areas": [
+            "Fairlands",
+            "Hasthampatti",
+            "Sankar Nagar"
+        ],
+        "green_zones": [
+            "Anna Park",
+            "Mookaneri Lake Park",
+            "Kurumbapatti Zoological Park"
+        ],
+        "travel_tip": "If visiting in summer, buy the local Malgova mangoes."
+    },
+    "Tirunelveli": {
+        "description": "An ancient city known for the Nellaiappar Temple and Halwa.",
+        "hospitals": [
+            "Galaxy Hospital",
+            "Tirunelveli Medical College",
+            "Apollo Speciality"
+        ],
+        "safe_areas": [
+            "Palayamkottai",
+            "Maharaja Nagar",
+            "Perumalpuram"
+        ],
+        "green_zones": [
+            "District Science Centre Park",
+            "VOC Ground",
+            "Agasthiyar Falls (nearby)"
+        ],
+        "travel_tip": "Don't miss the famous 'Iruttu Kadai Halwa'."
+    },
+    "Vellore": {
+        "description": "Famous for the massive Vellore Fort and top-tier medical tourism.",
+        "hospitals": [
+            "CMC Vellore",
+            "Naruvi Hospitals",
+            "Apollo KH Hospital"
+        ],
+        "safe_areas": [
+            "Sathuvachari",
+            "Gandhi Nagar",
+            "Officers Line"
+        ],
+        "green_zones": [
+            "Fort Park",
+            "Amirthi Zoological Park",
+            "Cup and Saucer Waterfalls area"
+        ],
+        "travel_tip": "CMC area is very crowded; keep belongings safe."
+    },
+    "Erode": {
+        "description": "A major textile and turmeric trading hub on the banks of the Kaveri.",
+        "hospitals": [
+            "KMCH Erode",
+            "Erode Medical Center",
+            "Lotus Hospital"
+        ],
+        "safe_areas": [
+            "Periyar Nagar",
+            "Sampath Nagar",
+            "Thindal"
+        ],
+        "green_zones": [
+            "VOC Park",
+            "Vellode Bird Sanctuary",
+            "Peacock Sanctuary (nearby)"
+        ],
+        "travel_tip": "Textile markets offer great deals on wholesale fabrics."
+    },
+    "Kochi": {
+        "description": "The Queen of the Arabian Sea, a blend of colonial history and modernity.",
+        "hospitals": [
+            "Amrita Hospital",
+            "Aster Medcity",
+            "Lisie Hospital"
+        ],
+        "safe_areas": [
+            "Panampilly Nagar",
+            "Kadavanthra",
+            "Fort Kochi"
+        ],
+        "green_zones": [
+            "Subhash Bose Park",
+            "Mangalavanam Bird Sanctuary",
+            "Marine Drive"
+        ],
+        "travel_tip": "Use the Water Metro for scenic and traffic-free travel."
+    },
+    "Thiruvananthapuram": {
+        "description": "The capital of Kerala, known for the Padmanabhaswamy Temple and beaches.",
+        "hospitals": [
+            "KIMSHEALTH",
+            "Medical College Hospital",
+            "Sree Chitra Tirunal Institute"
+        ],
+        "safe_areas": [
+            "Kowdiar",
+            "Vellayambalam",
+            "Sasthamangalam"
+        ],
+        "green_zones": [
+            "Napier Museum Grounds",
+            "Kanakakkunnu Palace",
+            "Veli Tourist Village"
+        ],
+        "travel_tip": "Auto-rickshaws usually run by meter here, which is convenient."
+    },
+    "Kozhikode": {
+        "description": "A coastal city known for its beaches, spice trade history, and cuisine.",
+        "hospitals": [
+            "Aster MIMS",
+            "Baby Memorial Hospital",
+            "Meitra Hospital"
+        ],
+        "safe_areas": [
+            "Eranhipalam",
+            "Nadakkavu",
+            "Jaffer Khan Colony"
+        ],
+        "green_zones": [
+            "Mananchira Square",
+            "Sarovaram Bio Park",
+            "Kozhikode Beach Park"
+        ],
+        "travel_tip": "Try the Kozhikode Biryani and Halwa; culinary highlights."
+    },
+    "Thrissur": {
+        "description": "The Cultural Capital of Kerala, famous for the Thrissur Pooram festival.",
+        "hospitals": [
+            "Jubilee Mission",
+            "Amala Institute",
+            "Daya General Hospital"
+        ],
+        "safe_areas": [
+            "Ayyanthole",
+            "Mission Quarters",
+            "Punkunnam"
+        ],
+        "green_zones": [
+            "Thekkinkadu Maidan",
+            "Vilangan Kunnu",
+            "Thrissur Zoo"
+        ],
+        "travel_tip": "During Pooram (April/May), the city is extremely crowded."
+    },
+    "Kannur": {
+        "description": "Known for its pristine beaches, handloom industry, and Theyyam rituals.",
+        "hospitals": [
+            "Aster MIMS",
+            "A K G Memorial",
+            "Kannur Medical College"
+        ],
+        "safe_areas": [
+            "Talap",
+            "Payyambalam",
+            "Thavakkara"
+        ],
+        "green_zones": [
+            "Payyambalam Beach Park",
+            "St. Angelo Fort",
+            "Snake Park"
+        ],
+        "travel_tip": "Check the local calendar for Theyyam performances in temples."
+    },
+    "Gaya": {
+        "description": "A holy city for Hindus and Buddhists (Bodh Gaya nearby).",
+        "hospitals": [
+            "Anugrah Narayan Magadh Medical College",
+            "Jai Prakash Narayan Hospital",
+            "Prabhavati Hospital"
+        ],
+        "safe_areas": [
+            "AP Colony",
+            "Magadh Colony",
+            "Civil Lines"
+        ],
+        "green_zones": [
+            "Gandhi Maidan",
+            "Bodh Gaya Parks",
+            "Dungeshwari Hills"
+        ],
+        "travel_tip": "Best visited in winter; summers are excessively hot."
+    },
+    "Muzaffarpur": {
+        "description": "Famous as the Lychee Kingdom, a major trade hub in North Bihar.",
+        "hospitals": [
+            "SKMCH",
+            "Prasad Hospital",
+            "Jalan Hospital"
+        ],
+        "safe_areas": [
+            "Juran Chapra",
+            "Mithanpura",
+            "Rahul Nagar"
+        ],
+        "green_zones": [
+            "Jubba Sahni Park",
+            "Garib Sthan Temple area",
+            "Litchi Gardens"
+        ],
+        "travel_tip": "May-June is Lychee season; ensure you buy fresh fruit."
+    },
+    "Bhagalpur": {
+        "description": "The Silk City, located on the southern banks of the Ganges.",
+        "hospitals": [
+            "Jawaharlal Nehru Medical College",
+            "Glover Memorial",
+            "Hope Hospital"
+        ],
+        "safe_areas": [
+            "Tilka Manjhi",
+            "Adampur",
+            "Ghantaghar"
+        ],
+        "green_zones": [
+            "Lajpat Park",
+            "Sandy's Compound",
+            "Vikramshila Gangetic Dolphin Sanctuary"
+        ],
+        "travel_tip": "Bhagalpuri silk sarees are a specialty buy here."
+    },
+    "Ranchi": {
+        "description": "The capital of Jharkhand, known for its waterfalls and hilly terrain.",
+        "hospitals": [
+            "RIMS",
+            "Medica Ranchi",
+            "Orchid Medical Centre"
+        ],
+        "safe_areas": [
+            "Morabadi",
+            "Ashok Nagar",
+            "Kanke Road"
+        ],
+        "green_zones": [
+            "Nakshatra Van",
+            "Sidhu Kanhu Park",
+            "Rock Garden"
+        ],
+        "travel_tip": "Weather is generally pleasant, but carry a jacket for evenings."
+    },
+    "Jamshedpur": {
+        "description": "India's first planned industrial city, known as Tatanagar.",
+        "hospitals": [
+            "Tata Main Hospital (TMH)",
+            "Brahmananda Narayana",
+            "Tinplate Hospital"
+        ],
+        "safe_areas": [
+            "Circuit House Area",
+            "Bistupur",
+            "Kadma"
+        ],
+        "green_zones": [
+            "Jubilee Park",
+            "Dimna Lake",
+            "Dalma Wildlife Sanctuary"
+        ],
+        "travel_tip": "Jubilee Park light show is a popular evening attraction."
+    },
+    "Dhanbad": {
+        "description": "The Coal Capital of India, an industrial hub.",
+        "hospitals": [
+            "Central Hospital",
+            "PMCH",
+            "Asian Jalan Super Speciality"
+        ],
+        "safe_areas": [
+            "Housing Colony",
+            "Shastri Nagar",
+            "Hirapur"
+        ],
+        "green_zones": [
+            "Birsa Munda Park",
+            "Maithon Dam",
+            "Bhatinda Falls"
+        ],
+        "travel_tip": "Coal dust is common; keep car windows rolled up in industrial zones."
+    },
+    "Bokaro": {
+        "description": "A major steel city with a planned layout and greenery.",
+        "hospitals": [
+            "Bokaro General Hospital",
+            "KM Memorial",
+            "Muskan Hospital"
+        ],
+        "safe_areas": [
+            "Sector 4",
+            "Sector 5",
+            "Co-operative Colony"
+        ],
+        "green_zones": [
+            "Jawaharlal Nehru Biological Park",
+            "City Park",
+            "Garga Dam"
+        ],
+        "travel_tip": "A quiet city; shops may close relatively early."
+    },
+    "Bhubaneswar": {
+        "description": "The Temple City of India, blending ancient architecture with a smart city vibe.",
+        "hospitals": [
+            "AIIMS Bhubaneswar",
+            "Apollo Hospitals",
+            "Kalinga Hospital"
+        ],
+        "safe_areas": [
+            "Saheed Nagar",
+            "Chandrasekharpur",
+            "Patia"
+        ],
+        "green_zones": [
+            "Ekamra Kanan",
+            "Forest Park",
+            "Nandankanan Zoological Park"
+        ],
+        "travel_tip": "Try the 'Chhena Poda' dessert, a local favorite."
+    },
+    "Cuttack": {
+        "description": "The Silver City, known for intricate silver filigree work.",
+        "hospitals": [
+            "SCB Medical College",
+            "Ashwini Hospital",
+            "Sun Hospital"
+        ],
+        "safe_areas": [
+            "CDA Sector 6",
+            "Cantonment Road",
+            "Mahanadi Vihar"
+        ],
+        "green_zones": [
+            "Deer Park",
+            "Barabati Fort area",
+            "Freedom Fighter's Memorial Park"
+        ],
+        "travel_tip": "Street food, especially 'Dahibara Aloodum', is a must-try."
+    },
+    "Rourkela": {
+        "description": "A planned steel city surrounded by hills and rivers.",
+        "hospitals": [
+            "Ispat General Hospital",
+            "JP Hospital",
+            "CWS Hospital"
+        ],
+        "safe_areas": [
+            "Civil Township",
+            "Koel Nagar",
+            "Chhend Colony"
+        ],
+        "green_zones": [
+            "Indira Gandhi Park",
+            "Hanuman Vatika",
+            "Deer Park"
+        ],
+        "travel_tip": "The city is clean and green; great for morning walks."
+    },
+    "Raipur": {
+        "description": "The capital of Chhattisgarh, a major commercial hub for the region.",
+        "hospitals": [
+            "AIIMS Raipur",
+            "Ramkrishna Care",
+            "NH MMI Narayana"
+        ],
+        "safe_areas": [
+            "Shankar Nagar",
+            "Civil Lines",
+            "Samta Colony"
+        ],
+        "green_zones": [
+            "Energy Park",
+            "Swami Vivekananda Sarovar",
+            "Nandan Van Zoo"
+        ],
+        "travel_tip": "Summers are intensely hot; hydration is key."
+    },
+    "Bhilai": {
+        "description": "A planned city famous for the Bhilai Steel Plant and education.",
+        "hospitals": [
+            "Jawaharlal Nehru Hospital",
+            "Apollo BSR",
+            "Sparsh Hospital"
+        ],
+        "safe_areas": [
+            "Nehru Nagar",
+            "Civic Center",
+            "Sector 10"
+        ],
+        "green_zones": [
+            "Maitri Bagh",
+            "Civic Center Park",
+            "Central Park"
+        ],
+        "travel_tip": "Maitri Bagh zoo and park is a good spot for families."
+    },
+    "Guwahati": {
+        "description": "The gateway to Northeast India, located on the Brahmaputra banks.",
+        "hospitals": [
+            "GMCH",
+            "Apollo Hospitals",
+            "GNRC Hospitals"
+        ],
+        "safe_areas": [
+            "Zoo Road",
+            "Uzan Bazar",
+            "Dispur"
+        ],
+        "green_zones": [
+            "Nehru Park",
+            "Dipor Bil",
+            "Shraddhanjali Kanan"
+        ],
+        "travel_tip": "Ferry rides across the Brahmaputra offer great sunset views."
+    },
+    "Agartala": {
+        "description": "The capital of Tripura, known for its palaces and bamboo handicrafts.",
+        "hospitals": [
+            "GBP Hospital",
+            "ILS Hospitals",
+            "Tripura Medical College"
+        ],
+        "safe_areas": [
+            "Krishnanagar",
+            "Dhaleswar",
+            "Indranagar"
+        ],
+        "green_zones": [
+            "Heritage Park",
+            "Nehru Park",
+            "Rabindra Kanan"
+        ],
+        "travel_tip": "Visit the Ujjayanta Palace museum to understand local history."
+    },
+    "Shillong": {
+        "description": "Scotland of the East, a hill station with waterfalls and pine forests.",
+        "hospitals": [
+            "NEIGRIHMS",
+            "Nazareth Hospital",
+            "Civil Hospital"
+        ],
+        "safe_areas": [
+            "Laitumkhrah",
+            "Police Bazar",
+            "Laban"
+        ],
+        "green_zones": [
+            "Ward's Lake",
+            "Lady Hydari Park",
+            "Golf Course"
+        ],
+        "travel_tip": "Traffic jams are common on narrow hill roads; plan accordingly."
+    },
+    "Imphal": {
+        "description": "The capital of Manipur, known for the Kangla Fort and Loktak Lake nearby.",
+        "hospitals": [
+            "RIMS",
+            "Shija Hospitals",
+            "JNIMS"
+        ],
+        "safe_areas": [
+            "Thangmeiband",
+            "Keishamthong",
+            "Mantripukhri"
+        ],
+        "green_zones": [
+            "Kangla Fort Grounds",
+            "Mataji Garden",
+            "Loktak Lake (nearby)"
+        ],
+        "travel_tip": "Check local security advisories before travel."
+    },
+    "Aizawl": {
+        "description": "A scenic hill city, capital of Mizoram, known for discipline and cleanliness.",
+        "hospitals": [
+            "Civil Hospital",
+            "Synod Hospital",
+            "Greenwood Hospital"
+        ],
+        "safe_areas": [
+            "Zarkawt",
+            "Dawrpui",
+            "Mission Veng"
+        ],
+        "green_zones": [
+            "Durtlang Hills",
+            "KV Paradise",
+            "Berawtlang Tourist Centre"
+        ],
+        "travel_tip": "Traffic rules are strictly followed; do not honk unnecessarily."
+    },
+    "Kohima": {
+        "description": "The hilly capital of Nagaland, famous for the Hornbill Festival.",
+        "hospitals": [
+            "Naga Hospital Authority",
+            "Oking Hospital",
+            "Bethel Medical Centre"
+        ],
+        "safe_areas": [
+            "PR Hill",
+            "Officers' Hill",
+            "Minister's Hill"
+        ],
+        "green_zones": [
+            "War Cemetery",
+            "Kisama Heritage Village",
+            "Pulie Badze"
+        ],
+        "travel_tip": "Hornbill Festival (December) is the best time to visit."
+    },
+    "Gangtok": {
+        "description": "A pristine hill capital of Sikkim, offering views of Kanchenjunga.",
+        "hospitals": [
+            "STNM Hospital",
+            "Manipal Central Referral Hospital",
+            "Crane Hospital"
+        ],
+        "safe_areas": [
+            "Development Area",
+            "Deorali",
+            "Tadong"
+        ],
+        "green_zones": [
+            "Ridge Park",
+            "Ban Jhakri Falls Park",
+            "Himalayan Zoological Park"
+        ],
+        "travel_tip": "Plastic water bottles are banned; carry a reusable one."
+    },
+    "Siliguri": {
+        "description": "The transit hub connecting mainland India to the Northeast and hills.",
+        "hospitals": [
+            "North Bengal Medical College",
+            "Neotia Getwel",
+            "Anandaloke Hospital"
+        ],
+        "safe_areas": [
+            "Hakim Para",
+            "College Para",
+            "Pradhan Nagar"
+        ],
+        "green_zones": [
+            "Surya Sen Park",
+            "Madhuban Park",
+            "Bengal Safari"
+        ],
+        "travel_tip": "Traffic can be chaotic; keep buffer time for flights/trains."
+    },
+    "Durgapur": {
+        "description": "An industrial steel city in West Bengal with good urban planning.",
+        "hospitals": [
+            "The Mission Hospital",
+            "Healthworld Hospitals",
+            "DSP Main Hospital"
+        ],
+        "safe_areas": [
+            "City Centre",
+            "Bidhannagar",
+            "Benachity"
+        ],
+        "green_zones": [
+            "Kumar Mangalam Park",
+            "Troika Park",
+            "Deer Park"
+        ],
+        "travel_tip": "City Centre is the main hub for shopping and dining."
+    },
+    "Asansol": {
+        "description": "A major railway and industrial hub in the coal belt.",
+        "hospitals": [
+            "HLG Memorial",
+            "Asansol District Hospital",
+            "ESI Hospital"
+        ],
+        "safe_areas": [
+            "Burnpur",
+            "Kalyanpur",
+            "Hutton Road"
+        ],
+        "green_zones": [
+            "Satabdi Park",
+            "Nehru Park",
+            "Maithon Dam (nearby)"
+        ],
+        "travel_tip": "Connects to several scenic dams and temples nearby."
+    },
+    "Pondicherry": {
+        "description": "A French colonial town with a spiritual vibe due to Auroville.",
+        "hospitals": [
+            "JIPMER",
+            "PIMS",
+            "Indira Gandhi Govt Hospital"
+        ],
+        "safe_areas": [
+            "White Town",
+            "Heritage Town",
+            "Lawspet"
+        ],
+        "green_zones": [
+            "Bharathi Park",
+            "Botanical Garden",
+            "Auroville Matrimandir Gardens"
+        ],
+        "travel_tip": "Rent a bicycle to explore the White Town area."
+    },
+    "Port Blair": {
+        "description": "The gateway to the Andaman Islands, known for Cellular Jail and beaches.",
+        "hospitals": [
+            "GB Pant Hospital",
+            "Pillar Health Centre",
+            "Naval Hospital (INHS Dhanvantari)"
+        ],
+        "safe_areas": [
+            "Aberdeen Bazar",
+            "Phoenix Bay",
+            "Junglighat"
+        ],
+        "green_zones": [
+            "Gandhi Park",
+            "Marina Park",
+            "Mount Harriet National Park"
+        ],
+        "travel_tip": "Mobile network can be spotty; download offline maps."
+    },
+    "Haridwar": {
+        "description": "A holy city on the Ganges, famous for the evening Ganga Aarti.",
+        "hospitals": [
+            "Metro Hospital",
+            "Ramakrishna Mission Hospital",
+            "City Hospital"
+        ],
+        "safe_areas": [
+            "Shivalik Nagar",
+            "Kankhal",
+            "Bhupatwala"
+        ],
+        "green_zones": [
+            "Rajaji National Park (nearby)",
+            "Swami Vivekananda Park",
+            "Har Ki Pauri environs"
+        ],
+        "travel_tip": "Attend the Ganga Aarti early to get a good viewing spot."
+    },
+    "Rishikesh": {
+        "description": "The Yoga Capital of the World, offering spirituality and river rafting.",
+        "hospitals": [
+            "AIIMS Rishikesh",
+            "Nirmal Hospital",
+            "Government Hospital"
+        ],
+        "safe_areas": [
+            "Tapovan",
+            "Muni Ki Reti",
+            "Laxman Jhula area"
+        ],
+        "green_zones": [
+            "Neer Garh Waterfall",
+            "Rajaji National Park",
+            "Beatles Ashram"
+        ],
+        "travel_tip": "Alcohol and non-vegetarian food are prohibited in the holy town area."
+    },
+    "Nainital": {
+        "description": "A popular hill station centered around the pear-shaped Naini Lake.",
+        "hospitals": [
+            "BD Pandey Hospital",
+            "Venu Eye Hospital",
+            "Bombay Hospital (Branch)"
+        ],
+        "safe_areas": [
+            "Mallital",
+            "Tallital",
+            "Sukhatal"
+        ],
+        "green_zones": [
+            "Eco Cave Gardens",
+            "Snow View Point",
+            "Botanical Garden"
+        ],
+        "travel_tip": "Parking is difficult in peak season; use hotel shuttles or walk."
+    },
+    "Mussoorie": {
+        "description": "The Queen of Hills, overlooking the Doon Valley.",
+        "hospitals": [
+            "Landour Community Hospital",
+            "Civil Hospital",
+            "St. Mary's Hospital"
+        ],
+        "safe_areas": [
+            "Landour",
+            "Mall Road",
+            "Library Chowk"
+        ],
+        "green_zones": [
+            "Company Garden",
+            "George Everest's House",
+            "Camel's Back Road"
+        ],
+        "travel_tip": "Winterline (a rare atmospheric phenomenon) is visible here in winters."
+    },
+    "Dharamshala": {
+        "description": "Home to the Dalai Lama, surrounded by cedar forests and mountains.",
+        "hospitals": [
+            "Zonal Hospital",
+            "Delek Hospital",
+            "Fortis Kangra (nearby)"
+        ],
+        "safe_areas": [
+            "McLeod Ganj",
+            "Sidhbari",
+            "Kotwali Bazar"
+        ],
+        "green_zones": [
+            "Dal Lake",
+            "Triund Trek Trail",
+            "Bhagsunag Falls"
+        ],
+        "travel_tip": "Respect the serene atmosphere of the monasteries."
+    },
+    "Dalhousie": {
+        "description": "A quiet hill station with colonial charm and pine-clad valleys.",
+        "hospitals": [
+            "Civil Hospital",
+            "Air Force Hospital",
+            "Dalhousie Cantonment Hospital"
+        ],
+        "safe_areas": [
+            "Gandhi Chowk",
+            "Subhash Chowk",
+            "Bakrota Hills"
+        ],
+        "green_zones": [
+            "Kalatop Wildlife Sanctuary",
+            "Khajjiar (nearby)",
+            "Panchpula"
+        ],
+        "travel_tip": "Carry motion sickness medicine for the winding roads."
+    },
+    "Patiala": {
+        "description": "A royal city famous for its turban, paranda, and peg.",
+        "hospitals": [
+            "Rajindra Hospital",
+            "Columbia Asia",
+            "Amar Hospital"
+        ],
+        "safe_areas": [
+            "Model Town",
+            "Baradari",
+            "Lehal Colony"
+        ],
+        "green_zones": [
+            "Baradari Garden",
+            "Environment Park",
+            "Deer Park"
+        ],
+        "travel_tip": "Visit the Qila Mubarak to see impressive architecture."
+    },
+    "Bhatinda": {
+        "description": "One of the oldest cities in Punjab, known for its thermal plants and fort.",
+        "hospitals": [
+            "AIIMS Bathinda",
+            "Max Super Speciality",
+            "Civil Hospital"
+        ],
+        "safe_areas": [
+            "Model Town",
+            "Civil Lines",
+            "Kamla Nehru Colony"
+        ],
+        "green_zones": [
+            "Rose Garden",
+            "Jogger's Park",
+            "Bir Talab Zoo"
+        ],
+        "travel_tip": "The Qila Mubarak here is associated with Razia Sultan."
+    },
+    "Rohtak": {
+        "description": "An educational and political hub in Haryana.",
+        "hospitals": [
+            "PGIMS Rohtak",
+            "Positron Hospital",
+            "Holy Heart Hospital"
+        ],
+        "safe_areas": [
+            "Model Town",
+            "Sector 14",
+            "DLF Colony"
+        ],
+        "green_zones": [
+            "Tilyar Lake",
+            "Mansarovar Park",
+            "Rose Garden"
+        ],
+        "travel_tip": "Tilyar Lake is a good spot for a weekend picnic."
+    },
+    "Panipat": {
+        "description": "The City of Weavers, historic site of three major battles.",
+        "hospitals": [
+            "Prem Hospital",
+            "Hyacinth Hospital",
+            "Civil Hospital"
+        ],
+        "safe_areas": [
+            "Model Town",
+            "Sector 11-12",
+            "Ansals Sushant City"
+        ],
+        "green_zones": [
+            "Tau Devi Lal Park",
+            "Mittal Mega Mall Park",
+            "Kala Amb Park"
+        ],
+        "travel_tip": "A global hub for textiles and carpets."
+    },
+    "Mathura": {
+        "description": "The birthplace of Lord Krishna, a major pilgrimage center.",
+        "hospitals": [
+            "Nayati Medicity",
+            "K.D. Medical College",
+            "Maheshwari Hospital"
+        ],
+        "safe_areas": [
+            "Radha Puram",
+            "Krishna Nagar",
+            "Civil Lines"
+        ],
+        "green_zones": [
+            "Basantar Park",
+            "Bhagat Singh Park",
+            "Yamuna Ghats"
+        ],
+        "travel_tip": "Beware of monkeys; keep food and spectacles hidden."
+    },
+    "Vrindavan": {
+        "description": "A twin city to Mathura, filled with temples dedicated to Krishna.",
+        "hospitals": [
+            "Ramakrishna Mission Hospital",
+            "Vrindavan Hospital",
+            "Brij Health Care"
+        ],
+        "safe_areas": [
+            "Raman Reti",
+            "Chaitanya Vihar",
+            "Omaxe Eternity"
+        ],
+        "green_zones": [
+            "Nidhivan",
+            "Seva Kunj",
+            "Prem Mandir Gardens"
+        ],
+        "travel_tip": "Prem Mandir is best visited in the evening for the light show."
+    },
+    "Ayodhya": {
+        "description": "The birthplace of Lord Rama, undergoing massive transformation.",
+        "hospitals": [
+            "Shriram Hospital",
+            "District Hospital",
+            "Rajarshi Dashrath Medical College"
+        ],
+        "safe_areas": [
+            "Civil Lines",
+            "Nayaghat",
+            "Saket Puri"
+        ],
+        "green_zones": [
+            "Tulsi Udyan",
+            "Guptar Ghat",
+            "Ram Ki Paidi"
+        ],
+        "travel_tip": "Electric vehicles are available for commuting within temple zones."
+    },
+    "Ratlam": {
+        "description": "Known for its gold markets, Sev (snack), and railway connectivity.",
+        "hospitals": [
+            "District Hospital",
+            "Banjara Hospital",
+            "Jivansh Hospital"
+        ],
+        "safe_areas": [
+            "Shastri Nagar",
+            "Kasturba Nagar",
+            "Station Road"
+        ],
+        "green_zones": [
+            "Amrit Sagar Pond",
+            "Kalka Mata Park",
+            "Sai Mandir Garden"
+        ],
+        "travel_tip": "Ratlam Sev is famous worldwide; buy it fresh."
+    },
+    "Sagar": {
+        "description": "A scenic city in MP, home to a large university and lakes.",
+        "hospitals": [
+            "Bundelkhand Medical College",
+            "Bhagyoday Hospital",
+            "Rai Hospital"
+        ],
+        "safe_areas": [
+            "Civil Lines",
+            "Makroniya",
+            "Tili Road"
+        ],
+        "green_zones": [
+            "Lakha Banjara Lake",
+            "University Campus",
+            "City Park"
+        ],
+        "travel_tip": "Lakha Banjara Lake is central to the city's identity."
+    },
+    "Satna": {
+        "description": "The cement capital of India, gateway to Chitrakoot.",
+        "hospitals": [
+            "Birla Hospital",
+            "District Hospital",
+            "Sardar Vallabhbhai Patel Hospital"
+        ],
+        "safe_areas": [
+            "Civil Lines",
+            "Bharhut Nagar",
+            "Rewa Road"
+        ],
+        "green_zones": [
+            "Maitri Park",
+            "Pushpraj Park",
+            "Dhawari Stadium"
+        ],
+        "travel_tip": "Useful transit point for visiting the Maihar Devi temple."
+    },
+    "Akola": {
+        "description": "The Cotton City, known for its hot summers and forts.",
+        "hospitals": [
+            "Ozone Hospital",
+            "Icon Hospital",
+            "District Hospital"
+        ],
+        "safe_areas": [
+            "Civil Lines",
+            "Ramdas Peth",
+            "Jatharpeth"
+        ],
+        "green_zones": [
+            "Nehru Park",
+            "Vasant Desai Stadium",
+            "Raj Rajeshwar Temple grounds"
+        ],
+        "travel_tip": "Summers are scorching; carry sun protection."
+    },
+    "Amravati": {
+        "description": "A cultural hub in the Vidarbha region, gateway to Melghat Tiger Reserve.",
+        "hospitals": [
+            "Dr. Panjabrao Deshmukh Hospital",
+            "Hi-Tech Hospital",
+            "District General Hospital"
+        ],
+        "safe_areas": [
+            "Rukmini Nagar",
+            "Camp Area",
+            "Sai Nagar"
+        ],
+        "green_zones": [
+            "Wadali Talao",
+            "Chhatri Talao",
+            "Bamboo Garden"
+        ],
+        "travel_tip": "Ambadevi Temple is a must-visit during Navratri."
+    },
+    "Latur": {
+        "description": "An agricultural trade hub known for its pulses and oilseeds.",
+        "hospitals": [
+            "Vilasrao Deshmukh Govt Medical College",
+            "Vivekanand Hospital",
+            "Mimt Hospital"
+        ],
+        "safe_areas": [
+            "Ausa Road",
+            "Shivaji Nagar",
+            "MIDC Area"
+        ],
+        "green_zones": [
+            "Nana Nani Park",
+            "Town Hall Garden",
+            "Dr. Babasaheb Ambedkar Park"
+        ],
+        "travel_tip": "Water scarcity can be an issue in summer; conserve water."
+    },
+    "Nanded": {
+        "description": "A holy city for Sikhs, home to the Hazur Sahib Gurudwara.",
+        "hospitals": [
+            "Dr. Shankarrao Chavan Medical College",
+            "Global Hospital",
+            "Lotus Hospital"
+        ],
+        "safe_areas": [
+            "Bhagya Nagar",
+            "Vazirabad",
+            "Sneha Nagar"
+        ],
+        "green_zones": [
+            "Visava Garden",
+            "Guru Gobind Singh Park",
+            "Godavari Riverbanks"
+        ],
+        "travel_tip": "The Gurudwara is open 24/7; langar (community meal) is served daily."
+    },
+    "Gulbarga": {
+        "description": "Known as Kalaburagi, famous for its fort and scorching sun.",
+        "hospitals": [
+            "Gulbarga Institute of Medical Sciences",
+            "United Hospital",
+            "Chirayu Hospital"
+        ],
+        "safe_areas": [
+            "Aiwan-E-Shahi",
+            "Sedam Road",
+            "Jewargi Colony"
+        ],
+        "green_zones": [
+            "Gulbarga Fort",
+            "Appa Lake",
+            "Public Garden"
+        ],
+        "travel_tip": "The Bahmani Fort is a vast historical site; wear walking shoes."
+    },
+    "Bidar": {
+        "description": "A hilltop city with medieval fortifications and Bidriware handicrafts.",
+        "hospitals": [
+            "BRIMS",
+            "Apex Hospital",
+            "District Hospital"
+        ],
+        "safe_areas": [
+            "New Housing Colony",
+            "Gumpa",
+            "Shivnagar"
+        ],
+        "green_zones": [
+            "Barid Shahi Garden",
+            "Bidar Fort",
+            "Decca Park"
+        ],
+        "travel_tip": "Buy Bidriware (silver inlay work) directly from artisans."
+    },
+    "Hospet": {
+        "description": "The gateway to the UNESCO World Heritage site of Hampi.",
+        "hospitals": [
+            "Government Hospital",
+            "Vatsalya Hospital",
+            "Sameera Hospital"
+        ],
+        "safe_areas": [
+            "College Road",
+            "Dam Road",
+            "MJ Nagar"
+        ],
+        "green_zones": [
+            "Tungabhadra Dam Garden",
+            "Municipal Park",
+            "Hampi Ruins (nearby)"
+        ],
+        "travel_tip": "Rent a bicycle to explore the Hampi ruins nearby."
+    },
+    "Tirupur": {
+        "description": "The Knitwear Capital of India, a bustling industrial hub.",
+        "hospitals": [
+            "Revathi Medical Center",
+            "Sri Ramakrishna Hospital",
+            "Government Hospital"
+        ],
+        "safe_areas": [
+            "Avinashi Road",
+            "Palladam Road",
+            "Rayapuram"
+        ],
+        "green_zones": [
+            "Chikkanna Tata Stand Park",
+            "Tirupur Kumaran Memorial Park",
+            "Noyyal River Path"
+        ],
+        "travel_tip": "Factory outlets sell quality cotton wear at low prices."
+    },
+    "Alappuzha": {
+        "description": "Known as Alleppey, famous for its backwaters and houseboats.",
+        "hospitals": [
+            "T D Medical College",
+            "Sagar Hospital",
+            "General Hospital"
+        ],
+        "safe_areas": [
+            "Thathampally",
+            "Punnamada",
+            "Civil Station Ward"
+        ],
+        "green_zones": [
+            "Alappuzha Beach",
+            "Punnamada Lake",
+            "Vijaya Park"
+        ],
+        "travel_tip": "Book houseboats from authorized operators only."
+    },
+    "Munnar": {
+        "description": "A picturesque hill station with sprawling tea plantations.",
+        "hospitals": [
+            "Tata Global Beverages General Hospital",
+            "Government Hospital",
+            "Morning Star Hospital"
+        ],
+        "safe_areas": [
+            "Old Munnar",
+            "Ikka Nagar",
+            "Moolakadai"
+        ],
+        "green_zones": [
+            "Tea Gardens",
+            "Eravikulam National Park",
+            "Blossom Park"
+        ],
+        "travel_tip": "Temperatures drop significantly at night; carry warm layers."
+    },
+    "Silchar": {
+        "description": "A trade hub in the Barak Valley, known for tea farming.",
+        "hospitals": [
+            "Silchar Medical College",
+            "Green Heals",
+            "Valley Hospital"
+        ],
+        "safe_areas": [
+            "Ambicapatty",
+            "Tarapur",
+            "College Road"
+        ],
+        "green_zones": [
+            "Gandhibag Park",
+            "Kanchakanti Kali Mandir area",
+            "Tea Estates"
+        ],
+        "travel_tip": "The Maniharan Tunnel nearby is a popular legend-filled spot."
+    },
+    "Dibrugarh": {
+        "description": "The Tea City of India, located in Upper Assam.",
+        "hospitals": [
+            "Assam Medical College",
+            "Sanjivani Hospital",
+            "Brahmaputra Diagnostics"
+        ],
+        "safe_areas": [
+            "Khaliamari",
+            "Chowkidinghee",
+            "Graham Bazar"
+        ],
+        "green_zones": [
+            "Khanikar Park",
+            "Jokai Botanical Garden",
+            "Brahmaputra Dyke"
+        ],
+        "travel_tip": "A river cruise on the Brahmaputra is highly recommended."
+    }
+}

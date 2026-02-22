@@ -1,0 +1,757 @@
+<!DOCTYPE html>
+<html lang="en" class="dark">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>City Health 360 | Premium Environmental Intelligence</title>
+
+    <!-- Tailwind CSS -->
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script>
+        tailwind.config = {
+            darkMode: 'class',
+            theme: {
+                extend: {
+                    fontFamily: {
+                        sans: ['Inter', 'sans-serif'],
+                        display: ['Outfit', 'sans-serif'],
+                    },
+                    colors: {
+                        dark: {
+                            900: '#0f172a', // Slate 900
+                            800: '#1e293b', // Slate 800
+                            700: '#334155', // Slate 700
+                            card: '#1e293b',
+                        },
+                        brand: {
+                            500: '#3b82f6', // Blue 500
+                            400: '#60a5fa', // Blue 400
+                        }
+                    },
+                    animation: {
+                        'float': 'float 6s ease-in-out infinite',
+                        'pulse-slow': 'pulse 4s cubic-bezier(0.4, 0, 0.6, 1) infinite',
+                    },
+                    keyframes: {
+                        float: {
+                            '0%, 100%': { transform: 'translateY(0)' },
+                            '50%': { transform: 'translateY(-10px)' },
+                        }
+                    }
+                }
+            }
+        }
+    </script>
+
+    <!-- Alpine.js -->
+    <script defer src="https://cdn.jsdelivr.net/npm/alpinejs@3.13.3/dist/cdn.min.js"></script>
+
+    <!-- Google Fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link
+        href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600&family=Outfit:wght@200;400;500;600;700&display=swap"
+        rel="stylesheet">
+
+    <style>
+        [x-cloak] {
+            display: none !important;
+        }
+
+        body {
+            background-color: #0f172a;
+            /* Slate 900 */
+            color: #f1f5f9;
+        }
+
+        .glass-card {
+            background: rgba(30, 41, 59, 0.7);
+            backdrop-filter: blur(12px);
+            border: 1px solid rgba(255, 255, 255, 0.08);
+            box-shadow: 0 8px 32px 0 rgba(0, 0, 0, 0.3);
+        }
+
+        .glass-header {
+            background: rgba(15, 23, 42, 0.85);
+            backdrop-filter: blur(16px);
+            border-bottom: 1px solid rgba(255, 255, 255, 0.05);
+        }
+
+        /* Circular Progress Gauge */
+        .gauge-circle {
+            transition: stroke-dashoffset 1s ease-out;
+            transform: rotate(-90deg);
+            transform-origin: 50% 50%;
+        }
+
+        /* Text Gradients */
+        .text-gradient {
+            background-clip: text;
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+        }
+    </style>
+</head>
+
+<body class="antialiased selection:bg-brand-500 selection:text-white" x-data="cityHealth()">
+
+    <!-- Header -->
+    <header class="glass-header sticky top-0 z-50 transition-all duration-300">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="flex justify-between items-center h-20">
+                <!-- Brand -->
+                <div class="flex items-center gap-3 group">
+                    <div
+                        class="w-10 h-10 rounded-xl bg-gradient-to-br from-blue-500 to-indigo-600 flex items-center justify-center shadow-lg shadow-blue-500/20 group-hover:shadow-blue-500/40 transition-shadow duration-300">
+                        <svg class="w-6 h-6 text-white" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+                                d="M9 19v-6a2 2 0 00-2-2H5a2 2 0 00-2 2v6a2 2 0 002 2h2a2 2 0 002-2zm0 0V9a2 2 0 012-2h2a2 2 0 012 2v10m-6 0a2 2 0 002 2h2a2 2 0 002-2m0 0V5a2 2 0 012-2h2a2 2 0 012 2v14a2 2 0 002 2h2a2 2 0 002-2z" />
+                        </svg>
+                    </div>
+                    <div>
+                        <h1 class="font-display font-bold text-xl tracking-tight text-white">City Health <span
+                                class="text-blue-400">360</span></h1>
+                        <p class="text-[10px] font-medium text-slate-400 uppercase tracking-widest">Live Environmental
+                            Monitoring</p>
+                    </div>
+                </div>
+
+                <!-- Search -->
+                <div class="flex items-center gap-6">
+                    <div class="relative hidden sm:block w-72">
+                        <input type="text" x-model="search"
+                            class="w-full bg-slate-800/50 border border-slate-700 text-slate-200 text-sm rounded-full focus:ring-2 focus:ring-blue-500 focus:border-blue-500 block pl-10 p-2.5 placeholder-slate-500 transition-all focus:bg-slate-800"
+                            placeholder="Search city (e.g., Mumbai)...">
+                        <div class="absolute inset-y-0 left-0 flex items-center pl-3 pointer-events-none">
+                            <svg class="w-4 h-4 text-slate-400" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+                                    d="M21 21l-6-6m2-5a7 7 0 11-14 0 7 7 0 0114 0z"></path>
+                            </svg>
+                        </div>
+                    </div>
+
+                    <a href="docs/india.html"
+                        class="hidden sm:flex items-center gap-2 px-4 py-2 bg-slate-800 border border-slate-700 rounded-full text-sm font-medium text-slate-200 hover:bg-slate-700 hover:text-white transition shadow-sm">
+                        🌍 National Map
+                    </a>
+
+                    <div class="hidden lg:block text-right">
+                        <div class="text-[10px] font-bold text-slate-500 uppercase tracking-widest">Last Update</div>
+                        <div class="text-xs font-mono text-blue-300" x-text="lastUpdated"></div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </header>
+
+    <!-- Main Board -->
+    <main class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-10">
+
+        <!-- Mobile Search -->
+        <div class="sm:hidden mb-8">
+            <input type="text" x-model="search"
+                class="bg-slate-800 border border-slate-700 text-white text-base rounded-xl focus:ring-blue-500 focus:border-blue-500 block w-full p-4 placeholder-slate-500"
+                placeholder="Search city...">
+        </div>
+
+        <!-- Loading -->
+        <div x-show="loading" class="flex flex-col items-center justify-center py-32">
+            <div class="relative w-20 h-20">
+                <div class="absolute inset-0 border-4 border-slate-800 rounded-full"></div>
+                <div
+                    class="absolute inset-0 border-4 border-blue-500 rounded-full animate-spin border-t-transparent shadow-lg shadow-blue-500/50">
+                </div>
+                <svg class="absolute inset-0 w-8 h-8 m-auto text-blue-500 animate-pulse" fill="none" viewBox="0 0 24 24"
+                    stroke="currentColor">
+                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+                        d="M13 10V3L4 14h7v7l9-11h-7z" />
+                </svg>
+            </div>
+            <p class="mt-6 text-slate-400 font-display font-medium tracking-wide animate-pulse">Establishing Satellite
+                Link...</p>
+        </div>
+
+        <!-- System Error -->
+        <div x-show="error" x-cloak
+            class="max-w-lg mx-auto bg-red-900/20 border border-red-500/50 rounded-2xl p-8 text-center backdrop-blur-sm">
+            <svg class="mx-auto h-16 w-16 text-red-500 opacity-80" fill="none" viewBox="0 0 24 24"
+                stroke="currentColor">
+                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5"
+                    d="M12 9v2m0 4h.01m-6.938 4h13.856c1.54 0 2.502-1.667 1.732-3L13.732 4c-.77-1.333-2.694-1.333-3.464 0L3.34 16c-.77 1.333.192 3 1.732 3z" />
+            </svg>
+            <h3 class="mt-4 text-xl font-bold text-white">Connection Failed</h3>
+            <p class="mt-2 text-red-200/70" x-text="errorMsg"></p>
+            <button @click="init"
+                class="mt-6 px-6 py-2 bg-red-600 hover:bg-red-500 text-white rounded-lg font-medium transition-colors shadow-lg shadow-red-600/20">
+                Retry Connection
+            </button>
+        </div>
+
+        <!-- Filters & Navigation -->
+        <div x-show="!loading && !error" x-cloak
+            class="flex flex-col sm:flex-row justify-between items-start sm:items-center gap-4 pb-4 mb-6 border-b border-slate-800/50">
+            <!-- Region Filters -->
+            <div class="flex gap-2 overflow-x-auto scrollbar-hide w-full sm:w-auto">
+                <template x-for="region in regions" :key="region">
+                    <button @click="activeRegion = region; displayLimit = 12"
+                        class="px-5 py-2 rounded-full whitespace-nowrap text-sm font-medium transition-all duration-200 border"
+                        :class="activeRegion === region 
+                            ? 'bg-blue-600 border-blue-500 text-white shadow-lg shadow-blue-500/20' 
+                            : 'bg-slate-800/50 border-slate-700 text-slate-300 hover:bg-slate-700 hover:text-white'">
+                        <span x-text="region"></span>
+                    </button>
+                </template>
+            </div>
+
+            <!-- State Selector -->
+            <div class="shrink-0 w-full sm:w-64">
+                <select @change="if($event.target.value) window.location.href = 'docs/' + $event.target.value + '.html'"
+                    class="w-full bg-slate-800/80 border border-slate-700 text-slate-200 text-sm rounded-xl focus:ring-2 focus:ring-blue-500 block p-2.5 transition appearance-none cursor-pointer">
+                    <option value="">🗺️ Jump to State Dashboard...</option>
+                    <template x-for="state in states" :key="state">
+                        <option :value="state.toLowerCase().replace(/ /g, '-')" x-text="state"></option>
+                    </template>
+                </select>
+            </div>
+        </div>
+
+        <!-- Grid -->
+        <div x-show="!loading && !error" x-cloak
+            class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-8 mb-12">
+
+            <template x-for="city in displayedCities" :key="city.city">
+                <article
+                    class="glass-card rounded-3xl overflow-hidden hover:scale-[1.02] transition-transform duration-300 group flex flex-col h-full bg-slate-800 relative">
+                    <!-- Main Card Link -->
+                    <a :href="'docs/' + city.city.toLowerCase().replace(/ /g, '-') + '.html'"
+                        class="absolute inset-0 z-10" aria-label="View City Details"></a>
+
+                    <!-- City Header Image -->
+                    <div class="relative h-32 w-full overflow-hidden">
+                        <!-- Image with Overlay -->
+                        <div class="absolute inset-0 z-0">
+                            <img loading="lazy" :src="getCityImage(city.city)"
+                                class="w-full h-full object-cover transition-transform duration-700 group-hover:scale-110 opacity-60 grayscale-[20%] group-hover:grayscale-0"
+                                alt="City background"
+                                onerror="this.src='https://images.unsplash.com/photo-1477959858617-67f85cf4f1df?q=80&w=600&auto=format&fit=crop'">
+                            <!-- Fallback: Generic City -->
+                            <div
+                                class="absolute inset-0 bg-gradient-to-t from-slate-900 via-slate-900/60 to-transparent">
+                            </div>
+                        </div>
+
+                        <div class="absolute bottom-0 left-0 p-5 z-10 w-full">
+                            <h2 class="font-display font-bold text-2xl text-white tracking-wide drop-shadow-md"
+                                x-text="city.city"></h2>
+                            <div
+                                class="flex items-center gap-1.5 text-blue-200/80 text-xs font-medium uppercase tracking-wider mt-0.5">
+                                <svg class="w-3.5 h-3.5" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+                                        d="M17.657 16.657L13.414 20.9a1.998 1.998 0 01-2.827 0l-4.244-4.243a8 8 0 1111.314 0z" />
+                                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+                                        d="M15 11a3 3 0 11-6 0 3 3 0 016 0z" />
+                                </svg>
+                                <span>India</span>
+                            </div>
+                        </div>
+
+                        <!-- Animated Weather Icon Floating -->
+                        <div
+                            class="absolute top-4 right-4 z-20 animate-float bg-white/10 backdrop-blur-md rounded-full p-2 border border-white/10 shadow-xl">
+                            <!-- Weather Logic: Simple Check -->
+                            <div x-html="getWeatherIcon(city)"></div>
+                        </div>
+                    </div>
+
+                    <!-- Main Stats -->
+                    <div class="px-6 py-4 border-b border-slate-700/50 flex justify-between items-end bg-slate-800/50">
+                        <div>
+                            <div class="flex items-start">
+                                <span class="font-display font-thin text-5xl text-white"
+                                    x-text="Math.round(city.temp)"></span>
+                                <span class="text-xl text-blue-400 mt-1 font-light">°C</span>
+                            </div>
+                            <div class="text-xs text-slate-400 font-medium mt-1 pl-1"
+                                x-text="city.humidity + '% Humidity'"></div>
+                        </div>
+                        <div class="text-right">
+                            <div class="inline-flex flex-col items-center justify-center">
+                                <div class="w-12 h-12 rounded-full border-4 flex items-center justify-center shadow-lg"
+                                    :class="getAqiBorderColor(city.aqi)">
+                                    <span class="text-xs font-bold text-white" x-text="city.aqi"></span>
+                                </div>
+                                <span
+                                    class="text-[10px] font-bold mt-1 uppercase tracking-wider text-slate-500">AQI</span>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Risk Gauges -->
+                    <div class="p-6 space-y-6 bg-slate-800/80 flex-grow">
+
+                        <!-- Mosquito (Icon: Bug/Ant) -->
+                        <div class="flex items-center gap-4">
+                            <div class="relative w-12 h-12 flex-shrink-0">
+                                <!-- Progress Ring -->
+                                <svg class="w-full h-full transform -rotate-90">
+                                    <circle cx="24" cy="24" r="20" stroke="currentColor" stroke-width="4"
+                                        fill="transparent" class="text-slate-700" />
+                                    <circle cx="24" cy="24" r="20" stroke="currentColor" stroke-width="4"
+                                        fill="transparent" :class="getRiskColor(city.mosquito_risk)"
+                                        :stroke-dasharray="125.6"
+                                        :stroke-dashoffset="125.6 - (125.6 * city.mosquito_risk / 10)"
+                                        class="gauge-circle shadow-[0_0_10px_currentColor] transition-all duration-1000" />
+                                </svg>
+                                <!-- Icon: Bug -->
+                                <div class="absolute inset-0 flex items-center justify-center">
+                                    <svg class="w-6 h-6 text-slate-300" fill="none" viewBox="0 0 24 24"
+                                        stroke="currentColor" stroke-width="1.5">
+                                        <!-- Custom Clean Bug -->
+                                        <circle cx="12" cy="12" r="5" />
+                                        <path
+                                            d="M12 7V5M7 12H5M17 12h2M8.5 8.5L7 7M15.5 8.5L17 7M8.5 15.5L7 17M15.5 15.5L17 17" />
+                                    </svg>
+                                </div>
+                            </div>
+                            <div class="flex-grow">
+                                <div class="flex justify-between items-baseline mb-0.5">
+                                    <h4 class="text-sm font-semibold text-slate-200">Mosquito Risk</h4>
+                                    <span class="text-xs font-bold" :class="getRiskTextColor(city.mosquito_risk)"
+                                        x-text="getRiskLabel(city.mosquito_risk)"></span>
+                                </div>
+                                <p class="text-[10px] text-slate-400 leading-tight"
+                                    x-text="city.mosquito_risk > 6 ? 'High activity detected.' : 'Low activity.'"></p>
+                                <a href="https://www.amazon.in/s?k=odomos+mosquito+repellent+cream&tag=cityhealth-21"
+                                    target="_blank" rel="noopener noreferrer" x-show="city.mosquito_risk > 6"
+                                    class="mt-1 inline-block text-[10px] text-blue-400 hover:text-blue-300 underline underline-offset-2 relative z-20 pointer-events-auto">→
+                                    Buy Repellent</a>
+                            </div>
+                        </div>
+
+                        <!-- Arthritis (Icon: Bone) -->
+                        <div class="flex items-center gap-4">
+                            <div class="relative w-12 h-12 flex-shrink-0">
+                                <svg class="w-full h-full transform -rotate-90">
+                                    <circle cx="24" cy="24" r="20" stroke="currentColor" stroke-width="4"
+                                        fill="transparent" class="text-slate-700" />
+                                    <circle cx="24" cy="24" r="20" stroke="currentColor" stroke-width="4"
+                                        fill="transparent" :class="getRiskColor(city.arthritis_risk)"
+                                        :stroke-dasharray="125.6"
+                                        :stroke-dashoffset="125.6 - (125.6 * city.arthritis_risk / 10)"
+                                        class="gauge-circle shadow-[0_0_10px_currentColor] transition-all duration-1000" />
+                                </svg>
+                                <!-- Icon: Bone -->
+                                <div class="absolute inset-0 flex items-center justify-center">
+                                    <svg class="w-5 h-5 text-slate-300" fill="none" viewBox="0 0 24 24"
+                                        stroke="currentColor" stroke-width="1.5">
+                                        <!-- Clean Bone Icon -->
+                                        <path stroke-linecap="round" stroke-linejoin="round"
+                                            d="M18.5 7.5a2.5 2.5 0 10-3.5-3.5l-2.4 2.4a.7.7 0 01-1.2 0L9 4a2.5 2.5 0 00-3.5 3.5l8 12.5a2.5 2.5 0 003.5-3.5l-2.4-2.4a.7.7 0 010-1.2l4.9-5.4z" />
+                                    </svg>
+                                </div>
+                            </div>
+                            <div class="flex-grow">
+                                <div class="flex justify-between items-baseline mb-0.5">
+                                    <h4 class="text-sm font-semibold text-slate-200">Joint Pain</h4>
+                                    <span class="text-xs font-bold" :class="getRiskTextColor(city.arthritis_risk)"
+                                        x-text="getRiskLabel(city.arthritis_risk)"></span>
+                                </div>
+                                <p class="text-[10px] text-slate-400 leading-tight"
+                                    x-text="city.arthritis_risk > 6 ? 'High pressure drift.' : 'Stable conditions.'">
+                                </p>
+                                <a href="https://www.amazon.in/s?k=volini+pain+relief+spray&tag=cityhealth-21"
+                                    target="_blank" rel="noopener noreferrer" x-show="city.arthritis_risk > 6"
+                                    class="mt-1 inline-block text-[10px] text-blue-400 hover:text-blue-300 underline underline-offset-2 relative z-20 pointer-events-auto">→
+                                    Relief Spray</a>
+                            </div>
+                        </div>
+
+                        <!-- Migraine (Icon: Bolt) -->
+                        <div class="flex items-center gap-4">
+                            <div class="relative w-12 h-12 flex-shrink-0">
+                                <svg class="w-full h-full transform -rotate-90">
+                                    <circle cx="24" cy="24" r="20" stroke="currentColor" stroke-width="4"
+                                        fill="transparent" class="text-slate-700" />
+                                    <circle cx="24" cy="24" r="20" stroke="currentColor" stroke-width="4"
+                                        fill="transparent" :class="getRiskColor(city.migraine_risk)"
+                                        :stroke-dasharray="125.6"
+                                        :stroke-dashoffset="125.6 - (125.6 * city.migraine_risk / 10)"
+                                        class="gauge-circle shadow-[0_0_10px_currentColor] transition-all duration-1000" />
+                                </svg>
+                                <!-- Icon: Lightning -->
+                                <div class="absolute inset-0 flex items-center justify-center">
+                                    <svg class="w-5 h-5 text-slate-300" fill="none" viewBox="0 0 24 24"
+                                        stroke="currentColor" stroke-width="1.5">
+                                        <path stroke-linecap="round" stroke-linejoin="round"
+                                            d="M3.75 13.5l10.5-11.25L12 10.5h8.25L9.75 21.75 12 13.5H3.75z" />
+                                    </svg>
+                                </div>
+                            </div>
+                            <div class="flex-grow">
+                                <div class="flex justify-between items-baseline mb-0.5">
+                                    <h4 class="text-sm font-semibold text-slate-200">Migraine</h4>
+                                    <span class="text-xs font-bold" :class="getRiskTextColor(city.migraine_risk)"
+                                        x-text="getRiskLabel(city.migraine_risk)"></span>
+                                </div>
+                                <p class="text-[10px] text-slate-400 leading-tight"
+                                    x-text="city.migraine_risk > 6 ? 'Trigger warning (UV/Heat).' : 'Conditions stable.'">
+                                </p>
+                                <a href="https://www.amazon.in/s?k=uv+protection+sunglasses+polarized&tag=cityhealth-21"
+                                    target="_blank" rel="noopener noreferrer" x-show="city.migraine_risk > 6"
+                                    class="mt-1 inline-block text-[10px] text-blue-400 hover:text-blue-300 underline underline-offset-2 relative z-20 pointer-events-auto">→
+                                    Wear Sunglasses</a>
+                            </div>
+                        </div>
+
+                        <!-- Frizz Link (Mini) -->
+                        <div
+                            class="pt-4 mt-2 border-t border-slate-700/50 flex justify-between items-center opacity-80 hover:opacity-100 transition-opacity">
+                            <span class="text-[11px] font-medium text-slate-400 uppercase tracking-wider">Hair
+                                Index</span>
+                            <span class="text-[10px] px-2 py-0.5 rounded-full font-bold border"
+                                :class="city.frizz_risk == 1 ? 'bg-pink-900/30 text-pink-300 border-pink-700' : 'bg-emerald-900/30 text-emerald-300 border-emerald-700'"
+                                x-text="city.frizz_risk == 1 ? 'BAD HAIR DAY' : 'GOOD HAIR DAY'"></span>
+                        </div>
+
+                    </div>
+
+                    <!-- Critical Footer -->
+                    <div x-show="city.aqi > 150"
+                        class="bg-red-900/60 p-3 border-t border-red-500/30 flex justify-between items-center gap-2">
+                        <div class="flex items-center gap-2">
+                            <svg class="w-4 h-4 text-red-400 animate-pulse" fill="none" viewBox="0 0 24 24"
+                                stroke="currentColor">
+                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+                                    d="M12 9v2m0 4h.01m-6.938 4h13.856c1.54 0 2.502-1.667 1.732-3L13.732 4c-.77-1.333-2.694-1.333-3.464 0L3.34 16c-.77 1.333.192 3 1.732 3z" />
+                            </svg>
+                            <span class="text-xs font-bold text-red-200">Poor Air Quality</span>
+                        </div>
+                        <a href="https://www.amazon.in/s?k=n95+mask+for+pollution&tag=cityhealth-21" target="_blank"
+                            rel="noopener noreferrer"
+                            class="text-[10px] bg-red-500/20 hover:bg-red-500/40 text-red-200 px-2 py-1 rounded border border-red-500/50 transition-colors relative z-20 pointer-events-auto">→
+                            Buy Mask / Purifier</a>
+                    </div>
+
+                </article>
+            </template>
+            <!-- Load More Button -->
+            <div x-show="!loading && !error && displayedCities.length < filteredCities.length" x-cloak
+                class="text-center mt-12 mb-8">
+                <button @click="loadMore()"
+                    class="px-8 py-3 bg-slate-800 hover:bg-slate-700 text-white rounded-xl font-medium transition-all shadow-lg border border-slate-700 hover:border-slate-600 focus:ring-2 focus:ring-blue-500 focus:outline-none inline-flex items-center gap-2 group">
+                    <span>View More Cities</span>
+                    <svg class="w-4 h-4 group-hover:translate-y-1 transition-transform" fill="none" viewBox="0 0 24 24"
+                        stroke="currentColor">
+                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7" />
+                    </svg>
+                </button>
+                <p class="text-slate-500 text-xs mt-3">Showing <span x-text="displayedCities.length"></span> of <span
+                        x-text="filteredCities.length"></span> cities</p>
+            </div>
+
+            <!-- Empty -->
+            <div x-show="filteredCities.length === 0" x-cloak class="text-center py-20">
+                <h3 class="text-2xl font-display font-bold text-slate-700">No signals found.</h3>
+                <button @click="search = ''" class="mt-4 text-blue-500 hover:text-blue-400 font-medium">Clear
+                    filters</button>
+            </div>
+
+    </main>
+
+    <footer class="mt-20 py-10 border-t border-slate-800 bg-slate-900/50 text-center">
+        <p class="text-slate-600 text-sm">&copy; 2026 City Health 360 &bull; Environmental Intelligence Unit</p>
+    </footer>
+
+    <script>
+        document.addEventListener('alpine:init', () => {
+            Alpine.data('cityHealth', () => ({
+                cities: [],
+                search: '',
+                loading: true,
+                error: false,
+                errorMsg: '',
+                lastUpdated: '...',
+                displayLimit: 12,
+                activeRegion: 'All',
+                regions: ['All', 'North India', 'South India', 'East & Northeast', 'West India', 'Central India'],
+
+                // Wikimedia Image URLs & Fallbacks
+                cityImages: {
+                    // Metros & Major
+                    "Delhi": "https://commons.wikimedia.org/wiki/Special:FilePath/India_Gate_in_New_Delhi_03-2016.jpg",
+                    "Mumbai": "https://commons.wikimedia.org/wiki/Special:FilePath/The_Gateway_of_India,_Mumbai.jpg",
+                    "Bangalore": "https://commons.wikimedia.org/wiki/Special:FilePath/Vidhana_Soudha_in_Bengaluru_6.jpg",
+                    "Hyderabad": "https://commons.wikimedia.org/wiki/Special:FilePath/Charminar_Hyderabad_1.jpg",
+                    "Chennai": "https://commons.wikimedia.org/wiki/Special:FilePath/Chennai_Central.jpg",
+                    "Kolkata": "https://commons.wikimedia.org/wiki/Special:FilePath/Victoria_Memorial,_Kolkata_India.jpg",
+                    "Pune": "https://commons.wikimedia.org/wiki/Special:FilePath/Shanivar_Wada,Pune.jpg",
+                    "Ahmedabad": "https://commons.wikimedia.org/wiki/Special:FilePath/Sidi_Saiyyed_Mosque_Ahmedabad.jpg",
+                    "Surat": "https://commons.wikimedia.org/wiki/Special:FilePath/Cable_Bridge_Surat_India.jpg",
+                    "Jaipur": "https://commons.wikimedia.org/wiki/Special:FilePath/Hawa_Mahal_Jaipur_AS12.jpg",
+                    "Lucknow": "https://commons.wikimedia.org/wiki/Special:FilePath/Rumi_Darwaza_-_DSC2797-01.jpg",
+                    "Kanpur": "https://commons.wikimedia.org/wiki/Special:FilePath/JK_TEMPLE_of_Kanpur.jpg",
+                    "Nagpur": "https://commons.wikimedia.org/wiki/Special:FilePath/Deekshabhumi_Nagpur.jpg",
+                    "Indore": "https://commons.wikimedia.org/wiki/Special:FilePath/Rajwada-Indore.jpg",
+                    "Thane": "https://commons.wikimedia.org/wiki/Special:FilePath/Masunda_Lake_in_Thane.jpg",
+                    "Bhopal": "https://commons.wikimedia.org/wiki/Special:FilePath/Upper_Lake,_Bhopal,_M.P.jpg",
+                    "Visakhapatnam": "https://commons.wikimedia.org/wiki/Special:FilePath/RK_Beach.jpg",
+                    "Pimpri-Chinchwad": "https://commons.wikimedia.org/wiki/Special:FilePath/Pcmc_building.jpg",
+                    "Patna": "https://commons.wikimedia.org/wiki/Special:FilePath/Golghar_patna.jpg",
+                    "Vadodara": "https://commons.wikimedia.org/wiki/Special:FilePath/Laxmi_Vilas_Palace,_Baroda.jpg",
+                    "Varanasi": "https://commons.wikimedia.org/wiki/Special:FilePath/Varanasi_Ghat.jpg",
+                    "Srinagar": "https://commons.wikimedia.org/wiki/Special:FilePath/Dal_Lake.jpg",
+
+                    // North India
+                    "Chandigarh": "https://commons.wikimedia.org/wiki/Special:FilePath/Open_Hand_Monument_Chandigarh.jpg",
+                    "Jammu": "https://commons.wikimedia.org/wiki/Special:FilePath/Bahu_Fort_Jammu.jpg",
+                    "Amritsar": "https://commons.wikimedia.org/wiki/Special:FilePath/Golden_Temple_India.jpg",
+                    "Ludhiana": "https://commons.wikimedia.org/wiki/Special:FilePath/Clock_Tower_Ludhiana.jpg",
+                    "Jalandhar": "https://commons.wikimedia.org/wiki/Special:FilePath/Devi_Talab_Mandir.jpg",
+                    "Dehradun": "https://commons.wikimedia.org/wiki/Special:FilePath/FRI_Dehradun.jpg",
+                    "Shimla": "https://commons.wikimedia.org/wiki/Special:FilePath/Shimla_Ridge.jpg",
+                    "Manali": "https://commons.wikimedia.org/wiki/Special:FilePath/Manali_Himachal_Pradesh.jpg",
+                    "Gurgaon": "https://commons.wikimedia.org/wiki/Special:FilePath/DLF_Cyber_City_Gurgaon.jpg",
+                    "Noida": "https://commons.wikimedia.org/wiki/Special:FilePath/Noida_Skyline.jpg",
+                    "Ghaziabad": "https://commons.wikimedia.org/wiki/Special:FilePath/Ghaziabad_City.jpg",
+                    "Faridabad": "https://commons.wikimedia.org/wiki/Special:FilePath/Faridabad_Surajkund.jpg",
+                    "Meerut": "https://commons.wikimedia.org/wiki/Special:FilePath/Augarnath_Temple_Meerut.jpg",
+                    "Agra": "https://commons.wikimedia.org/wiki/Special:FilePath/Taj_Mahal_(Edited).jpeg",
+                    "Prayagraj": "https://commons.wikimedia.org/wiki/Special:FilePath/Triveni_Sangam_Allahabad.jpg",
+                    "Gorakhpur": "https://commons.wikimedia.org/wiki/Special:FilePath/Gorakhnath_Temple.jpg",
+                    "Bareilly": "https://commons.wikimedia.org/wiki/Special:FilePath/Bareilly_Jhumka.jpg",
+                    "Aligarh": "https://commons.wikimedia.org/wiki/Special:FilePath/Aligarh_Muslim_University.jpg",
+                    "Moradabad": "https://commons.wikimedia.org/wiki/Special:FilePath/Moradabad_city.jpg",
+                    "Saharanpur": "https://commons.wikimedia.org/wiki/Special:FilePath/Saharanpur_Clock_Tower.jpg",
+                    "Jhansi": "https://commons.wikimedia.org/wiki/Special:FilePath/Jhansi_Fort.jpg",
+
+                    // West India
+                    "Rajkot": "https://commons.wikimedia.org/wiki/Special:FilePath/Watson_Museum_Rajkot.jpg",
+                    "Nashik": "https://commons.wikimedia.org/wiki/Special:FilePath/Trimbakeshwar_Shiva_Temple.jpg",
+                    "Aurangabad": "https://commons.wikimedia.org/wiki/Special:FilePath/Bibi_Ka_Maqbara.jpg",
+                    "Solapur": "https://commons.wikimedia.org/wiki/Special:FilePath/Siddheshwar_Temple_Solapur.jpg",
+                    "Kolhapur": "https://commons.wikimedia.org/wiki/Special:FilePath/Mahalakshmi_Temple_Kolhapur.jpg",
+                    "Goa": "https://commons.wikimedia.org/wiki/Special:FilePath/Palolem_Beach_Goa.jpg",
+                    "Jodhpur": "https://commons.wikimedia.org/wiki/Special:FilePath/Mehrangarh_Fort_Jodhpur.jpg",
+                    "Udaipur": "https://commons.wikimedia.org/wiki/Special:FilePath/City_Palace_Udaipur.jpg",
+                    "Kota": "https://commons.wikimedia.org/wiki/Special:FilePath/Seven_Wonders_Park_Kota.jpg",
+                    "Bikaner": "https://commons.wikimedia.org/wiki/Special:FilePath/Junagarh_Fort_Bikaner.jpg",
+                    "Ajmer": "https://commons.wikimedia.org/wiki/Special:FilePath/Ajmer_Sharif_Dargah.jpg",
+                    "Gwalior": "https://commons.wikimedia.org/wiki/Special:FilePath/Gwalior_Fort_View.jpg",
+                    "Jabalpur": "https://commons.wikimedia.org/wiki/Special:FilePath/Dhuandhar_Falls_Jabalpur.jpg",
+                    "Ujjain": "https://commons.wikimedia.org/wiki/Special:FilePath/Mahakaleshwar_Temple_Ujjain.jpg",
+
+                    // South India
+                    "Vijayawada": "https://commons.wikimedia.org/wiki/Special:FilePath/Prakasam_Barrage_Vijayawada.jpg",
+                    "Guntur": "https://commons.wikimedia.org/wiki/Special:FilePath/Amaravathi.jpg",
+                    "Nellore": "https://commons.wikimedia.org/wiki/Special:FilePath/Ranganathaswamy_Temple_Nellore.jpg",
+                    "Kurnool": "https://commons.wikimedia.org/wiki/Special:FilePath/Konda_Reddy_Burj.jpg",
+                    "Kakinada": "https://commons.wikimedia.org/wiki/Special:FilePath/Kakinada_Beach.jpg",
+                    "Tirupati": "https://commons.wikimedia.org/wiki/Special:FilePath/Tirumala_Venkateswara_Temple.jpg",
+                    "Warangal": "https://commons.wikimedia.org/wiki/Special:FilePath/Warangal_Fort.jpg",
+                    "Nizamabad": "https://commons.wikimedia.org/wiki/Special:FilePath/Nizamabad_Fort.jpg",
+                    "Mysore": "https://commons.wikimedia.org/wiki/Special:FilePath/Mysore_Palace_Morning.jpg",
+                    "Mangalore": "https://commons.wikimedia.org/wiki/Special:FilePath/Mangalore_Port.jpg",
+                    "Hubli-Dharwad": "https://commons.wikimedia.org/wiki/Special:FilePath/Unkal_Lake_Hubli.jpg",
+                    "Belgaum": "https://commons.wikimedia.org/wiki/Special:FilePath/Suvarna_Vidhana_Soudha.jpg",
+                    "Coimbatore": "https://commons.wikimedia.org/wiki/Special:FilePath/Adiyogi_Shiva_statue.jpg",
+                    "Madurai": "https://commons.wikimedia.org/wiki/Special:FilePath/Meenakshi_Amman_Temple_1.jpg",
+                    "Trichy": "https://commons.wikimedia.org/wiki/Special:FilePath/Rockfort_Temple_Trichy.jpg",
+                    "Salem": "https://commons.wikimedia.org/wiki/Special:FilePath/Mettur_Dam.jpg",
+                    "Tirunelveli": "https://commons.wikimedia.org/wiki/Special:FilePath/Nellaiappar_Temple.jpg",
+                    "Vellore": "https://commons.wikimedia.org/wiki/Special:FilePath/Vellore_Fort_Main_Entrance.jpg",
+                    "Erode": "https://commons.wikimedia.org/wiki/Special:FilePath/Erode_Turmeric.jpg",
+                    "Kochi": "https://commons.wikimedia.org/wiki/Special:FilePath/Chinese_Fishing_Nets_Kochi.jpg",
+                    "Thiruvananthapuram": "https://commons.wikimedia.org/wiki/Special:FilePath/Padmanabhaswamy_Temple.jpg",
+                    "Kozhikode": "https://commons.wikimedia.org/wiki/Special:FilePath/Kozhikode_Beach.jpg",
+                    "Thrissur": "https://commons.wikimedia.org/wiki/Special:FilePath/Vadakkunnathan_Temple.jpg",
+                    "Kannur": "https://commons.wikimedia.org/wiki/Special:FilePath/St_Angelo_Fort_Kannur.jpg",
+
+                    // East & Northeast
+                    "Gaya": "https://commons.wikimedia.org/wiki/Special:FilePath/Mahabodhi_Temple_Gaya.jpg",
+                    "Muzaffarpur": "https://commons.wikimedia.org/wiki/Special:FilePath/Litchi_Gardens_Muzaffarpur.jpg",
+                    "Bhagalpur": "https://commons.wikimedia.org/wiki/Special:FilePath/Vikramshila_Setu.jpg",
+                    "Ranchi": "https://commons.wikimedia.org/wiki/Special:FilePath/Hundru_Falls_Ranchi.jpg",
+                    "Jamshedpur": "https://commons.wikimedia.org/wiki/Special:FilePath/Jubilee_Park_Jamshedpur.jpg",
+                    "Dhanbad": "https://commons.wikimedia.org/wiki/Special:FilePath/IIT_ISM_Dhanbad.jpg",
+                    "Bokaro": "https://commons.wikimedia.org/wiki/Special:FilePath/Bokaro_Steel_Plant.jpg",
+                    "Bhubaneswar": "https://commons.wikimedia.org/wiki/Special:FilePath/Lingaraj_Temple.jpg",
+                    "Cuttack": "https://commons.wikimedia.org/wiki/Special:FilePath/Barabati_Fort.jpg",
+                    "Rourkela": "https://commons.wikimedia.org/wiki/Special:FilePath/Hanuman_Vatika_Rourkela.jpg",
+                    "Raipur": "https://commons.wikimedia.org/wiki/Special:FilePath/Swami_Vivekananda_Sarovar.jpg",
+                    "Bhilai": "https://commons.wikimedia.org/wiki/Special:FilePath/Maitri_Bagh.jpg",
+                    "Guwahati": "https://commons.wikimedia.org/wiki/Special:FilePath/Kamakhya_Temple.jpg",
+                    "Agartala": "https://commons.wikimedia.org/wiki/Special:FilePath/Ujjayanta_Palace.jpg",
+                    "Shillong": "https://commons.wikimedia.org/wiki/Special:FilePath/Elephant_Falls_Shillong.jpg",
+                    "Imphal": "https://commons.wikimedia.org/wiki/Special:FilePath/Kangla_Fort.jpg",
+                    "Aizawl": "https://commons.wikimedia.org/wiki/Special:FilePath/Aizawl_City_View.jpg",
+                    "Kohima": "https://commons.wikimedia.org/wiki/Special:FilePath/Kohima_War_Cemetery.jpg",
+                    "Gangtok": "https://commons.wikimedia.org/wiki/Special:FilePath/Gangtok_View.jpg",
+                    "Siliguri": "https://commons.wikimedia.org/wiki/Special:FilePath/Coronation_Bridge_Siliguri.jpg",
+                    "Durgapur": "https://commons.wikimedia.org/wiki/Special:FilePath/Durgapur_Barrage.jpg",
+                    "Asansol": "https://commons.wikimedia.org/wiki/Special:FilePath/Ghagar_Buro_Chandi_Temple.jpg",
+
+                    // Others
+                    "Pondicherry": "https://commons.wikimedia.org/wiki/Special:FilePath/Pondicherry_Beach.jpg",
+                    "Port Blair": "https://commons.wikimedia.org/wiki/Special:FilePath/Cellular_Jail_Port_Blair.jpg",
+                    "Haridwar": "https://commons.wikimedia.org/wiki/Special:FilePath/Har_Ki_Pauri.jpg",
+                    "Rishikesh": "https://commons.wikimedia.org/wiki/Special:FilePath/Ram_Jhula.jpg",
+                    "Nainital": "https://commons.wikimedia.org/wiki/Special:FilePath/Naini_Lake.jpg",
+                    "Mussoorie": "https://commons.wikimedia.org/wiki/Special:FilePath/Kempty_Falls.jpg",
+                    "Dharamshala": "https://commons.wikimedia.org/wiki/Special:FilePath/HPCA_Stadium_Dharamshala.jpg",
+                    "Dalhousie": "https://commons.wikimedia.org/wiki/Special:FilePath/Dalhousie_Khajjiar.jpg",
+                    "Patiala": "https://commons.wikimedia.org/wiki/Special:FilePath/Qila_Mubarak_Patiala.jpg",
+                    "Bhatinda": "https://commons.wikimedia.org/wiki/Special:FilePath/Qila_Mubarak_Bathinda.jpg",
+                    "Rohtak": "https://commons.wikimedia.org/wiki/Special:FilePath/Tilyar_Lake_Rohtak.jpg",
+                    "Panipat": "https://commons.wikimedia.org/wiki/Special:FilePath/Panipat_War_Memorial.jpg",
+                    "Mathura": "https://commons.wikimedia.org/wiki/Special:FilePath/Krishna_Janmabhoomi.jpg",
+                    "Vrindavan": "https://commons.wikimedia.org/wiki/Special:FilePath/Prem_Mandir_Vrindavan.jpg",
+                    "Ayodhya": "https://commons.wikimedia.org/wiki/Special:FilePath/Ram_Mandir_Ayodhya.jpg",
+                    "Ratlam": "https://commons.wikimedia.org/wiki/Special:FilePath/Mahalakshmi_Temple_Ratlam.jpg",
+                    "Sagar": "https://commons.wikimedia.org/wiki/Special:FilePath/Lakjha_Banjara_Lake.jpg",
+                    "Satna": "https://commons.wikimedia.org/wiki/Special:FilePath/Maihar_Devi_Temple.jpg",
+                    "Akola": "https://commons.wikimedia.org/wiki/Special:FilePath/Raj_Rajeshwar_Temple.jpg",
+                    "Amravati": "https://commons.wikimedia.org/wiki/Special:FilePath/Ambadevi_Temple_Amravati.jpg",
+                    "Latur": "https://commons.wikimedia.org/wiki/Special:FilePath/Ganj_Golai_Latur.jpg",
+                    "Nanded": "https://commons.wikimedia.org/wiki/Special:FilePath/Hazur_Sahib_Nanded.jpg",
+                    "Gulbarga": "https://commons.wikimedia.org/wiki/Special:FilePath/Gulbarga_Fort.jpg",
+                    "Bidar": "https://commons.wikimedia.org/wiki/Special:FilePath/Bidar_Fort.jpg"
+                },
+
+                async init() {
+                    try {
+                        const response = await fetch('data/city_health.csv?t=' + new Date().getTime());
+                        if (!response.ok) throw new Error('Satellite Feed Unavailable');
+                        const text = await response.text();
+                        this.cities = this.parseCSV(text);
+
+                        if (this.cities.length > 0 && this.cities[0].updated_at) {
+                            const date = new Date(this.cities[0].updated_at);
+                            this.lastUpdated = date.toLocaleString('en-US', {
+                                weekday: 'long', month: 'short', day: 'numeric', hour: 'numeric', minute: '2-digit'
+                            });
+                        }
+
+                        setTimeout(() => this.loading = false, 800); // Cinematic delay
+                    } catch (e) {
+                        console.error(e);
+                        this.error = true;
+                        this.errorMsg = e.message;
+                        this.loading = false;
+                    }
+                },
+
+                parseCSV(text) {
+                    const lines = text.trim().split('\n');
+                    const headers = lines[0].split(',');
+                    return lines.slice(1).map(line => {
+                        if (line.trim() === '') return null;
+                        const values = line.split(',');
+                        const obj = {};
+                        headers.forEach((header, index) => {
+                            const val = values[index] ? values[index].trim() : '';
+                            obj[header.trim()] = (val && !isNaN(val)) ? parseFloat(val) : val;
+                        });
+                        return obj;
+                    }).filter(item => item !== null);
+                },
+
+                get states() {
+                    return [...new Set(this.cities.filter(c => c.state && c.state !== "Unknown").map(c => c.state))].sort();
+                },
+
+                get filteredCities() {
+                    let result = this.cities;
+
+                    if (this.activeRegion !== 'All') {
+                        result = result.filter(c => this.getRegion(c.city) === this.activeRegion);
+                    }
+
+                    if (this.search.trim() !== '') {
+                        const query = this.search.toLowerCase();
+                        result = result.filter(c => c.city && c.city.toLowerCase().includes(query));
+                    }
+
+                    return result;
+                },
+
+                get displayedCities() {
+                    return this.filteredCities.slice(0, this.displayLimit);
+                },
+
+                loadMore() {
+                    this.displayLimit += 12;
+                },
+
+                getRegion(cityName) {
+                    // Quick heuristic based on coordinates for region grouping
+                    const city = this.cities.find(c => c.city === cityName);
+                    if (!city) return 'Other';
+
+                    if (city.latitude > 26) return 'North India';
+                    if (city.latitude < 16) return 'South India';
+                    if (city.longitude > 83) return 'East & Northeast';
+                    if (city.longitude < 76 && city.latitude <= 26) return 'West India';
+                    return 'Central India';
+                },
+
+                getCityImage(cityName) {
+                    // 1. Try Manual Validated List
+                    if (this.cityImages[cityName]) {
+                        return this.cityImages[cityName];
+                    }
+
+                    // 2. Dynamic AI Fallback (Pollinations.ai)
+                    // Generates a scenic image based on city name. reliable and free.
+                    const encodedCity = encodeURIComponent(cityName + ' city india scenic landmark');
+                    return `https://image.pollinations.ai/prompt/${encodedCity}?width=400&height=300&nologo=true`;
+                },
+
+                getWeatherIcon(city) {
+                    // Simplified Weather Logic based on metrics
+                    if (city.rain > 0) {
+                        // Rain Icon
+                        return `<svg class="w-12 h-12 text-blue-300" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><path d="M20 16.2A4.5 4.5 0 0 0 5.3 11.8 4.48 4.48 0 0 0 0 16a4.5 4.5 0 0 0 4.5 4.5h15.42A4.32 4.32 0 0 0 24 16.14 4.3 4.3 0 0 0 20 16.2z"/><path d="M8 21.5v2"/><path d="M12 21.5v2"/><path d="M16 21.5v2"/></svg>`;
+                    }
+                    if (city.humidity > 80 || city.aui > 150) {
+                        // Cloudy / Foggy
+                        return `<svg class="w-12 h-12 text-slate-300" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><path d="M18 10h-1.26A8 8 0 1 0 9 20h9a5 5 0 0 0 5.533-2.84"/></svg>`;
+                    }
+                    if (city.temp > 30) {
+                        // Sunny
+                        return `<svg class="w-12 h-12 text-yellow-400 animate-spin-slow" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="5"/><path d="M12 1v2"/><path d="M12 21v2"/><path d="M4.22 4.22l1.42 1.42"/><path d="M18.36 18.36l1.42 1.42"/><path d="M1 12h2"/><path d="M21 12h2"/><path d="M4.22 19.78l1.42-1.42"/><path d="M18.36 5.64l1.42-1.42"/></svg>`;
+                    }
+                    // Default Part Cloud
+                    return `<svg class="w-12 h-12 text-blue-200" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><path d="M16.6 6A5.4 5.4 0 0 0 14 11.2C13 11 11.8 11.2 11 12.2c-.6.9-.4 2.2.4 2.8H19a3 3 0 0 0 .5-5.9z" /><path d="M12 2v2"/><path d="M12 20v2"/><path d="M4.93 4.93l1.41 1.41"/><path d="M17.66 17.66l1.41 1.41"/><path d="M2 12h2"/><path d="M20 12h2"/><path d="M4.93 19.07l1.41-1.41"/><path d="M17.66 6.34l1.41-1.41"/></svg>`;
+                },
+
+                getRiskColor(value) {
+                    if (value >= 7) return 'text-red-500 shadow-red-500/50';
+                    if (value >= 4) return 'text-yellow-500 shadow-yellow-500/50';
+                    return 'text-emerald-500 shadow-emerald-500/50';
+                },
+
+                getRiskTextColor(value) {
+                    if (value >= 7) return 'text-red-400';
+                    if (value >= 4) return 'text-yellow-400';
+                    return 'text-emerald-400';
+                },
+
+                getRiskLabel(value) {
+                    if (value >= 7) return 'CRITICAL';
+                    if (value >= 4) return 'MODERATE';
+                    return 'SAFE';
+                },
+
+                getAqiBorderColor(value) {
+                    if (value > 200) return 'border-red-500 shadow-red-500/50 bg-red-900/50';
+                    if (value > 150) return 'border-orange-500 shadow-orange-500/50 bg-orange-900/50';
+                    if (value > 100) return 'border-yellow-500 shadow-yellow-500/50 bg-yellow-900/50';
+                    return 'border-blue-500 shadow-blue-500/50 bg-blue-900/50';
+                }
+            }))
+        })
+    </script>
+</body>
+
+</html>
