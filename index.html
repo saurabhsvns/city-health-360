@@ -625,18 +625,12 @@
                         const text = await response.text();
                         this.cities = this.parseCSV(text);
 
-                        // Assume the updated_at string is UTC, parse it, and physically shift it +5.5 hours to IST
                         if (this.cities.length > 0 && this.cities[0].updated_at) {
-                            // Strip any existing timezone markers like 'Z' or '+05:30' so it parses purely as local time
-                            const rawIsoStr = this.cities[0].updated_at.replace('Z', '').split('+')[0];
+                            // The CSV already contains the correct local IST time.
+                            // Append ' IST' text to clearly show it's local Indian time.
+                            const date = new Date(this.cities[0].updated_at);
 
-                            // Parse as a local date (e.g., 12:40:00 becomes 12:40:00 local)
-                            const localDate = new Date(rawIsoStr);
-
-                            // Physically add 5 hours and 30 minutes to the timestamp
-                            const istDate = new Date(localDate.getTime() + (5.5 * 60 * 60 * 1000));
-
-                            this.lastUpdated = istDate.toLocaleString('en-US', {
+                            this.lastUpdated = date.toLocaleString('en-US', {
                                 weekday: 'long', month: 'short', day: 'numeric', hour: 'numeric', minute: '2-digit'
                             }) + ' IST';
                         }
