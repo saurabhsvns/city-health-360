@@ -629,8 +629,8 @@
                             const date = new Date(this.cities[0].updated_at);
                             this.lastUpdated = date.toLocaleString('en-US', {
                                 timeZone: 'Asia/Kolkata',
-                                weekday: 'long', month: 'short', day: 'numeric', hour: 'numeric', minute: '2-digit', timeZoneName: 'short'
-                            });
+                                weekday: 'long', month: 'short', day: 'numeric', hour: 'numeric', minute: '2-digit'
+                            }) + ' IST';
                         }
 
                         setTimeout(() => this.loading = false, 800); // Cinematic delay
