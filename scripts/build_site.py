@@ -3,6 +3,7 @@ import json
 import os
 from jinja2 import Environment, FileSystemLoader
 from datetime import datetime
+import pytz
 from news_fetcher import fetch_city_news
 
 # Configuration
@@ -48,7 +49,8 @@ def generate_pages():
     os.makedirs(DOCS_DIR, exist_ok=True)
     os.makedirs(DOCS_DATA_DIR, exist_ok=True)
 
-    today_date = datetime.now().strftime("%A, %b %d, %Y %I:%M %p")
+    ist = pytz.timezone('Asia/Kolkata')
+    today_date = datetime.now(ist).strftime("%A, %b %d, %Y %I:%M %p")
 
     # --- 1. Export JSON for Maps ---
     # The Leaflet maps will fetch this exact JSON

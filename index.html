@@ -628,7 +628,8 @@
                         if (this.cities.length > 0 && this.cities[0].updated_at) {
                             const date = new Date(this.cities[0].updated_at);
                             this.lastUpdated = date.toLocaleString('en-US', {
-                                weekday: 'long', month: 'short', day: 'numeric', hour: 'numeric', minute: '2-digit'
+                                timeZone: 'Asia/Kolkata',
+                                weekday: 'long', month: 'short', day: 'numeric', hour: 'numeric', minute: '2-digit', timeZoneName: 'short'
                             });
                         }
 

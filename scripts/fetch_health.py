@@ -3,6 +3,7 @@ from requests.adapters import HTTPAdapter
 from urllib3.util.retry import Retry
 import pandas as pd
 from datetime import datetime
+import pytz
 import os
 import logging
 import time
@@ -332,7 +333,7 @@ def main():
                     "arthritis_risk": arthritis_risk,
                     "migraine_risk": migraine_risk,
                     "frizz_risk": frizz_risk,
-                    "updated_at": datetime.now().isoformat()
+                    "updated_at": datetime.now(pytz.timezone('Asia/Kolkata')).isoformat()
                 })
 
             except Exception as e:
