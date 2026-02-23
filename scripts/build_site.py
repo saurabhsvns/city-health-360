@@ -50,7 +50,7 @@ def generate_pages():
     os.makedirs(DOCS_DATA_DIR, exist_ok=True)
 
     ist = pytz.timezone('Asia/Kolkata')
-    today_date = datetime.now(ist).strftime("%b %d, %I:%M %p") + " IST"
+    today_date = datetime.now(ist).strftime("%b %d, %I:%M %p")
 
     # --- 1. Export JSON for Maps ---
     # The Leaflet maps will fetch this exact JSON
