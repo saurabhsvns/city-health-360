@@ -717,20 +717,35 @@
                 },
 
                 getWeatherIcon(city) {
+                    // Check if it's currently night time in India (IST)
+                    const istDate = new Date(new Date().toLocaleString("en-US", { timeZone: "Asia/Kolkata" }));
+                    const isNight = istDate.getHours() < 6 || istDate.getHours() >= 18;
+
                     // Simplified Weather Logic based on metrics
                     if (city.rain > 0) {
                         // Rain Icon
                         return `<svg class="w-12 h-12 text-blue-300" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><path d="M20 16.2A4.5 4.5 0 0 0 5.3 11.8 4.48 4.48 0 0 0 0 16a4.5 4.5 0 0 0 4.5 4.5h15.42A4.32 4.32 0 0 0 24 16.14 4.3 4.3 0 0 0 20 16.2z"/><path d="M8 21.5v2"/><path d="M12 21.5v2"/><path d="M16 21.5v2"/></svg>`;
                     }
-                    if (city.humidity > 80 || city.aui > 150) {
+                    if (city.humidity > 80 || city.aqi > 150) {
                         // Cloudy / Foggy
                         return `<svg class="w-12 h-12 text-slate-300" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><path d="M18 10h-1.26A8 8 0 1 0 9 20h9a5 5 0 0 0 5.533-2.84"/></svg>`;
                     }
+
+                    if (isNight) {
+                        if (city.humidity < 50) {
+                            // Clear Night (Moon)
+                            return `<svg class="w-12 h-12 text-indigo-300 animate-pulse" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><path d="M21 12.79A9 9 0 1 1 11.21 3 7 7 0 0 0 21 12.79z"></path></svg>`;
+                        }
+                        // Partly Cloudy Night (Moon + Cloud)
+                        return `<svg class="w-12 h-12 text-indigo-300" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><path d="M14 20.8A9.04 9.04 0 0 0 16 21c4.4 0 8-3.6 8-8 0-4-3-7.3-6.9-7.9A7 7 0 0 0 3 9.5a5.5 5.5 0 0 0 4 10.3"/><path d="M10 10.8A4.95 4.95 0 0 1 12 11a5 5 0 0 1-2.9 8.8"/></svg>`;
+                    }
+
                     if (city.temp > 30) {
-                        // Sunny
+                        // Clear Sunny Day
                         return `<svg class="w-12 h-12 text-yellow-400 animate-spin-slow" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="5"/><path d="M12 1v2"/><path d="M12 21v2"/><path d="M4.22 4.22l1.42 1.42"/><path d="M18.36 18.36l1.42 1.42"/><path d="M1 12h2"/><path d="M21 12h2"/><path d="M4.22 19.78l1.42-1.42"/><path d="M18.36 5.64l1.42-1.42"/></svg>`;
                     }
-                    // Default Part Cloud
+
+                    // Default Part Cloud (Daytime)
                     return `<svg class="w-12 h-12 text-blue-200" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><path d="M16.6 6A5.4 5.4 0 0 0 14 11.2C13 11 11.8 11.2 11 12.2c-.6.9-.4 2.2.4 2.8H19a3 3 0 0 0 .5-5.9z" /><path d="M12 2v2"/><path d="M12 20v2"/><path d="M4.93 4.93l1.41 1.41"/><path d="M17.66 17.66l1.41 1.41"/><path d="M2 12h2"/><path d="M20 12h2"/><path d="M4.93 19.07l1.41-1.41"/><path d="M17.66 6.34l1.41-1.41"/></svg>`;
                 },
 
