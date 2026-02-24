@@ -123,7 +123,7 @@ def generate_pages():
         wind = row.get('windspeed', 5) # Open meteo returns windspeed or wind
         uv = row.get('uv_index', 5)
         aqi = row.get('aqi', 50)
-        pressure = row.get('surface_pressure', 1013)
+        pressure = row.get('pressure', 1013)
         precip = row.get('rain', 0)
         pollen_level = row.get('pollen_level', 0)
         
