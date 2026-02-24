@@ -229,5 +229,26 @@ def generate_pages():
 
     print(f"Successfully generated {generated_count} city pages.")
 
+    # --- Generate Sitemap ---
+    base_url = "https://cityhealth360.in"
+    urls = [f"{base_url}/"]
+    
+    for index, row in df.iterrows():
+        city_slug = str(row['city']).lower().replace(" ", "-")
+        urls.append(f"{base_url}/docs/{city_slug}.html")
+        
+    xml_content = ['<?xml version="1.0" encoding="UTF-8"?>']
+    xml_content.append('<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">')
+    
+    for url in urls:
+        xml_content.append(f"  <url>\n    <loc>{url}</loc>\n  </url>")
+        
+    xml_content.append('</urlset>')
+    
+    sitemap_path = os.path.join(DOCS_DIR, 'sitemap.xml')
+    with open(sitemap_path, 'w', encoding='utf-8') as f:
+        f.write('\n'.join(xml_content))
+    print(f"Generated Sitemap: {sitemap_path}")
+
 if __name__ == "__main__":
     generate_pages()
