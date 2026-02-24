@@ -19,16 +19,16 @@ def clamp(val):
     return max(0, min(100, val))
 
 AFFILIATE_MATRIX = {
-    'aqi_risk': {'action': 'Action: Wear N95 Mask', 'link': '#amazon-n95'},
-    'mosquito_risk': {'action': 'Action: Apply DEET Repellent', 'link': '#amazon-deet'},
-    'uv_risk': {'action': 'Action: Use SPF 50 Sunscreen', 'link': '#amazon-spf'},
-    'heat_stress': {'action': 'Action: Carry Insulated Water Bottle', 'link': '#amazon-flask'},
-    'dehydration_risk': {'action': 'Action: Stock ORS Salts', 'link': '#amazon-ors'},
-    'joint_risk': {'action': 'Action: Use Joint Support / Roll-on', 'link': '#amazon-volini'},
-    'migraine_risk': {'action': 'Action: Use Cooling Gel Mask', 'link': '#amazon-gelmask'},
-    'respiratory_risk': {'action': 'Action: Use Steam Inhaler', 'link': '#amazon-steamer'},
-    'pollen_risk': {'action': 'Action: Use Anti-Allergy Air Filter', 'link': '#amazon-filter'},
-    'skin_risk': {'action': 'Action: Apply Intense Moisturizer', 'link': '#amazon-moisturizer'}
+    'aqi_risk': {'action': 'Action: Get a True HEPA Air Purifier', 'link': 'https://amzn.to/4aNom9H'},
+    'mosquito_risk': {'action': 'Action: Install a UV Mosquito Killer Lamp', 'link': 'https://amzn.to/4rB3t8V'},
+    'uv_risk': {'action': 'Action: Upgrade to Premium Dermatologist SPF', 'link': 'https://amzn.to/4s31z0r'},
+    'heat_stress': {'action': 'Action: Get a Portable Smart Air Cooler', 'link': 'https://amzn.to/46JCtvF'},
+    'dehydration_risk': {'action': 'Action: Invest in a Cold Press Slow Juicer', 'link': 'https://amzn.to/3OvHZM0'},
+    'joint_risk': {'action': 'Action: Use a Shiatsu Knee & Leg Massager', 'link': 'https://amzn.to/3ZVFPI1'},
+    'migraine_risk': {'action': 'Action: Try a Smart Eye Massager with Heat', 'link': 'https://amzn.to/4rEDJsc'},
+    'respiratory_risk': {'action': 'Action: Get a Medical-Grade Humidifier', 'link': 'https://amzn.to/3OwcilH'},
+    'pollen_risk': {'action': 'Action: Deploy a HEPA Robot Vacuum', 'link': 'https://amzn.to/4ccHgZV'},
+    'skin_risk': {'action': 'Action: Install a Hard Water Shower Filter', 'link': 'https://amzn.to/4aPrKRk'}
 }
 
 def get_risk_metadata(score, metric_name):
