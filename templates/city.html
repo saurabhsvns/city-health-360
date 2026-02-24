@@ -5,172 +5,135 @@ AQI: " ~ city.aqi ~ ". Check hospital lists and safe zones." %}
 
 {% block content %}
 <!-- Hero Section -->
-<header class="relative h-80 overflow-hidden">
+<header class="relative h-96 overflow-hidden">
     <div class="absolute inset-0 bg-gradient-to-t from-slate-900 via-slate-900/50 to-transparent z-10"></div>
-    <!-- Placeholder for actual city image if available, using a generic gradient fallback for now -->
     <div class="absolute inset-0 bg-gradient-to-br from-blue-900 to-slate-800 z-0 opacity-50"></div>
-    <!-- Dynamic Image could go here -->
-    <!-- <img src="{{ image_url }}" class="absolute inset-0 w-full h-full object-cover z-0" alt="{{ city.city }}"> -->
 
-    <div class="relative z-20 max-w-4xl mx-auto px-4 h-full flex flex-col justify-end pb-8">
-        <div class="flex items-end gap-4 mb-2">
-            <h1 class="text-5xl font-bold text-white">{{ city.city }}</h1>
-            <span class="text-2xl font-light text-slate-300 pb-1">{{ city.temp }}°C</span>
+    <div class="relative z-20 max-w-4xl mx-auto px-4 h-full flex flex-col justify-end pb-12">
+        <div class="flex items-end gap-6 mb-4">
+            <h1 class="text-5xl md:text-6xl font-bold text-white tracking-tight">{{ city.city }}</h1>
+            <span class="text-3xl font-light text-slate-300 pb-1">{{ city.temp }}°C</span>
         </div>
-        <p class="text-lg text-slate-300 max-w-2xl">{{ metadata.description }}</p>
-        <div class="mt-4 flex gap-2">
-            {% if verdict.is_safe %}
-            <span
-                class="px-3 py-1 rounded-full bg-emerald-500/20 text-emerald-300 border border-emerald-500/30 text-sm font-semibold flex items-center gap-1">
-                ✅ Good for Travel
-            </span>
-            {% else %}
-            <span
-                class="px-3 py-1 rounded-full bg-rose-500/20 text-rose-300 border border-rose-500/30 text-sm font-semibold flex items-center gap-1">
-                ⚠️ Travel Advisory Active
-            </span>
-            {% endif %}
-            <span class="px-3 py-1 rounded-full bg-slate-700/50 text-slate-300 border border-slate-600 text-sm">
-                AQI: {{ city.aqi }}
-            </span>
+        <p class="text-lg text-slate-300 max-w-2xl mb-8">{{ metadata.description }}</p>
+
+        <!-- City Health Score Dial -->
+        <div
+            class="flex items-center gap-6 p-6 glass-card rounded-2xl w-full md:w-auto inline-flex border border-white/10">
+            <div
+                class="relative w-24 h-24 flex items-center justify-center rounded-full border-4 {{ 'border-emerald-500 text-emerald-400' if city_health_score >= 70 else 'border-yellow-500 text-yellow-400' if city_health_score >= 40 else 'border-rose-500 text-rose-400' }} shadow-lg bg-slate-900/50">
+                <span class="text-4xl font-black">{{ city_health_score }}</span>
+            </div>
+            <div class="space-y-1">
+                <h2 class="text-2xl font-bold text-white tracking-wide">Health Score</h2>
+                <div class="flex gap-2 text-sm font-semibold">
+                    <span
+                        class="{{ 'text-emerald-400' if city_health_score >= 70 else 'text-slate-500' }}">Optimal</span>
+                    /
+                    <span
+                        class="{{ 'text-yellow-400' if 40 <= city_health_score < 70 else 'text-slate-500' }}">Moderate</span>
+                    /
+                    <span class="{{ 'text-rose-400' if city_health_score < 40 else 'text-slate-500' }}">Severe</span>
+                </div>
+            </div>
         </div>
     </div>
 </header>
 
 <main class="max-w-4xl mx-auto px-4 py-8 space-y-8">
 
-    <!-- 1. The Verdict & Packing List -->
-    <section class="grid grid-cols-1 md:grid-cols-2 gap-6">
-        <div class="glass-card p-6 rounded-2xl">
-            <h2 class="text-xl font-semibold mb-4 text-blue-200">Current Status</h2>
-            <div class="space-y-4">
+    <!-- 1. The 17-Point Indices -->
+    <section class="grid grid-cols-1 md:grid-cols-3 gap-6">
+
+        <!-- Category 1: Outdoor & Lifestyle (Higher is Better) -->
+        <div class="glass-card p-6 rounded-2xl flex flex-col">
+            <h2 class="text-lg font-bold mb-4 text-emerald-300 flex items-center gap-2">
+                <span>🏃‍♂️</span> Outdoor & Lifestyle
+            </h2>
+            <div class="space-y-4 grow">
                 <div class="flex justify-between items-center pb-2 border-b border-white/5">
-                    <span class="text-slate-400">Mosquito Activity</span>
+                    <span class="text-slate-400">Workout Score</span>
                     <span
-                        class="font-medium {{ 'text-rose-400' if city.mosquito_risk|int > 6 else 'text-emerald-400' }}">
-                        {{ 'High' if city.mosquito_risk|int > 6 else 'Low' }} ({{ city.mosquito_risk }}/10)
+                        class="font-bold {{ 'text-emerald-400' if workout_score >= 70 else 'text-yellow-400' if workout_score >= 40 else 'text-rose-400' }}">
+                        {{ workout_score }}/100
                     </span>
                 </div>
                 <div class="flex justify-between items-center pb-2 border-b border-white/5">
-                    <span class="text-slate-400">Migraine Triggers</span>
+                    <span class="text-slate-400">Sleep Score</span>
                     <span
-                        class="font-medium {{ 'text-rose-400' if city.migraine_risk|int > 6 else 'text-emerald-400' }}">
-                        {{ 'High' if city.migraine_risk|int > 6 else 'Low' }} ({{ city.migraine_risk }}/10)
+                        class="font-bold {{ 'text-emerald-400' if sleep_score >= 70 else 'text-yellow-400' if sleep_score >= 40 else 'text-rose-400' }}">
+                        {{ sleep_score }}/100
                     </span>
                 </div>
-                <div class="flex justify-between items-center">
-                    <span class="text-slate-400">Arthritis Pain</span>
+            </div>
+            <p class="text-xs text-slate-500 mt-4">* Higher scores are optimal for daily activities.</p>
+        </div>
+
+        <!-- Category 2: Core Threats (Higher is Worse) -->
+        <div class="glass-card p-6 rounded-2xl flex flex-col">
+            <h2 class="text-lg font-bold mb-4 text-rose-300 flex items-center gap-2">
+                <span>⚠️</span> Core Threats
+            </h2>
+            <div class="space-y-4 grow">
+                <div class="flex justify-between items-center pb-2 border-b border-white/5">
+                    <span class="text-slate-400">AQI Risk</span>
                     <span
-                        class="font-medium {{ 'text-rose-400' if city.arthritis_risk|int > 6 else 'text-emerald-400' }}">
-                        {{ 'Likely' if city.arthritis_risk|int > 6 else 'Unlikely' }} ({{ city.arthritis_risk }}/10)
+                        class="px-2 py-0.5 rounded text-sm font-bold {{ 'bg-rose-500/20 text-rose-400' if aqi_risk > 60 else 'bg-yellow-500/20 text-yellow-400' if aqi_risk >= 30 else 'bg-emerald-500/20 text-emerald-400' }}">
+                        {{ aqi_risk }}/100
+                    </span>
+                </div>
+                <div class="flex justify-between items-center pb-2 border-b border-white/5">
+                    <span class="text-slate-400">Heat Stress</span>
+                    <span
+                        class="px-2 py-0.5 rounded text-sm font-bold {{ 'bg-rose-500/20 text-rose-400' if heat_stress > 60 else 'bg-yellow-500/20 text-yellow-400' if heat_stress >= 30 else 'bg-emerald-500/20 text-emerald-400' }}">
+                        {{ heat_stress }}/100
+                    </span>
+                </div>
+                <div class="flex justify-between items-center pb-2 border-b border-white/5">
+                    <span class="text-slate-400">UV Risk</span>
+                    <span
+                        class="px-2 py-0.5 rounded text-sm font-bold {{ 'bg-rose-500/20 text-rose-400' if uv_risk > 60 else 'bg-yellow-500/20 text-yellow-400' if uv_risk >= 30 else 'bg-emerald-500/20 text-emerald-400' }}">
+                        {{ uv_risk }}/100
+                    </span>
+                </div>
+                <div class="flex justify-between items-center pb-2 border-b border-white/5">
+                    <span class="text-slate-400">Respiratory Risk</span>
+                    <span
+                        class="px-2 py-0.5 rounded text-sm font-bold {{ 'bg-rose-500/20 text-rose-400' if respiratory_risk > 60 else 'bg-yellow-500/20 text-yellow-400' if respiratory_risk >= 30 else 'bg-emerald-500/20 text-emerald-400' }}">
+                        {{ respiratory_risk }}/100
                     </span>
                 </div>
             </div>
         </div>
 
-        <div class="glass-card p-6 rounded-2xl">
-            <h2 class="text-xl font-semibold mb-4 text-purple-200">What to Pack</h2>
-            <ul class="space-y-2">
-                {% if pack_mask %}
-                <a href="https://www.amazon.in/s?k=n95+mask+pollution&tag=cityhealth-21" target="_blank"
-                    rel="noopener noreferrer"
-                    class="block hover:bg-slate-800/50 p-2 -mx-2 rounded-lg transition-colors group">
-                    <li class="flex items-center gap-2 text-slate-300 group-hover:text-blue-200">
-                        <span class="text-rose-400">😷</span>
-                        <span>N95 Mask (High AQI)</span>
-                        <span class="ml-auto text-xs text-slate-500 group-hover:text-blue-400">Buy ↗</span>
-                    </li>
-                </a>
-                {% endif %}
-                {% if pack_sunscreen %}
-                <a href="https://www.amazon.in/s?k=sunscreen+spf+50&tag=cityhealth-21" target="_blank"
-                    rel="noopener noreferrer"
-                    class="block hover:bg-slate-800/50 p-2 -mx-2 rounded-lg transition-colors group">
-                    <li class="flex items-center gap-2 text-slate-300 group-hover:text-blue-200">
-                        <span class="text-amber-400">☀️</span>
-                        <span>Sunscreen (High UV)</span>
-                        <span class="ml-auto text-xs text-slate-500 group-hover:text-blue-400">Buy ↗</span>
-                    </li>
-                </a>
-                {% endif %}
-                {% if pack_repellent %}
-                <a href="https://www.amazon.in/s?k=mosquito+repellent+spray&tag=cityhealth-21" target="_blank"
-                    rel="noopener noreferrer"
-                    class="block hover:bg-slate-800/50 p-2 -mx-2 rounded-lg transition-colors group">
-                    <li class="flex items-center gap-2 text-slate-300 group-hover:text-blue-200">
-                        <span class="text-emerald-400">🦟</span>
-                        <span>Mosquito Repellent</span>
-                        <span class="ml-auto text-xs text-slate-500 group-hover:text-blue-400">Buy ↗</span>
-                    </li>
-                </a>
-                {% endif %}
-                {% if pack_umbrella %}
-                <a href="https://www.amazon.in/s?k=travel+umbrella&tag=cityhealth-21" target="_blank"
-                    rel="noopener noreferrer"
-                    class="block hover:bg-slate-800/50 p-2 -mx-2 rounded-lg transition-colors group">
-                    <li class="flex items-center gap-2 text-slate-300 group-hover:text-blue-200">
-                        <span class="text-blue-400">☔</span>
-                        <span>Umbrella / Raincoat</span>
-                        <span class="ml-auto text-xs text-slate-500 group-hover:text-blue-400">Buy ↗</span>
-                    </li>
-                </a>
-                {% endif %}
-                {% if not pack_mask and not pack_sunscreen and not pack_repellent and not pack_umbrella %}
-                <li class="flex items-center gap-2 text-slate-300">
-                    <span class="text-emerald-400">🎒</span> Standard Travel Gear
-                </li>
-                {% endif %}
-                <li class="flex items-center gap-2 text-slate-400 text-sm mt-2 pt-2 border-t border-white/5">
-                    <span class="text-slate-500">💡</span> {{ metadata.travel_tip }}
-                </li>
-            </ul>
-        </div>
-    </section>
-
-    <!-- 2. The Resident Section -->
-    <section class="glass-card p-8 rounded-2xl relative overflow-hidden">
-        <!-- Background decoration -->
-        <div class="absolute top-0 right-0 -mt-10 -mr-10 w-40 h-40 bg-emerald-500/10 rounded-full blur-3xl"></div>
-
-        <div class="relative z-10">
-            <h2 class="text-2xl font-bold mb-6">For Residents & Long-term Stay</h2>
-            <div class="grid grid-cols-1 md:grid-cols-2 gap-8">
-                <div>
-                    <h3 class="text-lg font-semibold text-emerald-300 mb-2">🍃 Lifestyle Forecast</h3>
-                    <div class="space-y-3">
-                        <div class="flex items-center gap-3">
-                            <div class="w-8 h-8 rounded-lg bg-slate-800 flex items-center justify-center">🏃</div>
-                            <div>
-                                <div class="text-sm text-slate-400">Outdoor Exercise</div>
-                                <div
-                                    class="font-medium {{ 'text-rose-400' if city.aqi|int > 150 else 'text-emerald-400' }}">
-                                    {{ 'Avoid Outdoors' if city.aqi|int > 150 else 'Good to Go' }}
-                                </div>
-                            </div>
-                        </div>
-                        <div class="flex items-center gap-3">
-                            <div class="w-8 h-8 rounded-lg bg-slate-800 flex items-center justify-center">💇‍♀️
-                            </div>
-                            <div>
-                                <div class="text-sm text-slate-400">Hair Frizz Index</div>
-                                <div
-                                    class="font-medium {{ 'text-rose-400' if city.frizz_risk|int == 1 else 'text-emerald-400' }}">
-                                    {{ 'Bad Hair Day' if city.frizz_risk|int == 1 else 'Good Hair Day' }}
-                                </div>
-                            </div>
-                        </div>
-                    </div>
+        <!-- Category 3: Vector & Pain (Higher is Worse) -->
+        <div class="glass-card p-6 rounded-2xl flex flex-col">
+            <h2 class="text-lg font-bold mb-4 text-orange-300 flex items-center gap-2">
+                <span>🦟</span> Vector & Pain
+            </h2>
+            <div class="space-y-4 grow">
+                <div class="flex justify-between items-center pb-2 border-b border-white/5">
+                    <span class="text-slate-400">Mosquito Risk</span>
+                    <span
+                        class="px-2 py-0.5 rounded text-sm font-bold {{ 'bg-rose-500/20 text-rose-400' if mosquito_risk > 60 else 'bg-yellow-500/20 text-yellow-400' if mosquito_risk >= 30 else 'bg-emerald-500/20 text-emerald-400' }}">
+                        {{ mosquito_risk }}/100
+                    </span>
                 </div>
-
-                <div>
-                    <h3 class="text-lg font-semibold text-emerald-300 mb-2">🌳 Best Green Zones</h3>
-                    <ul class="list-disc list-inside text-slate-300 space-y-1">
-                        {% for zone in metadata.green_zones %}
-                        <li>{{ zone }}</li>
-                        {% endfor %}
-                    </ul>
+                <div class="flex justify-between items-center pb-2 border-b border-white/5">
+                    <span class="text-slate-400">Joint Risk (Arthritis)</span>
+                    <span
+                        class="px-2 py-0.5 rounded text-sm font-bold {{ 'bg-rose-500/20 text-rose-400' if joint_risk > 60 else 'bg-yellow-500/20 text-yellow-400' if joint_risk >= 30 else 'bg-emerald-500/20 text-emerald-400' }}">
+                        {{ joint_risk }}/100
+                    </span>
+                </div>
+                <div class="flex justify-between items-center pb-2 border-b border-white/5">
+                    <span class="text-slate-400">Migraine Trigger</span>
+                    <span
+                        class="px-2 py-0.5 rounded text-sm font-bold {{ 'bg-rose-500/20 text-rose-400' if migraine_risk > 60 else 'bg-yellow-500/20 text-yellow-400' if migraine_risk >= 30 else 'bg-emerald-500/20 text-emerald-400' }}">
+                        {{ migraine_risk }}/100
+                    </span>
                 </div>
             </div>
+            <p class="text-xs text-slate-500 mt-4">* Higher scores indicate elevated risk.</p>
         </div>
     </section>
 

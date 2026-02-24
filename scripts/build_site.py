@@ -14,6 +14,10 @@ TEMPLATES_DIR = 'templates'
 CSV_PATH = os.path.join(DATA_DIR, 'city_health.csv')
 JSON_PATH = os.path.join(DATA_DIR, 'city_metadata.json')
 
+def clamp(val):
+    """Normalize a value to be strictly between 0 and 100."""
+    return max(0, min(100, val))
+
 def load_data():
     """Load CSV and JSON data."""
     try:
@@ -110,6 +114,51 @@ def generate_pages():
             }
 
         slug = city_name.lower().replace(" ", "-")
+        
+        # --- 17-Point Algorithm Calculations ---
+        # Raw vars (ensure pollen_level has a default of 0 and fallback for pressure)
+        temp = row.get('temp', 25)
+        min_temp = row.get('min_temp', temp)
+        humidity = row.get('humidity', 50)
+        wind = row.get('windspeed', 5) # Open meteo returns windspeed or wind
+        uv = row.get('uv_index', 5)
+        aqi = row.get('aqi', 50)
+        pressure = row.get('surface_pressure', 1013)
+        precip = row.get('rain', 0)
+        pollen_level = row.get('pollen_level', 0)
+        
+        # Core Risk Factors
+        aqi_risk = clamp((aqi / 300) * 100)
+        uv_risk = clamp((uv / 11) * 100)
+        hi = temp + (0.33 * humidity) - (0.70 * wind) - 4
+        heat_stress = clamp(((hi - 22) / 23) * 100)
+        cold_stress = clamp(((18 - temp) / 15) * 100) if temp < 18 else 0
+        pollen_risk = clamp((pollen_level / 5) * 100)
+        humidity_discomfort = clamp((abs(humidity - 50) / 50) * 100)
+        
+        # Vector & Pain Metrics
+        t_factor = clamp(100 - (abs(temp - 28) * 10))
+        rain_boost = 100 if precip > 0 else 0
+        mosquito_risk = clamp((0.5 * t_factor) + (0.3 * humidity) + (0.2 * rain_boost))
+        
+        p_drop = clamp((1013 - pressure) * 4)
+        t_cold = clamp((20 - temp) * 2)
+        joint_risk = clamp((0.6 * p_drop) + (0.2 * t_cold) + (0.2 * max(0, humidity - 50)))
+        
+        migraine_risk = clamp((0.5 * p_drop) + (0.3 * heat_stress) + (0.2 * uv_risk))
+        
+        # Lifestyle & Vulnerability Scores
+        workout_score = clamp(100 - ((0.4 * aqi_risk) + (0.3 * heat_stress) + (0.2 * uv_risk) + (0.1 * humidity_discomfort)))
+        skin_risk = clamp(((abs(humidity - 60) / 40) * 50) + ((abs(temp - 25) / 15) * 50))
+        sleep_score = clamp(100 - (abs(min_temp - 21) * 10) - (aqi_risk * 0.2))
+        elderly_risk = clamp((0.5 * aqi_risk) + (0.3 * heat_stress) + (0.2 * cold_stress))
+        dehydration_risk = clamp((0.6 * heat_stress) + (0.4 * uv_risk))
+        respiratory_risk = clamp((0.5 * aqi_risk) + (0.3 * humidity_discomfort) + (0.2 * cold_stress))
+        
+        # Master Indices
+        composite_risk = clamp((0.20 * aqi_risk) + (0.15 * heat_stress) + (0.15 * mosquito_risk) + (0.10 * uv_risk) + (0.10 * joint_risk) + (0.10 * migraine_risk) + (0.10 * elderly_risk) + (0.10 * pollen_risk))
+        city_health_score = clamp(100 - composite_risk)
+
         context = {
             'city': row.to_dict(),
             'metadata': city_meta,
@@ -118,12 +167,30 @@ def generate_pages():
             'image_url': f"https://image.pollinations.ai/prompt/{city_name} city india scenic?width=1600&height=900&nologo=true",
             'news': fetch_city_news(city_name),
             'verdict': {
-                'is_safe': row['aqi'] <= 200 and row['mosquito_risk'] <= 7 and row['temp'] < 40
+                'is_safe': city_health_score >= 60
             },
             'pack_mask': row['aqi'] > 150,
             'pack_sunscreen': row['uv_index'] > 6,
-            'pack_repellent': row['mosquito_risk'] > 5,
-            'pack_umbrella': row['rain'] > 0
+            'pack_repellent': mosquito_risk > 60,
+            'pack_umbrella': row['rain'] > 0,
+            # Pass 17-point algorithm metrics
+            'aqi_risk': round(aqi_risk),
+            'uv_risk': round(uv_risk),
+            'heat_stress': round(heat_stress),
+            'cold_stress': round(cold_stress),
+            'pollen_risk': round(pollen_risk),
+            'humidity_discomfort': round(humidity_discomfort),
+            'mosquito_risk': round(mosquito_risk),
+            'joint_risk': round(joint_risk),
+            'migraine_risk': round(migraine_risk),
+            'workout_score': round(workout_score),
+            'skin_risk': round(skin_risk),
+            'sleep_score': round(sleep_score),
+            'elderly_risk': round(elderly_risk),
+            'dehydration_risk': round(dehydration_risk),
+            'respiratory_risk': round(respiratory_risk),
+            'composite_risk': round(composite_risk),
+            'city_health_score': round(city_health_score)
         }
 
         output_html = city_template.render(context)
