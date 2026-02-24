@@ -41,99 +41,110 @@ AQI: " ~ city.aqi ~ ". Check hospital lists and safe zones." %}
 
 <main class="max-w-4xl mx-auto px-4 py-8 space-y-8">
 
-    <!-- 1. The 17-Point Indices -->
+    <!-- 1. The 15 Risk Metrics (Low/Medium/High) -->
     <section class="grid grid-cols-1 md:grid-cols-3 gap-6">
 
-        <!-- Category 1: Outdoor & Lifestyle (Higher is Better) -->
+        <!-- Category 1: Environmental & Air Threats -->
         <div class="glass-card p-6 rounded-2xl flex flex-col">
             <h2 class="text-lg font-bold mb-4 text-emerald-300 flex items-center gap-2">
-                <span>🏃‍♂️</span> Outdoor & Lifestyle
+                <span>🌬️</span> Environmental & Air
             </h2>
             <div class="space-y-4 grow">
-                <div class="flex justify-between items-center pb-2 border-b border-white/5">
-                    <span class="text-slate-400">Workout Score</span>
-                    <span
-                        class="font-bold {{ 'text-emerald-400' if workout_score >= 70 else 'text-yellow-400' if workout_score >= 40 else 'text-rose-400' }}">
-                        {{ workout_score }}/100
-                    </span>
+                {% set env_metrics = [
+                ('Air Quality Risk', aqi_risk),
+                ('Pollen Risk', pollen_risk),
+                ('Respiratory Risk', respiratory_risk),
+                ('Humidity Discomfort', humidity_discomfort),
+                ('Cold Stress', cold_stress)
+                ] %}
+                {% for name, metric in env_metrics %}
+                <div class="flex flex-col pb-2 border-b border-white/5">
+                    <div class="flex justify-between items-center">
+                        <span class="text-slate-400">{{ name }}</span>
+                        <span class="font-bold {{ metric.color }}">
+                            {{ metric.text }}
+                        </span>
+                    </div>
+                    {% if metric.remedy %}
+                    <div class="mt-2 text-right">
+                        <a href="{{ metric.remedy.link }}" target="_blank" rel="noopener noreferrer"
+                            class="inline-block px-3 py-1 bg-slate-800 hover:bg-slate-700 text-xs text-slate-300 rounded-md border border-slate-600 transition-colors">
+                            {{ metric.remedy.action }} ↗
+                        </a>
+                    </div>
+                    {% endif %}
                 </div>
-                <div class="flex justify-between items-center pb-2 border-b border-white/5">
-                    <span class="text-slate-400">Sleep Score</span>
-                    <span
-                        class="font-bold {{ 'text-emerald-400' if sleep_score >= 70 else 'text-yellow-400' if sleep_score >= 40 else 'text-rose-400' }}">
-                        {{ sleep_score }}/100
-                    </span>
-                </div>
+                {% endfor %}
             </div>
-            <p class="text-xs text-slate-500 mt-4">* Higher scores are optimal for daily activities.</p>
+            <p class="text-xs text-slate-500 mt-4">* Higher risks require precautions.</p>
         </div>
 
-        <!-- Category 2: Core Threats (Higher is Worse) -->
+        <!-- Category 2: Sun, Heat & Lifestyle -->
         <div class="glass-card p-6 rounded-2xl flex flex-col">
             <h2 class="text-lg font-bold mb-4 text-rose-300 flex items-center gap-2">
-                <span>⚠️</span> Core Threats
+                <span>☀️</span> Sun, Heat & Lifestyle
             </h2>
             <div class="space-y-4 grow">
-                <div class="flex justify-between items-center pb-2 border-b border-white/5">
-                    <span class="text-slate-400">AQI Risk</span>
-                    <span
-                        class="px-2 py-0.5 rounded text-sm font-bold {{ 'bg-rose-500/20 text-rose-400' if aqi_risk > 60 else 'bg-yellow-500/20 text-yellow-400' if aqi_risk >= 30 else 'bg-emerald-500/20 text-emerald-400' }}">
-                        {{ aqi_risk }}/100
-                    </span>
+                {% set sun_metrics = [
+                ('Heat Stress', heat_stress),
+                ('UV Risk', uv_risk),
+                ('Dehydration Risk', dehydration_risk),
+                ('Workout Disruption', workout_disruption),
+                ('Sleep Disruption', sleep_disruption)
+                ] %}
+                {% for name, metric in sun_metrics %}
+                <div class="flex flex-col pb-2 border-b border-white/5">
+                    <div class="flex justify-between items-center">
+                        <span class="text-slate-400">{{ name }}</span>
+                        <span class="font-bold {{ metric.color }}">
+                            {{ metric.text }}
+                        </span>
+                    </div>
+                    {% if metric.remedy %}
+                    <div class="mt-2 text-right">
+                        <a href="{{ metric.remedy.link }}" target="_blank" rel="noopener noreferrer"
+                            class="inline-block px-3 py-1 bg-slate-800 hover:bg-slate-700 text-xs text-slate-300 rounded-md border border-slate-600 transition-colors">
+                            {{ metric.remedy.action }} ↗
+                        </a>
+                    </div>
+                    {% endif %}
                 </div>
-                <div class="flex justify-between items-center pb-2 border-b border-white/5">
-                    <span class="text-slate-400">Heat Stress</span>
-                    <span
-                        class="px-2 py-0.5 rounded text-sm font-bold {{ 'bg-rose-500/20 text-rose-400' if heat_stress > 60 else 'bg-yellow-500/20 text-yellow-400' if heat_stress >= 30 else 'bg-emerald-500/20 text-emerald-400' }}">
-                        {{ heat_stress }}/100
-                    </span>
-                </div>
-                <div class="flex justify-between items-center pb-2 border-b border-white/5">
-                    <span class="text-slate-400">UV Risk</span>
-                    <span
-                        class="px-2 py-0.5 rounded text-sm font-bold {{ 'bg-rose-500/20 text-rose-400' if uv_risk > 60 else 'bg-yellow-500/20 text-yellow-400' if uv_risk >= 30 else 'bg-emerald-500/20 text-emerald-400' }}">
-                        {{ uv_risk }}/100
-                    </span>
-                </div>
-                <div class="flex justify-between items-center pb-2 border-b border-white/5">
-                    <span class="text-slate-400">Respiratory Risk</span>
-                    <span
-                        class="px-2 py-0.5 rounded text-sm font-bold {{ 'bg-rose-500/20 text-rose-400' if respiratory_risk > 60 else 'bg-yellow-500/20 text-yellow-400' if respiratory_risk >= 30 else 'bg-emerald-500/20 text-emerald-400' }}">
-                        {{ respiratory_risk }}/100
-                    </span>
-                </div>
+                {% endfor %}
             </div>
         </div>
 
-        <!-- Category 3: Vector & Pain (Higher is Worse) -->
+        <!-- Category 3: Pain, Vectors & Vulnerability -->
         <div class="glass-card p-6 rounded-2xl flex flex-col">
             <h2 class="text-lg font-bold mb-4 text-orange-300 flex items-center gap-2">
-                <span>🦟</span> Vector & Pain
+                <span>🦟</span> Pain & Vectors
             </h2>
             <div class="space-y-4 grow">
-                <div class="flex justify-between items-center pb-2 border-b border-white/5">
-                    <span class="text-slate-400">Mosquito Risk</span>
-                    <span
-                        class="px-2 py-0.5 rounded text-sm font-bold {{ 'bg-rose-500/20 text-rose-400' if mosquito_risk > 60 else 'bg-yellow-500/20 text-yellow-400' if mosquito_risk >= 30 else 'bg-emerald-500/20 text-emerald-400' }}">
-                        {{ mosquito_risk }}/100
-                    </span>
+                {% set pain_metrics = [
+                ('Mosquito Risk', mosquito_risk),
+                ('Joint Pain Risk', joint_risk),
+                ('Migraine Risk', migraine_risk),
+                ('Skin Risk', skin_risk),
+                ('Elderly Risk', elderly_risk)
+                ] %}
+                {% for name, metric in pain_metrics %}
+                <div class="flex flex-col pb-2 border-b border-white/5">
+                    <div class="flex justify-between items-center">
+                        <span class="text-slate-400">{{ name }}</span>
+                        <span class="font-bold {{ metric.color }}">
+                            {{ metric.text }}
+                        </span>
+                    </div>
+                    {% if metric.remedy %}
+                    <div class="mt-2 text-right">
+                        <a href="{{ metric.remedy.link }}" target="_blank" rel="noopener noreferrer"
+                            class="inline-block px-3 py-1 bg-slate-800 hover:bg-slate-700 text-xs text-slate-300 rounded-md border border-slate-600 transition-colors">
+                            {{ metric.remedy.action }} ↗
+                        </a>
+                    </div>
+                    {% endif %}
                 </div>
-                <div class="flex justify-between items-center pb-2 border-b border-white/5">
-                    <span class="text-slate-400">Joint Risk (Arthritis)</span>
-                    <span
-                        class="px-2 py-0.5 rounded text-sm font-bold {{ 'bg-rose-500/20 text-rose-400' if joint_risk > 60 else 'bg-yellow-500/20 text-yellow-400' if joint_risk >= 30 else 'bg-emerald-500/20 text-emerald-400' }}">
-                        {{ joint_risk }}/100
-                    </span>
-                </div>
-                <div class="flex justify-between items-center pb-2 border-b border-white/5">
-                    <span class="text-slate-400">Migraine Trigger</span>
-                    <span
-                        class="px-2 py-0.5 rounded text-sm font-bold {{ 'bg-rose-500/20 text-rose-400' if migraine_risk > 60 else 'bg-yellow-500/20 text-yellow-400' if migraine_risk >= 30 else 'bg-emerald-500/20 text-emerald-400' }}">
-                        {{ migraine_risk }}/100
-                    </span>
-                </div>
+                {% endfor %}
             </div>
-            <p class="text-xs text-slate-500 mt-4">* Higher scores indicate elevated risk.</p>
         </div>
     </section>
 

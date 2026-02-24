@@ -18,6 +18,37 @@ def clamp(val):
     """Normalize a value to be strictly between 0 and 100."""
     return max(0, min(100, val))
 
+AFFILIATE_MATRIX = {
+    'aqi_risk': {'action': 'Action: Wear N95 Mask', 'link': '#amazon-n95'},
+    'mosquito_risk': {'action': 'Action: Apply DEET Repellent', 'link': '#amazon-deet'},
+    'uv_risk': {'action': 'Action: Use SPF 50 Sunscreen', 'link': '#amazon-spf'},
+    'heat_stress': {'action': 'Action: Carry Insulated Water Bottle', 'link': '#amazon-flask'},
+    'dehydration_risk': {'action': 'Action: Stock ORS Salts', 'link': '#amazon-ors'},
+    'joint_risk': {'action': 'Action: Use Joint Support / Roll-on', 'link': '#amazon-volini'},
+    'migraine_risk': {'action': 'Action: Use Cooling Gel Mask', 'link': '#amazon-gelmask'},
+    'respiratory_risk': {'action': 'Action: Use Steam Inhaler', 'link': '#amazon-steamer'},
+    'pollen_risk': {'action': 'Action: Use Anti-Allergy Air Filter', 'link': '#amazon-filter'},
+    'skin_risk': {'action': 'Action: Apply Intense Moisturizer', 'link': '#amazon-moisturizer'}
+}
+
+def get_risk_metadata(score, metric_name):
+    """Takes a 0-100 score and returns mapping dict for UI labels & affiliate hooks."""
+    score = round(score)
+    if score < 33:
+        text, color, remedy = "Low", "text-emerald-400", None
+    elif score < 66:
+        text, color, remedy = "Medium", "text-yellow-400", None
+    else:
+        text, color = "High", "text-rose-400"
+        remedy = AFFILIATE_MATRIX.get(metric_name)
+
+    return {
+        'value': score,
+        'text': text,
+        'color': color,
+        'remedy': remedy
+    }
+
 def load_data():
     """Load CSV and JSON data."""
     try:
@@ -148,9 +179,9 @@ def generate_pages():
         migraine_risk = clamp((0.5 * p_drop) + (0.3 * heat_stress) + (0.2 * uv_risk))
         
         # Lifestyle & Vulnerability Scores
-        workout_score = clamp(100 - ((0.4 * aqi_risk) + (0.3 * heat_stress) + (0.2 * uv_risk) + (0.1 * humidity_discomfort)))
+        workout_disruption = clamp((0.4 * aqi_risk) + (0.3 * heat_stress) + (0.2 * uv_risk) + (0.1 * humidity_discomfort))
         skin_risk = clamp(((abs(humidity - 60) / 40) * 50) + ((abs(temp - 25) / 15) * 50))
-        sleep_score = clamp(100 - (abs(min_temp - 21) * 10) - (aqi_risk * 0.2))
+        sleep_disruption = clamp((abs(min_temp - 21) * 10) + (aqi_risk * 0.2))
         elderly_risk = clamp((0.5 * aqi_risk) + (0.3 * heat_stress) + (0.2 * cold_stress))
         dehydration_risk = clamp((0.6 * heat_stress) + (0.4 * uv_risk))
         respiratory_risk = clamp((0.5 * aqi_risk) + (0.3 * humidity_discomfort) + (0.2 * cold_stress))
@@ -166,31 +197,26 @@ def generate_pages():
             'canonical_url': f'https://cityhealth360.in/docs/{slug}.html',
             'image_url': f"https://image.pollinations.ai/prompt/{city_name} city india scenic?width=1600&height=900&nologo=true",
             'news': fetch_city_news(city_name),
-            'verdict': {
-                'is_safe': city_health_score >= 60
-            },
-            'pack_mask': row['aqi'] > 150,
-            'pack_sunscreen': row['uv_index'] > 6,
-            'pack_repellent': mosquito_risk > 60,
-            'pack_umbrella': row['rain'] > 0,
-            # Pass 17-point algorithm metrics
-            'aqi_risk': round(aqi_risk),
-            'uv_risk': round(uv_risk),
-            'heat_stress': round(heat_stress),
-            'cold_stress': round(cold_stress),
-            'pollen_risk': round(pollen_risk),
-            'humidity_discomfort': round(humidity_discomfort),
-            'mosquito_risk': round(mosquito_risk),
-            'joint_risk': round(joint_risk),
-            'migraine_risk': round(migraine_risk),
-            'workout_score': round(workout_score),
-            'skin_risk': round(skin_risk),
-            'sleep_score': round(sleep_score),
-            'elderly_risk': round(elderly_risk),
-            'dehydration_risk': round(dehydration_risk),
-            'respiratory_risk': round(respiratory_risk),
-            'composite_risk': round(composite_risk),
-            'city_health_score': round(city_health_score)
+            
+            # Master Score (Keeps raw number format)
+            'city_health_score': round(city_health_score),
+            
+            # The 15 Sub-Metrics formatted as dicts
+            'aqi_risk': get_risk_metadata(aqi_risk, 'aqi_risk'),
+            'pollen_risk': get_risk_metadata(pollen_risk, 'pollen_risk'),
+            'respiratory_risk': get_risk_metadata(respiratory_risk, 'respiratory_risk'),
+            'humidity_discomfort': get_risk_metadata(humidity_discomfort, 'humidity_discomfort'),
+            'cold_stress': get_risk_metadata(cold_stress, 'cold_stress'),
+            'heat_stress': get_risk_metadata(heat_stress, 'heat_stress'),
+            'uv_risk': get_risk_metadata(uv_risk, 'uv_risk'),
+            'dehydration_risk': get_risk_metadata(dehydration_risk, 'dehydration_risk'),
+            'workout_disruption': get_risk_metadata(workout_disruption, 'workout_disruption'),
+            'sleep_disruption': get_risk_metadata(sleep_disruption, 'sleep_disruption'),
+            'mosquito_risk': get_risk_metadata(mosquito_risk, 'mosquito_risk'),
+            'joint_risk': get_risk_metadata(joint_risk, 'joint_risk'),
+            'migraine_risk': get_risk_metadata(migraine_risk, 'migraine_risk'),
+            'skin_risk': get_risk_metadata(skin_risk, 'skin_risk'),
+            'elderly_risk': get_risk_metadata(elderly_risk, 'elderly_risk')
         }
 
         output_html = city_template.render(context)
