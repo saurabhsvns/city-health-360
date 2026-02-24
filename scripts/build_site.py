@@ -61,6 +61,7 @@ def generate_pages():
     # --- 2. Generate National Dashboard (india.html) ---
     india_context = calculate_leaderboards(df)
     india_context['date'] = today_date
+    india_context['canonical_url'] = 'https://cityhealth360.in/docs/india.html'
     india_html = india_template.render(india_context)
     india_output_path = os.path.join(DOCS_DIR, "india.html")
     with open(india_output_path, 'w', encoding='utf-8') as f:
@@ -75,15 +76,15 @@ def generate_pages():
         if state_name == "Unknown":
             continue # Skip unmapped cities if any
             
+        slug = state_name.lower().replace(" ", "-")
         state_context = {
             'state': state_name,
             'city_count': len(group_df),
             'date': today_date,
+            'canonical_url': f'https://cityhealth360.in/docs/{slug}.html',
             **calculate_leaderboards(group_df)
         }
         state_html = state_template.render(state_context)
-        
-        slug = state_name.lower().replace(" ", "-")
         state_output_path = os.path.join(DOCS_DIR, f"{slug}.html")
         with open(state_output_path, 'w', encoding='utf-8') as f:
             f.write(state_html)
@@ -108,10 +109,12 @@ def generate_pages():
                 "travel_tip": "Stay hydrated and check local news for latest safety updates."
             }
 
+        slug = city_name.lower().replace(" ", "-")
         context = {
             'city': row.to_dict(),
             'metadata': city_meta,
             'date': today_date,
+            'canonical_url': f'https://cityhealth360.in/docs/{slug}.html',
             'image_url': f"https://image.pollinations.ai/prompt/{city_name} city india scenic?width=1600&height=900&nologo=true",
             'news': fetch_city_news(city_name),
             'verdict': {
@@ -124,7 +127,6 @@ def generate_pages():
         }
 
         output_html = city_template.render(context)
-        slug = city_name.lower().replace(" ", "-")
         output_path = os.path.join(DOCS_DIR, f"{slug}.html")
         
         with open(output_path, 'w', encoding='utf-8') as f:
