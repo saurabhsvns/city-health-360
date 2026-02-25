@@ -250,5 +250,18 @@ def generate_pages():
         f.write('\n'.join(xml_content))
     print(f"Generated Sitemap: {sitemap_path}")
 
+    # --- 6. Generate 404 Error Page ---
+    error_template = env.get_template('404.html')
+    error_context = {
+        'date': today_date,
+        'title': '404 - City Not Found | City Health 360',
+        'description': 'The hyper-localized health index you requested is off the radar.'
+    }
+    error_html = error_template.render(error_context)
+    error_output_path = os.path.join(DOCS_DIR, "404.html")
+    with open(error_output_path, 'w', encoding='utf-8') as f:
+        f.write(error_html)
+    print(f"Generated 404 Page: {error_output_path}")
+
 if __name__ == "__main__":
     generate_pages()
