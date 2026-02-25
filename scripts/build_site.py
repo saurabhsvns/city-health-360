@@ -19,16 +19,16 @@ def clamp(val):
     return max(0, min(100, val))
 
 AFFILIATE_MATRIX = {
-    'aqi_risk': {'action': 'Action: Get a True HEPA Air Purifier', 'link': 'https://amzn.to/4aNom9H'},
-    'mosquito_risk': {'action': 'Action: Install a UV Mosquito Killer Lamp', 'link': 'https://amzn.to/4rB3t8V'},
-    'uv_risk': {'action': 'Action: Upgrade to Premium Dermatologist SPF', 'link': 'https://amzn.to/4s31z0r'},
-    'heat_stress': {'action': 'Action: Get a Portable Smart Air Cooler', 'link': 'https://amzn.to/46JCtvF'},
-    'dehydration_risk': {'action': 'Action: Invest in a Cold Press Slow Juicer', 'link': 'https://amzn.to/3OvHZM0'},
-    'joint_risk': {'action': 'Action: Use a Shiatsu Knee & Leg Massager', 'link': 'https://amzn.to/3ZVFPI1'},
-    'migraine_risk': {'action': 'Action: Try a Smart Eye Massager with Heat', 'link': 'https://amzn.to/4rEDJsc'},
-    'respiratory_risk': {'action': 'Action: Get a Medical-Grade Humidifier', 'link': 'https://amzn.to/3OwcilH'},
-    'pollen_risk': {'action': 'Action: Deploy a HEPA Robot Vacuum', 'link': 'https://amzn.to/4ccHgZV'},
-    'skin_risk': {'action': 'Action: Install a Hard Water Shower Filter', 'link': 'https://amzn.to/4aPrKRk'}
+    'aqi_risk': {'action': 'Get a True HEPA Air Purifier', 'link': 'https://amzn.to/4aNom9H'},
+    'mosquito_risk': {'action': 'Install a UV Mosquito Killer Lamp', 'link': 'https://amzn.to/4rB3t8V'},
+    'uv_risk': {'action': 'Upgrade to Premium Dermatologist SPF', 'link': 'https://amzn.to/4s31z0r'},
+    'heat_stress': {'action': 'Get a Portable Smart Air Cooler', 'link': 'https://amzn.to/46JCtvF'},
+    'dehydration_risk': {'action': 'Invest in a Cold Press Slow Juicer', 'link': 'https://amzn.to/3OvHZM0'},
+    'joint_risk': {'action': 'Use a Shiatsu Knee & Leg Massager', 'link': 'https://amzn.to/3ZVFPI1'},
+    'migraine_risk': {'action': 'Try a Smart Eye Massager with Heat', 'link': 'https://amzn.to/4rEDJsc'},
+    'respiratory_risk': {'action': 'Get a Medical-Grade Humidifier', 'link': 'https://amzn.to/3OwcilH'},
+    'pollen_risk': {'action': 'Deploy a HEPA Robot Vacuum', 'link': 'https://amzn.to/4ccHgZV'},
+    'skin_risk': {'action': 'Install a Hard Water Shower Filter', 'link': 'https://amzn.to/4aPrKRk'}
 }
 
 def get_risk_metadata(score, metric_name):
