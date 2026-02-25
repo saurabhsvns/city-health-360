@@ -258,7 +258,8 @@ def generate_pages():
         'description': 'The hyper-localized health index you requested is off the radar.'
     }
     error_html = error_template.render(error_context)
-    error_output_path = os.path.join(DOCS_DIR, "404.html")
+    # Output to the root directory for GitHub Pages
+    error_output_path = "404.html"
     with open(error_output_path, 'w', encoding='utf-8') as f:
         f.write(error_html)
     print(f"Generated 404 Page: {error_output_path}")
