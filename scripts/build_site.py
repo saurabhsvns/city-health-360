@@ -2,9 +2,11 @@ import pandas as pd
 import json
 import os
 from jinja2 import Environment, FileSystemLoader
-from datetime import datetime
+from datetime import datetime, timedelta
 import pytz
 from news_fetcher import fetch_city_news
+import requests
+import time
 
 # Configuration
 DATA_DIR = 'data'
@@ -68,6 +70,83 @@ def calculate_leaderboards(df):
         'top_dengue': df.nlargest(5, 'mosquito_risk')[['city', 'state', 'mosquito_risk']].to_dict(orient='records')
     }
 
+def extract_daily_max(hourly_time, hourly_aqi):
+    """Takes hourly Open-Meteo arrays and returns exactly 15 daily maxs (7 past, today, 7 future)."""
+    ist = pytz.timezone('Asia/Kolkata')
+    today = datetime.now(ist).date()
+    
+    target_dates = [(today + timedelta(days=i)).strftime('%Y-%m-%d') for i in range(-7, 8)]
+    daily_stats = {}
+    
+    for t_str, aqi in zip(hourly_time, hourly_aqi):
+        day = t_str.split("T")[0]
+        if aqi is None or day not in target_dates:
+            continue
+        if day not in daily_stats:
+            daily_stats[day] = aqi
+        else:
+            daily_stats[day] = max(daily_stats[day], aqi)
+            
+    final_aqis = []
+    last_valid = 50 # safe default 
+    
+    # Fill array and forward-fill any missing days (especially at the end of the forecast)
+    for d in target_dates:
+        if d in daily_stats:
+            last_valid = daily_stats[d]
+            final_aqis.append(last_valid)
+        else:
+            final_aqis.append(last_valid)
+
+    return target_dates, final_aqis
+
+def fetch_all_aqi_timelines(df):
+    """Bulk fetch hourly AQI for 15 days for all cities."""
+    print("Fetching 15-day AQI timelines from Open-Meteo...")
+    timelines = {}
+    chunk_size = 35
+    session = requests.Session()
+    
+    for i in range(0, len(df), chunk_size):
+        chunk = df.iloc[i:i+chunk_size]
+        lats = ",".join(chunk['latitude'].astype(str))
+        lons = ",".join(chunk['longitude'].astype(str))
+        cities = chunk['city'].tolist()
+        
+        url = "https://air-quality-api.open-meteo.com/v1/air-quality"
+        params = {
+            "latitude": lats,
+            "longitude": lons,
+            "hourly": "us_aqi",
+            "timezone": "Asia/Kolkata",
+            "past_days": 8,
+            "forecast_days": 7
+        }
+        
+        try:
+            res = session.get(url, params=params, timeout=15)
+            res.raise_for_status()
+            data = res.json()
+            if isinstance(data, dict):
+                if "error" in data:
+                    print(f"API Error: {data}")
+                    continue
+                data = [data]
+                
+            for idx, city_data in enumerate(data):
+                if 'hourly' in city_data and 'us_aqi' in city_data['hourly']:
+                    dates, max_aqis = extract_daily_max(
+                        city_data['hourly']['time'],
+                        city_data['hourly']['us_aqi']
+                    )
+                    timelines[cities[idx]] = {"dates": dates, "aqis": max_aqis}
+                    
+        except Exception as e:
+            print(f"Error fetching timelines chunk: {e}")
+        time.sleep(1)
+        
+    return timelines
+
 def generate_pages():
     """Generate HTML pages for each city, the national map, and state silos."""
     df, metadata = load_data()
@@ -86,6 +165,10 @@ def generate_pages():
 
     ist = pytz.timezone('Asia/Kolkata')
     today_date = datetime.now(ist).strftime("%b %d, %I:%M %p")
+
+    # Fetch 15-day API timelines for Charts
+    print("Pre-fetching Chart.js visual data...")
+    timelines = fetch_all_aqi_timelines(df)
 
     # --- 1. Export JSON for Maps ---
     # The Leaflet maps will fetch this exact JSON
@@ -190,8 +273,24 @@ def generate_pages():
         composite_risk = clamp((0.20 * aqi_risk) + (0.15 * heat_stress) + (0.15 * mosquito_risk) + (0.10 * uv_risk) + (0.10 * joint_risk) + (0.10 * migraine_risk) + (0.10 * elderly_risk) + (0.10 * pollen_risk))
         city_health_score = clamp(100 - composite_risk)
 
+        # 15-Day Chart Data
+        city_timeline = timelines.get(city_name, {"dates": [], "aqis": []})
+        dates_json = json.dumps(city_timeline["dates"])
+        aqis_json = json.dumps(city_timeline["aqis"])
+        
+        # Calculate Warning Flag
+        show_future_forecast_warning = False
+        if city_timeline["aqis"]:
+            # Forecast is usually the last 7 items in a 15-day array
+            forecast_aqis = city_timeline["aqis"][-7:]
+            if max(forecast_aqis, default=0) > 150:
+                show_future_forecast_warning = True
+
         context = {
             'city': row.to_dict(),
+            'timeline_dates': dates_json,
+            'timeline_aqi': aqis_json,
+            'show_future_forecast_warning': show_future_forecast_warning,
             'metadata': city_meta,
             'date': today_date,
             'canonical_url': f'https://cityhealth360.in/docs/{slug}.html',

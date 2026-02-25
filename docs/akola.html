@@ -4,7 +4,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Is Akola Safe Today? Health & AQI Forecast Feb 25, 06:43 PM</title>
+    <title>Is Akola Safe Today? Health & AQI Forecast Feb 25, 08:28 PM</title>
     <meta name="description"
         content="Daily health report for Akola travelers. Mosquito risk: 4/10.
 AQI: 114. Check hospital lists and safe zones.">
@@ -98,7 +98,7 @@ AQI: 114. Check hospital lists and safe zones.">
                 <div class="hidden sm:block text-right border-r border-slate-700 pr-4">
                     <div class="text-[10px] sm:text-xs font-bold uppercase tracking-widest text-slate-500 mb-0.5">Last
                         Update</div>
-                    <div class="font-mono text-blue-300 text-[10px] sm:text-xs">Feb 25, 06:43 PM</div>
+                    <div class="font-mono text-blue-300 text-[10px] sm:text-xs">Feb 25, 08:28 PM</div>
                 </div>
 
                 <!-- City Dropdown Functionality -->
@@ -355,8 +355,36 @@ AQI: 114. Check hospital lists and safe zones.">
         </div>
     </section>
 
+    <!-- 2. 15-Day Health Radar (Past & Forecast) -->
+    <section class="mt-12">
+        <h2 class="text-2xl font-bold mb-6 text-emerald-400 border-b border-emerald-500/30 pb-2">15-Day AQI Radar (Past
+            & Forecast)</h2>
+
+        <div class="glass-card p-6 rounded-xl flex flex-col relative w-full h-[400px]">
+            <canvas id="aqiChart"></canvas>
+        </div>
+
+        
+        <div
+            class="mt-6 p-4 bg-rose-900/40 border border-rose-500/50 rounded-xl flex flex-col sm:flex-row items-center justify-between gap-4">
+            <div class="flex items-center gap-3">
+                <span class="text-3xl">⚠️</span>
+                <div>
+                    <h3 class="text-lg font-bold text-rose-300">High Smog Forecasted</h3>
+                    <p class="text-sm text-slate-300">The AQI is predicted to exceed 150 (Unhealthy) in the coming days.
+                        Protect your lungs if traveling.</p>
+                </div>
+            </div>
+            <a href="https://amzn.to/4aNom9H" target="_blank" rel="noopener noreferrer"
+                class="px-5 py-2 bg-rose-600 hover:bg-rose-500 text-white font-semibold rounded-lg shadow-lg transition-all shrink-0">
+                Get N95 Masks ↗
+            </a>
+        </div>
+        
+    </section>
+
     <!-- 3. The Traveler Section (Healthcare & Safety) -->
-    <section>
+    <section class="mt-12">
         <h2 class="text-2xl font-bold mb-6">Healthcare & Safety Index</h2>
         <div class="grid grid-cols-1 md:grid-cols-3 gap-6">
             <!-- Hospitals -->
@@ -424,7 +452,7 @@ AQI: 114. Check hospital lists and safe zones.">
         
         <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
             
-            <a href="https://news.google.com/rss/articles/CBMi8wFBVV95cUxOZmFhS0s3RnYyZ2FNaGVfNTAtMURaZV9iR1psTlJLdUs4d0U2SjR1eEdVWmN3T2ptOTFsZHh6clF3MTkyME03azZTWU5Yd1BRczBSbkszbElRaERFVmxfT3M2OFBKLXZROU5GYU01UDhVaVhSdlVlM0tjcGxCYXY3NzZnaXI3VjJGUk90d3NGZmF1YXR6eVc3azluQmVvNlVMQThIeVVhdkhQOVp2NUVRcnZOemhtQUJlNFBjX1NsemFPU3ZlbUpDOWVnMllSdVJQNVpfWUNNYkRQY3FkZTlSdzU1YjRLUmU3U3lBSDFuVUVMLTjSAfMBQVVfeXFMTmZhYUtLN0Z2MmdhTWhlXzUwLTFEWmVfYkdabE5SS3VLOHdFNko0dXhHVVpjd09qbTkxbGR4enJRdzE5MjBNN2s2U1lOWHdQUXMwUm5LM2xJUWhERVZsX09zNjhQSi12UTlORmFNNVA4VWlYUnZVZTNLY3BsQmF2Nzc2Z2lyN1YyRlJPdHdzRmZhdWF0enlXN2s5bkJlbzZVTEE4SHlVYXZIUDladjVFUXJ2TnpobUFCZTRQY19TbHphT1N2ZW1KQzllZzJZUnVSUDVaX1lDTWJEUGNxZGU5Unc1NWI0S1JlN1N5QUgxblVFTC04?oc=5" target="_blank" rel="noopener noreferrer"
+            <a href="https://news.google.com/rss/articles/CBMi7gFBVV95cUxNZ1BTNlRXMFRkQ0R4ckhpUFdDcVh0WkJYMlcyQkJoeXBPSE8yVXEzOXl4VGNxbGFZVHdOOHUxX1BmRmxFbDNiUzJ2Rk1odjI3WHREelFTZ244T2ZRQy1tM0hUcUt1RWpvdnFGZlI3MHlqbFJfTndjdFZ5aFVKTUtmYjVuSktrYzNQaXFyckZKcUd5WExsSjZSeFhFUmRSZDk4bTJxaDZfQkRzUEg0NUM2OXhGTG9kR1l0NkR5UXZWMUwzaktLYWxJcE45UHU0MGRka1JwdUhlQkFzQWg2ZU42S1hwMHpBVG5QMmpQZ21R0gHzAUFVX3lxTE5mYWFLSzdGdjJnYU1oZV81MC0xRFplX2JHWmxOUkt1Szh3RTZKNHV4R1VaY3dPam05MWxkeHpyUXcxOTIwTTdrNlNZTlh3UFFzMFJuSzNsSVFoREVWbF9PczY4UEotdlE5TkZhTTVQOFVpWFJ2VWUzS2NwbEJhdjc3NmdpcjdWMkZST3R3c0ZmYXVhdHp5VzdrOW5CZW82VUxBOEh5VWF2SFA5WnY1RVFydk56aG1BQmU0UGNfU2x6YU9TdmVtSkM5ZWcyWVJ1UlA1Wl9ZQ01iRFBjcWRlOVJ3NTViNEtSZTdTeUFIMW5VRUwtOA?oc=5" target="_blank" rel="noopener noreferrer"
                 class="block p-4 bg-slate-800/50 rounded-xl border border-slate-700/50 hover:bg-slate-700/50 transition-colors group">
                 <h3 class="text-lg font-semibold text-slate-200 group-hover:text-emerald-400 transition-colors mb-2">
                     Akola student takes ill during Class 12 exam, completes paper from hospital in Akola - The Times of India</h3>
@@ -444,13 +472,13 @@ AQI: 114. Check hospital lists and safe zones.">
                 </div>
             </a>
             
-            <a href="https://news.google.com/rss/articles/CBMi-AFBVV95cUxNaThpX0laNjdLS1ZxNnFvZTVIUUJ2Yk9wRm9ta2UtTHdHRlE5M3dSb25iZkE1ckxrMFhXekpCN2xFVFo4eXZqZHdXUlZodVdVcGV5b3ZjSkVnY3JsdnhHVS0tMTlQXzVnTkh6bFlQTWM5OWJ5NVpPc1FWUTBDSEczV04tYnEyeTRkdHd0RjRHV3c5bWh6V1NCVmprRnlld2FvWC1nQXRONENtVXhVdHJOcUpjV29WWURhbDBibHlDdm94RThJeHdIZXZvQUJEOTA3eDUzc1NpOVpuUzE2bGdTVW1QZGNIOVFFUUY0cWxQUmRCbGZtSnQ2RdIB_gFBVV95cUxNT1NrdlpwY1NidjkxM2U3S3NoVjBuVnp5dWNfVUFDOWdoc3U0aHZDVTE4OG0xMFlqWGJQbXA5U0ZxQWVuaVlrMGJXTXp0NmJaWVRlU3RsQ0NqX0Vndm5tOXV2cUZwcmcyVllyT3ZReG5tRDNOVk9GaW9zT25NVlpkeWs3bTRYMmtVTkszcWN6c3pDMmZnZm9iODVnZy1jZGNJRTVkN1RXdUpPcTFBLUcxdG04Y3BpdDZUUVZMbVhqQ2k5WGRmcGU2dmtUejNiX2pSTExHUEJfbUprb241TFNlUHUwSVVKdTVVSm00RXU0NV9lNURLTWdITEJXTjU5dw?oc=5" target="_blank" rel="noopener noreferrer"
+            <a href="https://news.google.com/rss/articles/CBMitAFBVV95cUxQRXhSb3l5TXowb3JlMzBxdkdBZ1BiZUIwN3NYU0QyblkzMkIxM2lZVWZJSHA1c0lOcEt0ZjRlOTBlQVhPV0VmRlNBc3pWZmM3dkZ4VGF0MFpobFVydVNOU281UTNYRGpLTk5LSnBHOTJEalY0amFWN3dRQmlZMnZyYjVKZzl1N1FUeE1Wd3RhTC1malEtY2tOM1V5Y1hIbTBkN2lNaHkyaDlkc3RGbjg2Z1hBbjfSAboBQVVfeXFMTi1RLWxZTlBnTWV5SlNwMDVMX01nNHJTNXQ3YXBlMTZWOFBENVJBdzcxOS1lY3lYYkhrYmxpZXk5c2VJZGwzMXpLVjBtRUk1RVVPYXhmMkpWVTdlM3lCQkNQV2tUYmRkbF9aS3ZmWHFSVXNuNW1NS0IwQ2VCODZqYnhkR3BhUEZuV2YtZG9lT1pLck0tMmdNaENsRmtGVjdaYTVDbUpMdE1uU3lVWEVVcHF5M0w3U2V5WkR3?oc=5" target="_blank" rel="noopener noreferrer"
                 class="block p-4 bg-slate-800/50 rounded-xl border border-slate-700/50 hover:bg-slate-700/50 transition-colors group">
                 <h3 class="text-lg font-semibold text-slate-200 group-hover:text-emerald-400 transition-colors mb-2">
-                    Tender scam hits Akola women’s hospital, dist civil surgeon, two other top officials suspended - The Times of India</h3>
+                    Cop creates ruckus at Akola PHC, abuses and threatens doctor - Medical Dialogues</h3>
                 <div class="flex justify-between items-center text-sm text-slate-400">
-                    <span>The Times of India</span>
-                    <span>01 Aug 2025</span>
+                    <span>Medical Dialogues</span>
+                    <span>28 May 2025</span>
                 </div>
             </a>
             
@@ -463,13 +491,119 @@ AQI: 114. Check hospital lists and safe zones.">
 <footer class="bg-slate-900 border-t border-slate-800 py-8 mt-12">
     <div class="max-w-4xl mx-auto px-4 text-center text-slate-500 text-sm flex flex-col items-center">
         <div class="text-[10px] sm:text-xs font-bold uppercase tracking-widest mb-1">Last Update</div>
-        <div class="font-mono text-blue-300">Feb 25, 06:43 PM</div>
+        <div class="font-mono text-blue-300">Feb 25, 08:28 PM</div>
         <p class="mt-4">Data sources: Open-Meteo, Local Health Indices.</p>
         <a href="../index.html"
             class="inline-block mt-4 text-emerald-400 hover:text-emerald-300 underline font-medium">View Full
             Dashboard</a>
     </div>
 </footer>
+
+<script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/chartjs-plugin-annotation@2.1.0"></script>
+<script>
+    document.addEventListener('DOMContentLoaded', function () {
+        const ctx = document.getElementById('aqiChart').getContext('2d');
+        const rawDates = ["2026-02-18", "2026-02-19", "2026-02-20", "2026-02-21", "2026-02-22", "2026-02-23", "2026-02-24", "2026-02-25", "2026-02-26", "2026-02-27", "2026-02-28", "2026-03-01", "2026-03-02", "2026-03-03", "2026-03-04"];
+    const rawAqis = [140, 153, 149, 181, 160, 157, 125, 120, 128, 136, 150, 158, 147, 147, 147];
+
+    if (!rawDates.length || !rawAqis.length) return;
+
+    // Determine "Today" dynamically based on local timezone date vs timeline array
+    const rawToday = new Date().toLocaleString("sv-SE", { timeZone: "Asia/Kolkata" }).split(' ')[0];
+    let todayIndex = rawDates.indexOf(rawToday);
+    if (todayIndex === -1) {
+        todayIndex = Math.max(0, rawDates.length - 8); // Fallback to 8th from last
+    }
+
+    const pointColors = rawAqis.map((aqi, index) => {
+        if (index < todayIndex) return 'rgba(52, 211, 153, 0.5)'; // Past (emerald faded)
+        if (index === todayIndex) return 'rgba(250, 204, 21, 1)'; // Today (yellow)
+        return 'rgba(244, 63, 94, 1)'; // Future (rose)
+    });
+
+    const segmentColors = {
+        borderColor: ctx => {
+            if (!ctx.p0.skip && !ctx.p1.skip) {
+                return ctx.p0DataIndex < todayIndex ? 'rgba(52, 211, 153, 0.5)' : 'rgba(244, 63, 94, 1)';
+            }
+        },
+        borderDash: ctx => {
+            return ctx.p0DataIndex < todayIndex ? undefined : [5, 5];
+        },
+    };
+
+    new Chart(ctx, {
+        type: 'line',
+        data: {
+            labels: rawDates,
+            datasets: [{
+                label: 'Daily Max AQI',
+                data: rawAqis,
+                backgroundColor: 'rgba(52, 211, 153, 0.1)',
+                borderWidth: 3,
+                pointBackgroundColor: pointColors,
+                pointBorderColor: '#1e293b',
+                pointRadius: 5,
+                pointHoverRadius: 7,
+                fill: true,
+                tension: 0.4,
+                segment: segmentColors
+            }]
+        },
+        options: {
+            responsive: true,
+            maintainAspectRatio: false,
+            plugins: {
+                legend: { display: false },
+                tooltip: {
+                    mode: 'index',
+                    intersect: false,
+                    backgroundColor: 'rgba(30, 41, 59, 0.9)',
+                    titleColor: '#94a3b8',
+                    bodyColor: '#f1f5f9',
+                    borderColor: 'rgba(255,255,255,0.1)',
+                    borderWidth: 1
+                },
+                annotation: {
+                    annotations: {
+                        line1: {
+                            type: 'line',
+                            xMin: rawDates[todayIndex],
+                            xMax: rawDates[todayIndex],
+                            borderColor: 'rgba(250, 204, 21, 0.8)',
+                            borderWidth: 2,
+                            borderDash: [2, 2],
+                            label: {
+                                display: true,
+                                content: 'TODAY',
+                                position: 'start',
+                                color: '#0f172a',
+                                backgroundColor: 'rgba(250, 204, 21, 1)'
+                            }
+                        }
+                    }
+                }
+            },
+            scales: {
+                y: {
+                    beginAtZero: true,
+                    grid: { color: 'rgba(255, 255, 255, 0.05)' },
+                    ticks: { color: '#94a3b8' }
+                },
+                x: {
+                    grid: { display: false },
+                    ticks: {
+                        color: '#94a3b8',
+                        maxRotation: 45,
+                        minRotation: 45
+                    }
+                }
+            }
+        }
+    });
+    });
+</script>
 
 
     </main>
