@@ -4,7 +4,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Is Mumbai Safe Today? Health & AQI Forecast Feb 26, 04:22 PM</title>
+    <title>Is Mumbai Safe Today? Health & AQI Forecast Feb 26, 04:55 PM</title>
     <meta name="description"
         content="Daily health report for Mumbai travelers. Mosquito risk: 7/10.
 AQI: 74. Check hospital lists and safe zones.">
@@ -98,7 +98,7 @@ AQI: 74. Check hospital lists and safe zones.">
                 <div class="hidden sm:block text-right border-r border-slate-700 pr-4">
                     <div class="text-[10px] sm:text-xs font-bold uppercase tracking-widest text-slate-500 mb-0.5">Last
                         Update</div>
-                    <div class="font-mono text-blue-300 text-[10px] sm:text-xs">Feb 26, 04:22 PM</div>
+                    <div class="font-mono text-blue-300 text-[10px] sm:text-xs">Feb 26, 04:55 PM</div>
                 </div>
 
                 <!-- City Dropdown Functionality -->
@@ -364,11 +364,18 @@ AQI: 74. Check hospital lists and safe zones.">
 
     <!-- 2. 15-Day Health Radar (Past & Forecast) -->
     <section class="mt-12">
-        <h2 class="text-2xl font-bold mb-6 text-emerald-400 border-b border-emerald-500/30 pb-2">15-Day AQI Radar (Past
-            & Forecast)</h2>
+        <h2 class="text-2xl font-bold mb-6 text-emerald-400 border-b border-emerald-500/30 pb-2">15-Day Health Radar
+            (Past & Forecast)</h2>
 
-        <div class="glass-card p-6 rounded-xl flex flex-col relative w-full h-[400px]">
-            <canvas id="aqiChart"></canvas>
+        <div class="glass-card p-6 rounded-xl flex flex-col gap-6 relative w-full h-[600px] md:h-[500px]">
+            <!-- Temperature Ribbon -->
+            <div class="relative w-full h-1/2">
+                <canvas id="tempChart"></canvas>
+            </div>
+            <!-- AQI Trajectory -->
+            <div class="relative w-full h-1/2">
+                <canvas id="aqiChart"></canvas>
+            </div>
         </div>
 
         
@@ -453,22 +460,22 @@ AQI: 74. Check hospital lists and safe zones.">
                 </div>
             </a>
             
-            <a href="https://news.google.com/rss/articles/CBMirwFBVV95cUxPZzlQNW5zWHl2c3A2cmh3YnR3ZVJaNXdjeVIwbTZEQmZxaXJ3amZwR0tObndEb2ZQVC1JbGtyRHJwc3dHU3E0d3o4dTViYTNxMGhiU2JTdks3S1BpempKMDBYcXZsdHE1MjVXUTdfYXpHaDJweUd6XzRLUW9GVkRqR0Ezd3c0MzU2NS1nVEZfQTBudFF1YTJXWnNqM2dtWlhGaGVub2JHV0FKdVFjbE1V0gGvAUFVX3lxTE9nOVA1bnNYeXZzcDZyaHdidHdlUlo1d2N5UjBtNkRCZnFpcndqZnBHS05ud0RvZlBULUlsa3JEcnBzd0dTcTR3ejh1NWJhM3EwaGJTYlN2SzdLUGl6akowMFhxdmx0cTUyNVdRN19hekdoMnB5R3pfNEtRb0ZWRGpHQTN3dzQzNTY1LWdURl9BMG50UXVhMldac2ozZ21aWEZoZW5vYkdXQUp1UWNsTVU?oc=5" target="_blank" rel="noopener noreferrer"
-                class="block p-4 bg-slate-800/50 rounded-xl border border-slate-700/50 hover:bg-slate-700/50 transition-colors group">
-                <h3 class="text-lg font-semibold text-slate-200 group-hover:text-emerald-400 transition-colors mb-2">
-                    BMC health spend hits seven-year low - Mumbai Mirror</h3>
-                <div class="flex justify-between items-center text-sm text-slate-400">
-                    <span>Mumbai Mirror</span>
-                    <span>25 Feb 2026</span>
-                </div>
-            </a>
-            
             <a href="https://news.google.com/rss/articles/CBMizgFBVV95cUxOLXRSSnlib2tGNVlQYkY4UEdsSlVzT09ZN2tIZmtPUkRFdFg2bHZxZ3VxQXJUN2FyRVNNa2YtdXNwbEdjaUVEN2tBaUN0d0JwUjdqZEVsZ3ZwT1JUbm9HSXo0M0NTMkhnSUR6dnlQd2g2Nkd2Yy1iQ2Fzb04zVkJBZHB3NURZX1B5SkNVY2c4S3Z3TTRYc2tSaG9QZlFxdmxabU9Hb3BfbGtWNVlYQlY4YVdYNWdqTml1blVFbWs2S1M0ekRpQUtwNVU5aFhYd9IB3gFBVV95cUxQVGRBV0ZBSEZfb2twZHhmVXRZM1gxLWJFUVQ2Z3ZrX3lTRmtqc2dNR3ZIM3V6WHQ5am0zYmR3QkJUbENRNUxTZUctdC10Tm16YlFpeXNvWTRvaW0yUFhVVktOTWhFMjFiUVBfR291THh0MnVpbE1qV29USmRDYmdNUFFoT184SUtCUkpESGV2UHh3ZGFqUWFKYi1lZUw5bURzU2hEMzRkcE5MWkFVOHhaazFxazFXbEk0WDFFUXlKNmV0Vlg4Mnl6Ql9FNVU5VHNoM1VFaDdNdE1EM1hHYnc?oc=5" target="_blank" rel="noopener noreferrer"
                 class="block p-4 bg-slate-800/50 rounded-xl border border-slate-700/50 hover:bg-slate-700/50 transition-colors group">
                 <h3 class="text-lg font-semibold text-slate-200 group-hover:text-emerald-400 transition-colors mb-2">
                     Mumbai: BMC Allocates Record Rs 7,456 Crore To Health With PPP Expansion And Affordable Medicine Stores - Swarajyamag</h3>
                 <div class="flex justify-between items-center text-sm text-slate-400">
                     <span>Swarajyamag</span>
+                    <span>26 Feb 2026</span>
+                </div>
+            </a>
+            
+            <a href="https://news.google.com/rss/articles/CBMixAFBVV95cUxQTzZFc1BYWE1GczktZUlabi00Sjl5YTdyeXpoLUlFQkxaazFUcmtVZUFHTTdGVFhOVHpFTHhuQm9ocVFrZWZGcjZvcUdEbUdwNE5NeWlMYnRudjFhTGg5RnpYYVAxUURMZFNESWlGRzZZcnUzNUFLT2ZNcjI1SUJxT0NCNDJyZDU1NWs2WWV2SHF0c2RkMTFmeWF3Nk9UelhDZmlDV2lPZ2psZzJ0YTRKOHlCaDJfZzBIZ0tyRW4tZUdWWmQt?oc=5" target="_blank" rel="noopener noreferrer"
+                class="block p-4 bg-slate-800/50 rounded-xl border border-slate-700/50 hover:bg-slate-700/50 transition-colors group">
+                <h3 class="text-lg font-semibold text-slate-200 group-hover:text-emerald-400 transition-colors mb-2">
+                    'Never imagined breathe to become luxury...': Saiyami Kher sounds alarm on Mumbai's air pollution - Deccan Herald</h3>
+                <div class="flex justify-between items-center text-sm text-slate-400">
+                    <span>Deccan Herald</span>
                     <span>26 Feb 2026</span>
                 </div>
             </a>
@@ -482,7 +489,7 @@ AQI: 74. Check hospital lists and safe zones.">
 <footer class="bg-slate-900 border-t border-slate-800 py-8 mt-12">
     <div class="max-w-4xl mx-auto px-4 text-center text-slate-500 text-sm flex flex-col items-center">
         <div class="text-[10px] sm:text-xs font-bold uppercase tracking-widest mb-1">Last Update</div>
-        <div class="font-mono text-blue-300">Feb 26, 04:22 PM</div>
+        <div class="font-mono text-blue-300">Feb 26, 04:55 PM</div>
         <p class="mt-4">Data sources: Open-Meteo, Local Health Indices.</p>
         <a href="../index.html"
             class="inline-block mt-4 text-emerald-400 hover:text-emerald-300 underline font-medium">View Full
@@ -494,11 +501,15 @@ AQI: 74. Check hospital lists and safe zones.">
 <script src="https://cdn.jsdelivr.net/npm/chartjs-plugin-annotation@2.1.0"></script>
 <script>
     document.addEventListener('DOMContentLoaded', function () {
-        const ctx = document.getElementById('aqiChart').getContext('2d');
+        const aqiCtx = document.getElementById('aqiChart').getContext('2d');
+        const tempCtx = document.getElementById('tempChart').getContext('2d');
+
         const rawDates = ["2026-02-19", "2026-02-20", "2026-02-21", "2026-02-22", "2026-02-23", "2026-02-24", "2026-02-25", "2026-02-26", "2026-02-27", "2026-02-28", "2026-03-01", "2026-03-02", "2026-03-03", "2026-03-04", "2026-03-05"];
     const rawAqis = [121, 234, 250, 225, 213, 206, 156, 95, 93, 107, 106, 132, 113, 113, 113];
+    const rawMaxTemps = [25.6, 25.8, 27.0, 28.0, 27.6, 27.5, 27.8, 27.3, 26.5, 25.7, 26.0, 26.2, 26.9, 30.1, 30.0];
+    const rawMinTemps = [24.5, 24.4, 25.6, 25.9, 25.9, 26.6, 25.8, 26.0, 25.2, 25.0, 23.5, 23.6, 24.5, 26.0, 28.5];
 
-    if (!rawDates.length || !rawAqis.length) return;
+    if (!rawDates.length || !rawAqis.length || !rawMaxTemps.length) return;
 
     // Determine "Today" dynamically based on local timezone date vs timeline array
     const rawToday = new Date().toLocaleString("sv-SE", { timeZone: "Asia/Kolkata" }).split(' ')[0];
@@ -507,8 +518,86 @@ AQI: 74. Check hospital lists and safe zones.">
         todayIndex = Math.max(0, rawDates.length - 8); // Fallback to 8th from last
     }
 
+    // --- Shared Annotation Config ---
+    const commonAnnotation = {
+        annotations: {
+            line1: {
+                type: 'line',
+                xMin: rawDates[todayIndex],
+                xMax: rawDates[todayIndex],
+                borderColor: 'rgba(250, 204, 21, 0.8)',
+                borderWidth: 2,
+                borderDash: [2, 2],
+                label: {
+                    display: true,
+                    content: 'TODAY',
+                    position: 'start',
+                    color: '#0f172a',
+                    backgroundColor: 'rgba(250, 204, 21, 1)'
+                }
+            }
+        }
+    };
+
+    // --- 1. Temperature Envelope Chart ---
+    new Chart(tempCtx, {
+        type: 'line',
+        data: {
+            labels: rawDates,
+            datasets: [
+                {
+                    label: 'Max Temp (°C)',
+                    data: rawMaxTemps,
+                    borderColor: '#f97316', // Orange
+                    backgroundColor: '#f97316',
+                    borderWidth: 2,
+                    pointRadius: 3,
+                    tension: 0.4
+                },
+                {
+                    label: 'Min Temp (°C)',
+                    data: rawMinTemps,
+                    borderColor: '#3b82f6', // Blue
+                    backgroundColor: 'rgba(59, 130, 246, 0.2)', // Light blue for fill
+                    borderWidth: 2,
+                    pointRadius: 3,
+                    tension: 0.4,
+                    fill: '-1' // Fill to the previous dataset (Max Temp) to create the envelope
+                }
+            ]
+        },
+        options: {
+            responsive: true,
+            maintainAspectRatio: false,
+            plugins: {
+                legend: { display: false },
+                tooltip: {
+                    mode: 'index',
+                    intersect: false,
+                    backgroundColor: 'rgba(30, 41, 59, 0.9)',
+                    titleColor: '#94a3b8',
+                    bodyColor: '#f1f5f9',
+                    borderColor: 'rgba(255,255,255,0.1)',
+                    borderWidth: 1
+                },
+                annotation: commonAnnotation
+            },
+            scales: {
+                y: {
+                    grid: { color: 'rgba(255, 255, 255, 0.05)' },
+                    ticks: { color: '#94a3b8' },
+                    title: { display: true, text: 'Temperature °C', color: '#64748b' }
+                },
+                x: {
+                    display: false // Hide X-axis on top chart to attach them visually
+                }
+            }
+        }
+    });
+
+    // --- 2. AQI Trajectory Chart ---
     const pointColors = rawAqis.map((aqi, index) => {
-        if (index < todayIndex) return 'rgba(52, 211, 153, 0.5)'; // Past (emerald faded)
+        if (index < todayIndex) return 'rgba(52, 211, 153, 0.5)'; // Past (emerald)
         if (index === todayIndex) return 'rgba(250, 204, 21, 1)'; // Today (yellow)
         return 'rgba(244, 63, 94, 1)'; // Future (rose)
     });
@@ -516,7 +605,7 @@ AQI: 74. Check hospital lists and safe zones.">
     const segmentColors = {
         borderColor: ctx => {
             if (!ctx.p0.skip && !ctx.p1.skip) {
-                return ctx.p0DataIndex < todayIndex ? 'rgba(52, 211, 153, 0.5)' : 'rgba(244, 63, 94, 1)';
+                return ctx.p0DataIndex < todayIndex ? 'rgba(52, 211, 153, 0.5)' : '#ef4444'; // Red for future
             }
         },
         borderDash: ctx => {
@@ -524,19 +613,19 @@ AQI: 74. Check hospital lists and safe zones.">
         },
     };
 
-    new Chart(ctx, {
+    new Chart(aqiCtx, {
         type: 'line',
         data: {
             labels: rawDates,
             datasets: [{
                 label: 'Daily Max AQI',
                 data: rawAqis,
-                backgroundColor: 'rgba(52, 211, 153, 0.1)',
+                backgroundColor: 'rgba(239, 68, 68, 0.2)', // Soft red gradient fill
                 borderWidth: 3,
                 pointBackgroundColor: pointColors,
                 pointBorderColor: '#1e293b',
-                pointRadius: 5,
-                pointHoverRadius: 7,
+                pointRadius: 4,
+                pointHoverRadius: 6,
                 fill: true,
                 tension: 0.4,
                 segment: segmentColors
@@ -556,31 +645,14 @@ AQI: 74. Check hospital lists and safe zones.">
                     borderColor: 'rgba(255,255,255,0.1)',
                     borderWidth: 1
                 },
-                annotation: {
-                    annotations: {
-                        line1: {
-                            type: 'line',
-                            xMin: rawDates[todayIndex],
-                            xMax: rawDates[todayIndex],
-                            borderColor: 'rgba(250, 204, 21, 0.8)',
-                            borderWidth: 2,
-                            borderDash: [2, 2],
-                            label: {
-                                display: true,
-                                content: 'TODAY',
-                                position: 'start',
-                                color: '#0f172a',
-                                backgroundColor: 'rgba(250, 204, 21, 1)'
-                            }
-                        }
-                    }
-                }
+                annotation: commonAnnotation
             },
             scales: {
                 y: {
                     beginAtZero: true,
                     grid: { color: 'rgba(255, 255, 255, 0.05)' },
-                    ticks: { color: '#94a3b8' }
+                    ticks: { color: '#94a3b8' },
+                    title: { display: true, text: 'AQI Level', color: '#64748b' }
                 },
                 x: {
                     grid: { display: false },

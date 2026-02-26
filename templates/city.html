@@ -150,11 +150,18 @@ AQI: " ~ city.aqi ~ ". Check hospital lists and safe zones." %}
 
     <!-- 2. 15-Day Health Radar (Past & Forecast) -->
     <section class="mt-12">
-        <h2 class="text-2xl font-bold mb-6 text-emerald-400 border-b border-emerald-500/30 pb-2">15-Day AQI Radar (Past
-            & Forecast)</h2>
+        <h2 class="text-2xl font-bold mb-6 text-emerald-400 border-b border-emerald-500/30 pb-2">15-Day Health Radar
+            (Past & Forecast)</h2>
 
-        <div class="glass-card p-6 rounded-xl flex flex-col relative w-full h-[400px]">
-            <canvas id="aqiChart"></canvas>
+        <div class="glass-card p-6 rounded-xl flex flex-col gap-6 relative w-full h-[600px] md:h-[500px]">
+            <!-- Temperature Ribbon -->
+            <div class="relative w-full h-1/2">
+                <canvas id="tempChart"></canvas>
+            </div>
+            <!-- AQI Trajectory -->
+            <div class="relative w-full h-1/2">
+                <canvas id="aqiChart"></canvas>
+            </div>
         </div>
 
         {% if show_future_forecast_warning %}
@@ -170,7 +177,7 @@ AQI: " ~ city.aqi ~ ". Check hospital lists and safe zones." %}
             </div>
             <a href="https://amzn.to/4aNom9H" target="_blank" rel="noopener noreferrer"
                 class="px-5 py-2 bg-rose-600 hover:bg-rose-500 text-white font-semibold rounded-lg shadow-lg transition-all shrink-0">
-                Get N95 Masks ↗
+                Get a True Hepa Purifier ↗
             </a>
         </div>
         {% endif %}
@@ -265,12 +272,16 @@ AQI: " ~ city.aqi ~ ". Check hospital lists and safe zones." %}
 <script src="https://cdn.jsdelivr.net/npm/chartjs-plugin-annotation@2.1.0"></script>
 <script>
     document.addEventListener('DOMContentLoaded', function () {
-        const ctx = document.getElementById('aqiChart').getContext('2d');
+        const aqiCtx = document.getElementById('aqiChart').getContext('2d');
+        const tempCtx = document.getElementById('tempChart').getContext('2d');
+
         const rawDates = {{ timeline_dates | default ("[]") | safe
     }};
     const rawAqis = {{ timeline_aqi | default ("[]") | safe }};
+    const rawMaxTemps = {{ timeline_max_temp | default ("[]") | safe }};
+    const rawMinTemps = {{ timeline_min_temp | default ("[]") | safe }};
 
-    if (!rawDates.length || !rawAqis.length) return;
+    if (!rawDates.length || !rawAqis.length || !rawMaxTemps.length) return;
 
     // Determine "Today" dynamically based on local timezone date vs timeline array
     const rawToday = new Date().toLocaleString("sv-SE", { timeZone: "Asia/Kolkata" }).split(' ')[0];
@@ -279,8 +290,86 @@ AQI: " ~ city.aqi ~ ". Check hospital lists and safe zones." %}
         todayIndex = Math.max(0, rawDates.length - 8); // Fallback to 8th from last
     }
 
+    // --- Shared Annotation Config ---
+    const commonAnnotation = {
+        annotations: {
+            line1: {
+                type: 'line',
+                xMin: rawDates[todayIndex],
+                xMax: rawDates[todayIndex],
+                borderColor: 'rgba(250, 204, 21, 0.8)',
+                borderWidth: 2,
+                borderDash: [2, 2],
+                label: {
+                    display: true,
+                    content: 'TODAY',
+                    position: 'start',
+                    color: '#0f172a',
+                    backgroundColor: 'rgba(250, 204, 21, 1)'
+                }
+            }
+        }
+    };
+
+    // --- 1. Temperature Envelope Chart ---
+    new Chart(tempCtx, {
+        type: 'line',
+        data: {
+            labels: rawDates,
+            datasets: [
+                {
+                    label: 'Max Temp (°C)',
+                    data: rawMaxTemps,
+                    borderColor: '#f97316', // Orange
+                    backgroundColor: '#f97316',
+                    borderWidth: 2,
+                    pointRadius: 3,
+                    tension: 0.4
+                },
+                {
+                    label: 'Min Temp (°C)',
+                    data: rawMinTemps,
+                    borderColor: '#3b82f6', // Blue
+                    backgroundColor: 'rgba(59, 130, 246, 0.2)', // Light blue for fill
+                    borderWidth: 2,
+                    pointRadius: 3,
+                    tension: 0.4,
+                    fill: '-1' // Fill to the previous dataset (Max Temp) to create the envelope
+                }
+            ]
+        },
+        options: {
+            responsive: true,
+            maintainAspectRatio: false,
+            plugins: {
+                legend: { display: false },
+                tooltip: {
+                    mode: 'index',
+                    intersect: false,
+                    backgroundColor: 'rgba(30, 41, 59, 0.9)',
+                    titleColor: '#94a3b8',
+                    bodyColor: '#f1f5f9',
+                    borderColor: 'rgba(255,255,255,0.1)',
+                    borderWidth: 1
+                },
+                annotation: commonAnnotation
+            },
+            scales: {
+                y: {
+                    grid: { color: 'rgba(255, 255, 255, 0.05)' },
+                    ticks: { color: '#94a3b8' },
+                    title: { display: true, text: 'Temperature °C', color: '#64748b' }
+                },
+                x: {
+                    display: false // Hide X-axis on top chart to attach them visually
+                }
+            }
+        }
+    });
+
+    // --- 2. AQI Trajectory Chart ---
     const pointColors = rawAqis.map((aqi, index) => {
-        if (index < todayIndex) return 'rgba(52, 211, 153, 0.5)'; // Past (emerald faded)
+        if (index < todayIndex) return 'rgba(52, 211, 153, 0.5)'; // Past (emerald)
         if (index === todayIndex) return 'rgba(250, 204, 21, 1)'; // Today (yellow)
         return 'rgba(244, 63, 94, 1)'; // Future (rose)
     });
@@ -288,7 +377,7 @@ AQI: " ~ city.aqi ~ ". Check hospital lists and safe zones." %}
     const segmentColors = {
         borderColor: ctx => {
             if (!ctx.p0.skip && !ctx.p1.skip) {
-                return ctx.p0DataIndex < todayIndex ? 'rgba(52, 211, 153, 0.5)' : 'rgba(244, 63, 94, 1)';
+                return ctx.p0DataIndex < todayIndex ? 'rgba(52, 211, 153, 0.5)' : '#ef4444'; // Red for future
             }
         },
         borderDash: ctx => {
@@ -296,19 +385,19 @@ AQI: " ~ city.aqi ~ ". Check hospital lists and safe zones." %}
         },
     };
 
-    new Chart(ctx, {
+    new Chart(aqiCtx, {
         type: 'line',
         data: {
             labels: rawDates,
             datasets: [{
                 label: 'Daily Max AQI',
                 data: rawAqis,
-                backgroundColor: 'rgba(52, 211, 153, 0.1)',
+                backgroundColor: 'rgba(239, 68, 68, 0.2)', // Soft red gradient fill
                 borderWidth: 3,
                 pointBackgroundColor: pointColors,
                 pointBorderColor: '#1e293b',
-                pointRadius: 5,
-                pointHoverRadius: 7,
+                pointRadius: 4,
+                pointHoverRadius: 6,
                 fill: true,
                 tension: 0.4,
                 segment: segmentColors
@@ -328,31 +417,14 @@ AQI: " ~ city.aqi ~ ". Check hospital lists and safe zones." %}
                     borderColor: 'rgba(255,255,255,0.1)',
                     borderWidth: 1
                 },
-                annotation: {
-                    annotations: {
-                        line1: {
-                            type: 'line',
-                            xMin: rawDates[todayIndex],
-                            xMax: rawDates[todayIndex],
-                            borderColor: 'rgba(250, 204, 21, 0.8)',
-                            borderWidth: 2,
-                            borderDash: [2, 2],
-                            label: {
-                                display: true,
-                                content: 'TODAY',
-                                position: 'start',
-                                color: '#0f172a',
-                                backgroundColor: 'rgba(250, 204, 21, 1)'
-                            }
-                        }
-                    }
-                }
+                annotation: commonAnnotation
             },
             scales: {
                 y: {
                     beginAtZero: true,
                     grid: { color: 'rgba(255, 255, 255, 0.05)' },
-                    ticks: { color: '#94a3b8' }
+                    ticks: { color: '#94a3b8' },
+                    title: { display: true, text: 'AQI Level', color: '#64748b' }
                 },
                 x: {
                     grid: { display: false },

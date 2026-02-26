@@ -139,10 +139,69 @@ def fetch_all_aqi_timelines(df):
                         city_data['hourly']['time'],
                         city_data['hourly']['us_aqi']
                     )
-                    timelines[cities[idx]] = {"dates": dates, "aqis": max_aqis}
+                    timelines[cities[idx]] = {"dates": dates, "aqis": max_aqis, "max_temps": [], "min_temps": []}
                     
         except Exception as e:
-            print(f"Error fetching timelines chunk: {e}")
+            print(f"Error fetching AQI timelines chunk: {e}")
+        time.sleep(1)
+
+    print("Fetching 15-day Temperature timelines from Open-Meteo...")
+    for i in range(0, len(df), chunk_size):
+        chunk = df.iloc[i:i+chunk_size]
+        lats = ",".join(chunk['latitude'].astype(str))
+        lons = ",".join(chunk['longitude'].astype(str))
+        cities = chunk['city'].tolist()
+        
+        url = "https://api.open-meteo.com/v1/forecast"
+        params = {
+            "latitude": lats,
+            "longitude": lons,
+            "daily": "temperature_2m_max,temperature_2m_min",
+            "timezone": "Asia/Kolkata",
+            "past_days": 8,
+            "forecast_days": 7
+        }
+        
+        try:
+            res = session.get(url, params=params, timeout=15)
+            res.raise_for_status()
+            data = res.json()
+            if isinstance(data, dict):
+                if "error" in data:
+                    print(f"API Error: {data}")
+                    continue
+                data = [data]
+                
+            for idx, city_data in enumerate(data):
+                if 'daily' in city_data and 'temperature_2m_max' in city_data['daily']:
+                    # Ensure alignment of dates with the AQI array (they should perfectly match)
+                    if cities[idx] in timelines:
+                        # Sometimes Open-Meteo returns nulls at the end of the forecast if it doesn't go far enough
+                        # We need to fill them or fallback to the previous day
+                        max_temps = city_data['daily']['temperature_2m_max']
+                        min_temps = city_data['daily']['temperature_2m_min']
+                        
+                        # Forward fill any None values
+                        last_max = 25
+                        last_min = 20
+                        
+                        filled_max_temps = []
+                        filled_min_temps = []
+                        for max_t in max_temps:
+                            if max_t is not None:
+                                last_max = max_t
+                            filled_max_temps.append(last_max)
+                            
+                        for min_t in min_temps:
+                            if min_t is not None:
+                                last_min = min_t
+                            filled_min_temps.append(last_min)
+                            
+                        timelines[cities[idx]]["max_temps"] = filled_max_temps
+                        timelines[cities[idx]]["min_temps"] = filled_min_temps
+
+        except Exception as e:
+            print(f"Error fetching Temp timelines chunk: {e}")
         time.sleep(1)
         
     return timelines
@@ -274,7 +333,7 @@ def generate_pages():
         city_health_score = clamp(100 - composite_risk)
 
         # Retrieve Timeline Data
-        city_timeline = timelines.get(city_name, {"dates": [], "aqis": []})
+        city_timeline = timelines.get(city_name, {"dates": [], "aqis": [], "max_temps": [], "min_temps": []})
         future_aqis = city_timeline["aqis"][8:] if len(city_timeline["aqis"]) > 8 else []
         show_future_forecast_warning = any(a > 150 for a in future_aqis)
 
@@ -289,6 +348,8 @@ def generate_pages():
             # Chart.js Arrays
             'timeline_dates': json.dumps(city_timeline["dates"]),
             'timeline_aqi': json.dumps(city_timeline["aqis"]),
+            'timeline_max_temp': json.dumps(city_timeline.get("max_temps", [])),
+            'timeline_min_temp': json.dumps(city_timeline.get("min_temps", [])),
             'show_future_forecast_warning': show_future_forecast_warning,
             
             # Master Score (Keeps raw number format)
