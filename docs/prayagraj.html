@@ -4,7 +4,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Is Prayagraj Safe Today? Health & AQI Forecast Feb 26, 10:35 PM</title>
+    <title>Is Prayagraj Safe Today? Health & AQI Forecast Feb 26, 11:34 PM</title>
     <meta name="description"
         content="Daily health report for Prayagraj travelers. Mosquito risk: 3/10.
 AQI: 124. Check hospital lists and safe zones.">
@@ -98,7 +98,7 @@ AQI: 124. Check hospital lists and safe zones.">
                 <div class="hidden sm:block text-right border-r border-slate-700 pr-4">
                     <div class="text-[10px] sm:text-xs font-bold uppercase tracking-widest text-slate-500 mb-0.5">Last
                         Update</div>
-                    <div class="font-mono text-blue-300 text-[10px] sm:text-xs">Feb 26, 10:35 PM</div>
+                    <div class="font-mono text-blue-300 text-[10px] sm:text-xs">Feb 26, 11:34 PM</div>
                 </div>
 
                 <!-- City Dropdown Functionality -->
@@ -484,7 +484,7 @@ AQI: 124. Check hospital lists and safe zones.">
 <footer class="bg-slate-900 border-t border-slate-800 py-8 mt-12">
     <div class="max-w-4xl mx-auto px-4 text-center text-slate-500 text-sm flex flex-col items-center">
         <div class="text-[10px] sm:text-xs font-bold uppercase tracking-widest mb-1">Last Update</div>
-        <div class="font-mono text-blue-300">Feb 26, 10:35 PM</div>
+        <div class="font-mono text-blue-300">Feb 26, 11:34 PM</div>
         <p class="mt-4">Data sources: Open-Meteo, Local Health Indices.</p>
         <a href="../index.html"
             class="inline-block mt-4 text-emerald-400 hover:text-emerald-300 underline font-medium">View Full
@@ -496,13 +496,14 @@ AQI: 124. Check hospital lists and safe zones.">
 <script src="https://cdn.jsdelivr.net/npm/chartjs-plugin-annotation@2.1.0"></script>
 <script>
     document.addEventListener('DOMContentLoaded', function () {
+        Chart.register(window['chartjs-plugin-annotation']);
         const aqiCtx = document.getElementById('aqiChart').getContext('2d');
         const tempCtx = document.getElementById('tempChart').getContext('2d');
 
         const rawDates = ["2026-02-19", "2026-02-20", "2026-02-21", "2026-02-22", "2026-02-23", "2026-02-24", "2026-02-25", "2026-02-26", "2026-02-27", "2026-02-28", "2026-03-01", "2026-03-02", "2026-03-03", "2026-03-04", "2026-03-05"];
     const rawAqis = [173, 154, 152, 154, 159, 165, 167, 156, 151, 148, 139, 125, 119, 119, 119];
-    const rawMaxTemps = [];
-    const rawMinTemps = [];
+    const rawMaxTemps = [26.8, 25.7, 27.0, 28.6, 28.6, 28.6, 27.7, 28.7, 30.3, 30.9, 30.5, 31.2, 30.1, 30.4, 31.2];
+    const rawMinTemps = [10.3, 14.0, 16.1, 16.7, 15.5, 16.4, 14.2, 14.6, 13.7, 17.2, 17.4, 16.9, 14.1, 14.1, 14.1];
 
     if (!rawDates.length || !rawAqis.length || !rawMaxTemps.length) return;
 

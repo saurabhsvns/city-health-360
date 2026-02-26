@@ -4,7 +4,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Is Bhatinda Safe Today? Health & AQI Forecast Feb 26, 10:35 PM</title>
+    <title>Is Bhatinda Safe Today? Health & AQI Forecast Feb 26, 11:34 PM</title>
     <meta name="description"
         content="Daily health report for Bhatinda travelers. Mosquito risk: 3/10.
 AQI: 160. Check hospital lists and safe zones.">
@@ -98,7 +98,7 @@ AQI: 160. Check hospital lists and safe zones.">
                 <div class="hidden sm:block text-right border-r border-slate-700 pr-4">
                     <div class="text-[10px] sm:text-xs font-bold uppercase tracking-widest text-slate-500 mb-0.5">Last
                         Update</div>
-                    <div class="font-mono text-blue-300 text-[10px] sm:text-xs">Feb 26, 10:35 PM</div>
+                    <div class="font-mono text-blue-300 text-[10px] sm:text-xs">Feb 26, 11:34 PM</div>
                 </div>
 
                 <!-- City Dropdown Functionality -->
@@ -491,7 +491,7 @@ AQI: 160. Check hospital lists and safe zones.">
 <footer class="bg-slate-900 border-t border-slate-800 py-8 mt-12">
     <div class="max-w-4xl mx-auto px-4 text-center text-slate-500 text-sm flex flex-col items-center">
         <div class="text-[10px] sm:text-xs font-bold uppercase tracking-widest mb-1">Last Update</div>
-        <div class="font-mono text-blue-300">Feb 26, 10:35 PM</div>
+        <div class="font-mono text-blue-300">Feb 26, 11:34 PM</div>
         <p class="mt-4">Data sources: Open-Meteo, Local Health Indices.</p>
         <a href="../index.html"
             class="inline-block mt-4 text-emerald-400 hover:text-emerald-300 underline font-medium">View Full
@@ -503,6 +503,7 @@ AQI: 160. Check hospital lists and safe zones.">
 <script src="https://cdn.jsdelivr.net/npm/chartjs-plugin-annotation@2.1.0"></script>
 <script>
     document.addEventListener('DOMContentLoaded', function () {
+        Chart.register(window['chartjs-plugin-annotation']);
         const aqiCtx = document.getElementById('aqiChart').getContext('2d');
         const tempCtx = document.getElementById('tempChart').getContext('2d');
 
