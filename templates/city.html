@@ -148,6 +148,45 @@ AQI: " ~ city.aqi ~ ". Check hospital lists and safe zones." %}
         </div>
     </section>
 
+    <!-- Local Action Center -->
+    <div class="mt-8 pt-6 border-t border-slate-700/50">
+        <h3 class="text-lg font-semibold text-white mb-4">🏥 Local Emergency & Health Services</h3>
+
+        <div class="flex flex-wrap gap-3">
+
+            <a href="https://www.google.com/maps/search/?api=1&query=Hospitals+in+{{ city.city }}" target="_blank"
+                rel="noopener noreferrer"
+                class="inline-flex items-center px-4 py-2 text-sm font-medium text-white bg-slate-800 border border-slate-600 rounded-full hover:bg-slate-700 transition-colors">
+                📍 View All Hospitals
+            </a>
+
+            {% if aqi_risk.value >= 66 or respiratory_risk.value >= 66 %}
+            <a href="https://www.google.com/maps/search/?api=1&query=Pulmonologist+in+{{ city.city }}" target="_blank"
+                rel="noopener noreferrer"
+                class="inline-flex items-center px-4 py-2 text-sm font-medium text-rose-100 bg-rose-900/30 border border-rose-800 rounded-full hover:bg-rose-900/50 transition-colors">
+                🫁 Find Pulmonologist
+            </a>
+            {% endif %}
+
+            {% if mosquito_risk.value >= 66 %}
+            <a href="https://www.google.com/maps/search/?api=1&query=Dengue+Testing+Lab+in+{{ city.city }}"
+                target="_blank" rel="noopener noreferrer"
+                class="inline-flex items-center px-4 py-2 text-sm font-medium text-rose-100 bg-rose-900/30 border border-rose-800 rounded-full hover:bg-rose-900/50 transition-colors">
+                🩸 Dengue Testing Labs
+            </a>
+            {% endif %}
+
+            {% if heat_stress.value >= 66 or dehydration_risk.value >= 66 %}
+            <a href="https://www.google.com/maps/search/?api=1&query=24+Hour+Pharmacy+in+{{ city.city }}"
+                target="_blank" rel="noopener noreferrer"
+                class="inline-flex items-center px-4 py-2 text-sm font-medium text-yellow-100 bg-yellow-900/30 border border-yellow-800 rounded-full hover:bg-yellow-900/50 transition-colors">
+                💊 24/7 Pharmacies
+            </a>
+            {% endif %}
+
+        </div>
+    </div>
+
     <!-- 2. 15-Day Health Radar (Past & Forecast) -->
     <section class="mt-12">
         <h2 class="text-2xl font-bold mb-6 text-emerald-400 border-b border-emerald-500/30 pb-2">15-Day Health Radar
