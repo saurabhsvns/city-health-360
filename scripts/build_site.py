@@ -98,6 +98,18 @@ def extract_daily_max(hourly_time, hourly_aqi):
 
     return target_dates, final_aqis
 
+def fetch_with_retries(session, url, params, max_retries=3):
+    import time
+    for attempt in range(max_retries):
+        try:
+            res = session.get(url, params=params, timeout=15)
+            res.raise_for_status()
+            return res.json()
+        except Exception as e:
+            print(f"API Error on attempt {attempt+1}: {e}")
+            time.sleep(2 ** attempt)  # Exponential backoff
+    return {"error": "Max retries exceeded"}
+
 def fetch_all_aqi_timelines(df):
     """Bulk fetch hourly AQI for 15 days for all cities."""
     print("Fetching 15-day AQI timelines from Open-Meteo...")
@@ -124,12 +136,10 @@ def fetch_all_aqi_timelines(df):
         }
         
         try:
-            res = session.get(url, params=params, timeout=15)
-            res.raise_for_status()
-            data = res.json()
+            data = fetch_with_retries(session, url, params)
             if isinstance(data, dict):
                 if "error" in data:
-                    print(f"API Error: {data}")
+                    print(f"API Error (AQI): {data}")
                     continue
                 data = [data]
                 
@@ -163,12 +173,10 @@ def fetch_all_aqi_timelines(df):
         }
         
         try:
-            res = session.get(url, params=params, timeout=15)
-            res.raise_for_status()
-            data = res.json()
+            data = fetch_with_retries(session, url, params)
             if isinstance(data, dict):
                 if "error" in data:
-                    print(f"API Error: {data}")
+                    print(f"API Error (Temp): {data}")
                     continue
                 data = [data]
                 
