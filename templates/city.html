@@ -52,7 +52,7 @@ AQI: " ~ city.aqi ~ ". Check hospital lists and safe zones." %}
             <div class="space-y-4 grow">
                 {% set env_metrics = [
                 ('Air Quality Risk', aqi_risk),
-                ('Pollen Risk', pollen_risk),
+                ('Allergen Risk', allergen_risk),
                 ('Respiratory Risk', respiratory_risk),
                 ('Humidity Discomfort', humidity_discomfort),
                 ('Cold Stress', cold_stress)
@@ -293,6 +293,69 @@ AQI: " ~ city.aqi ~ ". Check hospital lists and safe zones." %}
         </div>
         {% endif %}
     </section>
+
+    <!-- 5. Deep Dive Intent Pages (Top 20 Cities Only) -->
+    {% if city.slug in ['delhi', 'mumbai', 'bangalore', 'hyderabad', 'chennai', 'kolkata', 'pune', 'ahmedabad',
+    'jaipur', 'lucknow', 'kanpur', 'nagpur', 'indore', 'thane', 'bhopal', 'visakhapatnam', 'patna', 'vadodara',
+    'varanasi', 'ghaziabad'] %}
+    <section class="mt-16 pt-8 border-t border-slate-700/50">
+        <h2 class="text-2xl font-bold mb-6 text-emerald-400">Deep Dive Reports for {{ city.city }}</h2>
+        <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-4">
+            <a href="/docs/{{ city.slug }}-aqi-today.html"
+                class="flex items-center gap-3 p-4 bg-slate-800/40 hover:bg-slate-700 border border-slate-700 rounded-xl transition-all group">
+                <span class="text-2xl group-hover:scale-110 transition-transform">😷</span>
+                <span class="font-medium text-slate-200">Live AQI Radar</span>
+            </a>
+            <a href="/docs/{{ city.slug }}-best-time-outside.html"
+                class="flex items-center gap-3 p-4 bg-slate-800/40 hover:bg-slate-700 border border-slate-700 rounded-xl transition-all group">
+                <span class="text-2xl group-hover:scale-110 transition-transform">⏱️</span>
+                <span class="font-medium text-slate-200">Safe Outdoor Windows</span>
+            </a>
+            <a href="/docs/{{ city.slug }}-kids-safety.html"
+                class="flex items-center gap-3 p-4 bg-slate-800/40 hover:bg-slate-700 border border-slate-700 rounded-xl transition-all group">
+                <span class="text-2xl group-hover:scale-110 transition-transform">👶</span>
+                <span class="font-medium text-slate-200">Kids Safety Index</span>
+            </a>
+            <a href="/docs/{{ city.slug }}-allergen-dust-risk.html"
+                class="flex items-center gap-3 p-4 bg-slate-800/40 hover:bg-slate-700 border border-slate-700 rounded-xl transition-all group">
+                <span class="text-2xl group-hover:scale-110 transition-transform">😷</span>
+                <span class="font-medium text-slate-200">Dust & Allergen Risk</span>
+            </a>
+            <a href="/docs/{{ city.slug }}-heat-stroke-risk.html"
+                class="flex items-center gap-3 p-4 bg-slate-800/40 hover:bg-slate-700 border border-slate-700 rounded-xl transition-all group">
+                <span class="text-2xl group-hover:scale-110 transition-transform">☀️</span>
+                <span class="font-medium text-slate-200">Heat Stroke Risk</span>
+            </a>
+            <a href="/docs/{{ city.slug }}-elderly-risk.html"
+                class="flex items-center gap-3 p-4 bg-slate-800/40 hover:bg-slate-700 border border-slate-700 rounded-xl transition-all group">
+                <span class="text-2xl group-hover:scale-110 transition-transform">👴</span>
+                <span class="font-medium text-slate-200">Elderly Health Risk</span>
+            </a>
+            <a href="/docs/{{ city.slug }}-sleep-forecast.html"
+                class="flex items-center gap-3 p-4 bg-slate-800/40 hover:bg-slate-700 border border-slate-700 rounded-xl transition-all group">
+                <span class="text-2xl group-hover:scale-110 transition-transform">😴</span>
+                <span class="font-medium text-slate-200">Sleep Forecast</span>
+            </a>
+            <a href="/docs/{{ city.slug }}-skin-hair-impact.html"
+                class="flex items-center gap-3 p-4 bg-slate-800/40 hover:bg-slate-700 border border-slate-700 rounded-xl transition-all group">
+                <span class="text-2xl group-hover:scale-110 transition-transform">🧴</span>
+                <span class="font-medium text-slate-200">Skin & Hair Impact</span>
+            </a>
+            <a href="/docs/{{ city.slug }}-health-ranking.html"
+                class="flex items-center gap-3 p-4 bg-slate-800/40 hover:bg-slate-700 border border-slate-700 rounded-xl transition-all group">
+                <span class="text-2xl group-hover:scale-110 transition-transform">🏆</span>
+                <span class="font-medium text-slate-200">City Health Ranking</span>
+            </a>
+            {% if city.slug != 'delhi' %}
+            <a href="/docs/{{ city.slug }}-vs-delhi-air-quality.html"
+                class="flex items-center gap-3 p-4 bg-slate-800/40 hover:bg-slate-700 border border-slate-700 rounded-xl transition-all group">
+                <span class="text-2xl group-hover:scale-110 transition-transform">⚖️</span>
+                <span class="font-medium text-slate-200">Comparison vs Delhi</span>
+            </a>
+            {% endif %}
+        </div>
+    </section>
+    {% endif %}
 
 </main>
 

@@ -14,6 +14,9 @@ TEMPLATES_DIR = 'templates'
 CSV_PATH = os.path.join(DATA_DIR, 'city_health.csv')
 JSON_PATH = os.path.join(DATA_DIR, 'city_metadata.json')
 
+# Define Top 20 Cities for SEO Intent Expansion
+TOP_20_CITIES = ['delhi', 'mumbai', 'bangalore', 'hyderabad', 'chennai', 'kolkata', 'pune', 'ahmedabad', 'jaipur', 'lucknow', 'kanpur', 'nagpur', 'indore', 'thane', 'bhopal', 'visakhapatnam', 'patna', 'vadodara', 'varanasi', 'ghaziabad']
+
 def clamp(val):
     """Normalize a value to be strictly between 0 and 100."""
     return max(0, min(100, val))
@@ -27,20 +30,21 @@ AFFILIATE_MATRIX = {
     'joint_risk': {'action': 'Use a Shiatsu Knee & Leg Massager', 'link': 'https://amzn.to/3ZVFPI1'},
     'migraine_risk': {'action': 'Try a Smart Eye Massager with Heat', 'link': 'https://amzn.to/4rEDJsc'},
     'respiratory_risk': {'action': 'Get a Medical-Grade Humidifier', 'link': 'https://amzn.to/3OwcilH'},
-    'pollen_risk': {'action': 'Deploy a HEPA Robot Vacuum', 'link': 'https://amzn.to/4ccHgZV'},
+    'allergen_risk': {'action': 'Deploy a HEPA Robot Vacuum', 'link': 'https://amzn.to/4ccHgZV'},
     'skin_risk': {'action': 'Install a Hard Water Shower Filter', 'link': 'https://amzn.to/4aPrKRk'}
 }
 
 def get_risk_metadata(score, metric_name):
     """Takes a 0-100 score and returns mapping dict for UI labels & affiliate hooks."""
     score = round(score)
+    remedy = AFFILIATE_MATRIX.get(metric_name)
+    
     if score < 33:
-        text, color, remedy = "Low", "text-emerald-400", None
+        text, color = "Low", "text-emerald-400"
     elif score < 66:
-        text, color, remedy = "Medium", "text-yellow-400", None
+        text, color = "Medium", "text-yellow-400"
     else:
         text, color = "High", "text-rose-400"
-        remedy = AFFILIATE_MATRIX.get(metric_name)
 
     return {
         'value': score,
@@ -225,6 +229,7 @@ def generate_pages():
     city_template = env.get_template('city.html')
     india_template = env.get_template('india.html')
     state_template = env.get_template('state.html')
+    intent_template = env.get_template('intent_base.html')
 
     # Ensure output directories exist
     os.makedirs(DOCS_DIR, exist_ok=True)
@@ -278,6 +283,9 @@ def generate_pages():
     print(f"Successfully generated {state_count} State Silo pages.")
 
     # --- 4. Generate Individual City Dashboards ---
+    base_url = "https://cityhealth360.in"
+    urls = [f"{base_url}/"]
+    
     generated_count = 0
     for index, row in df.iterrows():
         city_name = row['city']
@@ -306,15 +314,26 @@ def generate_pages():
         aqi = row.get('aqi', 50)
         pressure = row.get('pressure', 1013)
         precip = row.get('rain', 0)
-        pollen_level = row.get('pollen_level', 0)
+        pm10 = row.get('pm10', 0)
+        pm10 = float(pm10) if pd.notna(pm10) else 0.0
+        pm2_5 = row.get('pm2_5', 0)
+        pm2_5 = float(pm2_5) if pd.notna(pm2_5) else 0.0
+        wind_gusts = row.get('wind_gusts', 0)
+        wind_gusts = float(wind_gusts) if pd.notna(wind_gusts) else 0.0
         
+        # Proxy Allergen Calculation
+        # PM10 is the primary driver of physical dust allergies in India. Wind acts as a multiplier.
+        pm10_base = min((pm10 / 100) * 50, 50) # Cap at 50
+        wind_multiplier = min((wind_gusts / 40) * 30, 30) # High winds spread dust (Cap at 30)
+        pm25_base = min((pm2_5 / 100) * 20, 20) # General irritation (Cap at 20)
+        
+        allergen_risk = min(pm10_base + wind_multiplier + pm25_base, 100)
         # Core Risk Factors
         aqi_risk = clamp((aqi / 300) * 100)
         uv_risk = clamp((uv / 11) * 100)
         hi = temp + (0.33 * humidity) - (0.70 * wind) - 4
         heat_stress = clamp(((hi - 22) / 23) * 100)
         cold_stress = clamp(((18 - temp) / 15) * 100) if temp < 18 else 0
-        pollen_risk = clamp((pollen_level / 5) * 100)
         humidity_discomfort = clamp((abs(humidity - 50) / 50) * 100)
         
         # Vector & Pain Metrics
@@ -337,7 +356,7 @@ def generate_pages():
         respiratory_risk = clamp((0.5 * aqi_risk) + (0.3 * humidity_discomfort) + (0.2 * cold_stress))
         
         # Master Indices
-        composite_risk = clamp((0.20 * aqi_risk) + (0.15 * heat_stress) + (0.15 * mosquito_risk) + (0.10 * uv_risk) + (0.10 * joint_risk) + (0.10 * migraine_risk) + (0.10 * elderly_risk) + (0.10 * pollen_risk))
+        composite_risk = clamp((0.20 * aqi_risk) + (0.15 * heat_stress) + (0.15 * mosquito_risk) + (0.10 * uv_risk) + (0.10 * joint_risk) + (0.10 * migraine_risk) + (0.10 * elderly_risk) + (0.10 * allergen_risk))
         city_health_score = clamp(100 - composite_risk)
 
         # Retrieve Timeline Data
@@ -345,8 +364,11 @@ def generate_pages():
         future_aqis = city_timeline["aqis"][8:] if len(city_timeline["aqis"]) > 8 else []
         show_future_forecast_warning = any(a > 150 for a in future_aqis)
 
+        city_dict = row.to_dict()
+        city_dict['slug'] = slug
+
         context = {
-            'city': row.to_dict(),
+            'city': city_dict,
             'metadata': city_meta,
             'date': today_date,
             'canonical_url': f'https://cityhealth360.in/docs/{slug}.html',
@@ -365,7 +387,7 @@ def generate_pages():
             
             # The 15 Sub-Metrics formatted as dicts
             'aqi_risk': get_risk_metadata(aqi_risk, 'aqi_risk'),
-            'pollen_risk': get_risk_metadata(pollen_risk, 'pollen_risk'),
+            'allergen_risk': get_risk_metadata(allergen_risk, 'allergen_risk'),
             'respiratory_risk': get_risk_metadata(respiratory_risk, 'respiratory_risk'),
             'humidity_discomfort': get_risk_metadata(humidity_discomfort, 'humidity_discomfort'),
             'cold_stress': get_risk_metadata(cold_stress, 'cold_stress'),
@@ -386,18 +408,103 @@ def generate_pages():
         
         with open(output_path, 'w', encoding='utf-8') as f:
             f.write(output_html)
+            
+        # --- 5. Generate 10 SEO Intent Pages (Top 20 Cities Only) ---
+        if slug in TOP_20_CITIES:
+            # Reusable helper to generate standard format based on topic
+            def build_intent_data(slug_suffix, title_prefix, h1_topic, topic_risk_measure, advisory_q, advisory_a, extra_q=None, extra_a=None, extra_info=None):
+                faq = [{"q": advisory_q, "a": advisory_a}]
+                if extra_q and extra_a:
+                    faq.append({"q": extra_q, "a": extra_a})
+                    
+                return {
+                    "intent_slug": f"{slug}-{slug_suffix}",
+                    "title": f"{title_prefix} in {city_name} today? | Live Index",
+                    "h1": f"{h1_topic} Index in {city_name} Today",
+                    "h2_1": f"Current {h1_topic} Risks in {city_name}",
+                    "h2_2": f"Health Recommendations & Preventative Gear",
+                    "topic_risk_measure": topic_risk_measure,
+                    "faq": faq,
+                    "extra_info": extra_info
+                }
+
+            today_max_temp = temp
+            today_min_temp = min_temp
+            if len(city_timeline["max_temps"]) > 7:
+                today_max_temp = round(city_timeline["max_temps"][7])
+            if len(city_timeline["min_temps"]) > 7:
+                today_min_temp = round(city_timeline["min_temps"][7])
+                
+            intents = [
+                build_intent_data(
+                    "aqi-today", "Is the AQI safe", "Air Quality (AQI)", get_risk_metadata(aqi_risk, 'aqi_risk'),
+                    f"Is it safe to go outside in {city_name} with current AQI?", f"The current AQI risk score is {round(aqi_risk)}/100. If above 50, sensitive groups should limit exertion.",
+                    f"Do I need an air purifier in {city_name} today?", f"Yes, especially if proper ventilation is lacking and AQI exceeds 100.",
+                    extra_info={"label": "Actual Live AQI Level", "value": f"{round(aqi)}"}
+                ),
+                build_intent_data(
+                    "best-time-outside", "When is the best time to go outside", "Safe Outdoor Windows", get_risk_metadata(humidity_discomfort, 'humidity_discomfort'),
+                    f"What is the safest time for outdoor activities in {city_name} today?", f"Avoid peak UV and heat hours between 11 AM and 4 PM. Early morning or late evening is optimal.",
+                    extra_info={"label": "Today's Temperature Range", "value": f"{today_min_temp}°C - {today_max_temp}°C"}
+                ),
+                build_intent_data(
+                    "kids-safety", "Is it safe for kids to play outside", "Kids Outdoor Safety", get_risk_metadata(aqi_risk, 'aqi_risk'),
+                    f"What is the safest time for kids to play outside in {city_name} today?", f"Based on today's forecast, the safest window avoids peak sun and smog, typically before 9 AM or after 5 PM.",
+                    f"Should my child wear a mask to school in {city_name} today?", f"With a current AQI risk score of {round(aqi_risk)}, if it is elevated, an N95 mask is highly recommended during their commute."
+                ),
+                build_intent_data(
+                    "allergen-dust-risk", "Live Dust & Allergen Index", "Airborne Dust & Allergen Forecast", get_risk_metadata(allergen_risk, 'allergen_risk'),
+                    f"Are allergy levels high in {city_name} today?", f"Based on current PM10 dust levels and wind dispersion, the localized allergen risk score is {round(allergen_risk)}/100.",
+                    f"What is causing allergies in {city_name} right now?", f"In {city_name}, primary airborne triggers are coarse particulate matter (PM10) driven by wind gusts of {round(wind_gusts)} km/h, rather than traditional tree pollen."
+                ),
+                build_intent_data(
+                    "heat-stroke-risk", "Is there a heat stroke risk", "Heat Stroke Risk", get_risk_metadata(heat_stress, 'heat_stress'),
+                    f"What is the heat stroke risk in {city_name} today?", f"The heat stress score is {round(heat_stress)}/100. Values over 60 signify severe risk to outdoor workers.",
+                    extra_info={"label": "Today's Temperature Range", "value": f"{today_min_temp}°C - {today_max_temp}°C"}
+                ),
+                build_intent_data(
+                    "elderly-risk", "Is it safe for the elderly", "Elderly Health Risk", get_risk_metadata(elderly_risk, 'elderly_risk'),
+                    f"What precautions should seniors take in {city_name} today?", f"Seniors face a combined risk score of {round(elderly_risk)}/100. Stay indoors in climate-controlled environments if the score is elevated."
+                ),
+                build_intent_data(
+                    "sleep-forecast", "Will I sleep well", "Sleep Disruption Forecast", get_risk_metadata(sleep_disruption, 'sleep_disruption'),
+                    f"Why is it hard to sleep in {city_name} tonight?", f"The sleep disruption index is {round(sleep_disruption)}/100, driven by temperature fluctuations and indoor air stagnation."
+                ),
+                build_intent_data(
+                    "skin-hair-impact", "How will weather affect my skin", "Skin & Hair Impact", get_risk_metadata(skin_risk, 'skin_risk'),
+                    f"Do I need sunscreen in {city_name} today?", f"The skin risk index stands at {round(skin_risk)}/100. Apply SPF 50+ when UV risk is high.",
+                    f"How to protect hair from humidity in {city_name}?", f"Humidity discomfort is {round(humidity_discomfort)}/100. Use anti-frizz serums and avoid prolonged exposure."
+                ),
+                build_intent_data(
+                    "health-ranking", "Is this a healthy city", "City Health Ranking", get_risk_metadata(city_health_score, 'city_health_score'),
+                    f"Where does {city_name} rank in health?", f"The master health score is {round(city_health_score)}/100 compared to other Indian metros.",
+                    f"How does {city_name} compare to national averages?", f"Review the National Overview dashboard to see live rankings."
+                )
+            ]
+            
+            if slug != 'delhi':
+                intents.append(build_intent_data(
+                    "vs-delhi-air-quality", f"Is {city_name} air quality worse than Delhi", "Comparison vs Delhi", get_risk_metadata(aqi_risk, 'aqi_risk'),
+                    f"How does {city_name} AQI compare to Delhi today?", f"{city_name} has a live AQI index risk of {round(aqi_risk)}/100. Delhi historically maintains higher toxicity, but local industrial factors vary."
+                ))
+            
+            for intent in intents:
+                intent_context = context.copy()
+                intent_context["intent_data"] = intent
+                
+                # Render and save the intent page
+                intent_html = intent_template.render(intent_context)
+                intent_output_path = os.path.join(DOCS_DIR, f"{intent['intent_slug']}.html")
+                with open(intent_output_path, 'w', encoding='utf-8') as f:
+                    f.write(intent_html)
+                
+                urls.append(f"{base_url}/docs/{intent['intent_slug']}.html")
         
         generated_count += 1
 
-    print(f"Successfully generated {generated_count} city pages.")
+    print(f"Successfully generated {generated_count} city pages (plus 10 unique intent pages for each of the Top 20).")
 
     # --- Generate Sitemap ---
-    base_url = "https://cityhealth360.in"
-    urls = [f"{base_url}/"]
-    
-    for index, row in df.iterrows():
-        city_slug = str(row['city']).lower().replace(" ", "-")
-        urls.append(f"{base_url}/docs/{city_slug}.html")
         
     xml_content = ['<?xml version="1.0" encoding="UTF-8"?>']
     xml_content.append('<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">')

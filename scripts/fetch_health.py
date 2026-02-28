@@ -181,7 +181,7 @@ def fetch_weather_bulk(chunk):
         "latitude": lats,
         "longitude": lons,
         "current": ["temperature_2m", "relative_humidity_2m", "rain", "surface_pressure", "dew_point_2m"],
-        "daily": ["uv_index_max"],
+        "daily": ["uv_index_max", "wind_gusts_10m_max"],
         "timezone": "Asia/Kolkata",
         "forecast_days": 1
     }
@@ -202,7 +202,7 @@ def fetch_aqi_bulk(chunk):
     params = {
         "latitude": lats,
         "longitude": lons,
-        "current": ["us_aqi"],
+        "current": ["us_aqi", "pm10", "pm2_5"],
         "timezone": "Asia/Kolkata"
     }
     try:
@@ -313,6 +313,12 @@ def main():
                      uv_index = daily_weather["uv_index_max"][0]
 
                 aqi = current_aqi.get("us_aqi", 0)
+                pm10 = current_aqi.get("pm10", 0)
+                pm2_5 = current_aqi.get("pm2_5", 0)
+
+                wind_gusts = 0
+                if "wind_gusts_10m_max" in daily_weather and daily_weather["wind_gusts_10m_max"]:
+                     wind_gusts = daily_weather["wind_gusts_10m_max"][0]
 
                 mosquito_risk = calculate_mosquito_risk(temp, humidity, rain)
                 arthritis_risk = calculate_arthritis_risk(pressure, humidity, temp)
@@ -328,7 +334,10 @@ def main():
                     "rain": rain,
                     "pressure": pressure,
                     "uv_index": uv_index,
+                    "wind_gusts": wind_gusts,
                     "aqi": aqi,
+                    "pm10": pm10,
+                    "pm2_5": pm2_5,
                     "mosquito_risk": mosquito_risk,
                     "arthritis_risk": arthritis_risk,
                     "migraine_risk": migraine_risk,
