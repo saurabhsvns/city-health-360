@@ -41,34 +41,7 @@ AQI: " ~ city.aqi ~ ". Check hospital lists and safe zones." %}
 
 <main class="max-w-4xl mx-auto px-4 py-8 space-y-8">
 
-    <!-- OVERPASS RADAR UI -->
-    <div class="mt-6 mb-8 bg-gray-900 border border-red-900/50 rounded-xl p-5 shadow-lg relative overflow-hidden">
-        <div
-            class="absolute top-0 right-0 -mt-4 -mr-4 w-24 h-24 bg-red-600 rounded-full opacity-10 blur-2xl animate-pulse">
-        </div>
 
-        <h3 class="text-xl font-bold text-white mb-2">📍 Neighborhood Threat Radar</h3>
-        <p class="text-sm text-gray-400 mb-4">Scan your immediate 5km radius for hidden pollution emitters (factories,
-            landfills, and industrial zones).</p>
-
-        <button id="scan-radar-btn" onclick="startRadarScan()"
-            class="w-full sm:w-auto px-6 py-3 bg-red-600 hover:bg-red-700 text-white font-bold rounded-lg transition shadow-[0_0_15px_rgba(220,38,38,0.5)]">
-            📡 Scan My Location
-        </button>
-
-        <div id="radar-results" class="hidden mt-6 pt-4 border-t border-gray-800">
-            <div id="radar-loading" class="text-yellow-400 text-sm animate-pulse hidden">Scanning local topography...
-            </div>
-            <ul id="hazard-list" class="space-y-3 mb-4"></ul>
-            <div id="radar-action" class="hidden">
-                <p class="text-xs text-red-300 mb-2">⚠️ Proximity to these zones drastically reduces indoor air quality.
-                </p>
-                <a href="https://amzn.to/YOUR_LINK" target="_blank"
-                    class="block text-center text-sm font-bold bg-gray-800 hover:bg-gray-700 text-white py-2 rounded border border-gray-600">Shop
-                    Heavy-Duty Air Purifiers ↗</a>
-            </div>
-        </div>
-    </div>
     <!-- 1. The 15 Risk Metrics (Low/Medium/High) -->
     <section class="grid grid-cols-1 md:grid-cols-3 gap-6">
 
@@ -175,6 +148,35 @@ AQI: " ~ city.aqi ~ ". Check hospital lists and safe zones." %}
             </div>
         </div>
     </section>
+
+    <!-- OVERPASS RADAR UI -->
+    <div class="mt-6 mb-8 bg-gray-900 border border-red-900/50 rounded-xl p-5 shadow-lg relative overflow-hidden">
+        <div
+            class="absolute top-0 right-0 -mt-4 -mr-4 w-24 h-24 bg-red-600 rounded-full opacity-10 blur-2xl animate-pulse">
+        </div>
+
+        <h3 class="text-xl font-bold text-white mb-2">📍 Neighborhood Threat Radar</h3>
+        <p class="text-sm text-gray-400 mb-4">Scan your immediate 5km radius for hidden pollution emitters (factories,
+            landfills, and industrial zones).</p>
+
+        <button id="scan-radar-btn" onclick="startRadarScan()"
+            class="w-full sm:w-auto px-6 py-3 bg-red-600 hover:bg-red-700 text-white font-bold rounded-lg transition shadow-[0_0_15px_rgba(220,38,38,0.5)]">
+            📡 Scan My Location
+        </button>
+
+        <div id="radar-results" class="hidden mt-6 pt-4 border-t border-gray-800">
+            <div id="radar-loading" class="text-yellow-400 text-sm animate-pulse hidden">Scanning local topography...
+            </div>
+            <ul id="hazard-list" class="space-y-3 mb-4"></ul>
+            <div id="radar-action" class="hidden">
+                <p class="text-xs text-red-300 mb-2">⚠️ Proximity to these zones drastically reduces indoor air quality.
+                </p>
+                <a href="https://amzn.to/YOUR_LINK" target="_blank"
+                    class="block text-center text-sm font-bold bg-gray-800 hover:bg-gray-700 text-white py-2 rounded border border-gray-600">Shop
+                    Heavy-Duty Air Purifiers ↗</a>
+            </div>
+        </div>
+    </div>
 
     <!-- Local Action Center -->
     <div class="mt-8 pt-6 border-t border-slate-700/50">
