@@ -4,10 +4,10 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Is Kannur Safe Today? Health & AQI Forecast Mar 02, 05:04 PM</title>
+    <title>Is Kannur Safe Today? Health & AQI Forecast Mar 02, 05:47 PM</title>
     <meta name="description"
         content="Daily health report for Kannur travelers. Mosquito risk: 7/10.
-AQI: 55. Check hospital lists and safe zones.">
+AQI: 66. Check hospital lists and safe zones.">
     
     <link rel="canonical" href="https://cityhealth360.in/docs/kannur.html">
     
@@ -92,13 +92,17 @@ AQI: 55. Check hospital lists and safe zones.">
                         class="flex items-center gap-1.5 text-slate-300 hover:text-white transition-colors">
                         🌍 India Map
                     </a>
+                    <a href="../docs/interactive-tools.html"
+                        class="flex items-center gap-1.5 text-slate-300 hover:text-white transition-colors">
+                        🫁 Interactive Tests
+                    </a>
                 </div>
 
                 <!-- Last Update Timestamp -->
                 <div class="hidden sm:block text-right border-r border-slate-700 pr-4">
                     <div class="text-[10px] sm:text-xs font-bold uppercase tracking-widest text-slate-500 mb-0.5">Last
                         Update</div>
-                    <div class="font-mono text-blue-300 text-[10px] sm:text-xs">Mar 02, 05:04 PM</div>
+                    <div class="font-mono text-blue-300 text-[10px] sm:text-xs">Mar 02, 05:47 PM</div>
                 </div>
 
                 <!-- City Dropdown Functionality -->
@@ -124,7 +128,7 @@ AQI: 55. Check hospital lists and safe zones.">
     <div class="relative z-20 max-w-4xl mx-auto px-4 h-full flex flex-col justify-end pb-12">
         <div class="flex items-end gap-6 mb-4">
             <h1 class="text-5xl md:text-6xl font-bold text-white tracking-tight">Kannur</h1>
-            <span class="text-3xl font-light text-slate-300 pb-1">29.4°C</span>
+            <span class="text-3xl font-light text-slate-300 pb-1">29.0°C</span>
         </div>
         <p class="text-lg text-slate-300 max-w-2xl mb-8">Known for its pristine beaches, handloom industry, and Theyyam rituals.</p>
 
@@ -133,7 +137,7 @@ AQI: 55. Check hospital lists and safe zones.">
             class="flex items-center gap-6 p-6 glass-card rounded-2xl w-full md:w-auto inline-flex border border-white/10">
             <div
                 class="relative w-24 h-24 flex items-center justify-center rounded-full border-4 border-yellow-500 text-yellow-400 shadow-lg bg-slate-900/50">
-                <span class="text-4xl font-black">48</span>
+                <span class="text-4xl font-black">47</span>
             </div>
             <div class="space-y-1">
                 <h2 class="text-2xl font-bold text-white tracking-wide">Health Score</h2>
@@ -361,8 +365,8 @@ AQI: 55. Check hospital lists and safe zones.">
                 <div class="flex flex-col pb-2 border-b border-white/5">
                     <div class="flex justify-between items-center">
                         <span class="text-slate-400">Mosquito Risk</span>
-                        <span class="font-bold text-yellow-400">
-                            Medium
+                        <span class="font-bold text-rose-400">
+                            High
                         </span>
                     </div>
                     
@@ -457,6 +461,12 @@ AQI: 55. Check hospital lists and safe zones.">
             
 
             
+            <a href="https://www.google.com/maps/search/?api=1&query=Dengue+Testing+Lab+in+Kannur"
+                target="_blank" rel="noopener noreferrer"
+                class="inline-flex items-center px-4 py-2 text-sm font-medium text-rose-100 bg-rose-900/30 border border-rose-800 rounded-full hover:bg-rose-900/50 transition-colors">
+                🩸 Dengue Testing Labs
+            </a>
+            
 
             
             <a href="https://www.google.com/maps/search/?api=1&query=24+Hour+Pharmacy+in+Kannur"
@@ -467,6 +477,44 @@ AQI: 55. Check hospital lists and safe zones.">
             
 
         </div>
+    </div>
+
+    <!-- BREATH TEST UI -->
+    <div class="mt-8 bg-gray-900 border border-blue-900/50 rounded-xl p-5 shadow-lg text-center">
+        <h3 class="text-xl font-bold text-white mb-2">🫁 The 30-Second Lung Challenge</h3>
+        <p class="text-sm text-gray-400 mb-4 px-2">High AQI reduces lung elasticity. Test your baseline respiratory
+            endurance right now.</p>
+
+        <div class="flex justify-center items-center my-6">
+            <div id="breath-circle"
+                class="w-32 h-32 rounded-full border-4 border-blue-600 flex items-center justify-center transition-all duration-500 shadow-[0_0_15px_rgba(37,99,235,0.3)]">
+                <span id="breath-timer" class="text-4xl font-mono font-bold text-white">0.0s</span>
+            </div>
+        </div>
+
+        <div class="flex flex-col sm:flex-row gap-3 justify-center items-center">
+            <button id="btn-start-breath" onclick="startBreathTest()"
+                class="w-full sm:w-auto px-8 py-3 bg-blue-600 hover:bg-blue-700 text-white font-bold rounded-full transition shadow-md">
+                Inhale & Start Timer
+            </button>
+            <button id="btn-stop-breath" onclick="stopBreathTest()"
+                class="hidden w-full sm:w-auto px-8 py-3 bg-red-600 hover:bg-red-700 text-white font-bold rounded-full transition shadow-md">
+                Release Breath
+            </button>
+            <button id="btn-reset-breath" onclick="resetBreathTest()"
+                class="hidden w-full sm:w-auto px-8 py-3 bg-slate-700 hover:bg-slate-600 text-white font-bold rounded-full transition shadow-md">
+                Back to Default
+            </button>
+        </div>
+
+        <div id="breath-results" class="hidden mt-6 p-4 rounded-lg bg-gray-800 border border-gray-700">
+            <h4 id="result-title" class="text-lg font-bold text-white mb-1"></h4>
+            <p id="result-desc" class="text-sm text-gray-300 mb-4"></p>
+            <div id="result-action"></div>
+        </div>
+
+        <p class="text-[10px] text-gray-500 mt-4 uppercase tracking-wider">Disclaimer: Not a medical diagnostic tool.
+            For informational purposes only.</p>
     </div>
 
     <!-- 2. 15-Day Health Radar (Past & Forecast) -->
@@ -557,6 +605,16 @@ AQI: 55. Check hospital lists and safe zones.">
         
         <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
             
+            <a href="https://news.google.com/rss/articles/CBMiwAFBVV95cUxPeGh4Tl9SVWVBWEtYTU85QlF3NzVYSzZuNVNxeGhjZGY1aDduVGFmS0FtWC1iR184U0dhSWhSN0IyVUtXTnh6NEhiOGVvSVltbmVuX0NfcW9LR0w3WVZyNmNHQUZQODV0QVVvdmtYcWpWb2hINnNycUdSdzNjWGNiYWVqNGZQUzMwcXV3YlRBMDlGN0tiaWxFWkVvbEN3azlMUmtPS2QwOWRlcS0tS21ZTkd0N2huZEtBZ2F2eGZ4Q0o?oc=5" target="_blank" rel="noopener noreferrer"
+                class="block p-4 bg-slate-800/50 rounded-xl border border-slate-700/50 hover:bg-slate-700/50 transition-colors group">
+                <h3 class="text-lg font-semibold text-slate-200 group-hover:text-emerald-400 transition-colors mb-2">
+                    Kerala Health Minister Veena George discharged from Kannur hospital after protest injuries - The News Mill</h3>
+                <div class="flex justify-between items-center text-sm text-slate-400">
+                    <span>The News Mill</span>
+                    <span>02 Mar 2026</span>
+                </div>
+            </a>
+            
             <a href="https://news.google.com/rss/articles/CBMigwJBVV95cUxPR05UN2htSkd3R24yVnhTRFdYWXZOYUpqcUVFUk0wTUFMRFBwSG5RcUE2bW4tcDBIdzAwZ1dzODRuc2pHODhZYUd5MTA5M3ZSWWljU2ZJT3FBVHlpa0tHYnN1dV95ZjZ3RWYwQXMwNVE0eF9fbGNyWVJfSGtrcXVLNjNkMGJWeVlJclNNaG5mUFU5VEpnV1FwWlM2Qm9HSUwwdkg3YWd1MENSSjZDWFd5N3U0bzZwRkJ2WFJGTnprVWxWUFM2RE9QN1o4aFFCYWVScXRwbzBBQ1VkVmdrT3lQbi1pSkg1dDI3bGZRZGNRWDNSRTNOdTQ5WDRkR1Zrd1ktSGZz0gGKAkFVX3lxTE5iWE83T0hYWllfdTMtMWhTUDlJNnJRaU0zSXcwcU10M1IyMmRWS2s5SmdCOWxwMXZZZjA2X3Fldm5vNW1TN0l6LU9nNUYteHdIMTEzbnh1VGxVSjZwRVBuSTVGV3N4VUpqb0tEb2czRGQ2aGY5R0NxUFcyeGwwT25xdlBLZnV5a0Z2cHRuOTF3WWo4QWwxMXFOTW5YSzYxMUxsS1NxVGFrTHhNUmE3RnBIRXVXbldQMG9URkJFQVF3eW11b3FScjA4OWxqanY5UjJBbkVrVDB0V2ZxaTFaZEluRi15MmFQZ3hTSmV1ZGh5RnhoQTFiOTFSX3A1TlpFZjRLamEySVhnVHJR?oc=5" target="_blank" rel="noopener noreferrer"
                 class="block p-4 bg-slate-800/50 rounded-xl border border-slate-700/50 hover:bg-slate-700/50 transition-colors group">
                 <h3 class="text-lg font-semibold text-slate-200 group-hover:text-emerald-400 transition-colors mb-2">
@@ -577,16 +635,6 @@ AQI: 55. Check hospital lists and safe zones.">
                 </div>
             </a>
             
-            <a href="https://news.google.com/rss/articles/CBMi0gFBVV95cUxQMmdGYzE5WWhYaDNQU1FSbTJXNTRNZy1GS1RhS0tvWnlDQkxLVnhLRS1OY1lqU1BDWENZcVY0S3NLY19HdU85M3NlUG1jdjhDZUFRa3ZtSGwyWFFwc0dyQlZPMzRVaExpbXlwZFdJcGpWTUJXM05RSFJVel9UTnVOa1BkbnFKZ1ctX0pHcGdmVXBmbG9qQ2FsNGFLVUZKQkV5NEM2b2E3MGtfdEJnd1NtVm1qZzRzbGd4NS1xbDV4M1hSOVVxNlFZSl9zazk0ZjFjckHSAd8BQVVfeXFMT1U2T0lFZEFhNzhFR1g0Q3FlSVp6S0NwU1RaM0pUeTU2UGowMFViV0dNT1NGRTFRZUVxcHBTX08xdkg3R3lKVHd3dVE2R2M4UDVqRTdObFZGQ0J2TmlqQ19YVFhkZnJxcFpBZ1pJNXFQUG9abkpNdVRKd2dNNHhGdUgyZlQxMFk4eXFXMERvaHNtUlNaZF9kYmpNVVJ6Z3RBYlFoNUNUQWx2Y0J6ejI5SHZFOUs3T2xLdTltRGlqejZjZkliSmNiTFVkakZsTHFCQ0hPalFsRFhPWVYtem41aw?oc=5" target="_blank" rel="noopener noreferrer"
-                class="block p-4 bg-slate-800/50 rounded-xl border border-slate-700/50 hover:bg-slate-700/50 transition-colors group">
-                <h3 class="text-lg font-semibold text-slate-200 group-hover:text-emerald-400 transition-colors mb-2">
-                    Kerala Health Minister Veena George injured during protest at Kannur railway station - The New Indian Express</h3>
-                <div class="flex justify-between items-center text-sm text-slate-400">
-                    <span>The New Indian Express</span>
-                    <span>25 Feb 2026</span>
-                </div>
-            </a>
-            
         </div>
         
     </section>
@@ -599,7 +647,7 @@ AQI: 55. Check hospital lists and safe zones.">
 <footer class="bg-slate-900 border-t border-slate-800 py-8 mt-12">
     <div class="max-w-4xl mx-auto px-4 text-center text-slate-500 text-sm flex flex-col items-center">
         <div class="text-[10px] sm:text-xs font-bold uppercase tracking-widest mb-1">Last Update</div>
-        <div class="font-mono text-blue-300">Mar 02, 05:04 PM</div>
+        <div class="font-mono text-blue-300">Mar 02, 05:47 PM</div>
         <p class="mt-4">Data sources: Open-Meteo, Local Health Indices.</p>
         <a href="../index.html"
             class="inline-block mt-4 text-emerald-400 hover:text-emerald-300 underline font-medium">View Full
@@ -869,6 +917,118 @@ AQI: 55. Check hospital lists and safe zones.">
             Math.sin(dLon / 2) * Math.sin(dLon / 2);
         const c = 2 * Math.atan2(Math.sqrt(a), Math.sqrt(1 - a));
         return R * c;
+    }
+</script>
+
+<script>
+    let breathInterval;
+    let startTime;
+    let isTesting = false;
+
+    function startBreathTest() {
+        const timerDisplay = document.getElementById('breath-timer');
+        const startBtn = document.getElementById('btn-start-breath');
+        const stopBtn = document.getElementById('btn-stop-breath');
+        const resetBtn = document.getElementById('btn-reset-breath');
+        const circle = document.getElementById('breath-circle');
+        const resultsDiv = document.getElementById('breath-results');
+
+        // Reset UI
+        resultsDiv.classList.add('hidden');
+        timerDisplay.innerText = "0.0s";
+        circle.classList.add('scale-110', 'border-red-500', 'shadow-[0_0_25px_rgba(239,68,68,0.5)]');
+        circle.classList.remove('border-blue-600', 'shadow-[0_0_15px_rgba(37,99,235,0.3)]');
+
+        startBtn.classList.add('hidden');
+        stopBtn.classList.remove('hidden');
+        if (resetBtn) resetBtn.classList.remove('hidden');
+
+        // Start Timer
+        isTesting = true;
+        startTime = Date.now();
+
+        breathInterval = setInterval(() => {
+            let elapsedTime = (Date.now() - startTime) / 1000;
+            if (elapsedTime >= 90) {
+                stopBreathTest(90);
+            } else {
+                timerDisplay.innerText = elapsedTime.toFixed(1) + "s";
+            }
+        }, 100);
+    }
+
+    function stopBreathTest(forcedTime = null) {
+        if (!isTesting) return;
+
+        clearInterval(breathInterval);
+        isTesting = false;
+
+        const finalTime = forcedTime || ((Date.now() - startTime) / 1000);
+        document.getElementById('breath-timer').innerText = finalTime.toFixed(1) + "s";
+
+        // Update UI
+        document.getElementById('btn-stop-breath').classList.add('hidden');
+        const startBtn = document.getElementById('btn-start-breath');
+        startBtn.classList.remove('hidden');
+        startBtn.innerText = "Try Again";
+
+        const circle = document.getElementById('breath-circle');
+        circle.classList.remove('scale-110', 'border-red-500', 'shadow-[0_0_25px_rgba(239,68,68,0.5)]');
+        circle.classList.add('border-blue-600');
+
+        showResults(finalTime);
+    }
+
+    function resetBreathTest() {
+        clearInterval(breathInterval);
+        isTesting = false;
+
+        document.getElementById('breath-timer').innerText = "0.0s";
+        const startBtn = document.getElementById('btn-start-breath');
+        startBtn.classList.remove('hidden');
+        startBtn.innerText = "Inhale & Start Timer";
+        document.getElementById('btn-stop-breath').classList.add('hidden');
+
+        const resetBtn = document.getElementById('btn-reset-breath');
+        if (resetBtn) resetBtn.classList.add('hidden');
+
+        const circle = document.getElementById('breath-circle');
+        circle.classList.remove('scale-110', 'border-red-500', 'shadow-[0_0_25px_rgba(239,68,68,0.5)]');
+        circle.classList.add('border-blue-600', 'shadow-[0_0_15px_rgba(37,99,235,0.3)]');
+
+        document.getElementById('breath-results').classList.add('hidden');
+    }
+
+    function showResults(seconds) {
+        const resultsDiv = document.getElementById('breath-results');
+        const title = document.getElementById('result-title');
+        const desc = document.getElementById('result-desc');
+        const action = document.getElementById('result-action');
+
+        resultsDiv.classList.remove('hidden');
+
+        // Logic & Monetization Routing
+        if (seconds < 20) {
+            title.innerText = "⚠️ Below Average";
+            title.className = "text-lg font-bold text-red-400 mb-1";
+            desc.innerText = "Under 20 seconds may indicate reduced lung capacity or heavy exposure to current AQI levels.";
+            action.innerHTML = `
+            <a href="https://amzn.to/YOUR_PURIFIER_LINK" target="_blank" class="block w-full text-center text-sm font-bold bg-red-600 hover:bg-red-700 text-white py-2 rounded mb-2">Protect Lungs: Shop HEPA Purifiers</a>
+            <a href="https://www.google.com/maps/search/Pulmonologist+in+Kannur" target="_blank" class="block w-full text-center text-sm font-medium border border-red-500 text-red-400 hover:bg-red-900/30 py-2 rounded">📍 Find Local Pulmonologist</a>
+            `;
+        } else if (seconds < 40) {
+            title.innerText = "🟡 Average / Good";
+            title.className = "text-lg font-bold text-yellow-400 mb-1";
+            desc.innerText = "Your respiratory endurance is standard. Maintain it by avoiding outdoor exposure during high smog hours.";
+            action.innerHTML = `
+            <a href="https://amzn.to/YOUR_N95_LINK" target="_blank" class="block w-full text-center text-sm font-bold bg-yellow-600 hover:bg-yellow-700 text-white py-2 rounded">Maintain Health: Get N95 Masks</a>
+            `;
+        } else {
+            title.innerText = "🟢 Excellent";
+            title.className = "text-lg font-bold text-green-400 mb-1";
+            desc.innerText = "Strong lung capacity! You are currently mitigating environmental factors well.";
+            action.innerHTML = ``; // No hard sell for healthy users
+        }
     }
 </script>
 
