@@ -504,6 +504,21 @@ def generate_pages():
 
     print(f"Successfully generated {generated_count} city pages (plus 10 unique intent pages for each of the Top 20).")
 
+    # --- Generate Interactive Tools Page ---
+    interactive_template = env.get_template('interactive_tools.html')
+    interactive_context = {
+        'date': today_date,
+        'title': 'Interactive Health Diagnostics | City Health 360',
+        'description': 'Test your respiratory endurance with the 30-Second Lung Capacity Challenge and scan local environmental threats instantly with the Neighborhood Threat Radar. Maintain environmental health in your city with City Health 360.',
+        'canonical_url': f"{base_url}/docs/interactive-tools.html"
+    }
+    interactive_html = interactive_template.render(interactive_context)
+    interactive_out = os.path.join(DOCS_DIR, 'interactive-tools.html')
+    with open(interactive_out, 'w', encoding='utf-8') as f:
+        f.write(interactive_html)
+    urls.append(f"{base_url}/docs/interactive-tools.html")
+    print(f"Generated: {interactive_out}")
+
     # --- Generate Sitemap ---
         
     xml_content = ['<?xml version="1.0" encoding="UTF-8"?>']
