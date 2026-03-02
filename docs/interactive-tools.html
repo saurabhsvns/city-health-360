@@ -101,7 +101,7 @@
                 <div class="hidden sm:block text-right border-r border-slate-700 pr-4">
                     <div class="text-[10px] sm:text-xs font-bold uppercase tracking-widest text-slate-500 mb-0.5">Last
                         Update</div>
-                    <div class="font-mono text-blue-300 text-[10px] sm:text-xs">Mar 02, 11:19 PM</div>
+                    <div class="font-mono text-blue-300 text-[10px] sm:text-xs">Mar 02, 11:38 PM</div>
                 </div>
 
                 <!-- City Dropdown Functionality -->
@@ -119,6 +119,29 @@
     <!-- Main Content -->
     <main class="flex-grow">
         
+<style>
+    @keyframes shake {
+
+        0%,
+        100% {
+            transform: translateX(0);
+        }
+
+        20%,
+        60% {
+            transform: translateX(-8px);
+        }
+
+        40%,
+        80% {
+            transform: translateX(8px);
+        }
+    }
+
+    .animate-shake {
+        animation: shake 0.4s cubic-bezier(.36, .07, .19, .97) both;
+    }
+</style>
 <main class="max-w-4xl mx-auto px-4 py-8 space-y-12">
 
     <header class="text-center mb-10">
@@ -162,6 +185,34 @@
                 <h4 id="result-title" class="text-xl font-bold text-white mb-2"></h4>
                 <p id="result-desc" class="text-base text-gray-300 mb-6"></p>
                 <div id="result-action" class="max-w-md mx-auto space-y-3"></div>
+            </div>
+
+            <p class="text-[10px] text-gray-500 mt-6 uppercase tracking-wider">Disclaimer: Not a medical diagnostic
+                tool. For informational purposes only.</p>
+        </div>
+    </section>
+
+    <!-- REFLEX TEST UI -->
+    <section>
+        <h2 class="text-2xl font-bold mb-6 text-orange-400 border-b border-orange-500/30 pb-2">Cognitive Processing
+        </h2>
+        <div
+            class="bg-gray-900 border border-orange-900/50 rounded-xl p-6 md:p-8 shadow-lg text-center relative overflow-hidden">
+            <h3 class="text-xl font-bold text-white mb-2">🧠 Heat Fatigue Reflex Test</h3>
+            <p class="text-sm text-gray-400 mb-6 px-4">High temperatures and dehydration slow down neural
+                processing. Test your cognitive speed against the human average (250ms).</p>
+
+            <div id="reflex-pad" onclick="handleReflexTap()"
+                class="w-full max-w-xl mx-auto h-56 rounded-xl bg-gray-800 border-2 border-gray-700 flex items-center justify-center cursor-pointer transition-colors duration-100 shadow-inner select-none mb-6">
+                <span id="reflex-msg" class="text-3xl font-bold text-gray-400 pointer-events-none">Tap to
+                    Start</span>
+            </div>
+
+            <div id="reflex-results"
+                class="hidden mt-4 p-5 rounded-lg bg-gray-800 border border-gray-700 max-w-xl mx-auto">
+                <h4 id="reflex-title" class="text-2xl font-black text-white mb-2"></h4>
+                <p id="reflex-desc" class="text-gray-300 mb-5"></p>
+                <div id="reflex-action" class="space-y-3"></div>
             </div>
 
             <p class="text-[10px] text-gray-500 mt-6 uppercase tracking-wider">Disclaimer: Not a medical diagnostic
@@ -310,7 +361,7 @@
             title.className = "text-2xl font-bold text-yellow-400 mb-2";
             desc.innerText = "Your respiratory endurance is standard. Maintain it by avoiding outdoor exposure during high smog hours.";
             action.innerHTML = `
-            <a href="https://amzn.to/YOUR_N95_LINK" target="_blank" class="block w-full text-center text-base font-bold bg-yellow-600 hover:bg-yellow-700 text-white py-3 rounded-lg shadow-md transition">Maintain Health: Get N95 Masks</a>
+            <a href="https://amzn.to/4u4ZlQ5" target="_blank" class="block w-full text-center text-base font-bold bg-yellow-600 hover:bg-yellow-700 text-white py-3 rounded-lg shadow-md transition">Maintain Health: Get N95 Masks</a>
             `;
         } else {
             title.innerText = "🟢 Excellent";
@@ -401,7 +452,95 @@
             Math.cos(lat1 * Math.PI / 180) * Math.cos(lat2 * Math.PI / 180) *
             Math.sin(dLon / 2) * Math.sin(dLon / 2);
         const c = 2 * Math.atan2(Math.sqrt(a), Math.sqrt(1 - a));
-        return R * c;
+    }
+
+    // REFLEX TEST LOGIC
+    let reflexState = 'idle'; // states: idle, waiting, ready, finished
+    let reflexStartTime = 0;
+    let reflexTimeout;
+
+    function handleReflexTap() {
+        const pad = document.getElementById('reflex-pad');
+        const msg = document.getElementById('reflex-msg');
+        const resultsDiv = document.getElementById('reflex-results');
+
+        // Vibrate on tap (Android only, iOS ignores this safely)
+        if (navigator.vibrate) navigator.vibrate(50);
+
+        if (reflexState === 'idle' || reflexState === 'finished') {
+            resultsDiv.classList.add('hidden');
+            pad.classList.remove('animate-shake'); // Reset shake
+            pad.className = "w-full max-w-xl mx-auto h-56 rounded-xl bg-red-600 flex items-center justify-center cursor-pointer select-none mb-6 shadow-[0_0_20px_rgba(220,38,38,0.4)] transition-colors";
+            msg.className = "text-4xl font-bold text-white pointer-events-none";
+            msg.innerText = "Wait for Green...";
+            reflexState = 'waiting';
+
+            const delay = Math.floor(Math.random() * 3000) + 2000;
+
+            reflexTimeout = setTimeout(() => {
+                if (reflexState === 'waiting') {
+                    pad.className = "w-full max-w-xl mx-auto h-56 rounded-xl bg-green-500 flex items-center justify-center cursor-pointer select-none mb-6 shadow-[0_0_30px_rgba(34,197,94,0.6)]";
+                    msg.innerText = "TAP NOW!";
+                    reflexState = 'ready';
+                    reflexStartTime = Date.now();
+                }
+            }, delay);
+
+        } else if (reflexState === 'waiting') {
+            // FALSE START - Trigger Shake & Error Haptics
+            clearTimeout(reflexTimeout);
+            if (navigator.vibrate) navigator.vibrate([100, 50, 100]); // Angry double vibrate
+
+            pad.className = "w-full max-w-xl mx-auto h-56 rounded-xl bg-gray-800 border-2 border-red-500 flex items-center justify-center cursor-pointer select-none mb-6 animate-shake";
+            msg.className = "text-2xl font-bold text-red-400 pointer-events-none";
+            msg.innerText = "Too early! You got stumped.";
+            reflexState = 'idle';
+
+        } else if (reflexState === 'ready') {
+            // SUCCESSFUL TAP
+            const reactionTime = Date.now() - reflexStartTime;
+
+            // The "Bowling Speed" Math (Faster reaction = higher km/h)
+            // 300ms = ~140 km/h | 400ms = ~105 km/h | 500ms = ~84 km/h
+            let speedKmph = Math.max(40, Math.round((300 / reactionTime) * 140));
+
+            pad.className = "w-full max-w-xl mx-auto h-56 rounded-xl bg-gray-800 border-2 border-blue-500 flex items-center justify-center cursor-pointer select-none mb-6";
+            msg.innerHTML = `<div class="text-center"><div class="text-6xl font-black text-blue-400">${speedKmph}</div><div class="text-sm font-bold text-gray-400 tracking-widest uppercase">km/h Speed</div><div class="text-xs text-blue-900 mt-2">${reactionTime} ms</div></div>`;
+
+            reflexState = 'finished';
+            showReflexResults(reactionTime, speedKmph);
+        }
+    }
+
+    function showReflexResults(ms, kmph) {
+        const resultsDiv = document.getElementById('reflex-results');
+        const title = document.getElementById('reflex-title');
+        const desc = document.getElementById('reflex-desc');
+        const action = document.getElementById('reflex-action');
+
+        resultsDiv.classList.remove('hidden');
+
+        // Generate WhatsApp Share Link
+        const shareText = encodeURIComponent(`🏏 I just reacted to a ${kmph} km/h delivery on the CityHealth360 Summer Pitch! The heat hasn't melted my brain yet. Beat my score: https://cityhealth360.in/docs/interactive-tools.html`);
+        const whatsappBtn = `<a href="https://api.whatsapp.com/send?text=${shareText}" target="_blank" class="block w-full text-center text-sm font-bold bg-[#25D366] hover:bg-[#1da851] text-white py-3 rounded shadow-md transition mt-4 mb-2 flex items-center justify-center gap-2">📱 Trash Talk on WhatsApp</a>`;
+
+        // Gamified Logic
+        if (ms <= 320) {
+            title.innerText = "⚡ Elite Pacer Reflexes";
+            title.className = "text-2xl font-black text-green-400 mb-2";
+            desc.innerText = "Lightning fast! The heat hasn't touched your cognitive speed. You're IPL ready.";
+            action.innerHTML = `<button onclick="handleReflexTap()" class="w-full text-center text-sm font-bold border border-green-500 text-green-400 hover:bg-green-900/30 py-3 rounded transition shadow-md">Play Again</button>` + whatsappBtn;
+        } else if (ms > 320 && ms <= 500) {
+            title.innerText = "🏏 Medium Pace Fielder";
+            title.className = "text-2xl font-black text-yellow-400 mb-2";
+            desc.innerText = "A bit sluggish. The heat is thicking your blood and slowing your brain. Hydrate before your next over!";
+            action.innerHTML = `<a href="https://amzn.to/4r5Yc8k" target="_blank" class="block w-full text-center text-sm font-bold bg-yellow-600 hover:bg-yellow-700 text-white py-3 rounded shadow-md transition">Buy Electral/ORS to Wake Up ↗</a>` + whatsappBtn;
+        } else {
+            title.innerText = "� Spinner's Delight";
+            title.className = "text-2xl font-black text-orange-500 mb-2";
+            desc.innerText = "Bro, you are buffering. The heat has officially cooked your processing speed. Drink water immediately.";
+            action.innerHTML = `<a href="https://amzn.to/3MORx4h" target="_blank" class="block w-full text-center text-sm font-bold bg-orange-600 hover:bg-orange-700 text-white py-3 rounded shadow-md transition">Get a Milton Ice Flask ↗</a>` + whatsappBtn;
+        }
     }
 </script>
 
