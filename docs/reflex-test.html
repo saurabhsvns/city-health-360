@@ -1,0 +1,309 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Heat Fatigue Reflex Test | Check Cognitive Processing Speed</title>
+    <meta name="description"
+        content="Test your cognitive speed against the human average (250ms).">
+    
+    <link rel="canonical" href="https://cityhealth360.in/docs/reflex-test.html">
+    
+
+    <!-- Favicon and PWA Meta Tags -->
+    <link rel="icon" type="image/png" href="../favicon-96x96.png" sizes="96x96" />
+    <link rel="icon" type="image/svg+xml" href="../favicon.svg" />
+    <link rel="shortcut icon" href="../favicon.ico" />
+    <link rel="apple-touch-icon" sizes="180x180" href="../apple-touch-icon.png" />
+    <meta name="apple-mobile-web-app-title" content="Health360" />
+    <link rel="manifest" href="../manifest.json">
+    <meta name="theme-color" content="#0f172a">
+
+    <!-- Tailwind CSS -->
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link
+        href="https://fonts.googleapis.com/css2?family=Outfit:wght@300;400;500;600;700&family=Inter:wght@300;400;500;600&display=swap"
+        rel="stylesheet">
+
+    <style>
+        body {
+            font-family: 'Inter', sans-serif;
+        }
+
+        h1,
+        h2,
+        h3,
+        h4 {
+            font-family: 'Outfit', sans-serif;
+        }
+
+        .glass-card {
+            background: rgba(30, 41, 59, 0.7);
+            backdrop-filter: blur(10px);
+            -webkit-backdrop-filter: blur(10px);
+            border: 1px solid rgba(255, 255, 255, 0.1);
+        }
+    </style>
+
+    
+    <!-- Google tag (gtag.js) -->
+    <script async src="https://www.googletagmanager.com/gtag/js?id=G-QCT57HPTMH"></script>
+    <script>
+        window.dataLayer = window.dataLayer || [];
+        function gtag() { dataLayer.push(arguments); }
+        gtag('js', new Date());
+
+        gtag('config', 'G-QCT57HPTMH');
+    </script>
+    <!-- Microsoft Clarity -->
+    <script type="text/javascript">
+        (function (c, l, a, r, i, t, y) {
+            c[a] = c[a] || function () { (c[a].q = c[a].q || []).push(arguments) };
+            t = l.createElement(r); t.async = 1; t.src = "https://www.clarity.ms/tag/" + i;
+            y = l.getElementsByTagName(r)[0]; y.parentNode.insertBefore(t, y);
+        })(window, document, "clarity", "script", "vmdz55mw7f");
+    </script>
+    
+</head>
+
+<body class="bg-slate-900 text-slate-100 min-h-screen flex flex-col">
+
+    <!-- Global Navigation -->
+    <nav class="sticky top-0 z-50 bg-slate-900/90 backdrop-blur-md border-b border-slate-700/50">
+        <div class="max-w-7xl mx-auto px-4 py-3 flex justify-between items-center">
+            <a href="../index.html" class="flex items-center gap-2 hover:opacity-80 transition-opacity">
+                <div
+                    class="w-8 h-8 rounded-full bg-gradient-to-br from-blue-500 to-indigo-600 flex items-center justify-center shadow-lg shadow-blue-500/20">
+                    <svg class="w-5 h-5 text-white" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 4v16m8-8H4" />
+                    </svg>
+                </div>
+                <span class="font-bold text-lg tracking-tight text-white hidden sm:inline">City Health 360</span>
+                <span class="font-bold text-lg tracking-tight text-white sm:hidden">CH360</span>
+            </a>
+
+            <div class="flex items-center gap-3 sm:gap-6">
+                <!-- Navigation Links -->
+                <div class="hidden md:flex items-center gap-4 text-sm font-medium">
+                    <a href="../index.html" class="text-slate-300 hover:text-white transition-colors">Dashboard</a>
+                    <a href="../docs/india.html"
+                        class="flex items-center gap-1.5 text-slate-300 hover:text-white transition-colors">
+                        🌍 India Map
+                    </a>
+                    <a href="../docs/interactive-tools.html"
+                        class="flex items-center gap-1.5 text-slate-300 hover:text-white transition-colors">
+                        🫁 Interactive Tests
+                    </a>
+                </div>
+
+                <!-- Last Update Timestamp -->
+                <div class="hidden sm:block text-right border-r border-slate-700 pr-4">
+                    <div class="text-[10px] sm:text-xs font-bold uppercase tracking-widest text-slate-500 mb-0.5">Last
+                        Update</div>
+                    <div class="font-mono text-blue-300 text-[10px] sm:text-xs">Mar 03, 08:55 AM</div>
+                </div>
+
+                <!-- City Dropdown Functionality -->
+                <div class="text-sm text-slate-400">
+                    <select id="city-selector" onchange="if (this.value) window.location.href=this.value;"
+                        class="bg-slate-800 text-slate-200 rounded-md px-2 py-1.5 sm:px-3 sm:py-2 text-xs sm:text-sm border border-slate-600 hover:border-slate-500 focus:outline-none focus:ring-2 focus:ring-blue-500/50 cursor-pointer transition-colors shadow-sm">
+                        <option value="">Select City...</option>
+                        <!-- Options will be populated by JS -->
+                    </select>
+                </div>
+            </div>
+        </div>
+    </nav>
+
+    <!-- Main Content -->
+    <main class="flex-grow">
+        
+<style>
+    @keyframes shake {
+
+        0%,
+        100% {
+            transform: translateX(0);
+        }
+
+        20%,
+        60% {
+            transform: translateX(-8px);
+        }
+
+        40%,
+        80% {
+            transform: translateX(8px);
+        }
+    }
+
+    .animate-shake {
+        animation: shake 0.4s cubic-bezier(.36, .07, .19, .97) both;
+    }
+</style>
+<main class="max-w-4xl mx-auto px-4 py-8 space-y-12">
+    <section>
+        <h2 class="text-2xl font-bold mb-6 text-orange-400 border-b border-orange-500/30 pb-2">Cognitive Processing</h2>
+        <div
+            class="bg-gray-900 border border-orange-900/50 rounded-xl p-6 md:p-8 shadow-lg text-center relative overflow-hidden">
+            <h3 class="text-xl font-bold text-white mb-2">🧠 Heat Fatigue Reflex Test</h3>
+            <p class="text-sm text-gray-400 mb-6 px-4">High temperatures and dehydration slow down neural processing.
+                Test your cognitive speed against the human average (250ms).</p>
+
+            <div id="reflex-pad" onclick="handleReflexTap()"
+                class="w-full max-w-xl mx-auto h-56 rounded-xl bg-gray-800 border-2 border-gray-700 flex items-center justify-center cursor-pointer transition-colors duration-100 shadow-inner select-none mb-6">
+                <span id="reflex-msg" class="text-3xl font-bold text-gray-400 pointer-events-none">Tap to Start</span>
+            </div>
+
+            <div id="reflex-results"
+                class="hidden mt-4 p-5 rounded-lg bg-gray-800 border border-gray-700 max-w-xl mx-auto">
+                <h4 id="reflex-title" class="text-2xl font-black text-white mb-2"></h4>
+                <p id="reflex-desc" class="text-gray-300 mb-5"></p>
+                <div id="reflex-action" class="space-y-3"></div>
+            </div>
+
+            <p class="text-[10px] text-gray-500 mt-6 uppercase tracking-wider">Disclaimer: Not a medical diagnostic
+                tool. For informational purposes only.</p>
+        </div>
+    </section>
+
+    <a href="/docs/interactive-tools.html" class="mt-8 block text-center text-blue-400">⬅️ Back to All Tools</a>
+</main>
+
+<script>
+    let reflexState = 'idle'; // states: idle, waiting, ready, finished
+    let reflexStartTime = 0;
+    let reflexTimeout;
+
+    function handleReflexTap() {
+        const pad = document.getElementById('reflex-pad');
+        const msg = document.getElementById('reflex-msg');
+        const resultsDiv = document.getElementById('reflex-results');
+
+        if (navigator.vibrate) navigator.vibrate(50);
+
+        if (reflexState === 'idle' || reflexState === 'finished') {
+            resultsDiv.classList.add('hidden');
+            pad.classList.remove('animate-shake');
+            pad.className = "w-full max-w-xl mx-auto h-56 rounded-xl bg-red-600 flex items-center justify-center cursor-pointer select-none mb-6 shadow-[0_0_20px_rgba(220,38,38,0.4)] transition-colors";
+            msg.className = "text-4xl font-bold text-white pointer-events-none";
+            msg.innerText = "Wait for Green...";
+            reflexState = 'waiting';
+
+            const delay = Math.floor(Math.random() * 3000) + 2000;
+
+            reflexTimeout = setTimeout(() => {
+                if (reflexState === 'waiting') {
+                    pad.className = "w-full max-w-xl mx-auto h-56 rounded-xl bg-green-500 flex items-center justify-center cursor-pointer select-none mb-6 shadow-[0_0_30px_rgba(34,197,94,0.6)]";
+                    msg.innerText = "TAP NOW!";
+                    reflexState = 'ready';
+                    reflexStartTime = Date.now();
+                }
+            }, delay);
+
+        } else if (reflexState === 'waiting') {
+            clearTimeout(reflexTimeout);
+            if (navigator.vibrate) navigator.vibrate([100, 50, 100]);
+
+            pad.className = "w-full max-w-xl mx-auto h-56 rounded-xl bg-gray-800 border-2 border-red-500 flex items-center justify-center cursor-pointer select-none mb-6 animate-shake";
+            msg.className = "text-2xl font-bold text-red-400 pointer-events-none";
+            msg.innerText = "Too early! You got stumped.";
+            reflexState = 'idle';
+
+        } else if (reflexState === 'ready') {
+            const reactionTime = Date.now() - reflexStartTime;
+            let speedKmph = Math.max(40, Math.round((300 / reactionTime) * 140));
+
+            pad.className = "w-full max-w-xl mx-auto h-56 rounded-xl bg-gray-800 border-2 border-blue-500 flex items-center justify-center cursor-pointer select-none mb-6";
+            msg.innerHTML = `<div class="text-center"><div class="text-6xl font-black text-blue-400">${speedKmph}</div><div class="text-sm font-bold text-gray-400 tracking-widest uppercase">km/h Speed</div><div class="text-xs text-blue-900 mt-2">${reactionTime} ms</div></div>`;
+
+            reflexState = 'finished';
+            showReflexResults(reactionTime, speedKmph);
+        }
+    }
+
+    function showReflexResults(ms, kmph) {
+        const resultsDiv = document.getElementById('reflex-results');
+        const title = document.getElementById('reflex-title');
+        const desc = document.getElementById('reflex-desc');
+        const action = document.getElementById('reflex-action');
+
+        resultsDiv.classList.remove('hidden');
+
+        const shareText = encodeURIComponent(`🏏 I just reacted to a ${kmph} km/h delivery on the CityHealth360 Summer Pitch! The heat hasn't melted my brain yet. Beat my score: https://cityhealth360.in/docs/tools/reflex-test.html`);
+        const whatsappBtn = `<a href="https://api.whatsapp.com/send?text=${shareText}" target="_blank" class="block w-full text-center text-sm font-bold bg-[#25D366] hover:bg-[#1da851] text-white py-3 rounded shadow-md transition mt-4 mb-2 flex items-center justify-center gap-2">📱 Trash Talk on WhatsApp</a>`;
+
+        if (ms <= 320) {
+            title.innerText = "⚡ Elite Pacer Reflexes";
+            title.className = "text-2xl font-black text-green-400 mb-2";
+            desc.innerText = "Lightning fast! The heat hasn't touched your cognitive speed. You're IPL ready.";
+            action.innerHTML = `<button onclick="handleReflexTap()" class="w-full text-center text-sm font-bold border border-green-500 text-green-400 hover:bg-green-900/30 py-3 rounded transition shadow-md">Play Again</button>` + whatsappBtn;
+        } else if (ms > 320 && ms <= 500) {
+            title.innerText = "🏏 Medium Pace Fielder";
+            title.className = "text-2xl font-black text-yellow-400 mb-2";
+            desc.innerText = "A bit sluggish. The heat is thicking your blood and slowing your brain. Hydrate before your next over!";
+            action.innerHTML = `<a href="https://amzn.to/4r5Yc8k" target="_blank" class="block w-full text-center text-sm font-bold bg-yellow-600 hover:bg-yellow-700 text-white py-3 rounded shadow-md transition">Buy Electral/ORS to Wake Up ↗</a>` + whatsappBtn;
+        } else {
+            title.innerText = " Spinner's Delight";
+            title.className = "text-2xl font-black text-orange-500 mb-2";
+            desc.innerText = "Bro, you are buffering. The heat has officially cooked your processing speed. Drink water immediately.";
+            action.innerHTML = `<a href="https://amzn.to/3MORx4h" target="_blank" class="block w-full text-center text-sm font-bold bg-orange-600 hover:bg-orange-700 text-white py-3 rounded shadow-md transition">Get a Milton Ice Flask ↗</a>` + whatsappBtn;
+        }
+    }
+</script>
+
+    </main>
+
+    <!-- Scripts -->
+    <script>
+        // Population of the City Dropdown
+        document.addEventListener('DOMContentLoaded', async () => {
+            try {
+                // Fetch the latest scores which has the city list
+                const response = await fetch('../docs/data/latest_scores.json');
+                if (!response.ok) throw new Error('Data fetch failed');
+                const citiesData = await response.json();
+
+                // Sort alphabetically by city name
+                citiesData.sort((a, b) => a.city.localeCompare(b.city));
+
+                const selector = document.getElementById('city-selector');
+
+                // The current page filename to select the current city
+                const currentFile = window.location.pathname.split('/').pop();
+
+                citiesData.forEach(cityData => {
+                    const slug = cityData.city.toLowerCase().replace(/[^a-z0-9]+/g, '-');
+                    const fileName = `${slug}.html`;
+
+                    const option = document.createElement('option');
+                    option.value = fileName;
+                    option.textContent = cityData.city;
+
+                    // Mark as selected if we are currently on this page
+                    if (currentFile === fileName) {
+                        option.selected = true;
+                    }
+
+                    selector.appendChild(option);
+                });
+            } catch (error) {
+                console.error('Error loading city dropdown:', error);
+            }
+        });
+
+        // Service Worker Registration
+        if ('serviceWorker' in navigator) {
+            window.addEventListener('load', () => {
+                navigator.serviceWorker.register('../sw.js').then(registration => {
+                    console.log('SW registered: ', registration);
+                }).catch(registrationError => {
+                    console.log('SW registration failed: ', registrationError);
+                });
+            });
+        }
+    </script>
+</body>
+
+</html>

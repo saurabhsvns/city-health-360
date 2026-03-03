@@ -519,6 +519,28 @@ def generate_pages():
     urls.append(f"{base_url}/docs/interactive-tools.html")
     print(f"Generated: {interactive_out}")
 
+    # --- Generate Interactive Tools Spoke Pages ---
+    spoke_pages = [
+        ('reflex-test.html', 'reflex-test.html', 'Heat Fatigue Reflex Test | Check Cognitive Processing Speed', 'Test your cognitive speed against the human average (250ms).'),
+        ('lung-capacity.html', 'lung-capacity.html', '30-Second Lung Capacity Test | AQI & Respiratory Health Check', 'Test your baseline respiratory endurance right now.'),
+        ('local-radar.html', 'local-radar.html', 'Neighborhood Pollution Radar | Scan Local Industrial Threats', 'Scan your immediate 5km radius for hidden pollution emitters.')
+    ]
+
+    for template_name, out_name, title, desc in spoke_pages:
+        spoke_template = env.get_template(template_name)
+        spoke_context = {
+            'date': today_date,
+            'title': title,
+            'description': desc,
+            'canonical_url': f"{base_url}/docs/{out_name}"
+        }
+        spoke_html = spoke_template.render(spoke_context)
+        spoke_out = os.path.join(DOCS_DIR, out_name)
+        with open(spoke_out, 'w', encoding='utf-8') as f:
+            f.write(spoke_html)
+        urls.append(f"{base_url}/docs/{out_name}")
+        print(f"Generated: {spoke_out}")
+
     # --- Generate Sitemap ---
         
     xml_content = ['<?xml version="1.0" encoding="UTF-8"?>']
