@@ -65,6 +65,7 @@
         })(window, document, "clarity", "script", "vmdz55mw7f");
     </script>
     
+    
 </head>
 
 <body class="bg-slate-900 text-slate-100 min-h-screen flex flex-col">
@@ -101,23 +102,17 @@
                 <div class="hidden sm:block text-right border-r border-slate-700 pr-4">
                     <div class="text-[10px] sm:text-xs font-bold uppercase tracking-widest text-slate-500 mb-0.5">Last
                         Update</div>
-                    <div class="font-mono text-blue-300 text-[10px] sm:text-xs">Mar 03, 08:55 AM</div>
+                    <div class="font-mono text-blue-300 text-[10px] sm:text-xs">Mar 05, 12:08 AM</div>
                 </div>
 
                 <!-- City Dropdown Functionality -->
-                <div class="text-sm text-slate-400">
-                    <select id="city-selector" onchange="if (this.value) window.location.href=this.value;"
-                        class="bg-slate-800 text-slate-200 rounded-md px-2 py-1.5 sm:px-3 sm:py-2 text-xs sm:text-sm border border-slate-600 hover:border-slate-500 focus:outline-none focus:ring-2 focus:ring-blue-500/50 cursor-pointer transition-colors shadow-sm">
-                        <option value="">Select City...</option>
-                        <!-- Options will be populated by JS -->
-                    </select>
-                </div>
+                
             </div>
         </div>
     </nav>
 
     <!-- Main Content -->
-    <main class="flex-grow">
+    <main class="flex-grow pb-20 md:pb-0">
         
 <main class="max-w-4xl mx-auto px-4 py-8 space-y-12">
     <section>
@@ -140,10 +135,37 @@
                 </button>
             </div>
 
-            <div id="radar-results" class="hidden mt-6 pt-6 border-t border-gray-800">
-                <div id="radar-loading" class="text-yellow-400 text-center animate-pulse hidden mb-4">📡 Synchronizing
-                    satellite telemetry and local topography...</div>
-                <ul id="hazard-list" class="space-y-3 mb-6 max-w-2xl mx-auto"></ul>
+            <div id="radar-results" class="hidden mt-6 pt-4 border-t border-gray-800">
+                <div id="radar-loading" class="text-yellow-400 text-sm animate-pulse hidden">Scanning local
+                    topography...
+                </div>
+
+                <div id="local-env-widget"
+                    class="hidden mb-6 bg-gray-800 rounded-xl border border-gray-700 p-4 shadow-inner">
+                    <h4
+                        class="text-xs font-bold text-gray-400 uppercase tracking-widest mb-3 border-b border-gray-700 pb-2">
+                        Live Hyper-Local Conditions</h4>
+                    <div class="grid grid-cols-2 gap-4">
+                        <div>
+                            <div class="text-xs text-gray-500">Live Overall AQI</div>
+                            <div id="radar-aqi" class="text-2xl font-black text-white">--</div>
+                        </div>
+                        <div>
+                            <div class="text-xs text-gray-500">Temperature</div>
+                            <div id="radar-temp" class="text-2xl font-bold text-gray-200">--°C</div>
+                        </div>
+                        <div>
+                            <div class="text-xs text-gray-500">Humidity</div>
+                            <div id="radar-humidity" class="text-lg font-bold text-gray-300">--%</div>
+                        </div>
+                        <div>
+                            <div class="text-xs text-gray-500">Wind Speed</div>
+                            <div id="radar-wind" class="text-lg font-bold text-gray-300">-- km/h</div>
+                        </div>
+                    </div>
+                </div>
+
+                <ul id="hazard-list" class="space-y-3 mb-4"></ul>
                 <div id="radar-action" class="hidden max-w-md mx-auto text-center">
                     <p class="text-sm text-red-300 mb-3">⚠️ Proximity to these zones drastically reduces indoor air
                         quality.</p>
@@ -166,25 +188,31 @@
         const loadingText = document.getElementById('radar-loading');
         const hazardList = document.getElementById('hazard-list');
         const actionDiv = document.getElementById('radar-action');
+        const envWidget = document.getElementById('local-env-widget');
 
         btn.style.display = 'none';
         resultsDiv.classList.remove('hidden');
         loadingText.classList.remove('hidden');
+        envWidget.classList.add('hidden');
 
         if ("geolocation" in navigator) {
             navigator.geolocation.getCurrentPosition(async function (position) {
                 const lat = position.coords.latitude;
                 const lon = position.coords.longitude;
 
+                // 1. Fetch Environment Data (With Caching)
+                await fetchEnvironmentData(lat, lon);
+
+                // 2. Fetch Hazard Data (Overpass API)
                 const query = `
-            [out:json];
-            (
-              way["landuse"="industrial"](around:5000,${lat},${lon});
-              way["landuse"="landfill"](around:5000,${lat},${lon});
-              node["power"="plant"](around:5000,${lat},${lon});
-            );
-            out center 5;
-          `;
+        [out:json];
+        (
+          way["landuse"="industrial"](around:5000,${lat},${lon});
+          way["landuse"="landfill"](around:5000,${lat},${lon});
+          node["power"="plant"](around:5000,${lat},${lon});
+        );
+        out center 5;
+      `;
 
                 try {
                     const response = await fetch('https://overpass-api.de/api/interpreter', {
@@ -209,29 +237,106 @@
                             let distKm = calculateDistance(lat, lon, hazardLat, hazardLon).toFixed(1);
 
                             let li = document.createElement('li');
-                            li.className = "flex flex-col sm:flex-row justify-between items-center bg-gray-800 p-4 rounded-lg text-base border border-gray-700 gap-2";
-                            li.innerHTML = `<span class="text-gray-200 text-lg">${icon} <b class="ml-2">${name}</b></span> <span class="bg-red-900/50 text-red-400 font-mono px-3 py-1 rounded border border-red-800/50">${distKm} km away</span>`;
+                            li.className = "flex justify-between items-center bg-gray-800 p-3 rounded-lg text-sm border border-gray-700/50";
+                            li.innerHTML = `<span class="text-gray-200">${icon} <b>${name}</b></span> <span class="text-red-400 font-mono font-bold">${distKm} km away</span>`;
                             hazardList.appendChild(li);
                         });
                         actionDiv.classList.remove('hidden');
                     } else {
-                        hazardList.innerHTML = `<li class="text-green-400 text-center p-4 bg-gray-800 rounded-lg">✅ No major industrial zones detected within 5km.</li>`;
+                        hazardList.innerHTML = `<li class="text-green-400 text-sm p-3 bg-gray-800 rounded-lg border border-green-900/30">✅ No major industrial zones detected within 5km.</li>`;
                     }
                 } catch (error) {
                     loadingText.classList.add('hidden');
-                    hazardList.innerHTML = `<li class="text-red-400 text-center p-4 bg-gray-800 rounded-lg">Error connecting to satellite data. Please try again.</li>`;
+                    hazardList.innerHTML = `<li class="text-red-400 text-sm">Error connecting to satellite data.</li>`;
                 }
             }, function (error) {
                 loadingText.classList.add('hidden');
-                hazardList.innerHTML = `<li class="text-yellow-400 text-center p-4 bg-gray-800 rounded-lg">Location access denied. We need your GPS to scan the neighborhood.</li>`;
+                hazardList.innerHTML = `<li class="text-yellow-400 text-sm">Location access denied. We need your GPS to scan the neighborhood.</li>`;
                 btn.style.display = 'block';
                 btn.innerText = "Try Again (Enable GPS)";
             });
         } else {
-            hazardList.innerHTML = `<li class="text-gray-400 text-center p-4 bg-gray-800 rounded-lg">Geolocation is not supported by your browser.</li>`;
+            hazardList.innerHTML = `<li class="text-gray-400 text-sm">Geolocation is not supported by your browser.</li>`;
         }
     }
 
+    // THE SMART CACHING ENGINE
+    async function fetchEnvironmentData(lat, lon) {
+        // Round to 2 decimal places (~1.1km grid) to prevent minor GPS drifts from busting the cache
+        const gridLat = lat.toFixed(2);
+        const gridLon = lon.toFixed(2);
+        const cacheKey = `cityhealth_env_${gridLat}_${gridLon}`;
+        const cachedData = localStorage.getItem(cacheKey);
+
+        if (cachedData) {
+            const parsed = JSON.parse(cachedData);
+            const ageInMs = Date.now() - parsed.timestamp;
+            // Cache expiry: 60 minutes (3600000 ms)
+            if (ageInMs < 3600000) {
+                renderEnvironmentWidget(parsed.data);
+                console.log("Loaded environment data from local cache.");
+                return;
+            }
+        }
+
+        // If no cache or expired, fetch fresh data from Open-Meteo
+        try {
+            const weatherUrl = `https://api.open-meteo.com/v1/forecast?latitude=${lat}&longitude=${lon}&current=temperature_2m,relative_humidity_2m,wind_speed_10m`;
+            const aqiUrl = `https://air-quality-api.open-meteo.com/v1/air-quality?latitude=${lat}&longitude=${lon}&current=us_aqi`;
+
+            const [weatherRes, aqiRes] = await Promise.all([
+                fetch(weatherUrl),
+                fetch(aqiUrl)
+            ]);
+
+            const weatherData = await weatherRes.json();
+            const aqiData = await aqiRes.json();
+
+            const envData = {
+                temp: weatherData.current.temperature_2m,
+                humidity: weatherData.current.relative_humidity_2m,
+                wind: weatherData.current.wind_speed_10m,
+                aqi: aqiData.current.us_aqi
+            };
+
+            // Save to Cache
+            localStorage.setItem(cacheKey, JSON.stringify({
+                timestamp: Date.now(),
+                data: envData
+            }));
+
+            renderEnvironmentWidget(envData);
+        } catch (error) {
+            console.error("Failed to fetch environment data", error);
+        }
+    }
+
+    function renderEnvironmentWidget(data) {
+        document.getElementById('local-env-widget').classList.remove('hidden');
+        document.getElementById('radar-temp').innerText = `${data.temp}°C`;
+        document.getElementById('radar-humidity').innerText = `${data.humidity}%`;
+        document.getElementById('radar-wind').innerText = `${data.wind} km/h`;
+
+        const aqiEl = document.getElementById('radar-aqi');
+        aqiEl.innerText = data.aqi;
+
+        // Standard International AQI Color Brackets
+        if (data.aqi > 300) {
+            aqiEl.className = "text-2xl font-black text-purple-500 animate-pulse"; // Hazardous
+        } else if (data.aqi > 200) {
+            aqiEl.className = "text-2xl font-black text-red-600 animate-pulse"; // Very Unhealthy
+        } else if (data.aqi > 150) {
+            aqiEl.className = "text-2xl font-black text-red-500"; // Unhealthy
+        } else if (data.aqi > 100) {
+            aqiEl.className = "text-2xl font-black text-orange-400"; // Unhealthy for Sensitive
+        } else if (data.aqi > 50) {
+            aqiEl.className = "text-2xl font-black text-yellow-400"; // Moderate
+        } else {
+            aqiEl.className = "text-2xl font-black text-green-400"; // Good
+        }
+    }
+
+    // Helper: Haversine distance
     function calculateDistance(lat1, lon1, lat2, lon2) {
         const R = 6371;
         const dLat = (lat2 - lat1) * Math.PI / 180;
@@ -245,6 +350,32 @@
 </script>
 
     </main>
+
+    <!-- Mobile Bottom Navigation -->
+    
+<div
+    class="md:hidden fixed bottom-0 w-full bg-slate-900/95 backdrop-blur-md border-t border-slate-700/50 z-50 px-2 py-2 flex justify-around items-center">
+    <a href="../index.html"
+        class="flex flex-col items-center gap-1 p-2 text-slate-400 hover:text-white transition-colors">
+        <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+                d="M3 12l2-2m0 0l7-7 7 7M5 10v10a1 1 0 001 1h3m10-11l2 2m-2-2v10a1 1 0 01-1 1h-3m-6 0a1 1 0 001-1v-4a1 1 0 011-1h2a1 1 0 011 1v4a1 1 0 001 1m-6 0h6">
+            </path>
+        </svg>
+        <span class="text-[10px] font-medium uppercase tracking-wider">Dashboard</span>
+    </a>
+    <a href="../docs/india.html"
+        class="flex flex-col items-center gap-1 p-2 text-slate-400 hover:text-white transition-colors">
+        <span class="text-xl leading-none">🌍</span>
+        <span class="text-[10px] font-medium uppercase tracking-wider">India Map</span>
+    </a>
+    <a href="../docs/interactive-tools.html"
+        class="flex flex-col items-center gap-1 p-2 text-slate-400 hover:text-white transition-colors">
+        <span class="text-xl leading-none">🫁</span>
+        <span class="text-[10px] font-medium uppercase tracking-wider">Tools</span>
+    </a>
+</div>
+
 
     <!-- Scripts -->
     <script>

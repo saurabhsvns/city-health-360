@@ -1,42 +1,80 @@
 {% extends "layout.html" %}
+{% block city_dropdown %}{% endblock %}
+{% block main_class %}flex-grow pb-20 md:pb-0{% endblock %}
+{% block mobile_bottom_nav %}
+<div
+    class="md:hidden fixed bottom-0 w-full bg-slate-900/95 backdrop-blur-md border-t border-slate-700/50 z-50 px-2 py-2 flex justify-around items-center">
+    <a href="../index.html"
+        class="flex flex-col items-center gap-1 p-2 text-slate-400 hover:text-white transition-colors">
+        <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+                d="M3 12l2-2m0 0l7-7 7 7M5 10v10a1 1 0 001 1h3m10-11l2 2m-2-2v10a1 1 0 01-1 1h-3m-6 0a1 1 0 001-1v-4a1 1 0 011-1h2a1 1 0 011 1v4a1 1 0 001 1m-6 0h6">
+            </path>
+        </svg>
+        <span class="text-[10px] font-medium uppercase tracking-wider">Dashboard</span>
+    </a>
+    <a href="../docs/india.html"
+        class="flex flex-col items-center gap-1 p-2 text-slate-400 hover:text-white transition-colors">
+        <span class="text-xl leading-none">🌍</span>
+        <span class="text-[10px] font-medium uppercase tracking-wider">India Map</span>
+    </a>
+    <a href="../docs/interactive-tools.html"
+        class="flex flex-col items-center gap-1 p-2 text-slate-400 hover:text-white transition-colors">
+        <span class="text-xl leading-none">🫁</span>
+        <span class="text-[10px] font-medium uppercase tracking-wider">Tools</span>
+    </a>
+</div>
+{% endblock %}
 {% block title %}30-Second Lung Capacity Test | AQI & Respiratory Health Check{% endblock %}
+
+{% block head %}
+<meta property="og:title" content="The 30-Second Lung Challenge 🫁" />
+<meta property="og:description"
+    content="Can your lungs survive the city smog? I just tested my respiratory endurance. Try to beat my score!" />
+<meta property="og:image" content="https://cityhealth360.in/static/lung-funny.png" />
+<meta property="og:type" content="website" />
+{% endblock %}
 
 {% block content %}
 <main class="max-w-4xl mx-auto px-4 py-8 space-y-12">
     <section>
-        <h2 class="text-2xl font-bold mb-6 text-blue-400 border-b border-blue-500/30 pb-2">Respiratory Resilience</h2>
-        <div
-            class="bg-gray-900 border border-blue-900/50 rounded-xl p-6 md:p-8 shadow-lg text-center relative overflow-hidden">
-            <h3 class="text-xl font-bold text-white mb-2">🫁 The 30-Second Lung Challenge</h3>
-            <p class="text-sm text-gray-400 mb-6 px-2">High AQI reduces lung elasticity. Test your baseline respiratory
-                endurance right now.</p>
+        <div class="max-w-xl mx-auto mt-8 bg-gray-900 border border-blue-900/50 rounded-xl p-6 shadow-lg text-center">
+            <h2
+                class="text-3xl font-extrabold text-transparent bg-clip-text bg-gradient-to-r from-cyan-400 to-blue-500 mb-2">
+                🫁 The 30-Second Lung Challenge</h2>
+            <p class="text-sm text-gray-400 mb-6 px-4">Take a deep breath, hit start, and hold it. Let's see how your
+                lungs handle the city air.</p>
 
-            <div class="flex justify-center items-center my-8">
-                <div id="breath-circle"
-                    class="w-40 h-40 md:w-48 md:h-48 rounded-full border-4 border-blue-600 flex items-center justify-center transition-all duration-500 shadow-[0_0_15px_rgba(37,99,235,0.3)]">
-                    <span id="breath-timer" class="text-5xl font-mono font-bold text-white">0.0s</span>
+            <div
+                class="flex flex-col items-center justify-center my-6 h-48 bg-gray-800/50 rounded-xl border border-gray-700/50 p-4">
+                <div id="lung-icon" class="text-7xl mb-4 transition-transform duration-300 transform scale-100">😐</div>
+                <div id="lung-rank" class="text-xl font-bold text-gray-300 tracking-wide">Ready to breathe?</div>
+                <div id="lung-timer" class="text-5xl font-mono font-black text-white mt-2">0.0s</div>
+            </div>
+
+            <div
+                class="w-full bg-gray-800 rounded-full h-6 mb-8 border border-gray-700 overflow-hidden relative shadow-inner">
+                <div id="lung-progress" class="bg-blue-500 h-6 rounded-full transition-all duration-100 ease-linear"
+                    style="width: 0%"></div>
+                <div class="absolute right-0 top-0 h-full w-1 bg-red-500 z-10 shadow-[0_0_10px_rgba(239,68,68,1)]">
                 </div>
             </div>
 
-            <div class="max-w-md mx-auto flex flex-col sm:flex-row gap-3 justify-center items-center">
-                <button id="btn-start-breath" onclick="startBreathTest()"
-                    class="w-full sm:w-auto px-8 py-4 bg-blue-600 hover:bg-blue-700 text-white font-bold rounded-full transition shadow-md text-lg">
-                    Inhale & Start Timer
-                </button>
-                <button id="btn-stop-breath" onclick="stopBreathTest()"
-                    class="hidden w-full sm:w-auto px-8 py-4 bg-red-600 hover:bg-red-700 text-white font-bold rounded-full transition shadow-md text-lg">
-                    Release Breath
-                </button>
-                <button id="btn-reset-breath" onclick="resetBreathTest()"
-                    class="hidden w-full sm:w-auto px-8 py-4 bg-slate-700 hover:bg-slate-600 text-white font-bold rounded-full transition shadow-md text-lg">
-                    Back to Default
-                </button>
-            </div>
+            <button id="btn-start-breath" onclick="startLungTest()"
+                class="w-full text-center text-lg font-bold bg-blue-600 hover:bg-blue-500 text-white py-4 rounded-xl transition shadow-[0_0_15px_rgba(37,99,235,0.4)]">
+                🌬️ Inhale deeply & Start Timer
+            </button>
+            <button id="btn-stop-breath" onclick="stopLungTest()"
+                class="hidden w-full text-center text-lg font-bold bg-red-600 hover:bg-red-500 text-white py-4 rounded-xl transition shadow-[0_0_15px_rgba(220,38,38,0.4)] animate-pulse">
+                🛑 Exhale (I give up!)
+            </button>
+            <button id="btn-reset-default" onclick="resetToDefault()"
+                class="hidden w-full text-center text-lg font-bold bg-gray-600 hover:bg-gray-500 text-white py-4 rounded-xl transition shadow-[0_0_15px_rgba(75,85,99,0.4)] mt-4">
+                ↺ Back to Default
+            </button>
 
-            <div id="breath-results" class="hidden mt-8 p-6 rounded-xl bg-gray-800 border border-gray-700">
-                <h4 id="result-title" class="text-xl font-bold text-white mb-2"></h4>
-                <p id="result-desc" class="text-base text-gray-300 mb-6"></p>
-                <div id="result-action" class="max-w-md mx-auto space-y-3"></div>
+            <div id="lung-results" class="hidden mt-6 p-5 rounded-lg bg-gray-800 border border-gray-700 shadow-lg">
+                <div id="lung-action" class="space-y-3"></div>
             </div>
 
             <p class="text-[10px] text-gray-500 mt-6 uppercase tracking-wider">Disclaimer: Not a medical diagnostic
@@ -48,110 +86,168 @@
 </main>
 
 <script>
-    let breathInterval;
-    let startTime;
-    let isTesting = false;
+    let lungInterval;
+    let lungStartTime;
+    let isHoldingBreath = false;
+    let currentRank = "Ready to breathe?";
 
-    function startBreathTest() {
-        const timerDisplay = document.getElementById('breath-timer');
-        const startBtn = document.getElementById('btn-start-breath');
-        const stopBtn = document.getElementById('btn-stop-breath');
-        const resetBtn = document.getElementById('btn-reset-breath');
-        const circle = document.getElementById('breath-circle');
-        const resultsDiv = document.getElementById('breath-results');
+    function startLungTest() {
+        const timerDisplay = document.getElementById('lung-timer');
+        const progressBar = document.getElementById('lung-progress');
+        const icon = document.getElementById('lung-icon');
+        const rank = document.getElementById('lung-rank');
+        const resultsDiv = document.getElementById('lung-results');
 
+        // Reset UI
         resultsDiv.classList.add('hidden');
-        timerDisplay.innerText = "0.0s";
-        circle.classList.add('scale-110', 'border-red-500', 'shadow-[0_0_30px_rgba(239,68,68,0.6)]');
-        circle.classList.remove('border-blue-600', 'shadow-[0_0_15px_rgba(37,99,235,0.3)]');
+        document.getElementById('btn-start-breath').classList.add('hidden');
+        document.getElementById('btn-stop-breath').classList.remove('hidden');
+        let resetBtn = document.getElementById('btn-reset-default');
+        if (resetBtn) resetBtn.classList.add('hidden');
 
-        startBtn.classList.add('hidden');
-        stopBtn.classList.remove('hidden');
-        if (resetBtn) resetBtn.classList.remove('hidden');
+        progressBar.style.width = "0%";
+        progressBar.className = "bg-blue-500 h-6 rounded-full transition-all duration-100 ease-linear";
 
-        isTesting = true;
-        startTime = Date.now();
+        icon.innerText = "😮"; // Inhaling face
+        icon.classList.add('scale-110');
+        rank.innerText = "Holding...";
+        rank.className = "text-xl font-bold text-blue-400 tracking-wide";
 
-        breathInterval = setInterval(() => {
-            let elapsedTime = (Date.now() - startTime) / 1000;
-            if (elapsedTime >= 90) {
-                stopBreathTest(90);
-            } else {
-                timerDisplay.innerText = elapsedTime.toFixed(1) + "s";
-            }
+        isHoldingBreath = true;
+        lungStartTime = Date.now();
+
+        lungInterval = setInterval(() => {
+            let elapsedTime = (Date.now() - lungStartTime) / 1000;
+
+            // Calculate progress percentage (Capped at 30 seconds)
+            let progressPct = Math.min((elapsedTime / 30) * 100, 100);
+            progressBar.style.width = progressPct + "%";
+            timerDisplay.innerText = elapsedTime.toFixed(1) + "s";
+
+            updateGamification(elapsedTime);
+
+            // Auto-stop at 120 seconds to prevent infinite loops if they walk away
+            if (elapsedTime >= 120) stopLungTest();
+
         }, 100);
     }
 
-    function stopBreathTest(forcedTime = null) {
-        if (!isTesting) return;
+    function updateGamification(time) {
+        const icon = document.getElementById('lung-icon');
+        const rank = document.getElementById('lung-rank');
+        const progressBar = document.getElementById('lung-progress');
 
-        clearInterval(breathInterval);
-        isTesting = false;
-
-        const finalTime = forcedTime || ((Date.now() - startTime) / 1000);
-        document.getElementById('breath-timer').innerText = finalTime.toFixed(1) + "s";
-
-        document.getElementById('btn-stop-breath').classList.add('hidden');
-        const startBtn = document.getElementById('btn-start-breath');
-        startBtn.classList.remove('hidden');
-        startBtn.innerText = "Try Again";
-
-        const circle = document.getElementById('breath-circle');
-        circle.classList.remove('scale-110', 'border-red-500', 'shadow-[0_0_30px_rgba(239,68,68,0.6)]');
-        circle.classList.add('border-blue-600');
-
-        showResults(finalTime);
+        if (time < 15) {
+            icon.innerText = "😰";
+            currentRank = "Beginner Breather";
+            rank.innerText = currentRank;
+        } else if (time >= 15 && time < 30) {
+            icon.innerText = "😷";
+            currentRank = "Average City Commuter";
+            rank.innerText = currentRank;
+            progressBar.classList.replace('bg-blue-500', 'bg-yellow-400');
+        } else if (time >= 30 && time < 50) {
+            icon.innerText = "🎺";
+            currentRank = "Wedding Band Trumpet Player";
+            rank.innerText = currentRank;
+            progressBar.classList.replace('bg-yellow-400', 'bg-orange-500');
+        } else if (time >= 50 && time < 75) {
+            icon.innerText = "🤿";
+            currentRank = "Deep Sea Pearl Diver";
+            rank.innerText = currentRank;
+            progressBar.classList.replace('bg-orange-500', 'bg-red-500');
+        } else if (time >= 75 && time < 90) {
+            icon.innerText = "🧘🏽‍♂️";
+            currentRank = "Himalayan Yogi";
+            rank.innerText = currentRank;
+            progressBar.classList.replace('bg-red-500', 'bg-purple-500');
+        } else if (time >= 90) {
+            icon.innerText = "👽";
+            currentRank = "Alien (Do you even need oxygen?)";
+            rank.innerText = currentRank;
+        }
     }
 
-    function resetBreathTest() {
-        clearInterval(breathInterval);
-        isTesting = false;
+    function stopLungTest() {
+        if (!isHoldingBreath) return;
 
-        document.getElementById('breath-timer').innerText = "0.0s";
-        const startBtn = document.getElementById('btn-start-breath');
-        startBtn.classList.remove('hidden');
-        startBtn.innerText = "Inhale & Start Timer";
+        clearInterval(lungInterval);
+        isHoldingBreath = false;
+
+        const finalTime = ((Date.now() - lungStartTime) / 1000).toFixed(1);
+
+        // Revert UI buttons
         document.getElementById('btn-stop-breath').classList.add('hidden');
+        document.getElementById('btn-start-breath').classList.remove('hidden');
+        document.getElementById('btn-start-breath').innerText = "Try Again";
+        document.getElementById('lung-icon').classList.remove('scale-110');
 
-        const resetBtn = document.getElementById('btn-reset-breath');
+        let resetBtn = document.getElementById('btn-reset-default');
+        if (resetBtn) resetBtn.classList.remove('hidden');
+
+        showLungResults(finalTime, currentRank);
+    }
+
+    function resetToDefault() {
+        if (lungInterval) clearInterval(lungInterval);
+        isHoldingBreath = false;
+
+        document.getElementById('lung-timer').innerText = "0.0s";
+        let progressBar = document.getElementById('lung-progress');
+        progressBar.style.width = "0%";
+        progressBar.className = "bg-blue-500 h-6 rounded-full transition-all duration-100 ease-linear";
+
+        let icon = document.getElementById('lung-icon');
+        icon.innerText = "😐";
+        icon.classList.remove('scale-110');
+
+        let rank = document.getElementById('lung-rank');
+        rank.innerText = "Ready to breathe?";
+        rank.className = "text-xl font-bold text-gray-300 tracking-wide";
+        currentRank = "Ready to breathe?";
+
+        document.getElementById('btn-stop-breath').classList.add('hidden');
+        let startBtn = document.getElementById('btn-start-breath');
+        startBtn.classList.remove('hidden');
+        startBtn.innerText = "🌬️ Inhale deeply & Start Timer";
+
+        let resetBtn = document.getElementById('btn-reset-default');
         if (resetBtn) resetBtn.classList.add('hidden');
 
-        const circle = document.getElementById('breath-circle');
-        circle.classList.remove('scale-110', 'border-red-500', 'shadow-[0_0_30px_rgba(239,68,68,0.6)]');
-        circle.classList.add('border-blue-600', 'shadow-[0_0_15px_rgba(37,99,235,0.3)]');
-
-        document.getElementById('breath-results').classList.add('hidden');
+        document.getElementById('lung-results').classList.add('hidden');
+        document.getElementById('lung-action').innerHTML = "";
     }
 
-    function showResults(seconds) {
-        const resultsDiv = document.getElementById('breath-results');
-        const title = document.getElementById('result-title');
-        const desc = document.getElementById('result-desc');
-        const action = document.getElementById('result-action');
+    function showLungResults(seconds, rankName) {
+        const resultsDiv = document.getElementById('lung-results');
+        const action = document.getElementById('lung-action');
 
         resultsDiv.classList.remove('hidden');
 
-        if (seconds < 20) {
-            title.innerText = "⚠️ Below Average";
-            title.className = "text-2xl font-bold text-red-400 mb-2";
-            desc.innerText = "Under 20 seconds may indicate reduced lung capacity or heavy exposure to current AQI levels.";
-            action.innerHTML = `
-            <a href="https://amzn.to/4aNom9H" target="_blank" class="block w-full text-center text-base font-bold bg-red-600 hover:bg-red-700 text-white py-3 rounded-lg shadow-md transition">Protect Lungs: Shop HEPA Purifiers</a>
-            <a href="https://www.google.com/maps/search/Pulmonologist" target="_blank" class="block w-full text-center text-base font-medium border border-red-500 text-red-400 hover:bg-red-900/30 py-3 rounded-lg transition">📍 Find Local Pulmonologist</a>
-            `;
-        } else if (seconds < 40) {
-            title.innerText = "🟡 Average / Good";
-            title.className = "text-2xl font-bold text-yellow-400 mb-2";
-            desc.innerText = "Your respiratory endurance is standard. Maintain it by avoiding outdoor exposure during high smog hours.";
-            action.innerHTML = `
-            <a href="https://amzn.to/4u4ZlQ5" target="_blank" class="block w-full text-center text-base font-bold bg-yellow-600 hover:bg-yellow-700 text-white py-3 rounded-lg shadow-md transition">Maintain Health: Get N95 Masks</a>
-            `;
+        // The Viral WhatsApp Text (Flat Directory URL)
+        const shareText = encodeURIComponent(`🫁 I just held my breath for ${seconds}s and achieved "${rankName}" status on the CityHealth360 Lung Challenge! Think your lungs are better? Try it here: https://cityhealth360.in/docs/lung-capacity.html`);
+        const whatsappBtn = `<a href="https://api.whatsapp.com/send?text=${shareText}" target="_blank" class="block w-full text-center text-lg font-bold bg-[#25D366] hover:bg-[#1da851] text-white py-4 rounded-xl shadow-[0_0_15px_rgba(37,211,102,0.4)] transition mt-2 mb-4 flex items-center justify-center gap-2">📱 Trash Talk on WhatsApp</a>`;
+
+        // Monetization Routing
+        let affiliateHtml = "";
+        if (seconds < 30) {
+            affiliateHtml = `
+      <p class="text-sm text-red-400 mb-4 font-medium">Your respiratory endurance is well below average. The city smog is winning.</p>
+      <a href="https://amzn.to/4aNom9H" target="_blank" class="block w-full text-center text-sm font-bold bg-gray-700 hover:bg-gray-600 text-white py-3 rounded-lg transition mb-3">Shop True HEPA Air Purifiers ↗</a>
+      <a href="https://www.google.com/maps/search/Pulmonologist+in" target="_blank" class="block w-full text-center text-sm font-bold border border-red-500 text-red-400 hover:bg-red-900/30 py-3 rounded-lg transition">📍 Find a Local Pulmonologist</a>
+    `;
+        } else if (seconds < 60) {
+            affiliateHtml = `
+      <p class="text-sm text-yellow-400 mb-4 font-medium">Not bad, but you can do better. Don't let outdoor pollution degrade your baseline.</p>
+      <a href="https://amzn.to/4u4ZlQ" target="_blank" class="block w-full text-center text-sm font-bold bg-gray-700 hover:bg-gray-600 text-white py-3 rounded-lg transition">Stock up on N95 Masks ↗</a>
+    `;
         } else {
-            title.innerText = "🟢 Excellent";
-            title.className = "text-2xl font-bold text-green-400 mb-2";
-            desc.innerText = "Strong lung capacity! You are currently mitigating environmental factors well.";
-            action.innerHTML = ``;
+            affiliateHtml = `
+      <p class="text-sm text-green-400 mb-3 font-medium">Incredible lung capacity! Keep your respiratory system safe from sudden AQI spikes.</p>
+    `;
         }
+
+        action.innerHTML = whatsappBtn + affiliateHtml;
     }
 </script>
 {% endblock %}

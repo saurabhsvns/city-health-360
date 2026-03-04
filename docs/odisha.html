@@ -78,7 +78,7 @@
                 <div class="text-right mr-4 border-r border-slate-700 pr-4">
                     <div class="text-[9px] sm:text-[10px] font-bold text-slate-500 uppercase tracking-widest">Last
                         Update</div>
-                    <div class="text-[10px] sm:text-xs font-mono text-blue-300">Mar 03, 07:59 AM</div>
+                    <div class="text-[10px] sm:text-xs font-mono text-blue-300">Mar 05, 12:08 AM</div>
                 </div>
                 <a href="india.html" class="text-sm font-medium text-blue-400 hover:text-blue-300 transition">🌍
                     National Map</a>
@@ -88,7 +88,7 @@
         </div>
     </header>
 
-    <main class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-10 space-y-12">
+    <main class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-10 pb-20 md:pb-10 space-y-12">
 
         <!-- Hero Title -->
         <div class="grid grid-cols-1 lg:grid-cols-3 gap-8">
@@ -226,6 +226,30 @@
     <footer class="mt-20 py-10 border-t border-slate-800 bg-slate-900/50 text-center">
         <p class="text-slate-600 text-sm">&copy; 2026 City Health 360</p>
     </footer>
+
+    <!-- Mobile Bottom Navigation -->
+    <div
+        class="md:hidden fixed bottom-0 left-0 w-full bg-slate-900/95 backdrop-blur-md border-t border-slate-700/50 z-50 px-2 py-2 flex justify-around items-center">
+        <a href="../index.html"
+            class="flex flex-col items-center gap-1 p-2 text-slate-400 hover:text-white transition-colors">
+            <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+                    d="M3 12l2-2m0 0l7-7 7 7M5 10v10a1 1 0 001 1h3m10-11l2 2m-2-2v10a1 1 0 01-1 1h-3m-6 0a1 1 0 001-1v-4a1 1 0 011-1h2a1 1 0 011 1v4a1 1 0 001 1m-6 0h6">
+                </path>
+            </svg>
+            <span class="text-[10px] font-medium uppercase tracking-wider">Dashboard</span>
+        </a>
+        <a href="india.html"
+            class="flex flex-col items-center gap-1 p-2 text-slate-400 hover:text-white transition-colors">
+            <span class="text-xl leading-none">🌍</span>
+            <span class="text-[10px] font-medium uppercase tracking-wider">India Map</span>
+        </a>
+        <a href="interactive-tools.html"
+            class="flex flex-col items-center gap-1 p-2 text-slate-400 hover:text-white transition-colors">
+            <span class="text-xl leading-none">🫁</span>
+            <span class="text-[10px] font-medium uppercase tracking-wider">Tools</span>
+        </a>
+    </div>
 
     <!-- Leaflet JS -->
     <script src="https://unpkg.com/leaflet@1.9.4/dist/leaflet.js" crossorigin=""></script>
