@@ -56,6 +56,16 @@
 
                 <div id="local-env-widget"
                     class="hidden mb-6 bg-gray-800 rounded-xl border border-gray-700 p-4 shadow-inner">
+
+                    <div class="flex items-center gap-2 mb-4 pb-3 border-b border-gray-700">
+                        <span class="text-xl">📍</span>
+                        <div>
+                            <div class="text-[10px] font-bold text-gray-500 uppercase tracking-widest">Current Location
+                            </div>
+                            <div id="radar-location-text" class="text-sm font-bold text-blue-400">Locating...</div>
+                        </div>
+                    </div>
+
                     <h4
                         class="text-xs font-bold text-gray-400 uppercase tracking-widest mb-3 border-b border-gray-700 pb-2">
                         Live Hyper-Local Conditions</h4>
@@ -118,7 +128,10 @@
                 // 1. Fetch Environment Data (With Caching)
                 await fetchEnvironmentData(lat, lon);
 
-                // 2. Fetch Hazard Data (Overpass API) with Caching & Timeout Directive
+                // 2. Fetch Human Readable Location Name (NEW)
+                fetchLocationName(lat, lon);
+
+                // 3. Fetch Hazard Data (Overpass API) with Caching & Timeout Directive
                 const gridLat = lat.toFixed(2);
                 const gridLon = lon.toFixed(2);
                 const cacheKeyHazards = `cityhealth_hazards_${gridLat}_${gridLon}`;
@@ -228,6 +241,51 @@
             });
         } else {
             hazardList.innerHTML = `<li class="text-gray-400 text-sm">Geolocation is not supported by your browser.</li>`;
+        }
+    }
+
+    // THE REVERSE GEOCODING ENGINE
+    async function fetchLocationName(lat, lon) {
+        const gridLat = lat.toFixed(2);
+        const gridLon = lon.toFixed(2);
+        const cacheKey = `cityhealth_loc_${gridLat}_${gridLon}`;
+        const cachedLocation = localStorage.getItem(cacheKey);
+        const locTextEl = document.getElementById('radar-location-text');
+
+        // Load from cache if available
+        if (cachedLocation) {
+            locTextEl.innerText = cachedLocation;
+            return;
+        }
+
+        try {
+            // Nominatim API: Zoom level 14 targets suburbs/neighborhoods
+            const url = `https://nominatim.openstreetmap.org/reverse?format=json&lat=${lat}&lon=${lon}&zoom=14&addressdetails=1`;
+
+            // We pass Accept-Language to ensure we get English names, not local scripts
+            const response = await fetch(url, { headers: { 'Accept-Language': 'en' } });
+            const data = await response.json();
+
+            if (data && data.address) {
+                const addr = data.address;
+
+                // OSM data is highly granular. We grab the most relevant localized tags.
+                const area = addr.suburb || addr.neighbourhood || addr.residential || addr.village || "";
+                const city = addr.city || addr.town || addr.county || addr.state_district || "";
+                const state = addr.state || "";
+
+                // Filter out empty strings and join with commas
+                let locationParts = [area, city, state].filter(Boolean);
+                let locationString = locationParts.join(", ");
+
+                if (!locationString) locationString = "Unknown Local Area";
+
+                locTextEl.innerText = locationString;
+                localStorage.setItem(cacheKey, locationString);
+            }
+        } catch (error) {
+            console.error("Failed to fetch location name", error);
+            locTextEl.innerText = "Local Area";
         }
     }
 
