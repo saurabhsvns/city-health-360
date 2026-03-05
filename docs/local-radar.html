@@ -102,7 +102,7 @@
                 <div class="hidden sm:block text-right border-r border-slate-700 pr-4">
                     <div class="text-[10px] sm:text-xs font-bold uppercase tracking-widest text-slate-500 mb-0.5">Last
                         Update</div>
-                    <div class="font-mono text-blue-300 text-[10px] sm:text-xs">Mar 05, 12:08 AM</div>
+                    <div class="font-mono text-blue-300 text-[10px] sm:text-xs">Mar 05, 06:33 PM</div>
                 </div>
 
                 <!-- City Dropdown Functionality -->
@@ -193,6 +193,7 @@
         btn.style.display = 'none';
         resultsDiv.classList.remove('hidden');
         loadingText.classList.remove('hidden');
+        loadingText.innerText = 'Scanning local topography...'; // Reset text
         envWidget.classList.add('hidden');
 
         if ("geolocation" in navigator) {
@@ -203,24 +204,83 @@
                 // 1. Fetch Environment Data (With Caching)
                 await fetchEnvironmentData(lat, lon);
 
-                // 2. Fetch Hazard Data (Overpass API)
-                const query = `
-        [out:json];
-        (
-          way["landuse"="industrial"](around:5000,${lat},${lon});
-          way["landuse"="landfill"](around:5000,${lat},${lon});
-          node["power"="plant"](around:5000,${lat},${lon});
-        );
-        out center 5;
-      `;
+                // 2. Fetch Hazard Data (Overpass API) with Caching & Timeout Directive
+                const gridLat = lat.toFixed(2);
+                const gridLon = lon.toFixed(2);
+                const cacheKeyHazards = `cityhealth_hazards_${gridLat}_${gridLon}`;
+                const cachedHazards = localStorage.getItem(cacheKeyHazards);
 
-                try {
-                    const response = await fetch('https://overpass-api.de/api/interpreter', {
-                        method: 'POST',
-                        body: query
-                    });
-                    const data = await response.json();
+                let fetchSuccess = false;
+                let data = null;
 
+                if (cachedHazards) {
+                    const parsed = JSON.parse(cachedHazards);
+                    const ageInMs = Date.now() - parsed.timestamp;
+                    // Cache expiry: 24 hours (86400000 ms) because infrastructure rarely moves
+                    if (ageInMs < 86400000) {
+                        data = parsed.data;
+                        fetchSuccess = true;
+                        console.log("Loaded hazard data from local cache.");
+                    }
+                }
+
+                if (!fetchSuccess) {
+                    const query = `
+            [out:json][timeout:60];
+            (
+              way["landuse"="industrial"](around:5000,${lat},${lon});
+              way["landuse"="landfill"](around:5000,${lat},${lon});
+              node["power"="plant"](around:5000,${lat},${lon});
+            );
+            out center 5;
+            `;
+
+                    // --- RETRY LOGIC ENGINE ---
+                    let maxRetries = 3;
+                    let attempt = 0;
+
+                    while (attempt < maxRetries && !fetchSuccess) {
+                        try {
+                            const response = await fetch('https://overpass-api.de/api/interpreter', {
+                                method: 'POST',
+                                body: query
+                            });
+
+                            if (!response.ok) {
+                                throw new Error(`Server returned ${response.status}`);
+                            }
+
+                            data = await response.json();
+                            fetchSuccess = true; // Break the loop
+
+                            // Save to Cache
+                            localStorage.setItem(cacheKeyHazards, JSON.stringify({
+                                timestamp: Date.now(),
+                                data: data
+                            }));
+
+                        } catch (error) {
+                            attempt++;
+                            console.warn(`Overpass attempt ${attempt} failed:`, error);
+
+                            if (attempt < maxRetries) {
+                                loadingText.innerText = `Satellite busy. Retrying... (Attempt ${attempt + 1}/3)`;
+                                // Pause for 3 seconds before trying again (Exponential backoff)
+                                await new Promise(resolve => setTimeout(resolve, 3000));
+                            } else {
+                                // If we hit max retries, fail gracefully
+                                loadingText.classList.add('hidden');
+                                hazardList.innerHTML = `<li class="text-red-400 text-sm p-3 bg-gray-800 rounded-lg border border-red-900/30">Radar offline due to high satellite traffic. Please try again in a few minutes.</li>`;
+                                btn.style.display = 'block';
+                                btn.innerText = "Retry Radar Scan";
+                                return; // Exit the function
+                            }
+                        }
+                    }
+                }
+                // --- END FETCH/RETRY LOGIC ---
+
+                if (fetchSuccess && data) {
                     loadingText.classList.add('hidden');
                     hazardList.innerHTML = '';
 
@@ -228,10 +288,10 @@
                         data.elements.forEach(el => {
                             let type = "Industrial Zone";
                             let icon = "🏭";
-                            if (el.tags.landuse === "landfill") { type = "Waste/Landfill"; icon = "🗑️"; }
-                            if (el.tags.power === "plant") { type = "Power Plant"; icon = "⚡"; }
+                            if (el.tags && el.tags.landuse === "landfill") { type = "Waste/Landfill"; icon = "🗑️"; }
+                            if (el.tags && el.tags.power === "plant") { type = "Power Plant"; icon = "⚡"; }
 
-                            let name = el.tags.name || `Unnamed ${type}`;
+                            let name = (el.tags && el.tags.name) ? el.tags.name : `Unnamed ${type}`;
                             let hazardLat = el.lat || el.center.lat;
                             let hazardLon = el.lon || el.center.lon;
                             let distKm = calculateDistance(lat, lon, hazardLat, hazardLon).toFixed(1);
@@ -245,9 +305,6 @@
                     } else {
                         hazardList.innerHTML = `<li class="text-green-400 text-sm p-3 bg-gray-800 rounded-lg border border-green-900/30">✅ No major industrial zones detected within 5km.</li>`;
                     }
-                } catch (error) {
-                    loadingText.classList.add('hidden');
-                    hazardList.innerHTML = `<li class="text-red-400 text-sm">Error connecting to satellite data.</li>`;
                 }
             }, function (error) {
                 loadingText.classList.add('hidden');
@@ -318,21 +375,24 @@
         document.getElementById('radar-wind').innerText = `${data.wind} km/h`;
 
         const aqiEl = document.getElementById('radar-aqi');
-        aqiEl.innerText = data.aqi;
 
-        // Standard International AQI Color Brackets
-        if (data.aqi > 300) {
-            aqiEl.className = "text-2xl font-black text-purple-500 animate-pulse"; // Hazardous
-        } else if (data.aqi > 200) {
-            aqiEl.className = "text-2xl font-black text-red-600 animate-pulse"; // Very Unhealthy
-        } else if (data.aqi > 150) {
-            aqiEl.className = "text-2xl font-black text-red-500"; // Unhealthy
-        } else if (data.aqi > 100) {
-            aqiEl.className = "text-2xl font-black text-orange-400"; // Unhealthy for Sensitive
-        } else if (data.aqi > 50) {
-            aqiEl.className = "text-2xl font-black text-yellow-400"; // Moderate
+        // Capping logic for BEYOND INDEX
+        if (data.aqi > 500) {
+            aqiEl.innerText = "500+";
+            aqiEl.className = "text-3xl font-black text-white bg-red-900 px-3 py-1 rounded animate-pulse";
+            aqiEl.previousElementSibling.innerText = "⚠️ BEYOND INDEX (HAZARDOUS)";
+            aqiEl.previousElementSibling.className = "text-xs font-bold text-red-500 uppercase tracking-widest";
         } else {
-            aqiEl.className = "text-2xl font-black text-green-400"; // Good
+            aqiEl.innerText = data.aqi;
+            aqiEl.previousElementSibling.innerText = "Live Overall AQI";
+            aqiEl.previousElementSibling.className = "text-xs text-gray-500";
+
+            if (data.aqi > 300) aqiEl.className = "text-2xl font-black text-purple-500 animate-pulse";
+            else if (data.aqi > 200) aqiEl.className = "text-2xl font-black text-red-600 animate-pulse";
+            else if (data.aqi > 150) aqiEl.className = "text-2xl font-black text-red-500";
+            else if (data.aqi > 100) aqiEl.className = "text-2xl font-black text-orange-400";
+            else if (data.aqi > 50) aqiEl.className = "text-2xl font-black text-yellow-400";
+            else aqiEl.className = "text-2xl font-black text-green-400";
         }
     }
 
