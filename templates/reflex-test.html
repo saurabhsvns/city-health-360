@@ -153,23 +153,33 @@
         resultsDiv.classList.remove('hidden');
 
         const shareText = encodeURIComponent(`🏏 I just reacted to a ${kmph} km/h delivery on the CityHealth360 Summer Pitch! The heat hasn't melted my brain yet. Beat my score: https://cityhealth360.in/docs/reflex-test.html`);
-        const whatsappBtn = `<a href="https://api.whatsapp.com/send?text=${shareText}" target="_blank" class="block w-full text-center text-sm font-bold bg-[#25D366] hover:bg-[#1da851] text-white py-3 rounded shadow-md transition mt-4 mb-2 flex items-center justify-center gap-2">📱 Trash Talk on WhatsApp</a>`;
+        const isMobile = /Android|webOS|iPhone|iPad|iPod|BlackBerry|IEMobile|Opera Mini/i.test(navigator.userAgent);
+
+        let shareBtns = "";
+        if (isMobile) {
+            shareBtns = `<a href="https://api.whatsapp.com/send?text=${shareText}" target="_blank" class="block w-full text-center text-sm font-bold bg-[#25D366] hover:bg-[#1da851] text-white py-3 rounded shadow-md transition mt-4 mb-2 flex items-center justify-center gap-2">📱 Trash Talk on WhatsApp</a>`;
+        } else {
+            const twitterBtn = `<a href="https://twitter.com/intent/tweet?text=${shareText}" target="_blank" class="flex-1 text-center text-sm font-bold bg-[#1DA1F2] hover:bg-[#1a91da] text-white py-3 rounded shadow-md transition flex items-center justify-center gap-2">🐦 X / Twitter</a>`;
+            const copyCode = `const text = decodeURIComponent('${shareText}'); if(navigator.clipboard){navigator.clipboard.writeText(text).then(()=>{alert('Link copied!')}).catch(()=>{alert('Could not copy link.')});}else{const tmp=document.createElement('textarea');tmp.value=text;document.body.appendChild(tmp);tmp.select();document.execCommand('copy');document.body.removeChild(tmp);alert('Link copied!');}`;
+            const copyBtn = `<button onclick="${copyCode}" class="flex-1 text-center text-sm font-bold bg-gray-700 hover:bg-gray-600 text-white py-3 rounded shadow-md transition flex items-center justify-center gap-2">📋 Copy Link</button>`;
+            shareBtns = `<div class="flex gap-2 mt-4 mb-2">${twitterBtn}${copyBtn}</div>`;
+        }
 
         if (ms <= 320) {
             title.innerText = "⚡ Elite Pacer Reflexes";
             title.className = "text-2xl font-black text-green-400 mb-2";
             desc.innerText = "Lightning fast! The heat hasn't touched your cognitive speed. You're IPL ready.";
-            action.innerHTML = `<button onclick="handleReflexTap()" class="w-full text-center text-sm font-bold border border-green-500 text-green-400 hover:bg-green-900/30 py-3 rounded transition shadow-md">Play Again</button>` + whatsappBtn;
+            action.innerHTML = `<button onclick="handleReflexTap()" class="w-full text-center text-sm font-bold border border-green-500 text-green-400 hover:bg-green-900/30 py-3 rounded transition shadow-md">Play Again</button>` + shareBtns;
         } else if (ms > 320 && ms <= 500) {
             title.innerText = "🏏 Medium Pace Fielder";
             title.className = "text-2xl font-black text-yellow-400 mb-2";
             desc.innerText = "A bit sluggish. The heat is thicking your blood and slowing your brain. Hydrate before your next over!";
-            action.innerHTML = `<a href="https://amzn.to/4r5Yc8k" target="_blank" class="block w-full text-center text-sm font-bold bg-yellow-600 hover:bg-yellow-700 text-white py-3 rounded shadow-md transition">Buy Electral/ORS to Wake Up ↗</a>` + whatsappBtn;
+            action.innerHTML = `<a href="https://amzn.to/4r5Yc8k" target="_blank" class="block w-full text-center text-sm font-bold bg-yellow-600 hover:bg-yellow-700 text-white py-3 rounded shadow-md transition">Buy Electral/ORS to Wake Up ↗</a>` + shareBtns;
         } else {
             title.innerText = " Spinner's Delight";
             title.className = "text-2xl font-black text-orange-500 mb-2";
             desc.innerText = "Bro, you are buffering. The heat has officially cooked your processing speed. Drink water immediately.";
-            action.innerHTML = `<a href="https://amzn.to/3MORx4h" target="_blank" class="block w-full text-center text-sm font-bold bg-orange-600 hover:bg-orange-700 text-white py-3 rounded shadow-md transition">Get a Milton Ice Flask ↗</a>` + whatsappBtn;
+            action.innerHTML = `<a href="https://amzn.to/3MORx4h" target="_blank" class="block w-full text-center text-sm font-bold bg-orange-600 hover:bg-orange-700 text-white py-3 rounded shadow-md transition">Get a Milton Ice Flask ↗</a>` + shareBtns;
         }
     }
 </script>

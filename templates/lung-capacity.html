@@ -226,7 +226,17 @@
 
         // The Viral WhatsApp Text (Flat Directory URL)
         const shareText = encodeURIComponent(`🫁 I just held my breath for ${seconds}s and achieved "${rankName}" status on the CityHealth360 Lung Challenge! Think your lungs are better? Try it here: https://cityhealth360.in/docs/lung-capacity.html`);
-        const whatsappBtn = `<a href="https://api.whatsapp.com/send?text=${shareText}" target="_blank" class="block w-full text-center text-lg font-bold bg-[#25D366] hover:bg-[#1da851] text-white py-4 rounded-xl shadow-[0_0_15px_rgba(37,211,102,0.4)] transition mt-2 mb-4 flex items-center justify-center gap-2">📱 Trash Talk on WhatsApp</a>`;
+        const isMobile = /Android|webOS|iPhone|iPad|iPod|BlackBerry|IEMobile|Opera Mini/i.test(navigator.userAgent);
+
+        let shareBtns = "";
+        if (isMobile) {
+            shareBtns = `<a href="https://api.whatsapp.com/send?text=${shareText}" target="_blank" class="block w-full text-center text-lg font-bold bg-[#25D366] hover:bg-[#1da851] text-white py-4 rounded-xl shadow-[0_0_15px_rgba(37,211,102,0.4)] transition mt-2 mb-4 flex items-center justify-center gap-2">📱 Trash Talk on WhatsApp</a>`;
+        } else {
+            const twitterBtn = `<a href="https://twitter.com/intent/tweet?text=${shareText}" target="_blank" class="flex-1 text-center text-lg font-bold bg-[#1DA1F2] hover:bg-[#1a91da] text-white py-4 rounded-xl shadow-[0_0_15px_rgba(29,161,242,0.4)] transition flex items-center justify-center gap-2">🐦 X / Twitter</a>`;
+            const copyCode = `const text = decodeURIComponent('${shareText}'); if(navigator.clipboard){navigator.clipboard.writeText(text).then(()=>{alert('Link copied!')}).catch(()=>{alert('Could not copy link.')});}else{const tmp=document.createElement('textarea');tmp.value=text;document.body.appendChild(tmp);tmp.select();document.execCommand('copy');document.body.removeChild(tmp);alert('Link copied!');}`;
+            const copyBtn = `<button onclick="${copyCode}" class="flex-1 text-center text-lg font-bold bg-gray-700 hover:bg-gray-600 text-white py-4 rounded-xl shadow-lg transition flex items-center justify-center gap-2">📋 Copy Link</button>`;
+            shareBtns = `<div class="flex gap-3 mt-2 mb-4">${twitterBtn}${copyBtn}</div>`;
+        }
 
         // Monetization Routing
         let affiliateHtml = "";
@@ -247,7 +257,7 @@
     `;
         }
 
-        action.innerHTML = whatsappBtn + affiliateHtml;
+        action.innerHTML = shareBtns + affiliateHtml;
     }
 </script>
 {% endblock %}
