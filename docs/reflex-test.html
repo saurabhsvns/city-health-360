@@ -118,7 +118,7 @@
                 <div class="hidden sm:block text-right border-r border-slate-700 pr-4">
                     <div class="text-[10px] sm:text-xs font-bold uppercase tracking-widest text-slate-500 mb-0.5">Last
                         Update</div>
-                    <div class="font-mono text-blue-300 text-[10px] sm:text-xs">Mar 07, 03:37 PM</div>
+                    <div class="font-mono text-blue-300 text-[10px] sm:text-xs">Mar 07, 07:21 PM</div>
                 </div>
 
                 <!-- City Dropdown Functionality -->
@@ -130,105 +130,107 @@
     <!-- Main Content -->
     <main class="flex-grow pb-20 md:pb-0">
         
-<style>
-    @keyframes shake {
+<div class="max-w-xl mx-auto mt-8 bg-gray-900 border border-green-900/50 rounded-xl p-6 shadow-lg text-center">
+    <h2
+        class="text-3xl font-extrabold text-transparent bg-clip-text bg-gradient-to-r from-green-400 to-emerald-500 mb-2">
+        🏏 Summer Pitch Reflexes</h2>
+    <p class="text-sm text-gray-400 mb-6 px-4">Wait for the pitch to turn GREEN, then tap as fast as you can to hit the
+        ball.</p>
 
-        0%,
-        100% {
-            transform: translateX(0);
-        }
+    <div id="reflex-box" onmousedown="recordReaction()" ontouchstart="recordReaction(event)"
+        class="w-full h-48 bg-gray-800 rounded-xl border-2 border-dashed border-gray-600 flex items-center justify-center cursor-pointer transition-colors duration-100 mb-6 select-none">
+        <span id="reflex-text" class="text-2xl font-bold text-gray-500">Tap 'Start Innings' below</span>
+    </div>
 
-        20%,
-        60% {
-            transform: translateX(-8px);
-        }
+    <button id="btn-start-reflex" onclick="startReflexTest()"
+        class="w-full text-center text-lg font-bold bg-green-600 hover:bg-green-500 text-white py-4 rounded-xl transition shadow-[0_0_15px_rgba(22,163,74,0.4)]">
+        🏏 Start Innings
+    </button>
 
-        40%,
-        80% {
-            transform: translateX(8px);
-        }
-    }
+    <div id="reflex-results" class="hidden mt-6">
+        <div id="reflex-action" class="space-y-3"></div>
+    </div>
 
-    .animate-shake {
-        animation: shake 0.4s cubic-bezier(.36, .07, .19, .97) both;
-    }
-</style>
-<main class="max-w-4xl mx-auto px-4 py-8 space-y-12">
-    <section>
-        <h2 class="text-2xl font-bold mb-6 text-orange-400 border-b border-orange-500/30 pb-2">Cognitive Processing</h2>
-        <div
-            class="bg-gray-900 border border-orange-900/50 rounded-xl p-6 md:p-8 shadow-lg text-center relative overflow-hidden">
-            <h3 class="text-xl font-bold text-white mb-2">🧠 Heat Fatigue Reflex Test</h3>
-            <p class="text-sm text-gray-400 mb-6 px-4">High temperatures and dehydration slow down neural processing.
-                Test your cognitive speed against the human average (250ms).</p>
-
-            <div id="reflex-pad" onclick="handleReflexTap()"
-                class="w-full max-w-xl mx-auto h-56 rounded-xl bg-gray-800 border-2 border-gray-700 flex items-center justify-center cursor-pointer transition-colors duration-100 shadow-inner select-none mb-6">
-                <span id="reflex-msg" class="text-3xl font-bold text-gray-400 pointer-events-none">Tap to Start</span>
-            </div>
-
-            <div id="reflex-results"
-                class="hidden mt-4 p-5 rounded-lg bg-gray-800 border border-gray-700 max-w-xl mx-auto">
-                <h4 id="reflex-title" class="text-2xl font-black text-white mb-2"></h4>
-                <p id="reflex-desc" class="text-gray-300 mb-5"></p>
-                <div id="reflex-action" class="space-y-3"></div>
-            </div>
-
-            <p class="text-[10px] text-gray-500 mt-6 uppercase tracking-wider">Disclaimer: Not a medical diagnostic
-                tool. For informational purposes only.</p>
-        </div>
-    </section>
-
-    <a href="/docs/interactive-tools.html" class="mt-8 block text-center text-blue-400">⬅️ Back to All Tools</a>
-</main>
+    <a href="/interactive-tools.html" class="mt-8 block text-center text-blue-400 hover:text-blue-300">⬅️ Back to All
+        Tools</a>
+</div>
 
 <script>
-    let reflexState = 'idle'; // states: idle, waiting, ready, finished
-    let reflexStartTime = 0;
     let reflexTimeout;
+    let pitchStartTime;
+    let isWaitingForPitch = false;
+    let isPitchLive = false;
 
-    function handleReflexTap() {
-        const pad = document.getElementById('reflex-pad');
-        const msg = document.getElementById('reflex-msg');
+    function startReflexTest() {
+        const box = document.getElementById('reflex-box');
+        const text = document.getElementById('reflex-text');
+        const btn = document.getElementById('btn-start-reflex');
         const resultsDiv = document.getElementById('reflex-results');
 
-        if (navigator.vibrate) navigator.vibrate(50);
+        // Reset UI
+        resultsDiv.classList.add('hidden');
+        btn.classList.add('hidden');
 
-        if (reflexState === 'idle' || reflexState === 'finished') {
-            resultsDiv.classList.add('hidden');
-            pad.classList.remove('animate-shake');
-            pad.className = "w-full max-w-xl mx-auto h-56 rounded-xl bg-red-600 flex items-center justify-center cursor-pointer select-none mb-6 shadow-[0_0_20px_rgba(220,38,38,0.4)] transition-colors";
-            msg.className = "text-4xl font-bold text-white pointer-events-none";
-            msg.innerText = "Wait for Green...";
-            reflexState = 'waiting';
+        box.className = "w-full h-48 bg-red-600 rounded-xl border-2 border-red-500 flex items-center justify-center cursor-pointer transition-colors duration-100 mb-6 select-none";
+        text.innerText = "Wait for it... 🔴";
+        text.className = "text-2xl font-bold text-white animate-pulse pointer-events-none";
 
-            const delay = Math.floor(Math.random() * 3000) + 2000;
+        isWaitingForPitch = true;
+        isPitchLive = false;
 
-            reflexTimeout = setTimeout(() => {
-                if (reflexState === 'waiting') {
-                    pad.className = "w-full max-w-xl mx-auto h-56 rounded-xl bg-green-500 flex items-center justify-center cursor-pointer select-none mb-6 shadow-[0_0_30px_rgba(34,197,94,0.6)]";
-                    msg.innerText = "TAP NOW!";
-                    reflexState = 'ready';
-                    reflexStartTime = Date.now();
-                }
-            }, delay);
+        // Random delay between 2 to 5 seconds so they can't predict it
+        const randomDelay = Math.floor(Math.random() * 3000) + 2000;
 
-        } else if (reflexState === 'waiting') {
+        reflexTimeout = setTimeout(triggerPitch, randomDelay);
+    }
+
+    function triggerPitch() {
+        const box = document.getElementById('reflex-box');
+        const text = document.getElementById('reflex-text');
+
+        isWaitingForPitch = false;
+        isPitchLive = true;
+        pitchStartTime = Date.now();
+
+        box.className = "w-full h-48 bg-green-500 rounded-xl border-2 border-green-400 flex items-center justify-center cursor-pointer mb-6 select-none shadow-[0_0_30px_rgba(34,197,94,0.6)]";
+        text.innerText = "HIT! 🏏";
+        text.className = "text-5xl font-black text-white pointer-events-none";
+    }
+
+    function recordReaction(event) {
+        // Prevent double firing on mobile devices
+        if (event) event.preventDefault();
+
+        const box = document.getElementById('reflex-box');
+        const text = document.getElementById('reflex-text');
+        const btn = document.getElementById('btn-start-reflex');
+
+        if (isWaitingForPitch) {
+            // Foul - Clicked too early
             clearTimeout(reflexTimeout);
-            if (navigator.vibrate) navigator.vibrate([100, 50, 100]);
+            isWaitingForPitch = false;
 
-            pad.className = "w-full max-w-xl mx-auto h-56 rounded-xl bg-gray-800 border-2 border-red-500 flex items-center justify-center cursor-pointer select-none mb-6 animate-shake";
-            msg.className = "text-2xl font-bold text-red-400 pointer-events-none";
-            msg.innerText = "Too early! You got stumped.";
-            reflexState = 'idle';
+            box.className = "w-full h-48 bg-gray-800 rounded-xl border-2 border-gray-600 flex items-center justify-center cursor-pointer mb-6 select-none";
+            text.innerText = "Too early! You stepped out of the crease. ❌";
+            text.className = "text-lg font-bold text-red-400 pointer-events-none";
 
-        } else if (reflexState === 'ready') {
-            const reactionTimeMs = Date.now() - reflexStartTime;
+            btn.classList.remove('hidden');
+            btn.innerText = "Try Again";
+            return;
+        }
 
-            pad.className = "w-full max-w-xl mx-auto h-56 rounded-xl bg-gray-800 border-2 border-blue-500 flex items-center justify-center cursor-pointer select-none mb-6";
-            msg.innerHTML = `<div class="text-center"><div class="text-6xl font-black text-blue-400">${reactionTimeMs}</div><div class="text-sm font-bold text-gray-400 tracking-widest uppercase">ms Reaction</div></div>`;
+        if (isPitchLive) {
+            // Success - Record Time
+            isPitchLive = false;
+            const reactionTimeMs = Date.now() - pitchStartTime;
 
-            reflexState = 'finished';
+            box.className = "w-full h-48 bg-gray-900 rounded-xl border-2 border-blue-500 flex items-center justify-center cursor-pointer mb-6 select-none shadow-inner";
+            text.innerText = `${reactionTimeMs} ms ⏱️`;
+            text.className = "text-4xl font-black text-blue-400 pointer-events-none";
+
+            btn.classList.remove('hidden');
+            btn.innerText = "Face Next Ball";
+
             showReflexResults(reactionTimeMs);
         }
     }
@@ -237,84 +239,79 @@
         const resultsDiv = document.getElementById('reflex-results');
         const action = document.getElementById('reflex-action');
 
-        document.getElementById('reflex-title').style.display = 'none';
-        document.getElementById('reflex-desc').style.display = 'none';
-
         resultsDiv.classList.remove('hidden');
 
-        // 1. The Batsman Gamification Engine
         let rankName = "";
-        let maxSpeedFaced = 0;
+        let maxSpeedFaced = "";
         let summaryText = "";
 
-        if (reactionTimeMs <= 300) {
+        // Relaxed tiers accounting for mobile screen latency
+        if (reactionTimeMs < 300) {
             rankName = "🏏 International Opener";
-            maxSpeedFaced = "150+";
-            summaryText = "Incredible hand-eye coordination. You could react to a prime Shoaib Akhtar delivery.";
-        } else if (reactionTimeMs > 300 && reactionTimeMs <= 400) {
-            rankName = "🧤 Solid Middle Order";
-            maxSpeedFaced = "130";
+            maxSpeedFaced = "🔴 140+ km/h Pace";
+            summaryText = "Incredible hand-eye coordination. You could react to a prime Jasprit Bumrah yorker.";
+        } else if (reactionTimeMs >= 300 && reactionTimeMs < 450) {
+            rankName = "🏏 Solid Middle Order";
+            maxSpeedFaced = "🔴 125 km/h Seam";
             summaryText = "Great reflexes. You could comfortably face a standard medium-fast club bowler.";
-        } else if (reactionTimeMs > 400 && reactionTimeMs <= 550) {
-            rankName = "🔴 Sunday League Slogger";
-            maxSpeedFaced = "95";
-            summaryText = "Average reflexes. The heat might be slowing you down. You're getting bowled by anything over 100 km/h.";
+        } else if (reactionTimeMs >= 450 && reactionTimeMs < 600) {
+            rankName = "🏏 Sunday League Slogger";
+            maxSpeedFaced = "🔴 90 km/h Medium";
+            summaryText = "Average reflexes. The heat might be slowing you down. You're swinging wild and missing.";
         } else {
             rankName = "🦆 Sitting Duck";
-            maxSpeedFaced = "Spin Only";
+            maxSpeedFaced = "🔴 Spin Only";
             summaryText = "Sluggish reaction time. A local off-spinner just took your middle stump. Drink some water.";
         }
 
-        // 2. Prepare the Viral Share Text
-        const rawShareText = `🏏 I just tested my batting reflexes against the summer heat on CityHealth360! My reaction time was ${reactionTimeMs}ms. I ranked as a "${rankName}" and can face a ${maxSpeedFaced} km/h delivery. Can you beat my hand-eye coordination? https://cityhealth360.in/docs/reflex-test.html`;
+        const rawShareText = `🏏 I just tested my batting reflexes against the summer heat on CityHealth360! My reaction time was ${reactionTimeMs}ms. I ranked as "${rankName.replace('🏏 ', '').replace('🦆 ', '')}" and can face a ${maxSpeedFaced.replace('🔴 ', '')} delivery. Can you beat my hand-eye coordination? https://cityhealth360.in/docs/reflex-test.html`;
         const encodedShareText = encodeURIComponent(rawShareText);
 
-        // 3. Device Detection for Seamless Sharing
         const isMobile = /Android|webOS|iPhone|iPad|iPod|BlackBerry|IEMobile|Opera Mini/i.test(navigator.userAgent);
+
+        const resultsCardHtml = `
+      <div class="bg-gray-800 border border-gray-700 p-5 rounded-xl mb-4 text-center shadow-inner">
+        <div class="text-xs text-gray-500 uppercase tracking-widest mb-2">Your Batsman Rank</div>
+        <div class="text-2xl font-black text-white mb-2">${rankName}</div>
+        <div class="inline-block bg-gray-900 border border-gray-600 rounded-full px-4 py-1 text-sm font-bold text-blue-400 mb-3">
+          Max Speed Faced: ${maxSpeedFaced}
+        </div>
+        <div class="text-sm text-gray-400">${summaryText}</div>
+      </div>
+  `;
 
         let shareHtml = "";
         if (isMobile) {
             shareHtml = `
-            <div class="bg-gray-800 border border-gray-700 p-4 rounded-xl mb-4 text-center mt-2">
-                <div class="text-xs text-gray-500 uppercase tracking-widest mb-1">Your Batsman Rank</div>
-                <div class="text-2xl font-black text-white mb-1">${rankName}</div>
-                <div class="text-sm text-gray-400">${summaryText}</div>
-            </div>
-            <button onclick="handleReflexTap()" class="w-full mt-2 text-center text-sm font-bold border border-blue-500 text-blue-400 hover:bg-blue-900/30 py-3 rounded transition shadow-md">Play Again</button>
-            <a href="https://api.whatsapp.com/send?text=${encodedShareText}" target="_blank" class="block w-full text-center text-lg font-bold bg-[#25D366] hover:bg-[#1da851] text-white py-4 rounded-xl shadow-[0_0_15px_rgba(37,211,102,0.4)] transition mt-3 mb-4 flex items-center justify-center gap-2">
-                📱 Challenge on WhatsApp
-            </a>
-            `;
+      ${resultsCardHtml}
+      <a href="https://api.whatsapp.com/send?text=${encodedShareText}" target="_blank" class="block w-full text-center text-lg font-bold bg-[#25D366] hover:bg-[#1da851] text-white py-4 rounded-xl shadow-[0_0_15px_rgba(37,211,102,0.4)] transition mt-2 mb-4 flex items-center justify-center gap-2">
+        📱 Challenge on WhatsApp
+      </a>
+    `;
         } else {
             shareHtml = `
-            <div class="bg-gray-800 border border-gray-700 p-4 rounded-xl mb-4 text-center mt-2">
-                <div class="text-xs text-gray-500 uppercase tracking-widest mb-1">Your Batsman Rank</div>
-                <div class="text-2xl font-black text-white mb-1">${rankName}</div>
-                <div class="text-sm text-gray-400">${summaryText}</div>
-            </div>
-            <button onclick="handleReflexTap()" class="w-full mt-2 text-center text-sm font-bold border border-blue-500 text-blue-400 hover:bg-blue-900/30 py-3 rounded transition shadow-md">Play Again</button>
-            <div class="flex gap-3 mt-3 mb-4">
-                <button onclick="const text=decodeURIComponent('${encodedShareText}');if(navigator.clipboard){navigator.clipboard.writeText(text).then(()=>{this.innerText='✅ Copied!';this.classList.replace('bg-gray-700','bg-green-600');}).catch(()=>{alert('Could not copy string.')});}else{const tmp=document.createElement('textarea');tmp.value=text;document.body.appendChild(tmp);tmp.select();document.execCommand('copy');document.body.removeChild(tmp);this.innerText='✅ Copied!';this.classList.replace('bg-gray-700','bg-green-600');}" class="flex-1 text-center text-sm font-bold bg-gray-700 hover:bg-gray-600 text-white py-4 rounded-xl transition flex items-center justify-center gap-2">
-                📋 Copy Score
-                </button>
-                <a href="https://twitter.com/intent/tweet?text=${encodedShareText}" target="_blank" class="flex-1 text-center text-sm font-bold bg-black hover:bg-gray-900 border border-gray-700 text-white py-4 rounded-xl transition flex items-center justify-center gap-2">
-                𝕏 Share on X
-                </a>
-            </div>
-            `;
+      ${resultsCardHtml}
+      <div class="flex gap-3 mt-2 mb-4">
+        <button onclick="const text=decodeURIComponent('${encodedShareText}');if(navigator.clipboard){navigator.clipboard.writeText(text).then(()=>{this.innerText='✅ Copied!';this.classList.replace('bg-gray-700','bg-green-600');}).catch(()=>{alert('Could not copy string.')});}else{const tmp=document.createElement('textarea');tmp.value=text;document.body.appendChild(tmp);tmp.select();document.execCommand('copy');document.body.removeChild(tmp);this.innerText='✅ Copied!';this.classList.replace('bg-gray-700','bg-green-600');}" class="flex-1 text-center text-sm font-bold bg-gray-700 hover:bg-gray-600 text-white py-4 rounded-xl transition flex items-center justify-center gap-2">
+          📋 Copy Score
+        </button>
+        <a href="https://twitter.com/intent/tweet?text=${encodedShareText}" target="_blank" class="flex-1 text-center text-sm font-bold bg-black hover:bg-gray-900 border border-gray-700 text-white py-4 rounded-xl transition flex items-center justify-center gap-2">
+          𝕏 Share on X
+        </a>
+      </div>
+    `;
         }
 
-        // 4. Affiliate Monetization Logic
         let affiliateHtml = "";
-        if (reactionTimeMs > 300) {
+        if (reactionTimeMs > 450) {
             affiliateHtml = `
-            <p class="text-sm text-red-400 mb-4 font-medium">Your cognitive processing is sluggish today. Dehydration heavily impacts hand-eye coordination.</p>
-            <a href="https://amzn.to/4r5Yc8k" target="_blank" class="block w-full text-center text-sm font-bold bg-gray-700 hover:bg-gray-600 text-white py-3 rounded-lg transition mb-3">Stock up on ORS Electrolytes ↗</a>
-            `;
+      <p class="text-sm text-red-400 mb-4 font-medium">Your cognitive processing is sluggish today. Dehydration heavily impacts hand-eye coordination.</p>
+      <a href="https://amzn.to/4r5Yc8k" target="_blank" class="block w-full text-center text-sm font-bold bg-gray-700 hover:bg-gray-600 text-white py-3 rounded-lg transition mb-3">Stock up on ORS Electrolytes ↗</a>
+    `;
         } else {
             affiliateHtml = `
-            <p class="text-sm text-green-400 mb-3 font-medium">Elite reflexes! You are staying perfectly hydrated despite the heat.</p>
-            `;
+      <p class="text-sm text-green-400 mb-3 font-medium">Elite reflexes! You are staying perfectly hydrated despite the heat.</p>
+    `;
         }
 
         action.innerHTML = shareHtml + affiliateHtml;
