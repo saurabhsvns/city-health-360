@@ -133,54 +133,101 @@
             reflexState = 'idle';
 
         } else if (reflexState === 'ready') {
-            const reactionTime = Date.now() - reflexStartTime;
-            let speedKmph = Math.max(40, Math.round((300 / reactionTime) * 140));
+            const reactionTimeMs = Date.now() - reflexStartTime;
 
             pad.className = "w-full max-w-xl mx-auto h-56 rounded-xl bg-gray-800 border-2 border-blue-500 flex items-center justify-center cursor-pointer select-none mb-6";
-            msg.innerHTML = `<div class="text-center"><div class="text-6xl font-black text-blue-400">${speedKmph}</div><div class="text-sm font-bold text-gray-400 tracking-widest uppercase">km/h Speed</div><div class="text-xs text-blue-900 mt-2">${reactionTime} ms</div></div>`;
+            msg.innerHTML = `<div class="text-center"><div class="text-6xl font-black text-blue-400">${reactionTimeMs}</div><div class="text-sm font-bold text-gray-400 tracking-widest uppercase">ms Reaction</div></div>`;
 
             reflexState = 'finished';
-            showReflexResults(reactionTime, speedKmph);
+            showReflexResults(reactionTimeMs);
         }
     }
 
-    function showReflexResults(ms, kmph) {
+    function showReflexResults(reactionTimeMs) {
         const resultsDiv = document.getElementById('reflex-results');
-        const title = document.getElementById('reflex-title');
-        const desc = document.getElementById('reflex-desc');
         const action = document.getElementById('reflex-action');
+
+        document.getElementById('reflex-title').style.display = 'none';
+        document.getElementById('reflex-desc').style.display = 'none';
 
         resultsDiv.classList.remove('hidden');
 
-        const shareText = encodeURIComponent(`🏏 I just reacted to a ${kmph} km/h delivery on the CityHealth360 Summer Pitch! The heat hasn't melted my brain yet. Beat my score: https://cityhealth360.in/docs/reflex-test.html`);
+        // 1. The Batsman Gamification Engine
+        let rankName = "";
+        let maxSpeedFaced = 0;
+        let summaryText = "";
+
+        if (reactionTimeMs <= 300) {
+            rankName = "🏏 International Opener";
+            maxSpeedFaced = "150+";
+            summaryText = "Incredible hand-eye coordination. You could react to a prime Shoaib Akhtar delivery.";
+        } else if (reactionTimeMs > 300 && reactionTimeMs <= 400) {
+            rankName = "🧤 Solid Middle Order";
+            maxSpeedFaced = "130";
+            summaryText = "Great reflexes. You could comfortably face a standard medium-fast club bowler.";
+        } else if (reactionTimeMs > 400 && reactionTimeMs <= 550) {
+            rankName = "🔴 Sunday League Slogger";
+            maxSpeedFaced = "95";
+            summaryText = "Average reflexes. The heat might be slowing you down. You're getting bowled by anything over 100 km/h.";
+        } else {
+            rankName = "🦆 Sitting Duck";
+            maxSpeedFaced = "Spin Only";
+            summaryText = "Sluggish reaction time. A local off-spinner just took your middle stump. Drink some water.";
+        }
+
+        // 2. Prepare the Viral Share Text
+        const rawShareText = `🏏 I just tested my batting reflexes against the summer heat on CityHealth360! My reaction time was ${reactionTimeMs}ms. I ranked as a "${rankName}" and can face a ${maxSpeedFaced} km/h delivery. Can you beat my hand-eye coordination? https://cityhealth360.in/docs/reflex-test.html`;
+        const encodedShareText = encodeURIComponent(rawShareText);
+
+        // 3. Device Detection for Seamless Sharing
         const isMobile = /Android|webOS|iPhone|iPad|iPod|BlackBerry|IEMobile|Opera Mini/i.test(navigator.userAgent);
 
-        let shareBtns = "";
+        let shareHtml = "";
         if (isMobile) {
-            shareBtns = `<a href="https://api.whatsapp.com/send?text=${shareText}" target="_blank" class="block w-full text-center text-sm font-bold bg-[#25D366] hover:bg-[#1da851] text-white py-3 rounded shadow-md transition mt-4 mb-2 flex items-center justify-center gap-2">📱 Trash Talk on WhatsApp</a>`;
+            shareHtml = `
+            <div class="bg-gray-800 border border-gray-700 p-4 rounded-xl mb-4 text-center mt-2">
+                <div class="text-xs text-gray-500 uppercase tracking-widest mb-1">Your Batsman Rank</div>
+                <div class="text-2xl font-black text-white mb-1">${rankName}</div>
+                <div class="text-sm text-gray-400">${summaryText}</div>
+            </div>
+            <button onclick="handleReflexTap()" class="w-full mt-2 text-center text-sm font-bold border border-blue-500 text-blue-400 hover:bg-blue-900/30 py-3 rounded transition shadow-md">Play Again</button>
+            <a href="https://api.whatsapp.com/send?text=${encodedShareText}" target="_blank" class="block w-full text-center text-lg font-bold bg-[#25D366] hover:bg-[#1da851] text-white py-4 rounded-xl shadow-[0_0_15px_rgba(37,211,102,0.4)] transition mt-3 mb-4 flex items-center justify-center gap-2">
+                📱 Challenge on WhatsApp
+            </a>
+            `;
         } else {
-            const twitterBtn = `<a href="https://twitter.com/intent/tweet?text=${shareText}" target="_blank" class="flex-1 text-center text-sm font-bold bg-[#1DA1F2] hover:bg-[#1a91da] text-white py-3 rounded shadow-md transition flex items-center justify-center gap-2">🐦 X / Twitter</a>`;
-            const copyCode = `const text = decodeURIComponent('${shareText}'); if(navigator.clipboard){navigator.clipboard.writeText(text).then(()=>{alert('Link copied!')}).catch(()=>{alert('Could not copy link.')});}else{const tmp=document.createElement('textarea');tmp.value=text;document.body.appendChild(tmp);tmp.select();document.execCommand('copy');document.body.removeChild(tmp);alert('Link copied!');}`;
-            const copyBtn = `<button onclick="${copyCode}" class="flex-1 text-center text-sm font-bold bg-gray-700 hover:bg-gray-600 text-white py-3 rounded shadow-md transition flex items-center justify-center gap-2">📋 Copy Link</button>`;
-            shareBtns = `<div class="flex gap-2 mt-4 mb-2">${twitterBtn}${copyBtn}</div>`;
+            shareHtml = `
+            <div class="bg-gray-800 border border-gray-700 p-4 rounded-xl mb-4 text-center mt-2">
+                <div class="text-xs text-gray-500 uppercase tracking-widest mb-1">Your Batsman Rank</div>
+                <div class="text-2xl font-black text-white mb-1">${rankName}</div>
+                <div class="text-sm text-gray-400">${summaryText}</div>
+            </div>
+            <button onclick="handleReflexTap()" class="w-full mt-2 text-center text-sm font-bold border border-blue-500 text-blue-400 hover:bg-blue-900/30 py-3 rounded transition shadow-md">Play Again</button>
+            <div class="flex gap-3 mt-3 mb-4">
+                <button onclick="const text=decodeURIComponent('${encodedShareText}');if(navigator.clipboard){navigator.clipboard.writeText(text).then(()=>{this.innerText='✅ Copied!';this.classList.replace('bg-gray-700','bg-green-600');}).catch(()=>{alert('Could not copy string.')});}else{const tmp=document.createElement('textarea');tmp.value=text;document.body.appendChild(tmp);tmp.select();document.execCommand('copy');document.body.removeChild(tmp);this.innerText='✅ Copied!';this.classList.replace('bg-gray-700','bg-green-600');}" class="flex-1 text-center text-sm font-bold bg-gray-700 hover:bg-gray-600 text-white py-4 rounded-xl transition flex items-center justify-center gap-2">
+                📋 Copy Score
+                </button>
+                <a href="https://twitter.com/intent/tweet?text=${encodedShareText}" target="_blank" class="flex-1 text-center text-sm font-bold bg-black hover:bg-gray-900 border border-gray-700 text-white py-4 rounded-xl transition flex items-center justify-center gap-2">
+                𝕏 Share on X
+                </a>
+            </div>
+            `;
         }
 
-        if (ms <= 320) {
-            title.innerText = "⚡ Elite Pacer Reflexes";
-            title.className = "text-2xl font-black text-green-400 mb-2";
-            desc.innerText = "Lightning fast! The heat hasn't touched your cognitive speed. You're IPL ready.";
-            action.innerHTML = `<button onclick="handleReflexTap()" class="w-full text-center text-sm font-bold border border-green-500 text-green-400 hover:bg-green-900/30 py-3 rounded transition shadow-md">Play Again</button>` + shareBtns;
-        } else if (ms > 320 && ms <= 500) {
-            title.innerText = "🏏 Medium Pace Fielder";
-            title.className = "text-2xl font-black text-yellow-400 mb-2";
-            desc.innerText = "A bit sluggish. The heat is thicking your blood and slowing your brain. Hydrate before your next over!";
-            action.innerHTML = `<a href="https://amzn.to/4r5Yc8k" target="_blank" class="block w-full text-center text-sm font-bold bg-yellow-600 hover:bg-yellow-700 text-white py-3 rounded shadow-md transition">Buy Electral/ORS to Wake Up ↗</a>` + shareBtns;
+        // 4. Affiliate Monetization Logic
+        let affiliateHtml = "";
+        if (reactionTimeMs > 300) {
+            affiliateHtml = `
+            <p class="text-sm text-red-400 mb-4 font-medium">Your cognitive processing is sluggish today. Dehydration heavily impacts hand-eye coordination.</p>
+            <a href="https://amzn.to/4r5Yc8k" target="_blank" class="block w-full text-center text-sm font-bold bg-gray-700 hover:bg-gray-600 text-white py-3 rounded-lg transition mb-3">Stock up on ORS Electrolytes ↗</a>
+            `;
         } else {
-            title.innerText = " Spinner's Delight";
-            title.className = "text-2xl font-black text-orange-500 mb-2";
-            desc.innerText = "Bro, you are buffering. The heat has officially cooked your processing speed. Drink water immediately.";
-            action.innerHTML = `<a href="https://amzn.to/3MORx4h" target="_blank" class="block w-full text-center text-sm font-bold bg-orange-600 hover:bg-orange-700 text-white py-3 rounded shadow-md transition">Get a Milton Ice Flask ↗</a>` + shareBtns;
+            affiliateHtml = `
+            <p class="text-sm text-green-400 mb-3 font-medium">Elite reflexes! You are staying perfectly hydrated despite the heat.</p>
+            `;
         }
+
+        action.innerHTML = shareHtml + affiliateHtml;
     }
 </script>
 {% endblock %}
