@@ -19,6 +19,18 @@
     <meta name="apple-mobile-web-app-title" content="Health360" />
     <link rel="manifest" href="../manifest.json">
     <meta name="theme-color" content="#0f172a">
+    
+<meta property="og:title" content="Hyper-Local Pollution Radar | CityHealth360">
+<meta property="og:description" content="Real-time satellite scan of industrial hazards and toxic gas levels in your neighborhood.">
+<meta property="og:image" content="https://cityhealth360.in/static/local-radar.jpg">
+<meta property="og:url" content="https://cityhealth360.in/docs/local-radar.html">
+<meta property="og:type" content="website">
+
+<meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:title" content="Hyper-Local Pollution Radar | CityHealth360">
+<meta name="twitter:description" content="Real-time satellite scan of industrial hazards and toxic gas levels in your neighborhood.">
+<meta name="twitter:image" content="https://cityhealth360.in/static/local-radar.jpg">
+
 
     <!-- Tailwind CSS -->
     <script src="https://cdn.tailwindcss.com"></script>
@@ -107,7 +119,7 @@
                 <div class="hidden sm:block text-right border-r border-slate-700 pr-4">
                     <div class="text-[10px] sm:text-xs font-bold uppercase tracking-widest text-slate-500 mb-0.5">Last
                         Update</div>
-                    <div class="font-mono text-blue-300 text-[10px] sm:text-xs">Mar 07, 08:46 PM</div>
+                    <div class="font-mono text-blue-300 text-[10px] sm:text-xs">Mar 18, 11:20 PM</div>
                 </div>
 
                 <!-- City Dropdown Functionality -->
@@ -178,6 +190,118 @@
                             <div id="radar-wind" class="text-lg font-bold text-gray-300">-- km/h</div>
                         </div>
                     </div>
+
+                    <div class="mt-4 pt-4 border-t border-gray-700">
+                        <h4 class="text-xs font-bold text-gray-500 uppercase tracking-widest mb-3">Toxic Gas Breakdown
+                            (µg/m³)</h4>
+                        <div class="grid grid-cols-2 md:grid-cols-4 gap-3">
+
+                            <div class="bg-gray-800 rounded-lg p-3 border border-gray-700">
+                                <div class="text-[10px] text-gray-400 uppercase font-bold">Nitrogen Dioxide</div>
+                                <div class="flex items-baseline gap-1">
+                                    <span id="gas-no2" class="text-xl font-black text-white">--</span>
+                                    <span class="text-xs text-gray-500">NO₂</span>
+                                </div>
+                            </div>
+
+                            <div class="bg-gray-800 rounded-lg p-3 border border-gray-700">
+                                <div class="text-[10px] text-gray-400 uppercase font-bold">Carbon Monoxide</div>
+                                <div class="flex items-baseline gap-1">
+                                    <span id="gas-co" class="text-xl font-black text-white">--</span>
+                                    <span class="text-xs text-gray-500">CO</span>
+                                </div>
+                            </div>
+
+                            <div class="bg-gray-800 rounded-lg p-3 border border-gray-700">
+                                <div class="text-[10px] text-gray-400 uppercase font-bold">Surface Ozone</div>
+                                <div class="flex items-baseline gap-1">
+                                    <span id="gas-o3" class="text-xl font-black text-white">--</span>
+                                    <span class="text-xs text-gray-500">O₃</span>
+                                </div>
+                            </div>
+
+                            <div class="bg-gray-800 rounded-lg p-3 border border-gray-700">
+                                <div class="text-[10px] text-gray-400 uppercase font-bold">Sulphur Dioxide</div>
+                                <div class="flex items-baseline gap-1">
+                                    <span id="gas-so2" class="text-xl font-black text-white">--</span>
+                                    <span class="text-xs text-gray-500">SO₂</span>
+                                </div>
+                            </div>
+
+                        </div>
+                    </div>
+                </div>
+
+                <div class="mt-6 border-t border-gray-700 pt-4">
+                    <details class="group">
+                        <summary
+                            class="flex items-center justify-between cursor-pointer list-none text-sm font-bold text-gray-400 hover:text-white transition">
+                            <span>📊 View Safe Limits (Indian Gov Standards)</span>
+                            <span class="transition group-open:rotate-180">▼</span>
+                        </summary>
+
+                        <div class="mt-4 bg-gray-900 border border-gray-700 rounded-lg overflow-hidden text-xs">
+                            <table class="w-full text-left border-collapse">
+                                <thead>
+                                    <tr class="bg-gray-800 text-gray-300">
+                                        <th class="p-3 border-b border-gray-700">Pollutant</th>
+                                        <th class="p-3 border-b border-gray-700">Permissible Limit (24h)</th>
+                                        <th class="p-3 border-b border-gray-700">Primary Source</th>
+                                    </tr>
+                                </thead>
+                                <tbody class="text-gray-400">
+                                    <tr>
+                                        <td class="p-3 border-b border-gray-800 font-bold text-gray-300">Fine
+                                            Particulate Matter (PM2.5)</td>
+                                        <td class="p-3 border-b border-gray-800">60 µg/m³</td>
+                                        <td class="p-3 border-b border-gray-800">Combustion, Dust, Smog</td>
+                                    </tr>
+                                    <tr>
+                                        <td class="p-3 border-b border-gray-800 font-bold text-gray-300">Coarse
+                                            Particulate Matter (PM10)</td>
+                                        <td class="p-3 border-b border-gray-800">100 µg/m³</td>
+                                        <td class="p-3 border-b border-gray-800">Construction, Road Dust</td>
+                                    </tr>
+                                    <tr>
+                                        <td class="p-3 border-b border-gray-800 font-bold text-gray-300">Nitrogen
+                                            Dioxide (NO₂)</td>
+                                        <td class="p-3 border-b border-gray-800">80 µg/m³</td>
+                                        <td class="p-3 border-b border-gray-800">Vehicle Exhaust, Power Plants</td>
+                                    </tr>
+                                    <tr>
+                                        <td class="p-3 border-b border-gray-800 font-bold text-gray-300">Sulphur Dioxide
+                                            (SO₂)</td>
+                                        <td class="p-3 border-b border-gray-800">80 µg/m³</td>
+                                        <td class="p-3 border-b border-gray-800">Industrial Coal Burning</td>
+                                    </tr>
+                                    <tr>
+                                        <td class="p-3 border-b border-gray-800 font-bold text-gray-300">Surface Ozone
+                                            (O₃)</td>
+                                        <td class="p-3 border-b border-gray-800">100 µg/m³ <span
+                                                class="text-[10px] opacity-70">(8h avg)</span></td>
+                                        <td class="p-3 border-b border-gray-800">Chemical reaction with sunlight</td>
+                                    </tr>
+                                    <tr>
+                                        <td class="p-3 font-bold text-gray-300">Carbon Monoxide (CO)</td>
+                                        <td class="p-3">2000 µg/m³ <span class="text-[10px] opacity-70">(8h avg)</span>
+                                        </td>
+                                        <td class="p-3">Incomplete fuel combustion</td>
+                                    </tr>
+                                </tbody>
+                            </table>
+                            <div
+                                class="p-3 bg-black/40 text-[10px] text-gray-500 border-t border-gray-700 flex justify-between items-center">
+                                <span>Source: Central Pollution Control Board (CPCB)</span>
+                                <a href="https://cpcb.nic.in/national-ambient-air-quality-standards/" target="_blank"
+                                    rel="noopener noreferrer" class="text-blue-400 hover:underline">Verify Source ↗</a>
+                            </div>
+                        </div>
+                    </details>
+                </div>
+
+                <div id="hazards-heading" class="mt-8 mb-4 border-b border-gray-800 pb-2">
+                    <h4 class="text-xs font-bold text-gray-400 uppercase tracking-widest">📍 Nearby Industrial Hazards
+                    </h4>
                 </div>
 
                 <ul id="hazard-list" class="space-y-3 mb-4"></ul>
@@ -188,6 +312,12 @@
                         class="block w-full text-base font-bold bg-gray-800 hover:bg-gray-700 text-white py-3 rounded-lg border border-gray-600 transition shadow-md">
                         Shop Heavy-Duty Air Purifiers ↗
                     </a>
+                </div>
+
+                <div id="radar-share-action" class="mt-8 border-t border-gray-700 pt-6 hidden">
+                    <h4 class="text-center text-xs font-bold text-gray-500 uppercase tracking-widest mb-4">Broadcast
+                        Your Neighborhood Data</h4>
+                    <div id="share-buttons-wrapper"></div>
                 </div>
             </div>
         </div>
@@ -314,14 +444,29 @@
                             let hazardLon = el.lon || el.center.lon;
                             let distKm = calculateDistance(lat, lon, hazardLat, hazardLon).toFixed(1);
 
+                            // Generate the Google Maps Universal Link
+                            const mapsUrl = `https://www.google.com/maps/search/?api=1&query=${hazardLat},${hazardLon}`;
+
                             let li = document.createElement('li');
-                            li.className = "flex justify-between items-center bg-gray-800 p-3 rounded-lg text-sm border border-gray-700/50";
-                            li.innerHTML = `<span class="text-gray-200">${icon} <b>${name}</b></span> <span class="text-red-400 font-mono font-bold">${distKm} km away</span>`;
+                            li.className = "flex items-center justify-between p-3 bg-gray-800 rounded-lg border border-gray-700 hover:border-gray-500 transition";
+                            li.innerHTML = `
+                                <div>
+                                    <div class="font-bold text-white text-sm">${icon} ${name}</div>
+                                    <div class="text-xs text-gray-400 capitalize">${type} • ${distKm} km away</div>
+                                </div>
+                                <a href="${mapsUrl}" target="_blank" rel="noopener noreferrer" class="flex items-center gap-1 bg-blue-600/20 text-blue-400 hover:bg-blue-600/40 hover:text-blue-300 px-3 py-2 rounded text-xs font-bold transition">
+                                    <span>🗺️ Map</span>
+                                </a>
+                            `;
                             hazardList.appendChild(li);
                         });
                         actionDiv.classList.remove('hidden');
+
+                        // FINAL SCORING & SHARING
+                        calculateResidentialScore(data.elements.length);
                     } else {
                         hazardList.innerHTML = `<li class="text-green-400 text-sm p-3 bg-gray-800 rounded-lg border border-green-900/30">✅ No major industrial zones detected within 5km.</li>`;
+                        calculateResidentialScore(0);
                     }
                 }
             }, function (error) {
@@ -402,7 +547,7 @@
         // If no cache or expired, fetch fresh data from Open-Meteo
         try {
             const weatherUrl = `https://api.open-meteo.com/v1/forecast?latitude=${lat}&longitude=${lon}&current=temperature_2m,relative_humidity_2m,wind_speed_10m`;
-            const aqiUrl = `https://air-quality-api.open-meteo.com/v1/air-quality?latitude=${lat}&longitude=${lon}&current=us_aqi`;
+            const aqiUrl = `https://air-quality-api.open-meteo.com/v1/air-quality?latitude=${lat}&longitude=${lon}&current=us_aqi,carbon_monoxide,nitrogen_dioxide,sulphur_dioxide,ozone`;
 
             const [weatherRes, aqiRes] = await Promise.all([
                 fetch(weatherUrl),
@@ -416,7 +561,11 @@
                 temp: weatherData.current.temperature_2m,
                 humidity: weatherData.current.relative_humidity_2m,
                 wind: weatherData.current.wind_speed_10m,
-                aqi: aqiData.current.us_aqi
+                aqi: aqiData.current.us_aqi,
+                co: aqiData.current.carbon_monoxide,
+                no2: aqiData.current.nitrogen_dioxide,
+                so2: aqiData.current.sulphur_dioxide,
+                o3: aqiData.current.ozone
             };
 
             // Save to Cache
@@ -436,6 +585,29 @@
         document.getElementById('radar-temp').innerText = `${data.temp}°C`;
         document.getElementById('radar-humidity').innerText = `${data.humidity}%`;
         document.getElementById('radar-wind').innerText = `${data.wind} km/h`;
+
+        // Update Toxic Gas Grid with Conditional Coloring based on NAAQS limits
+        const coVal = Math.round(data.co);
+        const no2Val = Math.round(data.no2);
+        const so2Val = Math.round(data.so2);
+        const o3Val = Math.round(data.o3);
+
+        const coEl = document.getElementById('gas-co');
+        const no2El = document.getElementById('gas-no2');
+        const so2El = document.getElementById('gas-so2');
+        const o3El = document.getElementById('gas-o3');
+
+        coEl.innerText = coVal;
+        no2El.innerText = no2Val;
+        so2El.innerText = so2Val;
+        o3El.innerText = o3Val;
+
+        // Apply Colors (Red if Above Limit, Green if Below)
+        // Limits: CO: 2000, NO2: 80, SO2: 80, O3: 100
+        coEl.className = coVal > 2000 ? "text-xl font-black text-red-500 animate-pulse" : "text-xl font-black text-green-400";
+        no2El.className = no2Val > 80 ? "text-xl font-black text-red-500 animate-pulse" : "text-xl font-black text-green-400";
+        so2El.className = so2Val > 80 ? "text-xl font-black text-red-500 animate-pulse" : "text-xl font-black text-green-400";
+        o3El.className = o3Val > 100 ? "text-xl font-black text-red-500 animate-pulse" : "text-xl font-black text-green-400";
 
         const aqiEl = document.getElementById('radar-aqi');
 
@@ -457,6 +629,111 @@
             else if (data.aqi > 50) aqiEl.className = "text-2xl font-black text-yellow-400";
             else aqiEl.className = "text-2xl font-black text-green-400";
         }
+    }
+
+    // THE RESIDENTIAL SCORING ENGINE
+    function calculateResidentialScore(hazardCount) {
+        // We pull the raw AQI from the UI because environment data is fetched in parallel
+        const rawAqiText = document.getElementById('radar-aqi').innerText;
+        const aqi = parseInt(rawAqiText) || 50;
+
+        // TerraScore Calculation: Base 100, penalized by AQI and Hazards
+        // AQI Penalty: 0-500 mapped to 0-60 penalty
+        const aqiPenalty = Math.min(60, (aqi / 500) * 60);
+        // Hazard Penalty: 10 points per hazard, capped at 40
+        const hazardPenalty = Math.min(40, hazardCount * 10);
+
+        const finalScore = Math.max(0, Math.round(100 - aqiPenalty - hazardPenalty));
+
+        // Fire the share buttons with the new score
+        renderRadarShareButtons(finalScore, hazardCount);
+    }
+
+    // THE CONTEXTUAL SHARING ENGINE
+    function renderRadarShareButtons(score, hazardCount) {
+        const shareActionDiv = document.getElementById('radar-share-action');
+        const wrapperDiv = document.getElementById('share-buttons-wrapper');
+
+        shareActionDiv.classList.remove('hidden');
+
+        // 1. Prepare the Data-Driven Share Text (using backticks for multi-line support)
+        const rawShareText = `🚨 I just ran a 5km satellite scan on my neighborhood using CityHealth360 Hyper Local Radar. My area scored ${score}/100 and has ${hazardCount} nearby industrial hazards polluting our air. \n\nCheck what is hiding in your neighborhood's air here: https://cityhealth360.in/docs/local-radar.html`;
+        const encodedShareText = encodeURIComponent(rawShareText);
+
+        // 2. Device Detection
+        const isMobile = /Android|webOS|iPhone|iPad|iPod|BlackBerry|IEMobile|Opera Mini/i.test(navigator.userAgent);
+
+        // 3. Conditional UI Rendering
+        let shareHtml = "";
+
+        if (isMobile) {
+            // MOBILE: Giant WhatsApp button for RWA groups
+            shareHtml = `
+            <a href="https://api.whatsapp.com/send?text=${encodedShareText}" target="_blank" class="block w-full text-center text-lg font-bold bg-[#25D366] hover:bg-[#1da851] text-white py-4 rounded-xl shadow-[0_0_15px_rgba(37,211,102,0.4)] transition mb-3 flex items-center justify-center gap-2">
+                📱 Alert Family & RWA Group
+            </a>
+            <div class="flex gap-3">
+                <button onclick="copyRadarReport(this)" data-clipboard-text="${rawShareText.replace(/"/g, '&quot;')}" class="flex-1 text-center text-sm font-bold bg-gray-800 border border-gray-700 hover:bg-gray-700 text-white py-3 rounded-xl transition flex items-center justify-center gap-2">
+                📋 Copy Text
+                </button>
+                <a href="https://twitter.com/intent/tweet?text=${encodedShareText}" target="_blank" class="flex-1 text-center text-sm font-bold bg-black border border-gray-700 hover:bg-gray-900 text-white py-3 rounded-xl transition flex items-center justify-center gap-2">
+                𝕏 Tag Authorities
+                </a>
+            </div>
+            `;
+        } else {
+            // DESKTOP: Split Copy Link and X (Twitter)
+            shareHtml = `
+            <div class="flex gap-3">
+                <button onclick="copyRadarReport(this)" data-clipboard-text="${rawShareText.replace(/"/g, '&quot;')}" class="flex-1 text-center text-sm font-bold bg-gray-700 hover:bg-gray-600 text-white py-4 rounded-xl transition flex items-center justify-center gap-2">
+                📋 Copy Report Link
+                </button>
+                <a href="https://twitter.com/intent/tweet?text=${encodedShareText}" target="_blank" class="flex-1 text-center text-sm font-bold bg-black hover:bg-gray-900 border border-gray-700 text-white py-4 rounded-xl transition flex items-center justify-center gap-2">
+                𝕏 Share on X
+                </a>
+            </div>
+            `;
+        }
+
+        wrapperDiv.innerHTML = shareHtml;
+    }
+
+    function copyRadarReport(btn) {
+        const text = btn.getAttribute('data-clipboard-text');
+        
+        // Fallback for older browsers or non-secure contexts
+        if (!navigator.clipboard) {
+            const textArea = document.createElement("textarea");
+            textArea.value = text;
+            document.body.appendChild(textArea);
+            textArea.select();
+            try {
+                document.execCommand('copy');
+                updateButtonFeedback(btn);
+            } catch (err) {
+                console.error('Fallback: Oops, unable to copy', err);
+            }
+            document.body.removeChild(textArea);
+            return;
+        }
+
+        navigator.clipboard.writeText(text).then(() => {
+            updateButtonFeedback(btn);
+        }).catch(err => {
+            console.error('Async: Could not copy text: ', err);
+        });
+    }
+
+    function updateButtonFeedback(btn) {
+        const oldText = btn.innerText;
+        btn.innerText = "✅ Copied!";
+        const oldColorClass = btn.classList.contains('bg-gray-800') ? 'bg-gray-800' : 'bg-gray-700';
+        btn.classList.replace(oldColorClass, 'bg-green-600');
+        
+        setTimeout(() => {
+            btn.innerText = oldText;
+            btn.classList.replace('bg-green-600', oldColorClass);
+        }, 2000);
     }
 
     // Helper: Haversine distance
@@ -506,7 +783,7 @@
         document.addEventListener('DOMContentLoaded', async () => {
             try {
                 // Fetch the latest scores which has the city list
-                const response = await fetch('../docs/data/latest_scores.json');
+                const response = await fetch('data/latest_scores.json');
                 if (!response.ok) throw new Error('Data fetch failed');
                 const citiesData = await response.json();
 

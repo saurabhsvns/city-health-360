@@ -19,6 +19,7 @@
     <meta name="apple-mobile-web-app-title" content="Health360" />
     <link rel="manifest" href="../manifest.json">
     <meta name="theme-color" content="#0f172a">
+    {% block meta %}{% endblock %}
 
     <!-- Tailwind CSS -->
     <script src="https://cdn.tailwindcss.com"></script>
@@ -138,7 +139,7 @@
         document.addEventListener('DOMContentLoaded', async () => {
             try {
                 // Fetch the latest scores which has the city list
-                const response = await fetch('../docs/data/latest_scores.json');
+                const response = await fetch('data/latest_scores.json');
                 if (!response.ok) throw new Error('Data fetch failed');
                 const citiesData = await response.json();
 

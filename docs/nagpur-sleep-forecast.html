@@ -19,6 +19,7 @@
     <meta name="apple-mobile-web-app-title" content="Health360" />
     <link rel="manifest" href="../manifest.json">
     <meta name="theme-color" content="#0f172a">
+    
 
     <!-- Tailwind CSS -->
     <script src="https://cdn.tailwindcss.com"></script>
@@ -127,7 +128,7 @@
                 <div class="hidden sm:block text-right border-r border-slate-700 pr-4">
                     <div class="text-[10px] sm:text-xs font-bold uppercase tracking-widest text-slate-500 mb-0.5">Last
                         Update</div>
-                    <div class="font-mono text-blue-300 text-[10px] sm:text-xs">Mar 07, 08:46 PM</div>
+                    <div class="font-mono text-blue-300 text-[10px] sm:text-xs">Mar 18, 11:20 PM</div>
                 </div>
 
                 <!-- City Dropdown Functionality -->
@@ -174,7 +175,7 @@
         </h1>
         <p class="text-lg text-slate-300 max-w-2xl mx-auto">
             Real-time environmental data and personalized health recommendations for Nagpur. Last updated:
-            <span class="font-semibold text-white">Mar 07, 08:46 PM</span>.
+            <span class="font-semibold text-white">Mar 18, 11:20 PM</span>.
         </p>
     </header>
 
@@ -325,7 +326,7 @@
         document.addEventListener('DOMContentLoaded', async () => {
             try {
                 // Fetch the latest scores which has the city list
-                const response = await fetch('../docs/data/latest_scores.json');
+                const response = await fetch('data/latest_scores.json');
                 if (!response.ok) throw new Error('Data fetch failed');
                 const citiesData = await response.json();
 
