@@ -4,10 +4,10 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Is Kota Safe Today? Health & AQI Forecast Mar 21, 03:04 AM</title>
+    <title>Is Kota Safe Today? Health & AQI Forecast Mar 21, 04:02 AM</title>
     <meta name="description"
         content="Daily health report for Kota travelers. Mosquito risk: 3/10.
-AQI: 60. Check hospital lists and safe zones.">
+AQI: 71. Check hospital lists and safe zones.">
     
     <link rel="canonical" href="https://cityhealth360.in/docs/kota.html">
     
@@ -109,7 +109,7 @@ AQI: 60. Check hospital lists and safe zones.">
                 <div class="hidden sm:block text-right border-r border-slate-700 pr-4">
                     <div class="text-[10px] sm:text-xs font-bold uppercase tracking-widest text-slate-500 mb-0.5">Last
                         Update</div>
-                    <div class="font-mono text-blue-300 text-[10px] sm:text-xs">Mar 21, 03:04 AM</div>
+                    <div class="font-mono text-blue-300 text-[10px] sm:text-xs">Mar 21, 04:02 AM</div>
                 </div>
 
                 <!-- City Dropdown Functionality -->
@@ -146,7 +146,7 @@ AQI: 60. Check hospital lists and safe zones.">
             class="flex items-center gap-6 p-6 glass-card rounded-2xl w-full md:w-auto inline-flex border border-white/10">
             <div
                 class="relative w-24 h-24 flex items-center justify-center rounded-full border-4 border-yellow-500 text-yellow-400 shadow-lg bg-slate-900/50">
-                <span class="text-4xl font-black">53</span>
+                <span class="text-4xl font-black">49</span>
             </div>
             <div class="space-y-1">
                 <h2 class="text-2xl font-bold text-white tracking-wide">Health Score</h2>
@@ -197,8 +197,8 @@ AQI: 60. Check hospital lists and safe zones.">
                 <div class="flex flex-col pb-2 border-b border-white/5">
                     <div class="flex justify-between items-center">
                         <span class="text-slate-400">Allergen Risk</span>
-                        <span class="font-bold text-emerald-400">
-                            Low
+                        <span class="font-bold text-yellow-400">
+                            Medium
                         </span>
                     </div>
                     
@@ -214,8 +214,8 @@ AQI: 60. Check hospital lists and safe zones.">
                 <div class="flex flex-col pb-2 border-b border-white/5">
                     <div class="flex justify-between items-center">
                         <span class="text-slate-400">Respiratory Risk</span>
-                        <span class="font-bold text-emerald-400">
-                            Low
+                        <span class="font-bold text-yellow-400">
+                            Medium
                         </span>
                     </div>
                     
@@ -413,8 +413,8 @@ AQI: 60. Check hospital lists and safe zones.">
                 <div class="flex flex-col pb-2 border-b border-white/5">
                     <div class="flex justify-between items-center">
                         <span class="text-slate-400">Elderly Risk</span>
-                        <span class="font-bold text-emerald-400">
-                            Low
+                        <span class="font-bold text-yellow-400">
+                            Medium
                         </span>
                     </div>
                     
@@ -583,7 +583,7 @@ AQI: 60. Check hospital lists and safe zones.">
 <footer class="bg-slate-900 border-t border-slate-800 py-8 mt-12">
     <div class="max-w-4xl mx-auto px-4 text-center text-slate-500 text-sm flex flex-col items-center">
         <div class="text-[10px] sm:text-xs font-bold uppercase tracking-widest mb-1">Last Update</div>
-        <div class="font-mono text-blue-300">Mar 21, 03:04 AM</div>
+        <div class="font-mono text-blue-300">Mar 21, 04:02 AM</div>
         <p class="mt-4">Data sources: Open-Meteo, Local Health Indices.</p>
         <a href="../index.html"
             class="inline-block mt-4 text-emerald-400 hover:text-emerald-300 underline font-medium">View Full
@@ -599,9 +599,9 @@ AQI: 60. Check hospital lists and safe zones.">
         const tempCtx = document.getElementById('tempChart').getContext('2d');
 
         const rawDates = ["2026-03-14", "2026-03-15", "2026-03-16", "2026-03-17", "2026-03-18", "2026-03-19", "2026-03-20", "2026-03-21", "2026-03-22", "2026-03-23", "2026-03-24", "2026-03-25", "2026-03-26", "2026-03-27", "2026-03-28"];
-    const rawAqis = [105, 76, 79, 85, 112, 122, 78, 85, 127, 91, 104, 97, 97, 97, 97];
-    const rawMaxTemps = [37.7, 36.6, 37.0, 36.5, 36.3, 35.6, 31.7, 27.2, 30.9, 33.5, 34.5, 34.5, 36.0, 38.5, 35.5];
-    const rawMinTemps = [17.6, 18.5, 20.5, 20.0, 18.6, 17.4, 20.4, 19.9, 16.9, 18.3, 20.7, 22.4, 22.2, 23.1, 23.2];
+    const rawAqis = [105, 76, 79, 85, 112, 122, 78, 95, 118, 87, 104, 115, 115, 115, 115];
+    const rawMaxTemps = [37.7, 36.6, 37.0, 36.5, 36.3, 35.6, 31.7, 27.2, 31.0, 32.7, 34.7, 34.4, 36.5, 38.5, 35.5];
+    const rawMinTemps = [17.6, 18.5, 20.5, 20.0, 18.6, 17.4, 20.4, 19.9, 17.2, 18.7, 20.4, 22.9, 22.3, 23.1, 23.2];
 
     if (!rawDates.length || !rawAqis.length || !rawMaxTemps.length) return;
 
