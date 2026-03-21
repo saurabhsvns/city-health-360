@@ -2,14 +2,16 @@
 {% block city_dropdown %}{% endblock %}
 {% block meta %}
 <meta property="og:title" content="Hyper-Local Pollution Radar | CityHealth360">
-<meta property="og:description" content="Real-time satellite scan of industrial hazards and toxic gas levels in your neighborhood.">
+<meta property="og:description"
+    content="Real-time satellite scan of industrial hazards and toxic gas levels in your neighborhood.">
 <meta property="og:image" content="https://cityhealth360.in/static/local-radar.jpg">
 <meta property="og:url" content="https://cityhealth360.in/docs/local-radar.html">
 <meta property="og:type" content="website">
 
 <meta name="twitter:card" content="summary_large_image">
 <meta name="twitter:title" content="Hyper-Local Pollution Radar | CityHealth360">
-<meta name="twitter:description" content="Real-time satellite scan of industrial hazards and toxic gas levels in your neighborhood.">
+<meta name="twitter:description"
+    content="Real-time satellite scan of industrial hazards and toxic gas levels in your neighborhood.">
 <meta name="twitter:image" content="https://cityhealth360.in/static/local-radar.jpg">
 <script src="https://cdnjs.cloudflare.com/ajax/libs/html2canvas/1.4.1/html2canvas.min.js"></script>
 {% endblock %}
@@ -70,51 +72,62 @@
                 <div id="local-env-widget"
                     class="hidden mb-6 bg-gray-800 rounded-xl border border-gray-700 p-4 shadow-inner">
 
-                    <div class="flex items-center gap-2 mb-4 pb-3 border-b border-gray-700">
-                        <span class="text-xl">📍</span>
-                        <div>
-                            <div class="text-[10px] font-bold text-gray-500 uppercase tracking-widest">Current Location
+                    <div id="capture-zone" class="bg-gray-900 p-4 rounded-xl border border-gray-800 relative mb-4">
+
+                        <div data-html2canvas-ignore="false"
+                            class="hidden absolute top-2 right-2 text-[8px] text-gray-500 font-bold tracking-widest uppercase">
+                            cityhealth360.in
+                        </div>
+
+                        <div class="flex items-center gap-2 mb-4 pb-3 border-b border-gray-700">
+                            <span class="text-xl">📍</span>
+                            <div>
+                                <div class="text-[10px] font-bold text-gray-500 uppercase tracking-widest">Current
+                                    Location
+                                </div>
+                                <div id="radar-location-text" class="text-sm font-bold text-blue-400">Locating...</div>
                             </div>
-                            <div id="radar-location-text" class="text-sm font-bold text-blue-400">Locating...</div>
                         </div>
-                    </div>
 
-                    <h4
-                        class="text-xs font-bold text-gray-400 uppercase tracking-widest mb-3 border-b border-gray-700 pb-2">
-                        Live Hyper-Local Conditions</h4>
-                    <div class="grid grid-cols-2 gap-4">
-                        <div>
-                            <div class="text-xs text-gray-500">Live Overall AQI</div>
-                            <div id="radar-aqi" class="text-2xl font-black text-white">--</div>
+                        <h4
+                            class="text-xs font-bold text-gray-400 uppercase tracking-widest mb-3 border-b border-gray-700 pb-2">
+                            Live Hyper-Local Conditions</h4>
+                        <div class="grid grid-cols-2 gap-4">
+                            <div>
+                                <div class="text-xs text-gray-500">Live Overall AQI</div>
+                                <div id="radar-aqi" class="text-2xl font-black text-white">--</div>
+                            </div>
+                            <div>
+                                <div class="text-xs text-gray-500">Temperature</div>
+                                <div id="radar-temp" class="text-2xl font-bold text-gray-200">--°C</div>
+                            </div>
+                            <div>
+                                <div class="text-xs text-gray-500">Humidity</div>
+                                <div id="radar-humidity" class="text-lg font-bold text-gray-300">--%</div>
+                            </div>
+                            <div>
+                                <div class="text-xs text-gray-500">Wind Speed</div>
+                                <div id="radar-wind" class="text-lg font-bold text-gray-300">-- km/h</div>
+                            </div>
                         </div>
-                        <div>
-                            <div class="text-xs text-gray-500">Temperature</div>
-                            <div id="radar-temp" class="text-2xl font-bold text-gray-200">--°C</div>
-                        </div>
-                        <div>
-                            <div class="text-xs text-gray-500">Humidity</div>
-                            <div id="radar-humidity" class="text-lg font-bold text-gray-300">--%</div>
-                        </div>
-                        <div>
-                            <div class="text-xs text-gray-500">Wind Speed</div>
-                            <div id="radar-wind" class="text-lg font-bold text-gray-300">-- km/h</div>
-                        </div>
-                    </div>
 
-                    <div id="cig-widget" class="mt-4 p-4 bg-gray-900 border border-gray-700 rounded-xl relative overflow-hidden transition-all duration-300">
-                      <div class="absolute -right-2 -top-4 text-7xl opacity-20">🚬</div>
-                      
-                      <h4 class="text-[10px] font-black text-gray-400 uppercase tracking-widest mb-1">Biological Impact</h4>
-                      
-                      <div class="text-sm text-gray-300 leading-relaxed">
-                        Breathing the air outside today is mathematically equivalent to smoking 
-                        <span id="cig-count" class="text-2xl font-black text-white mx-1">--</span> 
-                        <span id="cig-label" class="font-bold text-gray-400">cigarettes</span>.
-                      </div>
-                      
-                      <div class="text-[9px] text-gray-600 mt-2 uppercase tracking-wide">
-                        Based on Berkeley Earth PM2.5 Conversion Math
-                      </div>
+                        <div id="cig-widget"
+                            class="mt-4 p-4 bg-gray-900 border border-gray-700 rounded-xl relative overflow-hidden transition-all duration-300">
+                            <div class="absolute -right-2 -top-4 text-7xl opacity-20">🚬</div>
+
+                            <h4 class="text-[10px] font-black text-gray-400 uppercase tracking-widest mb-1">Biological
+                                Impact</h4>
+
+                            <div class="text-sm text-gray-300 leading-relaxed">
+                                Breathing the air outside today is technically equivalent to smoking
+                                <span id="cig-count" class="text-2xl font-black text-white mx-1">--</span>
+                                <span id="cig-label" class="font-bold text-gray-400">cigarettes</span>.
+                            </div>
+
+                            <div class="text-[9px] text-gray-600 mt-2 uppercase tracking-wide">
+                                Based on Berkeley Earth PM2.5 Conversion Math
+                            </div>
+                        </div>
                     </div>
 
                     <div class="mt-4 pt-4 border-t border-gray-700">
@@ -156,6 +169,13 @@
 
                         </div>
                     </div>
+
+                    <button id="btn-capture-share" onclick="captureAndShare()"
+                        class="w-full mt-6 flex items-center justify-center gap-2 bg-gradient-to-r from-blue-600 to-indigo-600 hover:from-blue-500 hover:to-indigo-500 text-white font-black py-4 rounded-xl shadow-[0_0_20px_rgba(79,70,229,0.4)] transition transform active:scale-95">
+                        <span class="text-xl">📸</span>
+                        <span>Share Radar Snapshot</span>
+                    </button>
+
                 </div>
 
                 <div class="mt-6 border-t border-gray-700 pt-4">
@@ -243,12 +263,6 @@
                 <div id="radar-share-action" class="mt-8 border-t border-gray-700 pt-6 hidden">
                     <h4 class="text-center text-xs font-bold text-gray-500 uppercase tracking-widest mb-4">Broadcast
                         Your Neighborhood Data</h4>
-                    
-                    <button id="btn-capture-share" onclick="captureAndShare()" class="w-full mt-6 mb-4 flex md:hidden items-center justify-center gap-2 bg-gradient-to-r from-blue-600 to-indigo-600 hover:from-blue-500 hover:to-indigo-500 text-white font-black py-4 rounded-xl shadow-[0_0_20px_rgba(79,70,229,0.4)] transition transform active:scale-95">
-                      <span class="text-xl">📸</span>
-                      <span>Share Radar Snapshot</span>
-                    </button>
-
                     <div id="share-buttons-wrapper"></div>
                 </div>
             </div>
@@ -570,41 +584,41 @@
     }
 
     function calculateCigaretteEquivalent(pm25) {
-      // Berkeley Earth Formula: 1 Cigarette = 22 µg/m³ of PM2.5
-      const conversionRate = 22.0;
-      let cigs = (pm25 / conversionRate).toFixed(1);
-      
-      const cigWidget = document.getElementById('cig-widget');
-      const countEl = document.getElementById('cig-count');
-      const labelEl = document.getElementById('cig-label');
-      
-      if (cigs <= 0.2) {
-        // Perfect Air
-        countEl.innerText = "0";
-        countEl.className = "text-2xl font-black text-green-400 mx-1";
-        labelEl.className = "font-bold text-green-400";
-        cigWidget.className = "mt-4 p-4 bg-gray-900 border-2 border-green-900/50 rounded-xl relative overflow-hidden";
-      } else {
-        countEl.innerText = cigs;
-        
-        // Scale UI severity based on the cigarette count
-        if (cigs >= 5.0) {
-          // Extreme Hazard (e.g., Delhi in November)
-          countEl.className = "text-3xl font-black text-purple-500 mx-1 animate-pulse";
-          labelEl.className = "font-bold text-purple-400";
-          cigWidget.className = "mt-4 p-4 bg-gray-900 border-2 border-purple-500/50 rounded-xl relative overflow-hidden shadow-[0_0_15px_rgba(168,85,247,0.2)]";
-        } else if (cigs >= 2.0) {
-          // Danger
-          countEl.className = "text-2xl font-black text-red-500 mx-1";
-          labelEl.className = "font-bold text-red-400";
-          cigWidget.className = "mt-4 p-4 bg-gray-900 border-2 border-red-500/40 rounded-xl relative overflow-hidden";
+        // Berkeley Earth Formula: 1 Cigarette = 22 µg/m³ of PM2.5
+        const conversionRate = 22.0;
+        let cigs = (pm25 / conversionRate).toFixed(1);
+
+        const cigWidget = document.getElementById('cig-widget');
+        const countEl = document.getElementById('cig-count');
+        const labelEl = document.getElementById('cig-label');
+
+        if (cigs <= 0.2) {
+            // Perfect Air
+            countEl.innerText = "0";
+            countEl.className = "text-2xl font-black text-green-400 mx-1";
+            labelEl.className = "font-bold text-green-400";
+            cigWidget.className = "mt-4 p-4 bg-gray-900 border-2 border-green-900/50 rounded-xl relative overflow-hidden";
         } else {
-          // Warning
-          countEl.className = "text-2xl font-black text-orange-400 mx-1";
-          labelEl.className = "font-bold text-orange-300";
-          cigWidget.className = "mt-4 p-4 bg-gray-900 border-2 border-orange-500/40 rounded-xl relative overflow-hidden";
+            countEl.innerText = cigs;
+
+            // Scale UI severity based on the cigarette count
+            if (cigs >= 5.0) {
+                // Extreme Hazard (e.g., Delhi in November)
+                countEl.className = "text-3xl font-black text-purple-500 mx-1 animate-pulse";
+                labelEl.className = "font-bold text-purple-400";
+                cigWidget.className = "mt-4 p-4 bg-gray-900 border-2 border-purple-500/50 rounded-xl relative overflow-hidden shadow-[0_0_15px_rgba(168,85,247,0.2)]";
+            } else if (cigs >= 2.0) {
+                // Danger
+                countEl.className = "text-2xl font-black text-red-500 mx-1";
+                labelEl.className = "font-bold text-red-400";
+                cigWidget.className = "mt-4 p-4 bg-gray-900 border-2 border-red-500/40 rounded-xl relative overflow-hidden";
+            } else {
+                // Warning
+                countEl.className = "text-2xl font-black text-orange-400 mx-1";
+                labelEl.className = "font-bold text-orange-300";
+                cigWidget.className = "mt-4 p-4 bg-gray-900 border-2 border-orange-500/40 rounded-xl relative overflow-hidden";
+            }
         }
-      }
     }
 
     // THE RESIDENTIAL SCORING ENGINE
@@ -676,7 +690,7 @@
 
     function copyRadarReport(btn) {
         const text = btn.getAttribute('data-clipboard-text');
-        
+
         // Fallback for older browsers or non-secure contexts
         if (!navigator.clipboard) {
             const textArea = document.createElement("textarea");
@@ -705,7 +719,7 @@
         btn.innerText = "✅ Copied!";
         const oldColorClass = btn.classList.contains('bg-gray-800') ? 'bg-gray-800' : 'bg-gray-700';
         btn.classList.replace(oldColorClass, 'bg-green-600');
-        
+
         setTimeout(() => {
             btn.innerText = oldText;
             btn.classList.replace('bg-green-600', oldColorClass);
@@ -725,57 +739,87 @@
     }
 
     async function captureAndShare() {
-      const btn = document.getElementById('btn-capture-share');
-      const targetDiv = document.getElementById('radar-results'); // The container we want to photograph
-      
-      // 1. UI Feedback
-      const originalHtml = btn.innerHTML;
-      btn.innerHTML = '<span class="animate-spin text-xl">⏳</span> <span>Scanning Area...</span>';
-      btn.disabled = true;
+        const btn = document.getElementById('btn-capture-share');
 
-      try {
-        // 2. Generate the Canvas (High-Res for Mobile Retina Displays)
-        const canvas = await html2canvas(targetDiv, {
-          scale: 2, 
-          useCORS: true, 
-          backgroundColor: "#111827", // Matches your dark theme bg-gray-900
-          logging: false
-        });
+        // FIX 1: We now only target the compact top section, not the whole page
+        const targetDiv = document.getElementById('capture-zone');
 
-        // 3. Convert Canvas to an Image File (Blob)
-        canvas.toBlob(async (blob) => {
-          const file = new File([blob], 'ThreatRadar-Snapshot.png', { type: 'image/png' });
+        const originalHtml = btn.innerHTML;
+        btn.innerHTML = '<span class="animate-spin text-xl">⏳</span> <span>Generating Snapshot...</span>';
+        btn.disabled = true;
 
-          // 4. Check if the mobile browser supports sharing files
-          if (navigator.canShare && navigator.canShare({ files: [file] })) {
-            await navigator.share({
-              title: 'My Neighborhood Threat Radar',
-              text: '🚨 I just ran a satellite scan on our neighborhood. Look at what is actually in our air today. Run yours here: https://cityhealth360.in/docs/local-radar.html',
-              files: [file]
+        try {
+            // Force a dark background so the screenshot looks clean
+            const canvas = await html2canvas(targetDiv, {
+                scale: 2,
+                useCORS: true,
+                backgroundColor: "#111827",
+                logging: false,
+                onclone: function (clonedDoc) {
+                    // Un-hide the watermark just for the screenshot
+                    const hiddenElements = clonedDoc.querySelectorAll('[data-html2canvas-ignore="false"].hidden');
+                    hiddenElements.forEach(el => el.classList.remove('hidden'));
+                }
             });
-          } else {
-            // FALLBACK FOR DESKTOP OR UNSUPPORTED BROWSERS: Force Download
-            const link = document.createElement('a');
-            link.download = 'ThreatRadar-Snapshot.png';
-            link.href = URL.createObjectURL(blob);
-            link.click();
-            alert("Snapshot downloaded! You can now attach it to a message.");
-          }
+
+            canvas.toBlob(async (blob) => {
+                const file = new File([blob], 'ThreatRadar.png', { type: 'image/png' });
+                const shareData = {
+                    title: 'Neighborhood Threat Radar',
+                    text: '🚨 Look at what is actually in our air today. Run a scan on your neighborhood here: https://cityhealth360.in/docs/local-radar.html',
+                    files: [file]
+                };
+
+                // FIX 2: The iOS Safari Trap Handling
+                if (navigator.canShare && navigator.canShare({ files: [file] })) {
+                    try {
+                        // Try the native share sheet first
+                        await navigator.share(shareData);
+                    } catch (err) {
+                        // If iOS blocks it due to the async timeout, trigger the fallback!
+                        console.warn("Native share blocked by browser, triggering fallback.", err);
+                        showIosFallbackModal(blob);
+                    }
+                } else {
+                    // Fallback for Desktop Chrome/Windows
+                    showIosFallbackModal(blob);
+                }
+
+                // Reset Button
+                btn.innerHTML = originalHtml;
+                btn.disabled = false;
+
+            }, 'image/png');
+
+        } catch (error) {
+            console.error("Screenshot failed:", error);
+            btn.innerHTML = '❌ Capture Failed';
+            setTimeout(() => {
+                btn.innerHTML = originalHtml;
+                btn.disabled = false;
+            }, 2000);
+        }
+    }
+
+    // THE BULLETPROOF FALLBACK UI
+    function showIosFallbackModal(blob) {
+        const imgUrl = URL.createObjectURL(blob);
+
+        const modalHtml = `
+        <div id="ios-share-modal" class="fixed inset-0 z-50 flex flex-col items-center justify-center bg-black/95 p-6 backdrop-blur-sm transition-opacity">
+          <div class="bg-blue-900/30 text-blue-200 text-sm font-bold px-4 py-2 rounded-full mb-6 border border-blue-500/50 flex items-center gap-2">
+            <span class="text-xl">👆</span> Long-press the image to Share or Save
+          </div>
           
-          // Reset Button
-          btn.innerHTML = originalHtml;
-          btn.disabled = false;
+          <img src="${imgUrl}" class="rounded-2xl max-w-full max-h-[60vh] shadow-[0_0_30px_rgba(0,0,0,0.8)] border border-gray-700" />
           
-        }, 'image/png');
-        
-      } catch (error) {
-        console.error("Screenshot failed:", error);
-        btn.innerHTML = '❌ Capture Failed';
-        setTimeout(() => {
-          btn.innerHTML = originalHtml;
-          btn.disabled = false;
-        }, 2000);
-      }
+          <button onclick="document.getElementById('ios-share-modal').remove()" class="mt-8 bg-gray-800 hover:bg-gray-700 text-white px-8 py-3 rounded-xl font-bold transition w-full max-w-xs">
+            Close
+          </button>
+        </div>
+      `;
+
+        document.body.insertAdjacentHTML('beforeend', modalHtml);
     }
 </script>
 {% endblock %}
