@@ -30,6 +30,7 @@
 <meta name="twitter:title" content="Hyper-Local Pollution Radar | CityHealth360">
 <meta name="twitter:description" content="Real-time satellite scan of industrial hazards and toxic gas levels in your neighborhood.">
 <meta name="twitter:image" content="https://cityhealth360.in/static/local-radar.jpg">
+<script src="https://cdnjs.cloudflare.com/ajax/libs/html2canvas/1.4.1/html2canvas.min.js"></script>
 
 
     <!-- Tailwind CSS -->
@@ -119,7 +120,7 @@
                 <div class="hidden sm:block text-right border-r border-slate-700 pr-4">
                     <div class="text-[10px] sm:text-xs font-bold uppercase tracking-widest text-slate-500 mb-0.5">Last
                         Update</div>
-                    <div class="font-mono text-blue-300 text-[10px] sm:text-xs">Mar 21, 04:01 PM</div>
+                    <div class="font-mono text-blue-300 text-[10px] sm:text-xs">Mar 21, 04:29 PM</div>
                 </div>
 
                 <!-- City Dropdown Functionality -->
@@ -189,6 +190,22 @@
                             <div class="text-xs text-gray-500">Wind Speed</div>
                             <div id="radar-wind" class="text-lg font-bold text-gray-300">-- km/h</div>
                         </div>
+                    </div>
+
+                    <div id="cig-widget" class="mt-4 p-4 bg-gray-900 border border-gray-700 rounded-xl relative overflow-hidden transition-all duration-300">
+                      <div class="absolute -right-2 -top-4 text-7xl opacity-20">🚬</div>
+                      
+                      <h4 class="text-[10px] font-black text-gray-400 uppercase tracking-widest mb-1">Biological Impact</h4>
+                      
+                      <div class="text-sm text-gray-300 leading-relaxed">
+                        Breathing the air outside today is mathematically equivalent to smoking 
+                        <span id="cig-count" class="text-2xl font-black text-white mx-1">--</span> 
+                        <span id="cig-label" class="font-bold text-gray-400">cigarettes</span>.
+                      </div>
+                      
+                      <div class="text-[9px] text-gray-600 mt-2 uppercase tracking-wide">
+                        Based on Berkeley Earth PM2.5 Conversion Math
+                      </div>
                     </div>
 
                     <div class="mt-4 pt-4 border-t border-gray-700">
@@ -317,6 +334,12 @@
                 <div id="radar-share-action" class="mt-8 border-t border-gray-700 pt-6 hidden">
                     <h4 class="text-center text-xs font-bold text-gray-500 uppercase tracking-widest mb-4">Broadcast
                         Your Neighborhood Data</h4>
+                    
+                    <button id="btn-capture-share" onclick="captureAndShare()" class="w-full mt-6 mb-4 flex md:hidden items-center justify-center gap-2 bg-gradient-to-r from-blue-600 to-indigo-600 hover:from-blue-500 hover:to-indigo-500 text-white font-black py-4 rounded-xl shadow-[0_0_20px_rgba(79,70,229,0.4)] transition transform active:scale-95">
+                      <span class="text-xl">📸</span>
+                      <span>Share Radar Snapshot</span>
+                    </button>
+
                     <div id="share-buttons-wrapper"></div>
                 </div>
             </div>
@@ -536,9 +559,10 @@
         if (cachedData) {
             const parsed = JSON.parse(cachedData);
             const ageInMs = Date.now() - parsed.timestamp;
-            // Cache expiry: 60 minutes (3600000 ms)
-            if (ageInMs < 3600000) {
+            // Cache expiry: 60 minutes (3600000 ms) and explicitly require pm25 data
+            if (ageInMs < 3600000 && parsed.data.pm25 !== undefined) {
                 renderEnvironmentWidget(parsed.data);
+                calculateCigaretteEquivalent(parsed.data.pm25);
                 console.log("Loaded environment data from local cache.");
                 return;
             }
@@ -547,7 +571,7 @@
         // If no cache or expired, fetch fresh data from Open-Meteo
         try {
             const weatherUrl = `https://api.open-meteo.com/v1/forecast?latitude=${lat}&longitude=${lon}&current=temperature_2m,relative_humidity_2m,wind_speed_10m`;
-            const aqiUrl = `https://air-quality-api.open-meteo.com/v1/air-quality?latitude=${lat}&longitude=${lon}&current=us_aqi,carbon_monoxide,nitrogen_dioxide,sulphur_dioxide,ozone`;
+            const aqiUrl = `https://air-quality-api.open-meteo.com/v1/air-quality?latitude=${lat}&longitude=${lon}&current=us_aqi,carbon_monoxide,nitrogen_dioxide,sulphur_dioxide,ozone,pm2_5`;
 
             const [weatherRes, aqiRes] = await Promise.all([
                 fetch(weatherUrl),
@@ -557,6 +581,10 @@
             const weatherData = await weatherRes.json();
             const aqiData = await aqiRes.json();
 
+            const pm25 = aqiData.current.pm2_5;
+            // Call the shock metric calculator
+            calculateCigaretteEquivalent(pm25);
+
             const envData = {
                 temp: weatherData.current.temperature_2m,
                 humidity: weatherData.current.relative_humidity_2m,
@@ -565,7 +593,8 @@
                 co: aqiData.current.carbon_monoxide,
                 no2: aqiData.current.nitrogen_dioxide,
                 so2: aqiData.current.sulphur_dioxide,
-                o3: aqiData.current.ozone
+                o3: aqiData.current.ozone,
+                pm25: pm25
             };
 
             // Save to Cache
@@ -629,6 +658,44 @@
             else if (data.aqi > 50) aqiEl.className = "text-2xl font-black text-yellow-400";
             else aqiEl.className = "text-2xl font-black text-green-400";
         }
+    }
+
+    function calculateCigaretteEquivalent(pm25) {
+      // Berkeley Earth Formula: 1 Cigarette = 22 µg/m³ of PM2.5
+      const conversionRate = 22.0;
+      let cigs = (pm25 / conversionRate).toFixed(1);
+      
+      const cigWidget = document.getElementById('cig-widget');
+      const countEl = document.getElementById('cig-count');
+      const labelEl = document.getElementById('cig-label');
+      
+      if (cigs <= 0.2) {
+        // Perfect Air
+        countEl.innerText = "0";
+        countEl.className = "text-2xl font-black text-green-400 mx-1";
+        labelEl.className = "font-bold text-green-400";
+        cigWidget.className = "mt-4 p-4 bg-gray-900 border-2 border-green-900/50 rounded-xl relative overflow-hidden";
+      } else {
+        countEl.innerText = cigs;
+        
+        // Scale UI severity based on the cigarette count
+        if (cigs >= 5.0) {
+          // Extreme Hazard (e.g., Delhi in November)
+          countEl.className = "text-3xl font-black text-purple-500 mx-1 animate-pulse";
+          labelEl.className = "font-bold text-purple-400";
+          cigWidget.className = "mt-4 p-4 bg-gray-900 border-2 border-purple-500/50 rounded-xl relative overflow-hidden shadow-[0_0_15px_rgba(168,85,247,0.2)]";
+        } else if (cigs >= 2.0) {
+          // Danger
+          countEl.className = "text-2xl font-black text-red-500 mx-1";
+          labelEl.className = "font-bold text-red-400";
+          cigWidget.className = "mt-4 p-4 bg-gray-900 border-2 border-red-500/40 rounded-xl relative overflow-hidden";
+        } else {
+          // Warning
+          countEl.className = "text-2xl font-black text-orange-400 mx-1";
+          labelEl.className = "font-bold text-orange-300";
+          cigWidget.className = "mt-4 p-4 bg-gray-900 border-2 border-orange-500/40 rounded-xl relative overflow-hidden";
+        }
+      }
     }
 
     // THE RESIDENTIAL SCORING ENGINE
@@ -746,6 +813,60 @@
             Math.sin(dLon / 2) * Math.sin(dLon / 2);
         const c = 2 * Math.atan2(Math.sqrt(a), Math.sqrt(1 - a));
         return R * c;
+    }
+
+    async function captureAndShare() {
+      const btn = document.getElementById('btn-capture-share');
+      const targetDiv = document.getElementById('radar-results'); // The container we want to photograph
+      
+      // 1. UI Feedback
+      const originalHtml = btn.innerHTML;
+      btn.innerHTML = '<span class="animate-spin text-xl">⏳</span> <span>Scanning Area...</span>';
+      btn.disabled = true;
+
+      try {
+        // 2. Generate the Canvas (High-Res for Mobile Retina Displays)
+        const canvas = await html2canvas(targetDiv, {
+          scale: 2, 
+          useCORS: true, 
+          backgroundColor: "#111827", // Matches your dark theme bg-gray-900
+          logging: false
+        });
+
+        // 3. Convert Canvas to an Image File (Blob)
+        canvas.toBlob(async (blob) => {
+          const file = new File([blob], 'ThreatRadar-Snapshot.png', { type: 'image/png' });
+
+          // 4. Check if the mobile browser supports sharing files
+          if (navigator.canShare && navigator.canShare({ files: [file] })) {
+            await navigator.share({
+              title: 'My Neighborhood Threat Radar',
+              text: '🚨 I just ran a satellite scan on our neighborhood. Look at what is actually in our air today. Run yours here: https://cityhealth360.in/docs/local-radar.html',
+              files: [file]
+            });
+          } else {
+            // FALLBACK FOR DESKTOP OR UNSUPPORTED BROWSERS: Force Download
+            const link = document.createElement('a');
+            link.download = 'ThreatRadar-Snapshot.png';
+            link.href = URL.createObjectURL(blob);
+            link.click();
+            alert("Snapshot downloaded! You can now attach it to a message.");
+          }
+          
+          // Reset Button
+          btn.innerHTML = originalHtml;
+          btn.disabled = false;
+          
+        }, 'image/png');
+        
+      } catch (error) {
+        console.error("Screenshot failed:", error);
+        btn.innerHTML = '❌ Capture Failed';
+        setTimeout(() => {
+          btn.innerHTML = originalHtml;
+          btn.disabled = false;
+        }, 2000);
+      }
     }
 </script>
 
