@@ -739,87 +739,86 @@
     }
 
     async function captureAndShare() {
-        const btn = document.getElementById('btn-capture-share');
+      const btn = document.getElementById('btn-capture-share');
+      const targetDiv = document.getElementById('capture-zone'); 
+      
+      const originalHtml = btn.innerHTML;
+      btn.innerHTML = '<span class="animate-spin text-xl">⏳</span> <span>Generating Snapshot...</span>';
+      btn.disabled = true;
 
-        // FIX 1: We now only target the compact top section, not the whole page
-        const targetDiv = document.getElementById('capture-zone');
+      try {
+        const canvas = await html2canvas(targetDiv, {
+          scale: 2, 
+          useCORS: true, 
+          backgroundColor: "#111827", 
+          logging: false,
+          onclone: function (clonedDoc) {
+            const hiddenElements = clonedDoc.querySelectorAll('[data-html2canvas-ignore="false"].hidden');
+            hiddenElements.forEach(el => el.classList.remove('hidden'));
+          }
+        });
 
-        const originalHtml = btn.innerHTML;
-        btn.innerHTML = '<span class="animate-spin text-xl">⏳</span> <span>Generating Snapshot...</span>';
-        btn.disabled = true;
+        // FIX 1: Convert directly to a Base64 string instead of a Blob
+        const base64Image = canvas.toDataURL("image/png");
 
-        try {
-            // Force a dark background so the screenshot looks clean
-            const canvas = await html2canvas(targetDiv, {
-                scale: 2,
-                useCORS: true,
-                backgroundColor: "#111827",
-                logging: false,
-                onclone: function (clonedDoc) {
-                    // Un-hide the watermark just for the screenshot
-                    const hiddenElements = clonedDoc.querySelectorAll('[data-html2canvas-ignore="false"].hidden');
-                    hiddenElements.forEach(el => el.classList.remove('hidden'));
-                }
-            });
+        // Convert Base64 back to a File object purely for the native share attempt
+        const res = await fetch(base64Image);
+        const blob = await res.blob();
+        const file = new File([blob], 'ThreatRadar.png', { type: 'image/png' });
+        
+        const shareData = {
+          text: '🚨 Look at what is actually in our air today. Run a scan on your neighborhood here: https://cityhealth360.in/docs/local-radar.html',
+          files: [file]
+          // Note: Removed 'title' and 'url' from shareData, as iOS sometimes prioritizes the URL over the file file in WhatsApp.
+        };
 
-            canvas.toBlob(async (blob) => {
-                const file = new File([blob], 'ThreatRadar.png', { type: 'image/png' });
-                const shareData = {
-                    title: 'Neighborhood Threat Radar',
-                    text: '🚨 Look at what is actually in our air today. Run a scan on your neighborhood here: https://cityhealth360.in/docs/local-radar.html',
-                    files: [file]
-                };
-
-                // FIX 2: The iOS Safari Trap Handling
-                if (navigator.canShare && navigator.canShare({ files: [file] })) {
-                    try {
-                        // Try the native share sheet first
-                        await navigator.share(shareData);
-                    } catch (err) {
-                        // If iOS blocks it due to the async timeout, trigger the fallback!
-                        console.warn("Native share blocked by browser, triggering fallback.", err);
-                        showIosFallbackModal(blob);
-                    }
-                } else {
-                    // Fallback for Desktop Chrome/Windows
-                    showIosFallbackModal(blob);
-                }
-
-                // Reset Button
-                btn.innerHTML = originalHtml;
-                btn.disabled = false;
-
-            }, 'image/png');
-
-        } catch (error) {
-            console.error("Screenshot failed:", error);
-            btn.innerHTML = '❌ Capture Failed';
-            setTimeout(() => {
-                btn.innerHTML = originalHtml;
-                btn.disabled = false;
-            }, 2000);
+        if (navigator.canShare && navigator.canShare({ files: [file] })) {
+          try {
+            await navigator.share(shareData);
+          } catch (err) {
+            // Native share blocked or cancelled, trigger fallback with Base64
+            showIosFallbackModal(base64Image);
+          }
+        } else {
+          // Desktop or unsupported browser
+          showIosFallbackModal(base64Image);
         }
+        
+        // Reset Button UI
+        btn.innerHTML = originalHtml;
+        btn.disabled = false;
+        
+      } catch (error) {
+        console.error("Screenshot failed:", error);
+        btn.innerHTML = '❌ Capture Failed';
+        setTimeout(() => {
+          btn.innerHTML = originalHtml;
+          btn.disabled = false;
+        }, 2000);
+      }
     }
 
-    // THE BULLETPROOF FALLBACK UI
-    function showIosFallbackModal(blob) {
-        const imgUrl = URL.createObjectURL(blob);
+    // FIX 2: The Modal now accepts the Base64 string
+    function showIosFallbackModal(base64DataUrl) {
+      // If a modal already exists, remove it to prevent duplicates
+      const existingModal = document.getElementById('ios-share-modal');
+      if (existingModal) existingModal.remove();
 
-        const modalHtml = `
-        <div id="ios-share-modal" class="fixed inset-0 z-50 flex flex-col items-center justify-center bg-black/95 p-6 backdrop-blur-sm transition-opacity">
-          <div class="bg-blue-900/30 text-blue-200 text-sm font-bold px-4 py-2 rounded-full mb-6 border border-blue-500/50 flex items-center gap-2">
-            <span class="text-xl">👆</span> Long-press the image to Share or Save
+      const modalHtml = `
+        <div id="ios-share-modal" class="fixed inset-0 z-[9999] flex flex-col items-center justify-center bg-black/95 p-6 backdrop-blur-md transition-opacity">
+          <div class="bg-blue-900/40 text-blue-200 text-sm font-bold px-5 py-3 rounded-full mb-6 border border-blue-500/50 flex items-center gap-2 shadow-lg animate-bounce">
+            <span class="text-xl">👆</span> Long-press the image below to Share
           </div>
           
-          <img src="${imgUrl}" class="rounded-2xl max-w-full max-h-[60vh] shadow-[0_0_30px_rgba(0,0,0,0.8)] border border-gray-700" />
+          <img src="${base64DataUrl}" class="rounded-2xl w-full max-w-sm shadow-[0_0_40px_rgba(0,0,0,0.6)] border border-gray-700 pointer-events-auto select-none" style="-webkit-touch-callout: default;" />
           
-          <button onclick="document.getElementById('ios-share-modal').remove()" class="mt-8 bg-gray-800 hover:bg-gray-700 text-white px-8 py-3 rounded-xl font-bold transition w-full max-w-xs">
+          <button onclick="document.getElementById('ios-share-modal').remove()" class="mt-8 bg-gray-800 hover:bg-gray-700 text-white px-10 py-4 rounded-xl font-black tracking-wide transition w-full max-w-sm border border-gray-600">
             Close
           </button>
         </div>
       `;
-
-        document.body.insertAdjacentHTML('beforeend', modalHtml);
+      
+      document.body.insertAdjacentHTML('beforeend', modalHtml);
     }
 </script>
 {% endblock %}
