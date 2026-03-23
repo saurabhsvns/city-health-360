@@ -1,0 +1,268 @@
+{% extends "layout.html" %}
+{% block city_dropdown %}{% endblock %}
+{% block main_class %}flex-grow pb-20 md:pb-0{% endblock %}
+{% block mobile_bottom_nav %}
+<div class="md:hidden fixed bottom-0 left-0 right-0 w-full bg-slate-900/95 backdrop-blur-md border-t border-slate-700/50 z-[9999] px-2 py-2 flex justify-around items-center h-14 transform-gpu"
+    style="transform: translateZ(0); -webkit-transform: translateZ(0);">
+    <a href="../index.html"
+        class="flex flex-col items-center gap-1 p-2 text-slate-400 hover:text-white transition-colors">
+        <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+                d="M3 12l2-2m0 0l7-7 7 7M5 10v10a1 1 0 001 1h3m10-11l2 2m-2-2v10a1 1 0 01-1 1h-3m-6 0a1 1 0 001-1v-4a1 1 0 011-1h2a1 1 0 011 1v4a1 1 0 001 1m-6 0h6">
+            </path>
+        </svg>
+        <span class="text-[10px] font-medium uppercase tracking-wider">Dashboard</span>
+    </a>
+    <a href="../docs/india.html"
+        class="flex flex-col items-center gap-1 p-2 text-slate-400 hover:text-white transition-colors">
+        <span class="text-xl leading-none">🌍</span>
+        <span class="text-[10px] font-medium uppercase tracking-wider">India Map</span>
+    </a>
+    <a href="../docs/interactive-tools.html"
+        class="flex flex-col items-center gap-1 p-2 text-slate-400 hover:text-white transition-colors">
+        <span class="text-xl leading-none">🫁</span>
+        <span class="text-[10px] font-medium uppercase tracking-wider">Tools</span>
+    </a>
+</div>
+{% endblock %}
+{% block title %}Smog & Contrast Vision Test | Night Driving Safety{% endblock %}
+
+{% block head %}
+<meta property="og:title" content="Smog & Contrast Vision Test 🚘" />
+<meta property="og:description"
+    content="Smog and digital eye strain destroy your ability to see sharp outlines in low light. Test your night-driving safety." />
+<meta property="og:type" content="website" />
+<script src="https://cdnjs.cloudflare.com/ajax/libs/html2canvas/1.4.1/html2canvas.min.js"></script>
+{% endblock %}
+
+{% block content %}
+<main class="max-w-4xl mx-auto px-4 py-8 space-y-12 flex flex-col items-center justify-center min-h-[80vh]">
+  <div class="max-w-md w-full bg-gray-800 border border-gray-700 rounded-2xl p-6 shadow-2xl transition-all" id="app-container">
+    <div class="text-center mb-6">
+      <h2 class="text-2xl font-black text-white tracking-tight">Contrast Sensitivity Test</h2>
+      <p class="text-xs text-gray-400 mt-2">Smog and digital eye strain destroy your ability to see sharp outlines in low light. Test your night-driving safety below.</p>
+    </div>
+
+    <div class="w-full bg-gray-700 rounded-full h-1.5 mb-8">
+      <div id="progress-bar" class="bg-blue-500 h-1.5 rounded-full transition-all duration-300" style="width: 0%"></div>
+    </div>
+
+    <div class="bg-white rounded-xl p-8 mb-6 flex items-center justify-center min-h-[160px] shadow-inner">
+      <div id="target-letters" class="text-5xl font-black tracking-[0.5em] ml-[0.25em] select-none uppercase font-mono" style="color: rgba(0,0,0, 1.0);">
+        READY
+      </div>
+    </div>
+
+    <div id="test-controls" class="flex gap-3">
+      <input type="text" id="user-answer" placeholder="Type the 3 letters" class="flex-1 bg-gray-900 border border-gray-600 rounded-xl px-4 py-3 text-white text-xl font-bold focus:outline-none focus:border-blue-500 text-center uppercase tracking-widest" onkeypress="if(event.key === 'Enter') submitAnswer()" autocomplete="off" autocorrect="off" spellcheck="false" maxlength="3">
+      <button onclick="submitAnswer()" class="bg-blue-600 hover:bg-blue-500 text-white font-bold py-3 px-6 rounded-xl transition">
+        Submit
+      </button>
+    </div>
+
+    <div class="text-center mt-4">
+      <button onclick="failLevel()" class="text-xs text-gray-500 hover:text-gray-300 underline">I cannot read the letters</button>
+    </div>
+
+  </div>
+  <a href="../docs/interactive-tools.html" class="mt-8 block text-center text-blue-400">⬅️ Back to All Tools</a>
+</main>
+
+<script>
+    // --- 1. CONFIGURATION ---
+    const levels = [
+      { opacity: 0.80, label: "Normal" },
+      { opacity: 0.40, label: "Mild Drop" },
+      { opacity: 0.15, label: "Moderate" },
+      { opacity: 0.06, label: "Low Contrast" },
+      { opacity: 0.03, label: "Extreme Faint" }
+    ];
+    
+    let currentLevel = 0;
+    let currentLetters = "";
+    let isTestActive = false;
+
+    const validChars = "ABCDEFGHJKMNPRSTUVWXYZ";
+
+    function generateRandomLetters() {
+      let result = "";
+      for (let i = 0; i < 3; i++) {
+        result += validChars.charAt(Math.floor(Math.random() * validChars.length));
+      }
+      return result;
+    }
+
+    // --- 2. TEST LOGIC ---
+    function startTest() {
+      isTestActive = true;
+      currentLevel = 0;
+      loadLevel();
+    }
+
+    function loadLevel() {
+      currentLetters = generateRandomLetters();
+      const display = document.getElementById('target-letters');
+      const input = document.getElementById('user-answer');
+      
+      display.innerText = currentLetters;
+      display.style.color = `rgba(0, 0, 0, ${levels[currentLevel].opacity})`;
+      
+      input.value = "";
+      input.focus();
+
+      const progress = ((currentLevel) / levels.length) * 100;
+      document.getElementById('progress-bar').style.width = `${progress}%`;
+    }
+
+    function submitAnswer() {
+      if(!isTestActive) {
+        startTest();
+        return;
+      }
+
+      const input = document.getElementById('user-answer').value.toUpperCase().trim();
+      
+      if (input === currentLetters) {
+        currentLevel++;
+        if (currentLevel < levels.length) {
+          loadLevel();
+        } else {
+          showResults(currentLevel); 
+        }
+      } else {
+        showResults(currentLevel);
+      }
+    }
+
+    function failLevel() {
+      if(!isTestActive) return;
+      showResults(currentLevel);
+    }
+
+    // --- 3. RESULTS & VIRAL ENGINE ---
+    function showResults(finalScore) {
+      isTestActive = false;
+      const container = document.getElementById('app-container');
+      
+      let verdict = "";
+      let scoreColor = "";
+      
+      if (finalScore >= 4) {
+        scoreColor = "text-green-400";
+        verdict = `<span class="${scoreColor}">Excellent.</span> You have high contrast sensitivity. Your eyes are well-equipped to handle night driving and smog glare.`;
+      } else if (finalScore >= 2) {
+        scoreColor = "text-orange-400";
+        verdict = `<span class="${scoreColor}">Moderate Loss Detected.</span> You failed at the low-contrast threshold. Smog and oncoming headlights will severely impact your night vision.`;
+      } else {
+        scoreColor = "text-red-500";
+        verdict = `<span class="${scoreColor}">Poor Contrast Sensitivity.</span> You struggled with basic contrast. This is a strong indicator of severe digital eye strain or dry-eye exacerbated by environmental particulate matter.`;
+      }
+
+      container.innerHTML = `
+        <div id="capture-zone" class="bg-gray-800 p-6 rounded-2xl relative border border-gray-700">
+          
+          <div data-html2canvas-ignore="false" class="hidden absolute top-4 right-4 text-[9px] text-gray-500 font-bold tracking-widest uppercase">
+            cityhealth360.in
+          </div>
+
+          <div class="text-center">
+            <div class="text-6xl mb-4">🚘</div>
+            <h2 class="text-2xl font-black text-white mb-1">Night Driving Safety</h2>
+            <div class="text-xl font-bold text-gray-400 mb-4">Score: <span class="${scoreColor}">${finalScore}/5</span></div>
+            
+            <p class="text-gray-300 mb-6 text-sm leading-relaxed">${verdict}</p>
+            
+            <div class="bg-gray-900 border border-gray-700 p-4 rounded-xl text-left text-xs text-gray-400">
+              <strong>The Science:</strong> High levels of PM2.5 (smog) scatter light. If your contrast sensitivity is low, you cannot distinguish hazards in the dark when smog is present. 
+            </div>
+          </div>
+        </div>
+
+        <div class="mt-6 flex flex-col gap-3">
+          <button id="btn-capture-share" onclick="captureAndShare()" class="w-full bg-gradient-to-r from-blue-600 to-indigo-600 hover:from-blue-500 hover:to-indigo-500 text-white font-black py-4 rounded-xl shadow-[0_0_20px_rgba(79,70,229,0.4)] transition transform active:scale-95 flex items-center justify-center gap-2">
+            <span class="text-xl">📸</span> Share My Score
+          </button>
+
+          <button onclick="location.reload()" data-html2canvas-ignore="true" class="w-full bg-gray-700 hover:bg-gray-600 text-white font-bold py-4 rounded-xl transition">
+            ↻ Repeat Test
+          </button>
+
+          <a href="/docs/local-radar.html" class="block w-full text-center bg-gray-800 hover:bg-gray-700 border border-gray-600 text-white font-bold py-4 rounded-xl transition mt-2">
+            Check Local Smog Radar 🛰️
+          </a>
+        </div>
+      `;
+    }
+
+    // --- 4. THE VIRAL SHARE ENGINE (iOS SAFE) ---
+    let readyToShareFile = null; 
+
+    async function captureAndShare() {
+      const btn = document.getElementById('btn-capture-share');
+      const targetDiv = document.getElementById('capture-zone'); 
+      const originalHtml = btn.innerHTML;
+      btn.innerHTML = '<span class="animate-spin text-xl">⏳</span> <span>Generating...</span>';
+      btn.disabled = true;
+
+      try {
+        const canvas = await html2canvas(targetDiv, {
+          scale: 2, 
+          useCORS: true, 
+          backgroundColor: "#1f2937", 
+          logging: false,
+          onclone: function (clonedDoc) {
+            const hiddenElements = clonedDoc.querySelectorAll('[data-html2canvas-ignore="false"].hidden');
+            hiddenElements.forEach(el => el.classList.remove('hidden'));
+          }
+        });
+
+        canvas.toBlob((blob) => {
+          readyToShareFile = new File([blob], 'ContrastScore.png', { type: 'image/png' });
+          const previewUrl = URL.createObjectURL(blob);
+          showTwoStepShareModal(previewUrl);
+          btn.innerHTML = originalHtml;
+          btn.disabled = false;
+        }, 'image/png');
+
+      } catch (error) {
+        console.error("Screenshot failed:", error);
+        btn.innerHTML = '❌ Capture Failed';
+        setTimeout(() => { btn.innerHTML = originalHtml; btn.disabled = false; }, 2000);
+      }
+    }
+
+    function showTwoStepShareModal(previewUrl) {
+      const existingModal = document.getElementById('ios-share-modal');
+      if (existingModal) existingModal.remove();
+
+      const modalHtml = `
+        <div id="ios-share-modal" class="fixed inset-0 z-[9999] flex flex-col items-center justify-center bg-black/95 p-6 backdrop-blur-md transition-opacity">
+          <h3 class="text-white font-black text-xl mb-4 tracking-wide">Scorecard Ready!</h3>
+          <img src="${previewUrl}" class="rounded-2xl w-full max-w-sm shadow-[0_0_40px_rgba(0,0,0,0.6)] border border-gray-700 mb-8 pointer-events-none" />
+          <button onclick="executeInstantShare()" class="bg-[#25D366] hover:bg-[#1da851] text-white px-8 py-4 rounded-xl font-black text-lg transition w-full max-w-sm flex items-center justify-center gap-2 mb-4 shadow-[0_0_20px_rgba(37,211,102,0.3)]">
+            <span class="text-2xl">📱</span> Share to WhatsApp
+          </button>
+          <button onclick="document.getElementById('ios-share-modal').remove()" class="text-gray-400 font-bold hover:text-white transition w-full max-w-sm py-2">Cancel</button>
+        </div>
+      `;
+      document.body.insertAdjacentHTML('beforeend', modalHtml);
+    }
+
+    async function executeInstantShare() {
+      const shareText = `🚘 I just checked my Night Driving Vision Score on CityHealth360.\n\nUrban smog drastically reduces your ability to see hazards at night. Test your contrast sensitivity here: https://cityhealth360.in/docs/eye-test.html`;
+      const shareData = { text: shareText, files: [readyToShareFile] };
+
+      if (navigator.canShare && navigator.canShare({ files: [readyToShareFile] })) {
+        try { await navigator.share(shareData); } catch (err) { console.log(err); }
+      } else {
+        const link = document.createElement('a');
+        link.download = 'ContrastScore.png';
+        link.href = URL.createObjectURL(readyToShareFile);
+        link.click();
+      }
+    }
+
+    // Init
+    window.onload = startTest;
+</script>
+{% endblock %}

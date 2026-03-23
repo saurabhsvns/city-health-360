@@ -523,7 +523,9 @@ def generate_pages():
     spoke_pages = [
         ('reflex-test.html', 'reflex-test.html', 'Heat Fatigue Reflex Test | Check Cognitive Processing Speed', 'Test your cognitive speed against the human average (250ms).'),
         ('lung-capacity.html', 'lung-capacity.html', '30-Second Lung Capacity Test | AQI & Respiratory Health Check', 'Test your baseline respiratory endurance right now.'),
-        ('local-radar.html', 'local-radar.html', 'Neighborhood Pollution Radar | Scan Local Industrial Threats', 'Scan your immediate 5km radius for hidden pollution emitters.')
+        ('local-radar.html', 'local-radar.html', 'Neighborhood Pollution Radar | Scan Local Industrial Threats', 'Scan your immediate 5km radius for hidden pollution emitters.'),
+        ('eye-test.html', 'eye-test.html', 'Smog & Contrast Vision Test | Night Driving Safety', 'Test your contrast sensitivity against urban smog to evaluate night driving health.'),
+        ('color-test.html', 'color-test.html', 'Color Blindness Ishihara Test | Check Your Color Vision', 'Test your baseline color vision using an interactive procedural Ishihara plate generator.')
     ]
 
     for template_name, out_name, title, desc in spoke_pages:
