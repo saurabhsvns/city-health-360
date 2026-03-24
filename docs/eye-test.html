@@ -114,7 +114,7 @@
                 <div class="hidden sm:block text-right border-r border-slate-700 pr-4">
                     <div class="text-[10px] sm:text-xs font-bold uppercase tracking-widest text-slate-500 mb-0.5">Last
                         Update</div>
-                    <div class="font-mono text-blue-300 text-[10px] sm:text-xs">Mar 24, 07:49 AM</div>
+                    <div class="font-mono text-blue-300 text-[10px] sm:text-xs">Mar 24, 04:38 PM</div>
                 </div>
 
                 <!-- City Dropdown Functionality -->
@@ -129,6 +129,7 @@
 <main class="max-w-4xl mx-auto px-4 py-8 space-y-12 flex flex-col items-center justify-center min-h-[80vh]">
   <div class="max-w-md w-full bg-gray-800 border border-gray-700 rounded-2xl p-6 shadow-2xl transition-all" id="app-container">
     <div class="text-center mb-6">
+      <div class="text-5xl mb-3">👁️</div>
       <h2 class="text-2xl font-black text-white tracking-tight">Contrast Sensitivity Test</h2>
       <p class="text-xs text-gray-400 mt-2">Smog and digital eye strain destroy your ability to see sharp outlines in low light. Test your night-driving safety below.</p>
     </div>
@@ -169,6 +170,7 @@
     ];
     
     let currentLevel = 0;
+    let score = 0;
     let currentLetters = "";
     let isTestActive = false;
 
@@ -186,6 +188,7 @@
     function startTest() {
       isTestActive = true;
       currentLevel = 0;
+      score = 0;
       loadLevel();
     }
 
@@ -213,20 +216,25 @@
       const input = document.getElementById('user-answer').value.toUpperCase().trim();
       
       if (input === currentLetters) {
-        currentLevel++;
-        if (currentLevel < levels.length) {
-          loadLevel();
-        } else {
-          showResults(currentLevel); 
-        }
+        score++;
+      }
+      
+      currentLevel++;
+      if (currentLevel < levels.length) {
+        loadLevel();
       } else {
-        showResults(currentLevel);
+        showResults(score); 
       }
     }
 
     function failLevel() {
       if(!isTestActive) return;
-      showResults(currentLevel);
+      currentLevel++;
+      if (currentLevel < levels.length) {
+        loadLevel();
+      } else {
+        showResults(score); 
+      }
     }
 
     // --- 3. RESULTS & VIRAL ENGINE ---
@@ -251,15 +259,15 @@
       container.innerHTML = `
         <div id="capture-zone" class="bg-gray-800 p-6 rounded-2xl relative border border-gray-700">
           
-          <div data-html2canvas-ignore="false" class="hidden absolute top-4 right-4 flex items-center gap-2">
-            <div class="w-6 h-6 rounded-lg bg-gradient-to-br from-blue-500 to-indigo-600 flex items-center justify-center shadow-lg">
-              <svg class="w-4 h-4 text-white" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 19v-6a2 2 0 00-2-2H5a2 2 0 00-2 2v6a2 2 0 002 2h2a2 2 0 002-2zm0 0V9a2 2 0 012-2h2a2 2 0 012 2v10m-6 0a2 2 0 002 2h2a2 2 0 002-2m0 0V5a2 2 0 012-2h2a2 2 0 012 2v14a2 2 0 002 2h2a2 2 0 002-2z" /></svg>
+          <div class="flex items-center justify-center gap-2 mb-6 relative z-10">
+            <div class="w-8 h-8 rounded-xl bg-gradient-to-br from-blue-500 to-indigo-600 flex items-center justify-center shadow-lg">
+              <svg class="w-5 h-5 text-white" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 19v-6a2 2 0 00-2-2H5a2 2 0 00-2 2v6a2 2 0 002 2h2a2 2 0 002-2zm0 0V9a2 2 0 012-2h2a2 2 0 012 2v10m-6 0a2 2 0 002 2h2a2 2 0 002-2m0 0V5a2 2 0 012-2h2a2 2 0 012 2v14a2 2 0 002 2h2a2 2 0 002-2z" /></svg>
             </div>
-            <div class="font-bold text-sm tracking-tight text-white leading-none">City Health <span class="text-blue-400">360</span></div>
+            <div class="font-bold text-xl tracking-tight text-white leading-none">City Health <span class="text-blue-400">360</span></div>
           </div>
 
           <div class="text-center">
-            <div class="text-6xl mb-4">🚘</div>
+            <div class="text-6xl mb-4 flex justify-center gap-3">👁️ 🚘</div>
             <h2 class="text-2xl font-black text-white mb-1">Night Driving Safety</h2>
             <div class="text-xl font-bold text-gray-400 mb-4">Score: <span class="${scoreColor}">${finalScore}/5</span></div>
             

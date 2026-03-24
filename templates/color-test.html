@@ -2,27 +2,28 @@
 {% block city_dropdown %}{% endblock %}
 {% block main_class %}flex-grow pb-20 md:pb-0{% endblock %}
 {% block mobile_bottom_nav %}
-<div class="md:hidden fixed bottom-0 left-0 right-0 w-full bg-slate-900/95 backdrop-blur-md border-t border-slate-700/50 z-[9999] px-2 py-2 flex justify-around items-center h-14 transform-gpu"
-    style="transform: translateZ(0); -webkit-transform: translateZ(0);">
-    <a href="../index.html"
-        class="flex flex-col items-center gap-1 p-2 text-slate-400 hover:text-white transition-colors">
-        <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
-                d="M3 12l2-2m0 0l7-7 7 7M5 10v10a1 1 0 001 1h3m10-11l2 2m-2-2v10a1 1 0 01-1 1h-3m-6 0a1 1 0 001-1v-4a1 1 0 011-1h2a1 1 0 011 1v4a1 1 0 001 1m-6 0h6">
-            </path>
-        </svg>
-        <span class="text-[10px] font-medium uppercase tracking-wider">Dashboard</span>
-    </a>
-    <a href="../docs/india.html"
-        class="flex flex-col items-center gap-1 p-2 text-slate-400 hover:text-white transition-colors">
-        <span class="text-xl leading-none">🌍</span>
-        <span class="text-[10px] font-medium uppercase tracking-wider">India Map</span>
-    </a>
-    <a href="../docs/interactive-tools.html"
-        class="flex flex-col items-center gap-1 p-2 text-slate-400 hover:text-white transition-colors">
-        <span class="text-xl leading-none">🫁</span>
-        <span class="text-[10px] font-medium uppercase tracking-wider">Tools</span>
-    </a>
+<div
+  class="md:hidden fixed bottom-0 left-0 right-0 w-full bg-slate-900/95 backdrop-blur-md border-t border-slate-700/50 z-[9999] px-2 py-2 flex justify-around items-center h-14 transform-gpu"
+  style="transform: translateZ(0); -webkit-transform: translateZ(0);">
+  <a href="../index.html"
+    class="flex flex-col items-center gap-1 p-2 text-slate-400 hover:text-white transition-colors">
+    <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+      <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+        d="M3 12l2-2m0 0l7-7 7 7M5 10v10a1 1 0 001 1h3m10-11l2 2m-2-2v10a1 1 0 01-1 1h-3m-6 0a1 1 0 001-1v-4a1 1 0 011-1h2a1 1 0 011 1v4a1 1 0 001 1m-6 0h6">
+      </path>
+    </svg>
+    <span class="text-[10px] font-medium uppercase tracking-wider">Dashboard</span>
+  </a>
+  <a href="../docs/india.html"
+    class="flex flex-col items-center gap-1 p-2 text-slate-400 hover:text-white transition-colors">
+    <span class="text-xl leading-none">🌍</span>
+    <span class="text-[10px] font-medium uppercase tracking-wider">India Map</span>
+  </a>
+  <a href="../docs/interactive-tools.html"
+    class="flex flex-col items-center gap-1 p-2 text-slate-400 hover:text-white transition-colors">
+    <span class="text-xl leading-none">🫁</span>
+    <span class="text-[10px] font-medium uppercase tracking-wider">Tools</span>
+  </a>
 </div>
 {% endblock %}
 {% block title %}Color Blindness Ishihara Test | Check Your Color Vision{% endblock %}
@@ -30,70 +31,93 @@
 {% block head %}
 <meta property="og:title" content="Color Blindness Ishihara Test 🎨" />
 <meta property="og:description"
-    content="Test your baseline color vision using an interactive procedural Ishihara plate generator." />
+  content="Test your baseline color vision using an interactive procedural Ishihara plate generator." />
 <meta property="og:type" content="website" />
 <script src="https://cdnjs.cloudflare.com/ajax/libs/html2canvas/1.4.1/html2canvas.min.js"></script>
 {% endblock %}
 
 {% block content %}
 <main class="max-w-4xl mx-auto px-4 py-8 space-y-12 flex flex-col items-center justify-center min-h-[80vh]">
-  <div id="capture-zone" class="max-w-md w-full mx-auto bg-gray-800 border border-gray-700 rounded-2xl p-6 shadow-2xl relative">
-    
+  <div id="app-container"
+    class="max-w-md w-full mx-auto bg-gray-800 border border-gray-700 rounded-2xl p-6 shadow-2xl relative">
+
     <div id="test-view">
       <div class="text-center mb-6">
+        <div class="text-5xl mb-3">👁️</div>
         <h2 class="text-2xl font-black text-white tracking-tight">Interactive Ishihara Test</h2>
-        <p class="text-xs text-gray-400 mt-2">Check for hidden Red-Green color deficiency. Screens and blue light can strain color perception over time.</p>
+        <p class="text-xs text-gray-400 mt-2">Check for hidden Red-Green color deficiency. Screens and blue light can
+          strain color perception over time.</p>
       </div>
 
       <div class="w-full bg-gray-700 rounded-full h-1.5 mb-6">
-        <div id="progress-bar" class="bg-blue-500 h-1.5 rounded-full transition-all duration-300" style="width: 20%"></div>
+        <div id="progress-bar" class="bg-blue-500 h-1.5 rounded-full transition-all duration-300" style="width: 20%">
+        </div>
       </div>
 
       <div class="flex justify-center mb-6 relative">
-        <div id="loading" class="absolute inset-0 flex items-center justify-center bg-gray-800 bg-opacity-80 z-10 hidden rounded-full">
+        <div id="loading"
+          class="absolute inset-0 flex items-center justify-center bg-gray-800 bg-opacity-80 z-10 hidden rounded-full">
           <span class="animate-spin text-3xl">⏳</span>
         </div>
-        
-        <canvas id="ishihara-canvas" width="300" height="300" class="rounded-full shadow-[0_0_30px_rgba(0,0,0,0.5)] border-4 border-gray-700"></canvas>
+
+        <canvas id="ishihara-canvas" width="300" height="300"
+          class="rounded-full shadow-[0_0_30px_rgba(0,0,0,0.5)] border-4 border-gray-700"></canvas>
       </div>
 
       <div id="test-controls" class="flex gap-3">
-        <input type="number" id="user-answer" placeholder="What number do you see?" class="flex-1 bg-gray-900 border border-gray-600 rounded-xl px-4 py-3 text-white text-lg font-bold focus:outline-none focus:border-blue-500 text-center" onkeypress="if(event.key === 'Enter') submitAnswer()">
-        <button onclick="submitAnswer()" class="bg-blue-600 hover:bg-blue-500 text-white font-bold py-3 px-6 rounded-xl transition">
+        <input type="number" id="user-answer" placeholder="What number do you see?"
+          class="flex-1 bg-gray-900 border border-gray-600 rounded-xl px-4 py-3 text-white text-lg font-bold focus:outline-none focus:border-blue-500 text-center"
+          onkeypress="if(event.key === 'Enter') submitAnswer()">
+        <button onclick="submitAnswer()"
+          class="bg-blue-600 hover:bg-blue-500 text-white font-bold py-3 px-6 rounded-xl transition">
           Next
         </button>
       </div>
 
       <div class="text-center mt-3">
-        <button onclick="skipQuestion()" class="text-xs text-gray-500 hover:text-gray-300 underline">I don't see anything</button>
+        <button onclick="skipQuestion()" class="text-xs text-gray-500 hover:text-gray-300 underline">I don't see
+          anything</button>
       </div>
     </div>
 
     <div id="results-view" class="hidden text-center pb-2">
-      <div data-html2canvas-ignore="false" class="hidden absolute top-4 right-4 flex items-center gap-2">
-        <div class="w-6 h-6 rounded-lg bg-gradient-to-br from-blue-500 to-indigo-600 flex items-center justify-center shadow-lg">
-          <svg class="w-4 h-4 text-white" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 19v-6a2 2 0 00-2-2H5a2 2 0 00-2 2v6a2 2 0 002 2h2a2 2 0 002-2zm0 0V9a2 2 0 012-2h2a2 2 0 012 2v10m-6 0a2 2 0 002 2h2a2 2 0 002-2m0 0V5a2 2 0 012-2h2a2 2 0 012 2v14a2 2 0 002 2h2a2 2 0 002-2z" /></svg>
+      <div id="capture-zone" class="bg-gray-800 relative rounded-2xl p-2 sm:p-4 mb-4">
+        <div class="flex items-center justify-center gap-2 mb-6">
+          <div
+            class="w-8 h-8 rounded-xl bg-gradient-to-br from-blue-500 to-indigo-600 flex items-center justify-center shadow-lg">
+            <svg class="w-5 h-5 text-white" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+              <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+                d="M9 19v-6a2 2 0 00-2-2H5a2 2 0 00-2 2v6a2 2 0 002 2h2a2 2 0 002-2zm0 0V9a2 2 0 012-2h2a2 2 0 012 2v10m-6 0a2 2 0 002 2h2a2 2 0 002-2m0 0V5a2 2 0 012-2h2a2 2 0 012 2v14a2 2 0 002 2h2a2 2 0 002-2z" />
+            </svg>
+          </div>
+          <div class="font-bold text-xl tracking-tight text-white leading-none">City Health <span
+              class="text-blue-400">360</span></div>
         </div>
-        <div class="font-bold text-sm tracking-tight text-white leading-none">City Health <span class="text-blue-400">360</span></div>
-      </div>
-      <div class="text-6xl mb-4">🎨</div>
-      <h2 class="text-3xl font-black text-white mb-2">Color Test Complete</h2>
-      <p id="result-summary" class="text-gray-300 mb-6 text-lg"></p>
-      
-      <div class="bg-gray-900 border border-gray-700 p-4 rounded-xl text-left mb-6 text-sm text-gray-400">
-        <strong>Did you know?</strong> 1 in 12 men and 1 in 200 women suffer from varying degrees of color blindness. While it is genetic, severe digital eye strain can cause temporary fatigue in your color-interpreting cone cells.
+
+        <div class="text-6xl mb-4 flex justify-center gap-3">👁️ 🎨</div>
+        <h2 class="text-3xl font-black text-white mb-2">Color Test Complete</h2>
+        <p id="result-summary" class="text-gray-300 mb-6 text-lg"></p>
+
+        <div class="bg-gray-900 border border-gray-700 p-4 rounded-xl text-left mb-6 text-sm text-gray-400">
+          <strong>Did you know?</strong> 1 in 12 men and 1 in 200 women suffer from varying degrees of color blindness.
+          While it is genetic, severe digital eye strain can cause temporary fatigue in your color-interpreting cone
+          cells.
+        </div>
       </div>
 
       <div class="flex flex-col gap-3 mt-4">
-        <button id="btn-capture-share" onclick="captureAndShare()" class="w-full flex items-center justify-center gap-2 bg-gradient-to-r from-blue-600 to-indigo-600 hover:from-blue-500 hover:to-indigo-500 text-white font-black py-4 rounded-xl shadow-[0_0_20px_rgba(79,70,229,0.4)] transition transform active:scale-95">
+        <button id="btn-capture-share" onclick="captureAndShare()"
+          class="w-full flex items-center justify-center gap-2 bg-gradient-to-r from-blue-600 to-indigo-600 hover:from-blue-500 hover:to-indigo-500 text-white font-black py-4 rounded-xl shadow-[0_0_20px_rgba(79,70,229,0.4)] transition transform active:scale-95">
           <span class="text-xl">📸</span> Share Color Score
         </button>
-        
-        <button onclick="retryTest()" data-html2canvas-ignore="true" class="w-full bg-gray-700 hover:bg-gray-600 text-white font-bold py-4 rounded-xl transition">
+
+        <button onclick="retryTest()" data-html2canvas-ignore="true"
+          class="w-full bg-gray-700 hover:bg-gray-600 text-white font-bold py-4 rounded-xl transition">
           ↻ Repeat Test
         </button>
 
-        <a data-html2canvas-ignore="true" href="/docs/local-radar.html" class="block w-full bg-gray-800 hover:bg-gray-700 border border-gray-600 text-white font-bold py-4 rounded-xl transition mt-2">
+        <a data-html2canvas-ignore="true" href="/docs/local-radar.html"
+          class="block w-full bg-gray-800 hover:bg-gray-700 border border-gray-600 text-white font-bold py-4 rounded-xl transition mt-2">
           Run Neighborhood Air Radar 🛰️
         </a>
       </div>
@@ -105,193 +129,193 @@
 </main>
 
 <script>
-    // --- 1. CONFIGURATION & DATA ---
-    const canvas = document.getElementById('ishihara-canvas');
-    let ctx = canvas.getContext('2d', { willReadFrequently: true });
-    
-    let testSequence = [];
-    let currentQuestionIndex = 0;
-    let score = 0;
-    let readyToShareFile = null;
+  // --- 1. CONFIGURATION & DATA ---
+  const canvas = document.getElementById('ishihara-canvas');
+  let ctx = canvas.getContext('2d', { willReadFrequently: true });
 
-    const numberColors = ['#e74c3c', '#c0392b', '#d35400', '#e67e22', '#ff7f50'];
-    const bgColors = ['#2ecc71', '#27ae60', '#1abc9c', '#f1c40f', '#9cb071', '#8b966d'];
+  let testSequence = [];
+  let currentQuestionIndex = 0;
+  let score = 0;
+  let readyToShareFile = null;
 
-    function generateRandomSequence(length) {
-      const seq = [];
-      for(let i=0; i<length; i++){
-        seq.push(Math.floor(Math.random() * 89) + 10);
-      }
-      return seq;
+  const numberColors = ['#e74c3c', '#c0392b', '#d35400', '#e67e22', '#ff7f50'];
+  const bgColors = ['#2ecc71', '#27ae60', '#1abc9c', '#f1c40f', '#9cb071', '#8b966d'];
+
+  function generateRandomSequence(length) {
+    const seq = [];
+    for (let i = 0; i < length; i++) {
+      seq.push(Math.floor(Math.random() * 89) + 10);
     }
+    return seq;
+  }
 
-    // --- 2. THE PROCEDURAL GENERATOR ---
-    function generatePlate(targetNumber) {
-      document.getElementById('loading').classList.remove('hidden');
-      document.getElementById('user-answer').value = '';
-      document.getElementById('user-answer').focus();
-      
-      const progress = ((currentQuestionIndex + 1) / testSequence.length) * 100;
-      document.getElementById('progress-bar').style.width = `${progress}%`;
+  // --- 2. THE PROCEDURAL GENERATOR ---
+  function generatePlate(targetNumber) {
+    document.getElementById('loading').classList.remove('hidden');
+    document.getElementById('user-answer').value = '';
+    document.getElementById('user-answer').focus();
 
-      setTimeout(() => {
-        const hiddenCanvas = document.createElement('canvas');
-        hiddenCanvas.width = canvas.width;
-        hiddenCanvas.height = canvas.height;
-        const hCtx = hiddenCanvas.getContext('2d', { willReadFrequently: true });
-        
-        hCtx.fillStyle = 'white';
-        hCtx.fillRect(0, 0, hiddenCanvas.width, hiddenCanvas.height);
-        hCtx.font = 'bold 180px sans-serif';
-        hCtx.fillStyle = 'black';
-        hCtx.textAlign = 'center';
-        hCtx.textBaseline = 'middle';
-        hCtx.fillText(targetNumber.toString(), hiddenCanvas.width / 2, hiddenCanvas.height / 2 + 10);
-        
-        const maskData = hCtx.getImageData(0, 0, hiddenCanvas.width, hiddenCanvas.height).data;
+    const progress = ((currentQuestionIndex + 1) / testSequence.length) * 100;
+    document.getElementById('progress-bar').style.width = `${progress}%`;
 
-        ctx.fillStyle = '#fdfbf7'; 
-        ctx.fillRect(0, 0, canvas.width, canvas.height);
+    setTimeout(() => {
+      const hiddenCanvas = document.createElement('canvas');
+      hiddenCanvas.width = canvas.width;
+      hiddenCanvas.height = canvas.height;
+      const hCtx = hiddenCanvas.getContext('2d', { willReadFrequently: true });
 
-        const circles = [];
-        const maxAttempts = 15000;
-        const maxRadius = 10;
-        const minRadius = 3;
-        const padding = 1; 
+      hCtx.fillStyle = 'white';
+      hCtx.fillRect(0, 0, hiddenCanvas.width, hiddenCanvas.height);
+      hCtx.font = 'bold 180px sans-serif';
+      hCtx.fillStyle = 'black';
+      hCtx.textAlign = 'center';
+      hCtx.textBaseline = 'middle';
+      hCtx.fillText(targetNumber.toString(), hiddenCanvas.width / 2, hiddenCanvas.height / 2 + 10);
 
-        for (let i = 0; i < maxAttempts; i++) {
-          const r = Math.random() * (maxRadius - minRadius) + minRadius;
-          const x = Math.random() * (canvas.width - r * 2) + r;
-          const y = Math.random() * (canvas.height - r * 2) + r;
+      const maskData = hCtx.getImageData(0, 0, hiddenCanvas.width, hiddenCanvas.height).data;
 
-          const distFromCenter = Math.hypot(x - canvas.width/2, y - canvas.height/2);
-          if (distFromCenter > (canvas.width/2 - 5)) continue;
+      ctx.fillStyle = '#fdfbf7';
+      ctx.fillRect(0, 0, canvas.width, canvas.height);
 
-          let collision = false;
-          for (let j = 0; j < circles.length; j++) {
-            const c = circles[j];
-            const dx = x - c.x;
-            const dy = y - c.y;
-            const dist = Math.hypot(dx, dy);
-            if (dist < r + c.r + padding) {
-              collision = true;
-              break;
-            }
-          }
+      const circles = [];
+      const maxAttempts = 15000;
+      const maxRadius = 10;
+      const minRadius = 3;
+      const padding = 1;
 
-          if (!collision) {
-            circles.push({ x, y, r });
-            const pixelIndex = (Math.floor(y) * canvas.width + Math.floor(x)) * 4;
-            const isNumber = maskData[pixelIndex] < 128; 
+      for (let i = 0; i < maxAttempts; i++) {
+        const r = Math.random() * (maxRadius - minRadius) + minRadius;
+        const x = Math.random() * (canvas.width - r * 2) + r;
+        const y = Math.random() * (canvas.height - r * 2) + r;
 
-            const colorArray = isNumber ? numberColors : bgColors;
-            const randomColor = colorArray[Math.floor(Math.random() * colorArray.length)];
+        const distFromCenter = Math.hypot(x - canvas.width / 2, y - canvas.height / 2);
+        if (distFromCenter > (canvas.width / 2 - 5)) continue;
 
-            ctx.beginPath();
-            ctx.arc(x, y, r, 0, Math.PI * 2);
-            ctx.fillStyle = randomColor;
-            ctx.fill();
-            ctx.closePath();
+        let collision = false;
+        for (let j = 0; j < circles.length; j++) {
+          const c = circles[j];
+          const dx = x - c.x;
+          const dy = y - c.y;
+          const dist = Math.hypot(dx, dy);
+          if (dist < r + c.r + padding) {
+            collision = true;
+            break;
           }
         }
-        
-        document.getElementById('loading').classList.add('hidden');
-      }, 50); 
-    }
 
-    // --- 3. TEST LOGIC ---
-    function submitAnswer() {
-      const input = document.getElementById('user-answer').value;
-      if (input == testSequence[currentQuestionIndex]) {
-        score++;
+        if (!collision) {
+          circles.push({ x, y, r });
+          const pixelIndex = (Math.floor(y) * canvas.width + Math.floor(x)) * 4;
+          const isNumber = maskData[pixelIndex] < 128;
+
+          const colorArray = isNumber ? numberColors : bgColors;
+          const randomColor = colorArray[Math.floor(Math.random() * colorArray.length)];
+
+          ctx.beginPath();
+          ctx.arc(x, y, r, 0, Math.PI * 2);
+          ctx.fillStyle = randomColor;
+          ctx.fill();
+          ctx.closePath();
+        }
       }
-      nextQuestion();
+
+      document.getElementById('loading').classList.add('hidden');
+    }, 50);
+  }
+
+  // --- 3. TEST LOGIC ---
+  function submitAnswer() {
+    const input = document.getElementById('user-answer').value;
+    if (input == testSequence[currentQuestionIndex]) {
+      score++;
+    }
+    nextQuestion();
+  }
+
+  function skipQuestion() {
+    nextQuestion();
+  }
+
+  function nextQuestion() {
+    currentQuestionIndex++;
+    if (currentQuestionIndex < testSequence.length) {
+      generatePlate(testSequence[currentQuestionIndex]);
+    } else {
+      showResults();
+    }
+  }
+
+  function showResults() {
+    document.getElementById('test-view').classList.add('hidden');
+    document.getElementById('results-view').classList.remove('hidden');
+
+    let resultText = "";
+    if (score === testSequence.length) {
+      resultText = `<span class="text-green-400 font-bold block mb-1">Excellent.</span> You show no signs of contrast or color deficiency.`;
+    } else {
+      resultText = `<span class="text-orange-400 font-bold block mb-1">Low Color Distinction.</span> You scored ${score}/${testSequence.length}. This indicates a potential color deficiency or high screen glare interference.`;
     }
 
-    function skipQuestion() {
-      nextQuestion();
+    document.getElementById('result-summary').innerHTML = resultText;
+  }
+
+  function retryTest() {
+    score = 0;
+    currentQuestionIndex = 0;
+    testSequence = generateRandomSequence(5);
+
+    document.getElementById('results-view').classList.add('hidden');
+    document.getElementById('test-view').classList.remove('hidden');
+    generatePlate(testSequence[0]);
+  }
+
+  // --- 4. NATIVE BASE64 IOS SHARE ---
+  async function captureAndShare() {
+    const btn = document.getElementById('btn-capture-share');
+    const targetDiv = document.getElementById('capture-zone');
+
+    const originalHtml = btn.innerHTML;
+    btn.innerHTML = '<span class="animate-spin text-xl">⏳</span> <span>Generating Snapshot...</span>';
+    btn.disabled = true;
+
+    try {
+      const canvasShot = await html2canvas(targetDiv, {
+        scale: 2,
+        useCORS: true,
+        backgroundColor: "#111827",
+        logging: false,
+        onclone: function (clonedDoc) {
+          const hiddenElements = clonedDoc.querySelectorAll('[data-html2canvas-ignore="false"].hidden');
+          hiddenElements.forEach(el => el.classList.remove('hidden'));
+          const clonedBtn = clonedDoc.getElementById('btn-capture-share');
+          if (clonedBtn) clonedBtn.innerHTML = originalHtml;
+        }
+      });
+
+      canvasShot.toBlob((blob) => {
+        readyToShareFile = new File([blob], 'ColorTest-Results.png', { type: 'image/png' });
+        const previewUrl = URL.createObjectURL(blob);
+        showTwoStepShareModal(previewUrl);
+
+        btn.innerHTML = originalHtml;
+        btn.disabled = false;
+      }, 'image/png');
+
+    } catch (error) {
+      console.error("Screenshot failed:", error);
+      btn.innerHTML = '❌ Capture Failed';
+      setTimeout(() => {
+        btn.innerHTML = originalHtml;
+        btn.disabled = false;
+      }, 2000);
     }
+  }
 
-    function nextQuestion() {
-      currentQuestionIndex++;
-      if (currentQuestionIndex < testSequence.length) {
-        generatePlate(testSequence[currentQuestionIndex]);
-      } else {
-        showResults();
-      }
-    }
+  function showTwoStepShareModal(previewUrl) {
+    const existingModal = document.getElementById('ios-share-modal');
+    if (existingModal) existingModal.remove();
 
-    function showResults() {
-      document.getElementById('test-view').classList.add('hidden');
-      document.getElementById('results-view').classList.remove('hidden');
-
-      let resultText = "";
-      if (score === testSequence.length) {
-        resultText = `<span class="text-green-400 font-bold block mb-1">Excellent.</span> You show no signs of contrast or color deficiency.`;
-      } else {
-        resultText = `<span class="text-orange-400 font-bold block mb-1">Low Color Distinction.</span> You scored ${score}/${testSequence.length}. This indicates a potential color deficiency or high screen glare interference.`;
-      }
-      
-      document.getElementById('result-summary').innerHTML = resultText;
-    }
-
-    function retryTest() {
-      score = 0;
-      currentQuestionIndex = 0;
-      testSequence = generateRandomSequence(5);
-      
-      document.getElementById('results-view').classList.add('hidden');
-      document.getElementById('test-view').classList.remove('hidden');
-      generatePlate(testSequence[0]);
-    }
-
-    // --- 4. NATIVE BASE64 IOS SHARE ---
-    async function captureAndShare() {
-      const btn = document.getElementById('btn-capture-share');
-      const targetDiv = document.getElementById('capture-zone'); 
-      
-      const originalHtml = btn.innerHTML;
-      btn.innerHTML = '<span class="animate-spin text-xl">⏳</span> <span>Generating Snapshot...</span>';
-      btn.disabled = true;
-
-      try {
-        const canvasShot = await html2canvas(targetDiv, {
-          scale: 2, 
-          useCORS: true, 
-          backgroundColor: "#111827", 
-          logging: false,
-          onclone: function (clonedDoc) {
-            const hiddenElements = clonedDoc.querySelectorAll('[data-html2canvas-ignore="false"].hidden');
-            hiddenElements.forEach(el => el.classList.remove('hidden'));
-            const clonedBtn = clonedDoc.getElementById('btn-capture-share');
-            if (clonedBtn) clonedBtn.innerHTML = originalHtml;
-          }
-        });
-
-        canvasShot.toBlob((blob) => {
-          readyToShareFile = new File([blob], 'ColorTest-Results.png', { type: 'image/png' });
-          const previewUrl = URL.createObjectURL(blob);
-          showTwoStepShareModal(previewUrl);
-          
-          btn.innerHTML = originalHtml;
-          btn.disabled = false;
-        }, 'image/png');
-
-      } catch (error) {
-        console.error("Screenshot failed:", error);
-        btn.innerHTML = '❌ Capture Failed';
-        setTimeout(() => {
-          btn.innerHTML = originalHtml;
-          btn.disabled = false;
-        }, 2000);
-      }
-    }
-
-    function showTwoStepShareModal(previewUrl) {
-      const existingModal = document.getElementById('ios-share-modal');
-      if (existingModal) existingModal.remove();
-
-      const modalHtml = `
+    const modalHtml = `
         <div id="ios-share-modal" class="fixed inset-0 z-[9999] flex flex-col items-center justify-center bg-black/95 p-6 backdrop-blur-md transition-opacity">
           <h3 class="text-white font-black text-xl mb-4 tracking-wide">Scorecard Ready!</h3>
           <img src="${previewUrl}" class="rounded-2xl w-full max-w-sm shadow-[0_0_40px_rgba(0,0,0,0.6)] border border-gray-700 mb-8 pointer-events-none" />
@@ -305,33 +329,33 @@
           </button>
         </div>
       `;
-      document.body.insertAdjacentHTML('beforeend', modalHtml);
-    }
+    document.body.insertAdjacentHTML('beforeend', modalHtml);
+  }
 
-    async function executeInstantShare() {
-      const shareData = {
-        text: '🎨 I just checked my Color Vision Score on CityHealth360.\n\nTake the interactive, randomized Ishihara test here to see if you have Red-Green deficiency: https://cityhealth360.in/docs/color-test.html',
-        files: [readyToShareFile]
-      };
-
-      if (navigator.canShare && navigator.canShare({ files: [readyToShareFile] })) {
-        try {
-          await navigator.share(shareData);
-        } catch (err) {
-          console.log("User cancelled share or minor error:", err);
-        }
-      } else {
-        const link = document.createElement('a');
-        link.download = 'ColorTest.png';
-        link.href = URL.createObjectURL(readyToShareFile);
-        link.click();
-      }
-    }
-
-    // --- 5. START APP ---
-    window.onload = () => {
-      testSequence = generateRandomSequence(5);
-      generatePlate(testSequence[0]);
+  async function executeInstantShare() {
+    const shareData = {
+      text: '🎨 I just checked my Color Vision Score on CityHealth360.\n\nTake the interactive, randomized Ishihara test here to see if you have Red-Green deficiency: https://cityhealth360.in/docs/color-test.html',
+      files: [readyToShareFile]
     };
+
+    if (navigator.canShare && navigator.canShare({ files: [readyToShareFile] })) {
+      try {
+        await navigator.share(shareData);
+      } catch (err) {
+        console.log("User cancelled share or minor error:", err);
+      }
+    } else {
+      const link = document.createElement('a');
+      link.download = 'ColorTest.png';
+      link.href = URL.createObjectURL(readyToShareFile);
+      link.click();
+    }
+  }
+
+  // --- 5. START APP ---
+  window.onload = () => {
+    testSequence = generateRandomSequence(5);
+    generatePlate(testSequence[0]);
+  };
 </script>
 {% endblock %}
