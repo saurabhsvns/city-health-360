@@ -4,10 +4,10 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Is Latur Safe Today? Health & AQI Forecast Mar 31, 10:31 PM</title>
+    <title>Is Latur Safe Today? Health & AQI Forecast Apr 01, 12:36 AM</title>
     <meta name="description"
         content="Daily health report for Latur travelers. Mosquito risk: 7/10.
-AQI: 91. Check hospital lists and safe zones.">
+AQI: 95. Check hospital lists and safe zones.">
     
     <link rel="canonical" href="https://cityhealth360.in/docs/latur.html">
     
@@ -109,7 +109,7 @@ AQI: 91. Check hospital lists and safe zones.">
                 <div class="hidden sm:block text-right border-r border-slate-700 pr-4">
                     <div class="text-[10px] sm:text-xs font-bold uppercase tracking-widest text-slate-500 mb-0.5">Last
                         Update</div>
-                    <div class="font-mono text-blue-300 text-[10px] sm:text-xs">Mar 31, 10:31 PM</div>
+                    <div class="font-mono text-blue-300 text-[10px] sm:text-xs">Apr 01, 12:36 AM</div>
                 </div>
 
                 <!-- City Dropdown Functionality -->
@@ -137,7 +137,7 @@ AQI: 91. Check hospital lists and safe zones.">
     <div class="relative z-20 max-w-4xl mx-auto px-4 h-full flex flex-col justify-end pb-12">
         <div class="flex items-end gap-6 mb-4">
             <h1 class="text-5xl md:text-6xl font-bold text-white tracking-tight">Latur</h1>
-            <span class="text-3xl font-light text-slate-300 pb-1">26.6°C</span>
+            <span class="text-3xl font-light text-slate-300 pb-1">25.1°C</span>
         </div>
         <p class="text-lg text-slate-300 max-w-2xl mb-8">An agricultural trade hub known for its pulses and oilseeds.</p>
 
@@ -197,8 +197,8 @@ AQI: 91. Check hospital lists and safe zones.">
                 <div class="flex flex-col pb-2 border-b border-white/5">
                     <div class="flex justify-between items-center">
                         <span class="text-slate-400">Allergen Risk</span>
-                        <span class="font-bold text-rose-400">
-                            High
+                        <span class="font-bold text-yellow-400">
+                            Medium
                         </span>
                     </div>
                     
@@ -231,8 +231,8 @@ AQI: 91. Check hospital lists and safe zones.">
                 <div class="flex flex-col pb-2 border-b border-white/5">
                     <div class="flex justify-between items-center">
                         <span class="text-slate-400">Humidity Discomfort</span>
-                        <span class="font-bold text-emerald-400">
-                            Low
+                        <span class="font-bold text-yellow-400">
+                            Medium
                         </span>
                     </div>
                     
@@ -583,7 +583,7 @@ AQI: 91. Check hospital lists and safe zones.">
 <footer class="bg-slate-900 border-t border-slate-800 py-8 mt-12">
     <div class="max-w-4xl mx-auto px-4 text-center text-slate-500 text-sm flex flex-col items-center">
         <div class="text-[10px] sm:text-xs font-bold uppercase tracking-widest mb-1">Last Update</div>
-        <div class="font-mono text-blue-300">Mar 31, 10:31 PM</div>
+        <div class="font-mono text-blue-300">Apr 01, 12:36 AM</div>
         <p class="mt-4">Data sources: Open-Meteo, Local Health Indices.</p>
         <a href="../index.html"
             class="inline-block mt-4 text-emerald-400 hover:text-emerald-300 underline font-medium">View Full
@@ -598,10 +598,10 @@ AQI: 91. Check hospital lists and safe zones.">
         const aqiCtx = document.getElementById('aqiChart').getContext('2d');
         const tempCtx = document.getElementById('tempChart').getContext('2d');
 
-        const rawDates = ["2026-03-24", "2026-03-25", "2026-03-26", "2026-03-27", "2026-03-28", "2026-03-29", "2026-03-30", "2026-03-31", "2026-04-01", "2026-04-02", "2026-04-03", "2026-04-04", "2026-04-05", "2026-04-06", "2026-04-07"];
-    const rawAqis = [124, 118, 100, 112, 95, 69, 104, 111, 125, 123, 114, 138, 121, 121, 121];
-    const rawMaxTemps = [34.4, 34.8, 35.4, 37.0, 37.2, 36.9, 36.1, 36.5, 33.9, 34.2, 33.6, 33.6, 33.1, 33.3, 33.2];
-    const rawMinTemps = [20.3, 22.2, 21.1, 23.5, 24.6, 22.9, 22.9, 23.7, 21.1, 22.9, 21.6, 21.6, 22.5, 22.1, 21.4];
+        const rawDates = ["2026-03-25", "2026-03-26", "2026-03-27", "2026-03-28", "2026-03-29", "2026-03-30", "2026-03-31", "2026-04-01", "2026-04-02", "2026-04-03", "2026-04-04", "2026-04-05", "2026-04-06", "2026-04-07", "2026-04-08"];
+    const rawAqis = [118, 100, 112, 95, 69, 104, 111, 125, 123, 114, 138, 121, 121, 121, 121];
+    const rawMaxTemps = [34.8, 35.4, 37.0, 37.2, 36.9, 36.1, 36.5, 33.9, 34.2, 33.6, 33.6, 33.1, 33.3, 33.2, 34.4];
+    const rawMinTemps = [22.2, 21.1, 23.5, 24.6, 22.9, 22.9, 23.7, 21.1, 22.9, 21.6, 21.6, 22.5, 22.1, 21.4, 20.3];
 
     if (!rawDates.length || !rawAqis.length || !rawMaxTemps.length) return;
 
