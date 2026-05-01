@@ -4,10 +4,10 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Is Mumbai Safe Today? Health & AQI Forecast Mar 24, 03:32 PM</title>
+    <title>Is Mumbai Safe Today? Health & AQI Forecast May 01, 05:13 PM</title>
     <meta name="description"
-        content="Daily health report for Mumbai travelers. Mosquito risk: 7/10.
-AQI: 168. Check hospital lists and safe zones.">
+        content="Daily health report for Mumbai travelers. Mosquito risk: 3/10.
+AQI: 66. Check hospital lists and safe zones.">
     
     <link rel="canonical" href="https://cityhealth360.in/docs/mumbai.html">
     
@@ -109,7 +109,7 @@ AQI: 168. Check hospital lists and safe zones.">
                 <div class="hidden sm:block text-right border-r border-slate-700 pr-4">
                     <div class="text-[10px] sm:text-xs font-bold uppercase tracking-widest text-slate-500 mb-0.5">Last
                         Update</div>
-                    <div class="font-mono text-blue-300 text-[10px] sm:text-xs">Mar 24, 03:32 PM</div>
+                    <div class="font-mono text-blue-300 text-[10px] sm:text-xs">May 01, 05:13 PM</div>
                 </div>
 
                 <!-- City Dropdown Functionality -->
@@ -130,14 +130,14 @@ AQI: 168. Check hospital lists and safe zones.">
     <main class="flex-grow pb-20 md:pb-0">
         
 <!-- Hero Section -->
-<header class="relative h-96 overflow-hidden">
+<header class="relative min-h-[600px] overflow-hidden">
     <div class="absolute inset-0 bg-gradient-to-t from-slate-900 via-slate-900/50 to-transparent z-10"></div>
     <div class="absolute inset-0 bg-gradient-to-br from-blue-900 to-slate-800 z-0 opacity-50"></div>
 
     <div class="relative z-20 max-w-4xl mx-auto px-4 h-full flex flex-col justify-end pb-12">
         <div class="flex items-end gap-6 mb-4">
             <h1 class="text-5xl md:text-6xl font-bold text-white tracking-tight">Mumbai</h1>
-            <span class="text-3xl font-light text-slate-300 pb-1">28.8°C</span>
+            <span class="text-3xl font-light text-slate-300 pb-1">31.0°C</span>
         </div>
         <p class="text-lg text-slate-300 max-w-2xl mb-8">The bustling financial capital, known for its humid tropical climate and heavy monsoon rains.</p>
 
@@ -145,8 +145,8 @@ AQI: 168. Check hospital lists and safe zones.">
         <div
             class="flex items-center gap-6 p-6 glass-card rounded-2xl w-full md:w-auto inline-flex border border-white/10">
             <div
-                class="relative w-24 h-24 flex items-center justify-center rounded-full border-4 border-rose-500 text-rose-400 shadow-lg bg-slate-900/50">
-                <span class="text-4xl font-black">38</span>
+                class="relative w-24 h-24 flex items-center justify-center rounded-full border-4 border-yellow-500 text-yellow-400 shadow-lg bg-slate-900/50">
+                <span class="text-4xl font-black">47</span>
             </div>
             <div class="space-y-1">
                 <h2 class="text-2xl font-bold text-white tracking-wide">Health Score</h2>
@@ -155,11 +155,68 @@ AQI: 168. Check hospital lists and safe zones.">
                         class="text-slate-500">Optimal</span>
                     /
                     <span
-                        class="text-slate-500">Moderate</span>
+                        class="text-yellow-400">Moderate</span>
                     /
-                    <span class="text-rose-400">Severe</span>
+                    <span class="text-slate-500">Severe</span>
                 </div>
             </div>
+        </div>
+
+        <!-- City Air Toxicity Block -->
+        <div class="mt-6 bg-gray-900 border border-gray-700 rounded-2xl p-6 relative overflow-hidden shadow-xl w-full md:w-[400px]">
+        
+          <div class="absolute -right-4 -top-4 text-9xl opacity-[0.03] grayscale pointer-events-none select-none">🚬</div>
+
+          <h3 class="text-lg font-black text-white mb-4 flex items-center gap-2 tracking-wide">
+            <span class="text-red-500">⚠️</span> City Air Toxicity
+          </h3>
+
+          <div class="grid grid-cols-2 gap-4 mb-5 relative z-10">
+            <div class="bg-gray-800 p-4 rounded-xl border border-gray-700 shadow-inner">
+              <div class="text-[10px] text-gray-400 font-bold uppercase tracking-widest mb-1">Live PM 2.5</div>
+              <div class="text-2xl font-black text-white">
+                <span id="city-pm25-display">20.4</span> 
+                <span class="text-xs font-bold text-gray-500 ml-1">µg/m³</span>
+              </div>
+            </div>
+            
+            <div class="bg-gray-800 p-4 rounded-xl border border-gray-700 shadow-inner flex flex-col justify-center">
+              <div class="text-[10px] text-gray-400 font-bold uppercase tracking-widest mb-1">Toxic Gas Breakdown (µg/m³)</div>
+              <div class="space-y-1 mt-1">
+                <div class="flex justify-between text-[10px] font-bold">
+                  <span class="text-gray-500">NO₂</span>
+                  <span class="text-orange-400">6.3</span>
+                </div>
+                <div class="flex justify-between text-[10px] font-bold">
+                  <span class="text-gray-500">CO</span>
+                  <span class="text-orange-400">217.0</span>
+                </div>
+                <div class="flex justify-between text-[10px] font-bold">
+                  <span class="text-gray-500">O₃</span>
+                  <span class="text-orange-400">88.0</span>
+                </div>
+                <div class="flex justify-between text-[10px] font-bold">
+                  <span class="text-gray-500">SO₂</span>
+                  <span class="text-orange-400">14.8</span>
+                </div>
+              </div>
+            </div>
+          </div>
+
+          <div class="bg-gray-800/50 border border-gray-700 p-4 rounded-xl mb-6 relative z-10">
+            <div class="text-sm text-gray-300 leading-relaxed">
+              Breathing the air in this city today is mathematically equivalent to smoking 
+              <span id="city-cig-count" class="text-2xl font-black text-red-500 mx-1 animate-pulse">--</span> 
+              <span class="font-bold text-gray-400">cigarettes.</span>
+            </div>
+            <div class="text-[9px] text-gray-600 mt-2 uppercase tracking-wide">
+              Based on Berkeley Earth Conversion Math
+            </div>
+          </div>
+
+          <a href="/docs/local-radar.html" class="relative z-10 flex items-center justify-center gap-2 w-full bg-gradient-to-r from-blue-600 to-indigo-600 hover:from-blue-500 hover:to-indigo-500 text-white font-black py-4 px-6 rounded-xl transition shadow-[0_0_20px_rgba(79,70,229,0.3)] active:scale-95">
+            <span class="text-xl">🛰️</span> Check Your Exact Street
+          </a>
         </div>
     </div>
 </header>
@@ -180,8 +237,8 @@ AQI: 168. Check hospital lists and safe zones.">
                 <div class="flex flex-col pb-2 border-b border-white/5">
                     <div class="flex justify-between items-center">
                         <span class="text-slate-400">Air Quality Risk</span>
-                        <span class="font-bold text-yellow-400">
-                            Medium
+                        <span class="font-bold text-emerald-400">
+                            Low
                         </span>
                     </div>
                     
@@ -214,8 +271,8 @@ AQI: 168. Check hospital lists and safe zones.">
                 <div class="flex flex-col pb-2 border-b border-white/5">
                     <div class="flex justify-between items-center">
                         <span class="text-slate-400">Respiratory Risk</span>
-                        <span class="font-bold text-yellow-400">
-                            Medium
+                        <span class="font-bold text-emerald-400">
+                            Low
                         </span>
                     </div>
                     
@@ -314,8 +371,8 @@ AQI: 168. Check hospital lists and safe zones.">
                 <div class="flex flex-col pb-2 border-b border-white/5">
                     <div class="flex justify-between items-center">
                         <span class="text-slate-400">Workout Disruption</span>
-                        <span class="font-bold text-rose-400">
-                            High
+                        <span class="font-bold text-yellow-400">
+                            Medium
                         </span>
                     </div>
                     
@@ -345,8 +402,8 @@ AQI: 168. Check hospital lists and safe zones.">
                 <div class="flex flex-col pb-2 border-b border-white/5">
                     <div class="flex justify-between items-center">
                         <span class="text-slate-400">Mosquito Risk</span>
-                        <span class="font-bold text-rose-400">
-                            High
+                        <span class="font-bold text-yellow-400">
+                            Medium
                         </span>
                     </div>
                     
@@ -441,12 +498,6 @@ AQI: 168. Check hospital lists and safe zones.">
             
 
             
-            <a href="https://www.google.com/maps/search/?api=1&query=Dengue+Testing+Lab+in+Mumbai"
-                target="_blank" rel="noopener noreferrer"
-                class="inline-flex items-center px-4 py-2 text-sm font-medium text-rose-100 bg-rose-900/30 border border-rose-800 rounded-full hover:bg-rose-900/50 transition-colors">
-                🩸 Dengue Testing Labs
-            </a>
-            
 
             
             <a href="https://www.google.com/maps/search/?api=1&query=24+Hour+Pharmacy+in+Mumbai"
@@ -475,22 +526,6 @@ AQI: 168. Check hospital lists and safe zones.">
             </div>
         </div>
 
-        
-        <div
-            class="mt-6 p-4 bg-rose-900/40 border border-rose-500/50 rounded-xl flex flex-col sm:flex-row items-center justify-between gap-4">
-            <div class="flex items-center gap-3">
-                <span class="text-3xl">⚠️</span>
-                <div>
-                    <h3 class="text-lg font-bold text-rose-300">High Smog Forecasted</h3>
-                    <p class="text-sm text-slate-300">The AQI is predicted to exceed 150 (Unhealthy) in the coming days.
-                        Protect your lungs if traveling.</p>
-                </div>
-            </div>
-            <a href="https://amzn.to/4aNom9H" target="_blank" rel="noopener noreferrer"
-                class="px-5 py-2 bg-rose-600 hover:bg-rose-500 text-white font-semibold rounded-lg shadow-lg transition-all shrink-0">
-                Get a True Hepa Purifier ↗
-            </a>
-        </div>
         
     </section>
 
@@ -563,33 +598,33 @@ AQI: 168. Check hospital lists and safe zones.">
         
         <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
             
-            <a href="https://news.google.com/rss/articles/CBMixAFBVV95cUxNVDFNcm1zSU9lRzJtTTR2TXlWMUZLRlV1M1Q3bko4d0JuQVFnS0piOVhZdGtHRmR0TzI0UkhNeUxHS29PNWZkZXEtdXRsR3pNNEk3TWRaWUM0NW10R21LdzI2Y291bHdRMWczREZzTV9BemZwVUR1TmJJdE9ReXdWSUJxQnlvTTdSeTgyOFpCLWg1SXh5bngyeEIyZ0Z1SXpMc1VBS19JTkxrZW9uaXBVeFpUX21yTC1zSE1ObW9Ja0I2RzNz0gHMAUFVX3lxTFBYeVM4OGU3bk4wZ013cjItaFg5clpra3ltQk5EXzFHR09MNlo2Sm1IeTlvYV9sSVJxNFVVZzhMaXJtVlZXWDFlRURFdlh3bnFUYU0wbmliX28yTmRvVTNrbDhDaHltaGdua21yblJiUWo5OURpcW5KTWptNjZCYVhuemNhYUd3bVRSQVBacjdjX2czSElDVWVVbzhCWUxnUTNvZDJ6X1ZjeFF3N1ZDdTYxWk91SWNKbnNKdUZEV1FPc25TVThscEU1ejFlbg?oc=5" target="_blank" rel="noopener noreferrer"
+            <a href="https://news.google.com/rss/articles/CBMisAFBVV95cUxNNlFaRjJLMGxKckUzS3lRelpVaGFwbXdHT2lxMGQ5WmRkbGJiNHRNMTB1eWtNVTlhbzdVYWRuaHFfVzdSUGlxaHFyd3I4QVhSbkxKcnoxWjMxUjFZRTJ0UnhNRmdMYXdYcmVSWWhqbzhaQ2d2eUdmS0xMQWJwWVNfZDktNGttRGFMMmlOSnNtZDdJYmZQRWVRWHl2ZjBxMF91blVwVlZwVUFjNUlFcDRLOA?oc=5" target="_blank" rel="noopener noreferrer"
                 class="block p-4 bg-slate-800/50 rounded-xl border border-slate-700/50 hover:bg-slate-700/50 transition-colors group">
                 <h3 class="text-lg font-semibold text-slate-200 group-hover:text-emerald-400 transition-colors mb-2">
-                    Delhi vs Mumbai: Infrastructure To Pollution — 2026 Budget Comparison | Infographic Story - NDTV Profit</h3>
+                    Lilavati Hospital announces official medical partnership with Mumbai City FC - Adgully.com</h3>
                 <div class="flex justify-between items-center text-sm text-slate-400">
-                    <span>NDTV Profit</span>
-                    <span>24 Mar 2026</span>
+                    <span>Adgully.com</span>
+                    <span>01 May 2026</span>
                 </div>
             </a>
             
-            <a href="https://news.google.com/rss/articles/CBMi9wFBVV95cUxNMy1seGFTS1Z5OTdvdnJUTlFIcnNucUZVZWlXdkxHQjJaNnBLS2JKWHJ3cVJ3X3lwVXg2STZCX2RpYlNDN2E0ZE5wVlZ1Y2tyTmNUNF8wZHpqdjRZWFJRdm5DOHJiZFFCYkVPaDlzeEg3RzJ5MlA0Ykd1RmktejE2Zm1PTEFaWHJfQ1NZb0xIN2h4UXhNeFNJMGd3Yk8ycHZMZ01WbW5BekJrbmlfd0hCV2tyZlE4NS0tOTZ5dmZ4U1ZCdzQxbGtld1hneXJzdHJvVWxUTEE3eUl0UkFURF9NVDNGQWc0NlVkUi1GelVUci0wR1YtblZR0gH8AUFVX3lxTE12Yzl1V253WElHMW9Va0tyQXkxXzFUellVLUduSHN5WmxLMGMxSjc3TDVZanBWaHNtaVprOGxyTDVhWXgxZnJoelp2QUFfajV5UlJqeFZhZzNGYy1GbWFrMk1TSVhvTkJMUWgwd3RxZTdnbzZmS0tLdy1YbHVVT0ZDajd1bzlMMkZrUmx3dV9nbEFYVW5wNUxiS0I4RGljNUM2SGFqa1hkVlRZTFZrZUd2WnREY2pVNWtFRWJtQjRvc1U2MGppMzRwNjBQbmVXOXprS0s1SFJWUjNlellTYm54QUpoVks0alB2cVBXVDVPQ2lxeXk4RXdsSmkzQg?oc=5" target="_blank" rel="noopener noreferrer"
+            <a href="https://news.google.com/rss/articles/CBMirwFBVV95cUxNRmhWWDRGT2d5ZjV6bE9nQVg5WkpzSmdBbjgxa2VSck1GTzdCSV9QMlEtUV9PbXBkRzBldU9LNzU4eHd2elplU0JmZkQwZGJTaFgzNnItN2N0MkNHTUNqTjd1emFMQV9sVlVzY3N6ZTRyd3ZaRUQtNnQ3MmwyX2VXb1dTZU5qZFlqVmIxcnMzc1V4dERNNWptcVcxaTM4T3dkeV9lY3FVWlRydWN1TkU0?oc=5" target="_blank" rel="noopener noreferrer"
                 class="block p-4 bg-slate-800/50 rounded-xl border border-slate-700/50 hover:bg-slate-700/50 transition-colors group">
                 <h3 class="text-lg font-semibold text-slate-200 group-hover:text-emerald-400 transition-colors mb-2">
-                    Mumbai’s JJ Hospital staff collect Rs 47,000 to give food hampers to kids under TB treatment - The Times of India</h3>
+                    ISL 2025-26: Lilavati Hospital to lead matchday medical support for Mumbai City FC - SportsMint Media</h3>
                 <div class="flex justify-between items-center text-sm text-slate-400">
-                    <span>The Times of India</span>
-                    <span>23 Mar 2026</span>
+                    <span>SportsMint Media</span>
+                    <span>01 May 2026</span>
                 </div>
             </a>
             
-            <a href="https://news.google.com/rss/articles/CBMitgFBVV95cUxPNjc1LXZnM3VRdlYxZTE4bEZ4cUhwRXBJZV9zRkRRRXUybFZacmZDYXVYWnBqcV9TX2xpUVBUakEtVU9DR0p5bEY3dzNPMkFENDl1clVaTlJ5bFIwMkZmQzA1dnF4eWZpekh1RE1HQTU3cHZyZ1pfVnNBWUhhZW4tQU5LS195b1FnZkw0bi1tS1U1ZExPSmJkQnhmSnVUSlpfWFgyVENaLWNSdEljMDFBZ1dxeXc3Zw?oc=5" target="_blank" rel="noopener noreferrer"
+            <a href="https://news.google.com/rss/articles/CBMizAFBVV95cUxOWF9yYWVnWUp4dVBuQWg3RHpIOHBlcGM5OXh5T0x1ZTB0dWd0YUp6UEFMTFB0THhJaUlpWXVJRWVrYi04dzllTnQ0bzVMWWhsd1BzOGVTWHJpendUOVltaE1sUG1qRklDZ1F6N1hIQ29Tc3FQWnI2RElmU0ZXNVJWaXFRMVNKNGVDS1d2OEFjSVJDNGVxbW96QjZONHQ4X1J1ZG1UVkNGNjhWaUh3eEE5a0I3VVBnVk5CWkdfSzZoZi1EcHhQd2ZfTWdTTE3SAdIBQVVfeXFMTzM1R0dvY2cwNlVPVGcxMmlVc1ZyVlFHUXEwWlliN2FFLWUydU9VZHcybV9LT29LMjdvMFN6SkxETVFtOTAtcEYyRVpUeTRXazZvZmswOC1JZlF0ZHEwQXByS3EwRnc1TnRJaDhtdF9kM0dNMWJFRHQzRHpGV3k3QWxpaVpKQVVILWxpbUFRbHpncnF4S0tiQ2w1eHBnWGIyYkdOWnpDNFFNRWxleEhBTTU0dVlUZjljQUZaMWJJS29mQXBqUEF2UHBnSHgyQ0t3R29B?oc=5" target="_blank" rel="noopener noreferrer"
                 class="block p-4 bg-slate-800/50 rounded-xl border border-slate-700/50 hover:bg-slate-700/50 transition-colors group">
                 <h3 class="text-lg font-semibold text-slate-200 group-hover:text-emerald-400 transition-colors mb-2">
-                    Navi Mumbai Wetlands Crisis: Centre's Swift Move, Pollution Alert Raised - Deccan Herald</h3>
+                    Why Shiv Sena (UBT) is opposing Maharashtra minister’s renaming proposal for Mumbai’s KEM Hospital - ThePrint</h3>
                 <div class="flex justify-between items-center text-sm text-slate-400">
-                    <span>Deccan Herald</span>
-                    <span>24 Mar 2026</span>
+                    <span>ThePrint</span>
+                    <span>01 May 2026</span>
                 </div>
             </a>
             
@@ -663,7 +698,7 @@ AQI: 168. Check hospital lists and safe zones.">
 <footer class="bg-slate-900 border-t border-slate-800 py-8 mt-12">
     <div class="max-w-4xl mx-auto px-4 text-center text-slate-500 text-sm flex flex-col items-center">
         <div class="text-[10px] sm:text-xs font-bold uppercase tracking-widest mb-1">Last Update</div>
-        <div class="font-mono text-blue-300">Mar 24, 03:32 PM</div>
+        <div class="font-mono text-blue-300">May 01, 05:13 PM</div>
         <p class="mt-4">Data sources: Open-Meteo, Local Health Indices.</p>
         <a href="../index.html"
             class="inline-block mt-4 text-emerald-400 hover:text-emerald-300 underline font-medium">View Full
@@ -678,10 +713,10 @@ AQI: 168. Check hospital lists and safe zones.">
         const aqiCtx = document.getElementById('aqiChart').getContext('2d');
         const tempCtx = document.getElementById('tempChart').getContext('2d');
 
-        const rawDates = ["2026-03-17", "2026-03-18", "2026-03-19", "2026-03-20", "2026-03-21", "2026-03-22", "2026-03-23", "2026-03-24", "2026-03-25", "2026-03-26", "2026-03-27", "2026-03-28", "2026-03-29", "2026-03-30", "2026-03-31"];
-    const rawAqis = [141, 112, 93, 130, 117, 186, 205, 209, 138, 148, 194, 100, 100, 100, 100];
-    const rawMaxTemps = [28.0, 27.8, 28.2, 27.8, 27.7, 28.4, 29.9, 29.4, 29.7, 28.3, 29.4, 29.9, 28.3, 27.6, 28.0];
-    const rawMinTemps = [26.7, 26.2, 26.1, 26.3, 25.8, 26.0, 27.2, 27.4, 27.8, 27.2, 27.1, 27.9, 26.6, 26.6, 26.9];
+        const rawDates = ["2026-04-24", "2026-04-25", "2026-04-26", "2026-04-27", "2026-04-28", "2026-04-29", "2026-04-30", "2026-05-01", "2026-05-02", "2026-05-03", "2026-05-04", "2026-05-05", "2026-05-06", "2026-05-07", "2026-05-08"];
+    const rawAqis = [150, 146, 141, 92, 88, 85, 75, 71, 68, 71, 72, 84, 87, 87, 87];
+    const rawMaxTemps = [36.1, 37.2, 37.2, 34.7, 32.8, 33.3, 33.0, 32.7, 32.5, 32.7, 33.0, 32.9, 32.8, 33.0, 33.3];
+    const rawMinTemps = [26.4, 27.6, 27.9, 27.8, 27.6, 27.2, 26.8, 27.0, 28.1, 27.6, 28.1, 28.8, 28.5, 27.1, 26.8];
 
     if (!rawDates.length || !rawAqis.length || !rawMaxTemps.length) return;
 
@@ -844,6 +879,39 @@ AQI: 168. Check hospital lists and safe zones.">
         });
     }
     });
+</script>
+
+<script>
+  document.addEventListener("DOMContentLoaded", () => {
+    // 1. Grab the PM2.5 value from the HTML (Injected by your Python builder)
+    const pm25Element = document.getElementById('city-pm25-display');
+    
+    if (pm25Element) {
+      const pm25Value = parseFloat(pm25Element.innerText);
+      
+      // 2. Berkeley Earth Formula: 1 Cigarette = 22 µg/m³ of PM2.5
+      const conversionRate = 22.0;
+      const cigs = (pm25Value / conversionRate).toFixed(1);
+      
+      const countEl = document.getElementById('city-cig-count');
+      
+      // 3. Apply the logic and dynamic colors
+      if (cigs <= 0.2) {
+        countEl.innerText = "0";
+        countEl.className = "text-2xl font-black text-green-400 mx-1";
+      } else {
+        countEl.innerText = cigs;
+        
+        if (cigs >= 5.0) {
+          countEl.className = "text-3xl font-black text-purple-500 mx-1 animate-pulse";
+        } else if (cigs >= 2.0) {
+          countEl.className = "text-2xl font-black text-red-500 mx-1";
+        } else {
+          countEl.className = "text-2xl font-black text-orange-400 mx-1";
+        }
+      }
+    }
+  });
 </script>
 
 

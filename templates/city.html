@@ -31,7 +31,7 @@ AQI: " ~ city.aqi ~ ". Check hospital lists and safe zones." %}
 
 {% block content %}
 <!-- Hero Section -->
-<header class="relative h-96 overflow-hidden">
+<header class="relative min-h-[600px] overflow-hidden">
     <div class="absolute inset-0 bg-gradient-to-t from-slate-900 via-slate-900/50 to-transparent z-10"></div>
     <div class="absolute inset-0 bg-gradient-to-br from-blue-900 to-slate-800 z-0 opacity-50"></div>
 
@@ -61,6 +61,63 @@ AQI: " ~ city.aqi ~ ". Check hospital lists and safe zones." %}
                     <span class="{{ 'text-rose-400' if city_health_score < 40 else 'text-slate-500' }}">Severe</span>
                 </div>
             </div>
+        </div>
+
+        <!-- City Air Toxicity Block -->
+        <div class="mt-6 bg-gray-900 border border-gray-700 rounded-2xl p-6 relative overflow-hidden shadow-xl w-full md:w-[400px]">
+        
+          <div class="absolute -right-4 -top-4 text-9xl opacity-[0.03] grayscale pointer-events-none select-none">🚬</div>
+
+          <h3 class="text-lg font-black text-white mb-4 flex items-center gap-2 tracking-wide">
+            <span class="text-red-500">⚠️</span> City Air Toxicity
+          </h3>
+
+          <div class="grid grid-cols-2 gap-4 mb-5 relative z-10">
+            <div class="bg-gray-800 p-4 rounded-xl border border-gray-700 shadow-inner">
+              <div class="text-[10px] text-gray-400 font-bold uppercase tracking-widest mb-1">Live PM 2.5</div>
+              <div class="text-2xl font-black text-white">
+                <span id="city-pm25-display">{{ city.pm2_5 | round(1) }}</span> 
+                <span class="text-xs font-bold text-gray-500 ml-1">µg/m³</span>
+              </div>
+            </div>
+            
+            <div class="bg-gray-800 p-4 rounded-xl border border-gray-700 shadow-inner flex flex-col justify-center">
+              <div class="text-[10px] text-gray-400 font-bold uppercase tracking-widest mb-1">Toxic Gas Breakdown (µg/m³)</div>
+              <div class="space-y-1 mt-1">
+                <div class="flex justify-between text-[10px] font-bold">
+                  <span class="text-gray-500">NO₂</span>
+                  <span class="text-orange-400">{{ city.no2 | default(0) | round(1) }}</span>
+                </div>
+                <div class="flex justify-between text-[10px] font-bold">
+                  <span class="text-gray-500">CO</span>
+                  <span class="text-orange-400">{{ city.co | default(0) | round(1) }}</span>
+                </div>
+                <div class="flex justify-between text-[10px] font-bold">
+                  <span class="text-gray-500">O₃</span>
+                  <span class="text-orange-400">{{ city.o3 | default(0) | round(1) }}</span>
+                </div>
+                <div class="flex justify-between text-[10px] font-bold">
+                  <span class="text-gray-500">SO₂</span>
+                  <span class="text-orange-400">{{ city.so2 | default(0) | round(1) }}</span>
+                </div>
+              </div>
+            </div>
+          </div>
+
+          <div class="bg-gray-800/50 border border-gray-700 p-4 rounded-xl mb-6 relative z-10">
+            <div class="text-sm text-gray-300 leading-relaxed">
+              Breathing the air in this city today is mathematically equivalent to smoking 
+              <span id="city-cig-count" class="text-2xl font-black text-red-500 mx-1 animate-pulse">--</span> 
+              <span class="font-bold text-gray-400">cigarettes.</span>
+            </div>
+            <div class="text-[9px] text-gray-600 mt-2 uppercase tracking-wide">
+              Based on Berkeley Earth Conversion Math
+            </div>
+          </div>
+
+          <a href="/docs/local-radar.html" class="relative z-10 flex items-center justify-center gap-2 w-full bg-gradient-to-r from-blue-600 to-indigo-600 hover:from-blue-500 hover:to-indigo-500 text-white font-black py-4 px-6 rounded-xl transition shadow-[0_0_20px_rgba(79,70,229,0.3)] active:scale-95">
+            <span class="text-xl">🛰️</span> Check Your Exact Street
+          </a>
         </div>
     </div>
 </header>
@@ -572,6 +629,39 @@ AQI: " ~ city.aqi ~ ". Check hospital lists and safe zones." %}
         });
     }
     });
+</script>
+
+<script>
+  document.addEventListener("DOMContentLoaded", () => {
+    // 1. Grab the PM2.5 value from the HTML (Injected by your Python builder)
+    const pm25Element = document.getElementById('city-pm25-display');
+    
+    if (pm25Element) {
+      const pm25Value = parseFloat(pm25Element.innerText);
+      
+      // 2. Berkeley Earth Formula: 1 Cigarette = 22 µg/m³ of PM2.5
+      const conversionRate = 22.0;
+      const cigs = (pm25Value / conversionRate).toFixed(1);
+      
+      const countEl = document.getElementById('city-cig-count');
+      
+      // 3. Apply the logic and dynamic colors
+      if (cigs <= 0.2) {
+        countEl.innerText = "0";
+        countEl.className = "text-2xl font-black text-green-400 mx-1";
+      } else {
+        countEl.innerText = cigs;
+        
+        if (cigs >= 5.0) {
+          countEl.className = "text-3xl font-black text-purple-500 mx-1 animate-pulse";
+        } else if (cigs >= 2.0) {
+          countEl.className = "text-2xl font-black text-red-500 mx-1";
+        } else {
+          countEl.className = "text-2xl font-black text-orange-400 mx-1";
+        }
+      }
+    }
+  });
 </script>
 
 {% endblock %}

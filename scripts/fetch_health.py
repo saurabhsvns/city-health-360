@@ -202,7 +202,7 @@ def fetch_aqi_bulk(chunk):
     params = {
         "latitude": lats,
         "longitude": lons,
-        "current": ["us_aqi", "pm10", "pm2_5"],
+        "current": ["us_aqi", "pm10", "pm2_5", "nitrogen_dioxide", "carbon_monoxide", "ozone", "sulphur_dioxide"],
         "timezone": "Asia/Kolkata"
     }
     try:
@@ -315,6 +315,10 @@ def main():
                 aqi = current_aqi.get("us_aqi", 0)
                 pm10 = current_aqi.get("pm10", 0)
                 pm2_5 = current_aqi.get("pm2_5", 0)
+                no2 = current_aqi.get("nitrogen_dioxide", 0)
+                co = current_aqi.get("carbon_monoxide", 0)
+                o3 = current_aqi.get("ozone", 0)
+                so2 = current_aqi.get("sulphur_dioxide", 0)
 
                 wind_gusts = 0
                 if "wind_gusts_10m_max" in daily_weather and daily_weather["wind_gusts_10m_max"]:
@@ -338,6 +342,10 @@ def main():
                     "aqi": aqi,
                     "pm10": pm10,
                     "pm2_5": pm2_5,
+                    "no2": no2,
+                    "co": co,
+                    "o3": o3,
+                    "so2": so2,
                     "mosquito_risk": mosquito_risk,
                     "arthritis_risk": arthritis_risk,
                     "migraine_risk": migraine_risk,

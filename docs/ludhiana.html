@@ -4,10 +4,10 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Is Ludhiana Safe Today? Health & AQI Forecast Mar 24, 03:32 PM</title>
+    <title>Is Ludhiana Safe Today? Health & AQI Forecast May 01, 05:13 PM</title>
     <meta name="description"
-        content="Daily health report for Ludhiana travelers. Mosquito risk: 4/10.
-AQI: 155. Check hospital lists and safe zones.">
+        content="Daily health report for Ludhiana travelers. Mosquito risk: 0/10.
+AQI: 168. Check hospital lists and safe zones.">
     
     <link rel="canonical" href="https://cityhealth360.in/docs/ludhiana.html">
     
@@ -109,7 +109,7 @@ AQI: 155. Check hospital lists and safe zones.">
                 <div class="hidden sm:block text-right border-r border-slate-700 pr-4">
                     <div class="text-[10px] sm:text-xs font-bold uppercase tracking-widest text-slate-500 mb-0.5">Last
                         Update</div>
-                    <div class="font-mono text-blue-300 text-[10px] sm:text-xs">Mar 24, 03:32 PM</div>
+                    <div class="font-mono text-blue-300 text-[10px] sm:text-xs">May 01, 05:13 PM</div>
                 </div>
 
                 <!-- City Dropdown Functionality -->
@@ -130,14 +130,14 @@ AQI: 155. Check hospital lists and safe zones.">
     <main class="flex-grow pb-20 md:pb-0">
         
 <!-- Hero Section -->
-<header class="relative h-96 overflow-hidden">
+<header class="relative min-h-[600px] overflow-hidden">
     <div class="absolute inset-0 bg-gradient-to-t from-slate-900 via-slate-900/50 to-transparent z-10"></div>
     <div class="absolute inset-0 bg-gradient-to-br from-blue-900 to-slate-800 z-0 opacity-50"></div>
 
     <div class="relative z-20 max-w-4xl mx-auto px-4 h-full flex flex-col justify-end pb-12">
         <div class="flex items-end gap-6 mb-4">
             <h1 class="text-5xl md:text-6xl font-bold text-white tracking-tight">Ludhiana</h1>
-            <span class="text-3xl font-light text-slate-300 pb-1">29.2°C</span>
+            <span class="text-3xl font-light text-slate-300 pb-1">34.8°C</span>
         </div>
         <p class="text-lg text-slate-300 max-w-2xl mb-8">Punjab's largest industrial city, known for apparel manufacturing and vibrant markets.</p>
 
@@ -146,7 +146,7 @@ AQI: 155. Check hospital lists and safe zones.">
             class="flex items-center gap-6 p-6 glass-card rounded-2xl w-full md:w-auto inline-flex border border-white/10">
             <div
                 class="relative w-24 h-24 flex items-center justify-center rounded-full border-4 border-yellow-500 text-yellow-400 shadow-lg bg-slate-900/50">
-                <span class="text-4xl font-black">46</span>
+                <span class="text-4xl font-black">42</span>
             </div>
             <div class="space-y-1">
                 <h2 class="text-2xl font-bold text-white tracking-wide">Health Score</h2>
@@ -160,6 +160,63 @@ AQI: 155. Check hospital lists and safe zones.">
                     <span class="text-slate-500">Severe</span>
                 </div>
             </div>
+        </div>
+
+        <!-- City Air Toxicity Block -->
+        <div class="mt-6 bg-gray-900 border border-gray-700 rounded-2xl p-6 relative overflow-hidden shadow-xl w-full md:w-[400px]">
+        
+          <div class="absolute -right-4 -top-4 text-9xl opacity-[0.03] grayscale pointer-events-none select-none">🚬</div>
+
+          <h3 class="text-lg font-black text-white mb-4 flex items-center gap-2 tracking-wide">
+            <span class="text-red-500">⚠️</span> City Air Toxicity
+          </h3>
+
+          <div class="grid grid-cols-2 gap-4 mb-5 relative z-10">
+            <div class="bg-gray-800 p-4 rounded-xl border border-gray-700 shadow-inner">
+              <div class="text-[10px] text-gray-400 font-bold uppercase tracking-widest mb-1">Live PM 2.5</div>
+              <div class="text-2xl font-black text-white">
+                <span id="city-pm25-display">43.2</span> 
+                <span class="text-xs font-bold text-gray-500 ml-1">µg/m³</span>
+              </div>
+            </div>
+            
+            <div class="bg-gray-800 p-4 rounded-xl border border-gray-700 shadow-inner flex flex-col justify-center">
+              <div class="text-[10px] text-gray-400 font-bold uppercase tracking-widest mb-1">Toxic Gas Breakdown (µg/m³)</div>
+              <div class="space-y-1 mt-1">
+                <div class="flex justify-between text-[10px] font-bold">
+                  <span class="text-gray-500">NO₂</span>
+                  <span class="text-orange-400">0.5</span>
+                </div>
+                <div class="flex justify-between text-[10px] font-bold">
+                  <span class="text-gray-500">CO</span>
+                  <span class="text-orange-400">263.0</span>
+                </div>
+                <div class="flex justify-between text-[10px] font-bold">
+                  <span class="text-gray-500">O₃</span>
+                  <span class="text-orange-400">170.0</span>
+                </div>
+                <div class="flex justify-between text-[10px] font-bold">
+                  <span class="text-gray-500">SO₂</span>
+                  <span class="text-orange-400">6.8</span>
+                </div>
+              </div>
+            </div>
+          </div>
+
+          <div class="bg-gray-800/50 border border-gray-700 p-4 rounded-xl mb-6 relative z-10">
+            <div class="text-sm text-gray-300 leading-relaxed">
+              Breathing the air in this city today is mathematically equivalent to smoking 
+              <span id="city-cig-count" class="text-2xl font-black text-red-500 mx-1 animate-pulse">--</span> 
+              <span class="font-bold text-gray-400">cigarettes.</span>
+            </div>
+            <div class="text-[9px] text-gray-600 mt-2 uppercase tracking-wide">
+              Based on Berkeley Earth Conversion Math
+            </div>
+          </div>
+
+          <a href="/docs/local-radar.html" class="relative z-10 flex items-center justify-center gap-2 w-full bg-gradient-to-r from-blue-600 to-indigo-600 hover:from-blue-500 hover:to-indigo-500 text-white font-black py-4 px-6 rounded-xl transition shadow-[0_0_20px_rgba(79,70,229,0.3)] active:scale-95">
+            <span class="text-xl">🛰️</span> Check Your Exact Street
+          </a>
         </div>
     </div>
 </header>
@@ -197,8 +254,8 @@ AQI: 155. Check hospital lists and safe zones.">
                 <div class="flex flex-col pb-2 border-b border-white/5">
                     <div class="flex justify-between items-center">
                         <span class="text-slate-400">Allergen Risk</span>
-                        <span class="font-bold text-yellow-400">
-                            Medium
+                        <span class="font-bold text-rose-400">
+                            High
                         </span>
                     </div>
                     
@@ -280,8 +337,8 @@ AQI: 155. Check hospital lists and safe zones.">
                 <div class="flex flex-col pb-2 border-b border-white/5">
                     <div class="flex justify-between items-center">
                         <span class="text-slate-400">UV Risk</span>
-                        <span class="font-bold text-yellow-400">
-                            Medium
+                        <span class="font-bold text-rose-400">
+                            High
                         </span>
                     </div>
                     
@@ -345,8 +402,8 @@ AQI: 155. Check hospital lists and safe zones.">
                 <div class="flex flex-col pb-2 border-b border-white/5">
                     <div class="flex justify-between items-center">
                         <span class="text-slate-400">Mosquito Risk</span>
-                        <span class="font-bold text-yellow-400">
-                            Medium
+                        <span class="font-bold text-emerald-400">
+                            Low
                         </span>
                     </div>
                     
@@ -396,8 +453,8 @@ AQI: 155. Check hospital lists and safe zones.">
                 <div class="flex flex-col pb-2 border-b border-white/5">
                     <div class="flex justify-between items-center">
                         <span class="text-slate-400">Skin Risk</span>
-                        <span class="font-bold text-yellow-400">
-                            Medium
+                        <span class="font-bold text-rose-400">
+                            High
                         </span>
                     </div>
                     
@@ -551,33 +608,33 @@ AQI: 155. Check hospital lists and safe zones.">
         
         <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
             
-            <a href="https://news.google.com/rss/articles/CBMi0AFBVV95cUxPQnk3ZE1GNGc4ZzVabGlYUi14bG85aFcyN0oxblQ5NElqT2xJU1hQbERBWDA3bkVGSVdZOUNQU2FCZ0hCbTN0aXd2MVpiQXZMdWN5R0hITFhoeVBoMUx2YlpRYTlVOU1NWk04clE2OWJGMU1XRmVpSi1qaEQ0dG1hdHhpb3l4NjVDSzdCNWR2cFJvU2pTZjNGRzVnOFB2UlllejNmOTNSaFhTNmhiNTVPcE5Eb1ptVERiZ2U2WmhWcmZHaTRQbzhjSUUwM1Yzamhw0gHWAUFVX3lxTFBjUS1vUkZZbExyZWw5NTg2UFdzZGhIbTd5UC1LZUl1ZXppRFlOcDBrQkpSS1RSWWFOS1AtcnhraFZGQUx1N0Jqb1A0S2xQZU9aOGN6S0xZWmtENGRtNHl2YTZnaDBLN08tX2E2TVpVakdyaDlMZFhSQ2I3VDBlX1pkcG44bThyY0ZqTkdPcVhmMVN4ZTJqQnlkQmhjbVFtZ2hkdUk1YUpNVVgyNXZzODJwZVZRUnIzVWxTS1BsWWxDVFRBLVVIVG55N21OR0NFVzZHLU1tQ3c?oc=5" target="_blank" rel="noopener noreferrer"
+            <a href="https://news.google.com/rss/articles/CBMiwwFBVV95cUxObnU5SHFMWFRvZjlBcE9ZaTdRcFB5TkFDTEt6eEV1d2dBRU0tb3U3TW5SaFVna25fYWtwcU93TGxLcGxUdGN3Yy1RMG8zRVZTQV94Rzh3SWZNYkM2V0ZodEVUcHVhQWFNcFJRSWNxV1Q4VGRocktyYzFJRkxZTXdILWF3eV91eEk4NWxHRTVYcnpMNFVQc0hIMUh6d25nZ3cydDVZOUxaOUJ1UnBFQjd1TU5adFZYY3ZKWm5xR3g0MDV3TVE?oc=5" target="_blank" rel="noopener noreferrer"
                 class="block p-4 bg-slate-800/50 rounded-xl border border-slate-700/50 hover:bg-slate-700/50 transition-colors group">
                 <h3 class="text-lg font-semibold text-slate-200 group-hover:text-emerald-400 transition-colors mb-2">
-                    Health dept pulls out all stops to stop HPV vaccine rumours - The Times of India</h3>
+                    Ludhiana Bans Sale Of Energy Drinks Near Schools To Protect Children's Health - ETV Bharat</h3>
                 <div class="flex justify-between items-center text-sm text-slate-400">
-                    <span>The Times of India</span>
-                    <span>22 Mar 2026</span>
+                    <span>ETV Bharat</span>
+                    <span>30 Apr 2026</span>
                 </div>
             </a>
             
-            <a href="https://news.google.com/rss/articles/CBMivgFBVV95cUxPeXhROFN0Z2RfLWZxMGtLektuRjhibHNWLXdud1VwZFNwdi1UeW8wakM1ejI0ZmhsY1N6VEZJR2ZXVFJUY3k0amVGWF9lS0pVcGwxemdIQkhIbzV5UXZrTVBhREpNV1g2cVp5M3ByUGExMXBOcWx5dnp4el9PYnFsdFZXM3VHLU50c05TNURWT2Z6Q0QzWkNROVQ5WHk2SnJIa09zRW43Z2d4ZERMY3AtRDBueUVtQVpUWTFCdlR30gHCAUFVX3lxTE1leE1KenJuM0ZGZWtjTDk2blhDMmZPVmdWODd5Yk1vd205dTdkWkZ5TW5IY3dDUGpuWjRaUm53cWI3T3FjMmw2VGMzWUFlaVpxQjB4dG1reUxBRU9iM095WHhsUG9yWDBwZFQzZEo2dU9iX3M4UVhUaVQtZG03WjhTSW1BTlNlSThiZVI3VmFmdHVZNXN2U3VaMmhRbW1yM3Nxb2NNcS1TQmNfejNodjBydjBDUWlMZDluQ21PdUcybDh3?oc=5" target="_blank" rel="noopener noreferrer"
+            <a href="https://news.google.com/rss/articles/CBMi7wFBVV95cUxOM0Z3XzdqVXV1d3Fva19jNElxbnRfdDYzNHZWRVVTTUY0Y3NoMXRqRW5kWTh2b2VtTllmU0h3LVM3N1BNazM3ZmYtNkxRRkRPZU9jcVBEWFRkLVVmazF3c3FUS28ySmk3QjN1OXZoZmx5SWFVY19JQzV5MjVHX09rc1VTR2JGTkU1OHJiLWRaeTBoLUlzR05mbkZLY1dCd1djU05NVFVkaHJVTDlOMm5HVXI5UTFYX3dOZ0duSGN4Y0xOcU9RRFNHanBCTUJ6ZGdfRDFySHpmQ1NNcVJYZVFsRDZrUjZqNXRJLUNTaktURdIB9AFBVV95cUxOTVdLUWV0MHgwNGFwRHkya1l1YkZrMHNnMDNnQWhwTjFoNnJHV2RYTWtRQnZGbm9XemIxRi1lZldQbUREbzlvUE8tV1ZLNGVydVQ3dHhlMDN1emQwV095TUV3MFRqQ0VtR0luNEJ0RFFKak94THdpSlcwRjBXRTZZVk5DUWFwekUtRUh5X0xIQXoxMlRnWDFOWUU3dTdOb2d1QnQtRExpQ2xLcDhDQ3kycDVxTktVVzBwZXE5d21kdW42Z3JZYVRHX1cteVZYbHFIRlE4Tm41YUJXSm5mWnhTVFUzNDdWS28yMVVGOXA0VlpjRnBa?oc=5" target="_blank" rel="noopener noreferrer"
                 class="block p-4 bg-slate-800/50 rounded-xl border border-slate-700/50 hover:bg-slate-700/50 transition-colors group">
                 <h3 class="text-lg font-semibold text-slate-200 group-hover:text-emerald-400 transition-colors mb-2">
-                    Unclaimed corpses: A silent crisis unfolds at Ludhiana Civil Hospital mortuary - Tribune India</h3>
+                    Ludhiana: 100-bed facility to end space crunch at civil hospital’s mother-child wing | Hindustan Times - Hindustan Times</h3>
                 <div class="flex justify-between items-center text-sm text-slate-400">
-                    <span>Tribune India</span>
-                    <span>19 Mar 2026</span>
+                    <span>Hindustan Times</span>
+                    <span>28 Apr 2026</span>
                 </div>
             </a>
             
-            <a href="https://news.google.com/rss/articles/CBMiuwFBVV95cUxOUk90ODlPQVF3VHZtQTNRZlBIUjZCNXNIMDliTUVuUU9WRHJib0E3ZDUtRWpxTjV4cnBwZ21KZ0tScmc3bU54Zy1EYjhxN3ZSUi1EQUM4OHhlOG1aUDcybEVWUGJPcUF0dXJ3NC1UaW0xcldObFNqVW12X3pvaWNSZ1o3Qlhva2hDWUZSR0Zfb1Z6VktDaFNRZkx0N3lXVWhlS1IzcENKNFA2RzJCTWlWMkdnYk4zazQtLXM40gHAAUFVX3lxTFBtTWtHLS12cktxSVdKNFJnZURFSmh0cDBoMHhhOW5nYnpITUk2ZFRmNENQU0J2SzhTTkRXRTVVa3QzUWM2eklWbzIzREtuaHhHTGk0ZERLcWlmaEpWVHpoMkRVcXI3TWM2WnkwMTZtTjBHTnAzd3pfRkpvZnVyRXpjTjVhb3NreFVIMk0xX0VERGZUSzlOOFQ1bFMzb3hVSS12VVhNWG5KLXpGWWI2YnJDM2RndlFIZndZelRkVXg2ag?oc=5" target="_blank" rel="noopener noreferrer"
+            <a href="https://news.google.com/rss/articles/CBMiwgFBVV95cUxQWi1zWE50MHZsUnV1a3RicDV5RjVMS1dGOWNlbEp5ak5BQ1RBMjdXNll6MzhMa0NhYlR6UW42d29XbXFiano2NUZOMDhuaV92ODMxd3hxTXA5LXlEcTBRRFpHZzlNV21YcmtzdzlLRWlwcnpwdGxMVzNPeTRzamlDS1B2TGdZOS04RFhabmtvUzJ3ampHMTUyM3BtRU9HTnUtSW9CTno3aFhLUmhoY18tTFU3dmVvNmNiZGVwUDc2WVIxQdIBxgFBVV95cUxOOEpnLUNidlZzejRJcUtXbUxiZXdTOWZJMWZmQUFyanNIN2dCTWJmaEhvN01PRHZfb3lMMGZPQmlRNmlhb3V1bGN5OGVybW82NTZWamF2MzE0QlBHME1jQW9zR3I2cmU4TEhYZXVTQXVvcUpTbWd4Qll3dkhqc3U3N0RyLWFMQnQ4NmRHR1VKSmxUYWRkRGZPLW9SZnUxcnJzcXV4Ykh1Zjg1ZURLd2hnNnZxZFpxNDRsNGoxOWpyOG9pREZYMEE?oc=5" target="_blank" rel="noopener noreferrer"
                 class="block p-4 bg-slate-800/50 rounded-xl border border-slate-700/50 hover:bg-slate-700/50 transition-colors group">
                 <h3 class="text-lg font-semibold text-slate-200 group-hover:text-emerald-400 transition-colors mb-2">
-                    Livasa Hospitals to develop 368-bed multi-speciality hospital in Ludhiana - expresshealthcare.in</h3>
+                    Ludhiana Civil Hospital tops Punjab in Kayakalp cleanliness rankings after years - The Tribune</h3>
                 <div class="flex justify-between items-center text-sm text-slate-400">
-                    <span>expresshealthcare.in</span>
-                    <span>13 Mar 2026</span>
+                    <span>The Tribune</span>
+                    <span>16 Apr 2026</span>
                 </div>
             </a>
             
@@ -593,7 +650,7 @@ AQI: 155. Check hospital lists and safe zones.">
 <footer class="bg-slate-900 border-t border-slate-800 py-8 mt-12">
     <div class="max-w-4xl mx-auto px-4 text-center text-slate-500 text-sm flex flex-col items-center">
         <div class="text-[10px] sm:text-xs font-bold uppercase tracking-widest mb-1">Last Update</div>
-        <div class="font-mono text-blue-300">Mar 24, 03:32 PM</div>
+        <div class="font-mono text-blue-300">May 01, 05:13 PM</div>
         <p class="mt-4">Data sources: Open-Meteo, Local Health Indices.</p>
         <a href="../index.html"
             class="inline-block mt-4 text-emerald-400 hover:text-emerald-300 underline font-medium">View Full
@@ -608,10 +665,10 @@ AQI: 155. Check hospital lists and safe zones.">
         const aqiCtx = document.getElementById('aqiChart').getContext('2d');
         const tempCtx = document.getElementById('tempChart').getContext('2d');
 
-        const rawDates = ["2026-03-17", "2026-03-18", "2026-03-19", "2026-03-20", "2026-03-21", "2026-03-22", "2026-03-23", "2026-03-24", "2026-03-25", "2026-03-26", "2026-03-27", "2026-03-28", "2026-03-29", "2026-03-30", "2026-03-31"];
-    const rawAqis = [95, 143, 113, 105, 154, 152, 150, 156, 152, 150, 107, 152, 152, 152, 152];
-    const rawMaxTemps = [19.8, 25.9, 23.7, 20.7, 20.1, 25.0, 26.0, 27.1, 29.3, 30.6, 31.2, 29.5, 30.6, 31.5, 27.0];
-    const rawMinTemps = [13.7, 11.2, 15.1, 16.0, 15.0, 13.5, 14.8, 17.1, 17.1, 17.5, 19.3, 19.2, 18.1, 20.0, 20.2];
+        const rawDates = ["2026-04-24", "2026-04-25", "2026-04-26", "2026-04-27", "2026-04-28", "2026-04-29", "2026-04-30", "2026-05-01", "2026-05-02", "2026-05-03", "2026-05-04", "2026-05-05", "2026-05-06", "2026-05-07", "2026-05-08"];
+    const rawAqis = [114, 82, 100, 121, 82, 98, 126, 170, 157, 168, 152, 137, 154, 154, 154];
+    const rawMaxTemps = [39.8, 39.8, 39.7, 39.3, 39.7, 33.8, 33.2, 35.5, 35.5, 37.0, 36.8, 29.8, 33.1, 36.0, 35.8];
+    const rawMinTemps = [23.5, 25.1, 25.6, 25.4, 24.8, 26.0, 22.0, 23.1, 21.5, 22.9, 23.0, 21.5, 20.9, 20.9, 21.3];
 
     if (!rawDates.length || !rawAqis.length || !rawMaxTemps.length) return;
 
@@ -774,6 +831,39 @@ AQI: 155. Check hospital lists and safe zones.">
         });
     }
     });
+</script>
+
+<script>
+  document.addEventListener("DOMContentLoaded", () => {
+    // 1. Grab the PM2.5 value from the HTML (Injected by your Python builder)
+    const pm25Element = document.getElementById('city-pm25-display');
+    
+    if (pm25Element) {
+      const pm25Value = parseFloat(pm25Element.innerText);
+      
+      // 2. Berkeley Earth Formula: 1 Cigarette = 22 µg/m³ of PM2.5
+      const conversionRate = 22.0;
+      const cigs = (pm25Value / conversionRate).toFixed(1);
+      
+      const countEl = document.getElementById('city-cig-count');
+      
+      // 3. Apply the logic and dynamic colors
+      if (cigs <= 0.2) {
+        countEl.innerText = "0";
+        countEl.className = "text-2xl font-black text-green-400 mx-1";
+      } else {
+        countEl.innerText = cigs;
+        
+        if (cigs >= 5.0) {
+          countEl.className = "text-3xl font-black text-purple-500 mx-1 animate-pulse";
+        } else if (cigs >= 2.0) {
+          countEl.className = "text-2xl font-black text-red-500 mx-1";
+        } else {
+          countEl.className = "text-2xl font-black text-orange-400 mx-1";
+        }
+      }
+    }
+  });
 </script>
 
 
