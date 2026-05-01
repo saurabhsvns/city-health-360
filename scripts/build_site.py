@@ -65,11 +65,20 @@ def load_data():
         return None, None
 
 def calculate_leaderboards(df):
-    """Calculates top polluted, safest, and highest mosquito risk cities from a dataframe."""
+    """Calculates top polluted, safest, hottest, coolest, and highest cig_eq cities from a dataframe."""
+    df_temp = df.copy()
+    if 'pm2_5' in df_temp.columns:
+        df_temp['cig_eq'] = (pd.to_numeric(df_temp['pm2_5'], errors='coerce').fillna(0) / 22).round(1)
+    else:
+        df_temp['cig_eq'] = 0.0
+
     return {
-        'top_polluted': df.nlargest(5, 'aqi')[['city', 'state', 'aqi']].to_dict(orient='records'),
-        'top_safest': df.nsmallest(5, 'aqi')[['city', 'state', 'aqi']].to_dict(orient='records'),
-        'top_dengue': df.nlargest(5, 'mosquito_risk')[['city', 'state', 'mosquito_risk']].to_dict(orient='records')
+        'top_polluted': df_temp.nlargest(10, 'aqi')[['city', 'state', 'aqi']].to_dict(orient='records'),
+        'top_safest': df_temp.nsmallest(10, 'aqi')[['city', 'state', 'aqi']].to_dict(orient='records'),
+        'top_hottest': df_temp.nlargest(10, 'temp')[['city', 'state', 'temp']].to_dict(orient='records') if 'temp' in df_temp.columns else [],
+        'top_coolest': df_temp.nsmallest(10, 'temp')[['city', 'state', 'temp']].to_dict(orient='records') if 'temp' in df_temp.columns else [],
+        'top_cig_eq': df_temp.nlargest(10, 'cig_eq')[['city', 'state', 'cig_eq']].to_dict(orient='records'),
+        'top_humid': df_temp.nlargest(10, 'humidity')[['city', 'state', 'humidity']].to_dict(orient='records') if 'humidity' in df_temp.columns else []
     }
 
 def extract_daily_max(hourly_time, hourly_aqi):

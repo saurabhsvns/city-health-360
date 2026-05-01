@@ -75,7 +75,7 @@
                 <div class="text-right">
                     <div class="text-[9px] sm:text-[10px] font-bold text-slate-500 uppercase tracking-widest">Last
                         Update</div>
-                    <div class="text-[10px] sm:text-xs font-mono text-blue-300">May 01, 05:34 PM</div>
+                    <div class="text-[10px] sm:text-xs font-mono text-blue-300">May 01, 06:11 PM</div>
                 </div>
                 <a href="../index.html" class="text-sm text-slate-400 hover:text-white transition">← Back to
                     Dashboard</a>
@@ -98,8 +98,8 @@
             <!-- Legend overlay -->
             <div
                 class="absolute bottom-6 right-6 z-[1000] bg-slate-900/90 backdrop-blur border border-slate-700 p-4 rounded-xl shadow-lg pb-3">
-                <h4 class="text-xs font-bold text-slate-300 uppercase tracking-wider mb-2">Health Status</h4>
-                <div class="space-y-2 text-sm">
+                <h4 class="text-xs font-bold text-slate-300 uppercase tracking-wider mb-2" id="legend-title">Health Status</h4>
+                <div class="space-y-2 text-sm" id="legend-aqi">
                     <div class="flex items-center gap-2"><span
                             class="w-3 h-3 rounded-full bg-emerald-500 shadow-[0_0_8px_rgba(16,185,129,0.5)]"></span>
                         Safe</div>
@@ -108,217 +108,588 @@
                         Warning (AQI > 100)</div>
                     <div class="flex items-center gap-2"><span
                             class="w-3 h-3 rounded-full bg-rose-500 shadow-[0_0_8px_rgba(244,63,94,0.5)]"></span>
-                        Critical (AQI > 200 or Bugs)</div>
+                        Critical (AQI > 150)</div>
+                </div>
+                <div class="space-y-2 text-sm hidden" id="legend-temp">
+                    <div class="flex items-center gap-2"><span
+                            class="w-3 h-3 rounded-full bg-blue-500 shadow-[0_0_8px_rgba(59,130,246,0.5)]"></span>
+                        Cool (&lt; 25°C)</div>
+                    <div class="flex items-center gap-2"><span
+                            class="w-3 h-3 rounded-full bg-orange-500 shadow-[0_0_8px_rgba(249,115,22,0.5)]"></span>
+                        Warm (&gt; 25°C)</div>
+                    <div class="flex items-center gap-2"><span
+                            class="w-3 h-3 rounded-full bg-rose-500 shadow-[0_0_8px_rgba(244,63,94,0.5)]"></span>
+                        Hot (&gt; 35°C)</div>
                 </div>
             </div>
         </div>
 
         <!-- Leaderboards Section -->
         <div>
-            <h3 class="text-2xl font-display font-bold text-white mb-6 border-b border-slate-800 pb-2">National Health
-                Leaderboards</h3>
+            <div class="flex flex-col md:flex-row justify-between items-start md:items-center border-b border-slate-800 mb-6 pb-2">
+                <h3 class="text-2xl font-display font-bold text-white mb-4 md:mb-0">National Health Leaderboards</h3>
+                <div class="flex bg-slate-800 p-1 rounded-lg">
+                    <button id="toggle-aqi" class="px-4 py-1.5 text-sm font-bold rounded-md bg-blue-500 text-white transition shadow-sm">Air Quality</button>
+                    <button id="toggle-temp" class="px-4 py-1.5 text-sm font-bold rounded-md text-slate-400 hover:text-slate-200 transition">Temperature</button>
+                </div>
+            </div>
             <div class="grid grid-cols-1 md:grid-cols-3 gap-6">
 
-                <!-- Most Polluted -->
-                <div class="glass-card rounded-xl p-6 border-t-4 border-t-rose-500">
+                <!-- AQI - Most Polluted -->
+                <div id="lb-aqi-worst" class="glass-card rounded-xl p-6 border-t-4 border-t-rose-500">
                     <h4 class="text-lg font-bold text-slate-200 mb-4 flex items-center gap-2">
                         <span class="text-rose-500">😷</span> Worst Air Quality
                     </h4>
                     <ul class="space-y-3">
                         
-                        <li
-                            class="flex items-center justify-between border-b border-slate-800 pb-2 last:border-0 last:pb-0">
+                        <li class="flex items-center justify-between border-b border-slate-800 pb-2 last:border-0 last:pb-0">
                             <div>
-                                <a href="gurgaon.html"
-                                    class="font-medium hover:text-blue-400 transition">Gurgaon</a>
+                                <a href="gurgaon.html" class="font-medium hover:text-blue-400 transition">Gurgaon</a>
                                 <p class="text-xs text-slate-500">Haryana</p>
                             </div>
-                            <span
-                                class="px-2 py-1 bg-rose-500/20 text-rose-400 rounded font-mono text-sm border border-rose-500/30 font-bold">1313 AQI</span>
+                            <span class="px-2 py-1 bg-rose-500/20 text-rose-400 rounded font-mono text-sm border border-rose-500/30 font-bold">1313 AQI</span>
                         </li>
                         
-                        <li
-                            class="flex items-center justify-between border-b border-slate-800 pb-2 last:border-0 last:pb-0">
+                        <li class="flex items-center justify-between border-b border-slate-800 pb-2 last:border-0 last:pb-0">
                             <div>
-                                <a href="noida.html"
-                                    class="font-medium hover:text-blue-400 transition">Noida</a>
+                                <a href="noida.html" class="font-medium hover:text-blue-400 transition">Noida</a>
                                 <p class="text-xs text-slate-500">Uttar Pradesh</p>
                             </div>
-                            <span
-                                class="px-2 py-1 bg-rose-500/20 text-rose-400 rounded font-mono text-sm border border-rose-500/30 font-bold">1313 AQI</span>
+                            <span class="px-2 py-1 bg-rose-500/20 text-rose-400 rounded font-mono text-sm border border-rose-500/30 font-bold">1313 AQI</span>
                         </li>
                         
-                        <li
-                            class="flex items-center justify-between border-b border-slate-800 pb-2 last:border-0 last:pb-0">
+                        <li class="flex items-center justify-between border-b border-slate-800 pb-2 last:border-0 last:pb-0">
                             <div>
-                                <a href="faridabad.html"
-                                    class="font-medium hover:text-blue-400 transition">Faridabad</a>
+                                <a href="faridabad.html" class="font-medium hover:text-blue-400 transition">Faridabad</a>
                                 <p class="text-xs text-slate-500">Haryana</p>
                             </div>
-                            <span
-                                class="px-2 py-1 bg-rose-500/20 text-rose-400 rounded font-mono text-sm border border-rose-500/30 font-bold">1313 AQI</span>
+                            <span class="px-2 py-1 bg-rose-500/20 text-rose-400 rounded font-mono text-sm border border-rose-500/30 font-bold">1313 AQI</span>
                         </li>
                         
-                        <li
-                            class="flex items-center justify-between border-b border-slate-800 pb-2 last:border-0 last:pb-0">
+                        <li class="flex items-center justify-between border-b border-slate-800 pb-2 last:border-0 last:pb-0">
                             <div>
-                                <a href="panipat.html"
-                                    class="font-medium hover:text-blue-400 transition">Panipat</a>
+                                <a href="panipat.html" class="font-medium hover:text-blue-400 transition">Panipat</a>
                                 <p class="text-xs text-slate-500">Haryana</p>
                             </div>
-                            <span
-                                class="px-2 py-1 bg-rose-500/20 text-rose-400 rounded font-mono text-sm border border-rose-500/30 font-bold">1126 AQI</span>
+                            <span class="px-2 py-1 bg-rose-500/20 text-rose-400 rounded font-mono text-sm border border-rose-500/30 font-bold">1126 AQI</span>
                         </li>
                         
-                        <li
-                            class="flex items-center justify-between border-b border-slate-800 pb-2 last:border-0 last:pb-0">
+                        <li class="flex items-center justify-between border-b border-slate-800 pb-2 last:border-0 last:pb-0">
                             <div>
-                                <a href="aligarh.html"
-                                    class="font-medium hover:text-blue-400 transition">Aligarh</a>
+                                <a href="aligarh.html" class="font-medium hover:text-blue-400 transition">Aligarh</a>
                                 <p class="text-xs text-slate-500">Uttar Pradesh</p>
                             </div>
-                            <span
-                                class="px-2 py-1 bg-rose-500/20 text-rose-400 rounded font-mono text-sm border border-rose-500/30 font-bold">667 AQI</span>
+                            <span class="px-2 py-1 bg-rose-500/20 text-rose-400 rounded font-mono text-sm border border-rose-500/30 font-bold">667 AQI</span>
+                        </li>
+                        
+                        <li class="flex items-center justify-between border-b border-slate-800 pb-2 last:border-0 last:pb-0">
+                            <div>
+                                <a href="mathura.html" class="font-medium hover:text-blue-400 transition">Mathura</a>
+                                <p class="text-xs text-slate-500">Uttar Pradesh</p>
+                            </div>
+                            <span class="px-2 py-1 bg-rose-500/20 text-rose-400 rounded font-mono text-sm border border-rose-500/30 font-bold">637 AQI</span>
+                        </li>
+                        
+                        <li class="flex items-center justify-between border-b border-slate-800 pb-2 last:border-0 last:pb-0">
+                            <div>
+                                <a href="vrindavan.html" class="font-medium hover:text-blue-400 transition">Vrindavan</a>
+                                <p class="text-xs text-slate-500">Uttar Pradesh</p>
+                            </div>
+                            <span class="px-2 py-1 bg-rose-500/20 text-rose-400 rounded font-mono text-sm border border-rose-500/30 font-bold">637 AQI</span>
+                        </li>
+                        
+                        <li class="flex items-center justify-between border-b border-slate-800 pb-2 last:border-0 last:pb-0">
+                            <div>
+                                <a href="rohtak.html" class="font-medium hover:text-blue-400 transition">Rohtak</a>
+                                <p class="text-xs text-slate-500">Haryana</p>
+                            </div>
+                            <span class="px-2 py-1 bg-rose-500/20 text-rose-400 rounded font-mono text-sm border border-rose-500/30 font-bold">616 AQI</span>
+                        </li>
+                        
+                        <li class="flex items-center justify-between border-b border-slate-800 pb-2 last:border-0 last:pb-0">
+                            <div>
+                                <a href="agra.html" class="font-medium hover:text-blue-400 transition">Agra</a>
+                                <p class="text-xs text-slate-500">Uttar Pradesh</p>
+                            </div>
+                            <span class="px-2 py-1 bg-rose-500/20 text-rose-400 rounded font-mono text-sm border border-rose-500/30 font-bold">565 AQI</span>
+                        </li>
+                        
+                        <li class="flex items-center justify-between border-b border-slate-800 pb-2 last:border-0 last:pb-0">
+                            <div>
+                                <a href="patiala.html" class="font-medium hover:text-blue-400 transition">Patiala</a>
+                                <p class="text-xs text-slate-500">Punjab</p>
+                            </div>
+                            <span class="px-2 py-1 bg-rose-500/20 text-rose-400 rounded font-mono text-sm border border-rose-500/30 font-bold">527 AQI</span>
                         </li>
                         
                     </ul>
                 </div>
 
-                <!-- Safest Cities -->
-                <div class="glass-card rounded-xl p-6 border-t-4 border-t-emerald-500">
+                <!-- AQI - Safest Cities -->
+                <div id="lb-aqi-best" class="glass-card rounded-xl p-6 border-t-4 border-t-emerald-500">
                     <h4 class="text-lg font-bold text-slate-200 mb-4 flex items-center gap-2">
                         <span class="text-emerald-500">🌿</span> Cleanest Air
                     </h4>
                     <ul class="space-y-3">
                         
-                        <li
-                            class="flex items-center justify-between border-b border-slate-800 pb-2 last:border-0 last:pb-0">
+                        <li class="flex items-center justify-between border-b border-slate-800 pb-2 last:border-0 last:pb-0">
                             <div>
-                                <a href="port-blair.html"
-                                    class="font-medium hover:text-blue-400 transition">Port Blair</a>
+                                <a href="port-blair.html" class="font-medium hover:text-blue-400 transition">Port Blair</a>
                                 <p class="text-xs text-slate-500">Andaman and Nicobar Islands</p>
                             </div>
-                            <span
-                                class="px-2 py-1 bg-emerald-500/20 text-emerald-400 rounded font-mono text-sm border border-emerald-500/30 font-bold">31 AQI</span>
+                            <span class="px-2 py-1 bg-emerald-500/20 text-emerald-400 rounded font-mono text-sm border border-emerald-500/30 font-bold">31 AQI</span>
                         </li>
                         
-                        <li
-                            class="flex items-center justify-between border-b border-slate-800 pb-2 last:border-0 last:pb-0">
+                        <li class="flex items-center justify-between border-b border-slate-800 pb-2 last:border-0 last:pb-0">
                             <div>
-                                <a href="munnar.html"
-                                    class="font-medium hover:text-blue-400 transition">Munnar</a>
+                                <a href="munnar.html" class="font-medium hover:text-blue-400 transition">Munnar</a>
                                 <p class="text-xs text-slate-500">Kerala</p>
                             </div>
-                            <span
-                                class="px-2 py-1 bg-emerald-500/20 text-emerald-400 rounded font-mono text-sm border border-emerald-500/30 font-bold">47 AQI</span>
+                            <span class="px-2 py-1 bg-emerald-500/20 text-emerald-400 rounded font-mono text-sm border border-emerald-500/30 font-bold">47 AQI</span>
                         </li>
                         
-                        <li
-                            class="flex items-center justify-between border-b border-slate-800 pb-2 last:border-0 last:pb-0">
+                        <li class="flex items-center justify-between border-b border-slate-800 pb-2 last:border-0 last:pb-0">
                             <div>
-                                <a href="kakinada.html"
-                                    class="font-medium hover:text-blue-400 transition">Kakinada</a>
+                                <a href="kakinada.html" class="font-medium hover:text-blue-400 transition">Kakinada</a>
                                 <p class="text-xs text-slate-500">Andhra Pradesh</p>
                             </div>
-                            <span
-                                class="px-2 py-1 bg-emerald-500/20 text-emerald-400 rounded font-mono text-sm border border-emerald-500/30 font-bold">48 AQI</span>
+                            <span class="px-2 py-1 bg-emerald-500/20 text-emerald-400 rounded font-mono text-sm border border-emerald-500/30 font-bold">48 AQI</span>
                         </li>
                         
-                        <li
-                            class="flex items-center justify-between border-b border-slate-800 pb-2 last:border-0 last:pb-0">
+                        <li class="flex items-center justify-between border-b border-slate-800 pb-2 last:border-0 last:pb-0">
                             <div>
-                                <a href="thiruvananthapuram.html"
-                                    class="font-medium hover:text-blue-400 transition">Thiruvananthapuram</a>
+                                <a href="thiruvananthapuram.html" class="font-medium hover:text-blue-400 transition">Thiruvananthapuram</a>
                                 <p class="text-xs text-slate-500">Kerala</p>
                             </div>
-                            <span
-                                class="px-2 py-1 bg-emerald-500/20 text-emerald-400 rounded font-mono text-sm border border-emerald-500/30 font-bold">48 AQI</span>
+                            <span class="px-2 py-1 bg-emerald-500/20 text-emerald-400 rounded font-mono text-sm border border-emerald-500/30 font-bold">48 AQI</span>
                         </li>
                         
-                        <li
-                            class="flex items-center justify-between border-b border-slate-800 pb-2 last:border-0 last:pb-0">
+                        <li class="flex items-center justify-between border-b border-slate-800 pb-2 last:border-0 last:pb-0">
                             <div>
-                                <a href="rajkot.html"
-                                    class="font-medium hover:text-blue-400 transition">Rajkot</a>
+                                <a href="rajkot.html" class="font-medium hover:text-blue-400 transition">Rajkot</a>
                                 <p class="text-xs text-slate-500">Gujarat</p>
                             </div>
-                            <span
-                                class="px-2 py-1 bg-emerald-500/20 text-emerald-400 rounded font-mono text-sm border border-emerald-500/30 font-bold">49 AQI</span>
+                            <span class="px-2 py-1 bg-emerald-500/20 text-emerald-400 rounded font-mono text-sm border border-emerald-500/30 font-bold">49 AQI</span>
+                        </li>
+                        
+                        <li class="flex items-center justify-between border-b border-slate-800 pb-2 last:border-0 last:pb-0">
+                            <div>
+                                <a href="aizawl.html" class="font-medium hover:text-blue-400 transition">Aizawl</a>
+                                <p class="text-xs text-slate-500">Mizoram</p>
+                            </div>
+                            <span class="px-2 py-1 bg-emerald-500/20 text-emerald-400 rounded font-mono text-sm border border-emerald-500/30 font-bold">52 AQI</span>
+                        </li>
+                        
+                        <li class="flex items-center justify-between border-b border-slate-800 pb-2 last:border-0 last:pb-0">
+                            <div>
+                                <a href="alappuzha.html" class="font-medium hover:text-blue-400 transition">Alappuzha</a>
+                                <p class="text-xs text-slate-500">Kerala</p>
+                            </div>
+                            <span class="px-2 py-1 bg-emerald-500/20 text-emerald-400 rounded font-mono text-sm border border-emerald-500/30 font-bold">52 AQI</span>
+                        </li>
+                        
+                        <li class="flex items-center justify-between border-b border-slate-800 pb-2 last:border-0 last:pb-0">
+                            <div>
+                                <a href="visakhapatnam.html" class="font-medium hover:text-blue-400 transition">Visakhapatnam</a>
+                                <p class="text-xs text-slate-500">Andhra Pradesh</p>
+                            </div>
+                            <span class="px-2 py-1 bg-emerald-500/20 text-emerald-400 rounded font-mono text-sm border border-emerald-500/30 font-bold">53 AQI</span>
+                        </li>
+                        
+                        <li class="flex items-center justify-between border-b border-slate-800 pb-2 last:border-0 last:pb-0">
+                            <div>
+                                <a href="kohima.html" class="font-medium hover:text-blue-400 transition">Kohima</a>
+                                <p class="text-xs text-slate-500">Nagaland</p>
+                            </div>
+                            <span class="px-2 py-1 bg-emerald-500/20 text-emerald-400 rounded font-mono text-sm border border-emerald-500/30 font-bold">53 AQI</span>
+                        </li>
+                        
+                        <li class="flex items-center justify-between border-b border-slate-800 pb-2 last:border-0 last:pb-0">
+                            <div>
+                                <a href="solapur.html" class="font-medium hover:text-blue-400 transition">Solapur</a>
+                                <p class="text-xs text-slate-500">Maharashtra</p>
+                            </div>
+                            <span class="px-2 py-1 bg-emerald-500/20 text-emerald-400 rounded font-mono text-sm border border-emerald-500/30 font-bold">54 AQI</span>
                         </li>
                         
                     </ul>
                 </div>
 
-                <!-- Dengue Risk -->
-                <div class="glass-card rounded-xl p-6 border-t-4 border-t-orange-500">
+                <!-- Temp - Hottest -->
+                <div id="lb-temp-hottest" class="glass-card rounded-xl p-6 border-t-4 border-t-rose-500 hidden">
                     <h4 class="text-lg font-bold text-slate-200 mb-4 flex items-center gap-2">
-                        <span class="text-orange-500">🦟</span> Highest Mosquito Risk
+                        <span class="text-rose-500">🔥</span> Hottest Cities
                     </h4>
                     <ul class="space-y-3">
                         
-                        <li
-                            class="flex items-center justify-between border-b border-slate-800 pb-2 last:border-0 last:pb-0">
+                        <li class="flex items-center justify-between border-b border-slate-800 pb-2 last:border-0 last:pb-0">
                             <div>
-                                <a href="coimbatore.html"
-                                    class="font-medium hover:text-blue-400 transition">Coimbatore</a>
-                                <p class="text-xs text-slate-500">Tamil Nadu</p>
+                                <a href="ahmedabad.html" class="font-medium hover:text-blue-400 transition">Ahmedabad</a>
+                                <p class="text-xs text-slate-500">Gujarat</p>
+                            </div>
+                            <span class="px-2 py-1 bg-rose-500/20 text-rose-400 rounded font-mono text-sm border border-rose-500/30 font-bold">42.9°C</span>
+                        </li>
+                        
+                        <li class="flex items-center justify-between border-b border-slate-800 pb-2 last:border-0 last:pb-0">
+                            <div>
+                                <a href="bikaner.html" class="font-medium hover:text-blue-400 transition">Bikaner</a>
+                                <p class="text-xs text-slate-500">Rajasthan</p>
+                            </div>
+                            <span class="px-2 py-1 bg-rose-500/20 text-rose-400 rounded font-mono text-sm border border-rose-500/30 font-bold">41.2°C</span>
+                        </li>
+                        
+                        <li class="flex items-center justify-between border-b border-slate-800 pb-2 last:border-0 last:pb-0">
+                            <div>
+                                <a href="vijayawada.html" class="font-medium hover:text-blue-400 transition">Vijayawada</a>
+                                <p class="text-xs text-slate-500">Andhra Pradesh</p>
+                            </div>
+                            <span class="px-2 py-1 bg-rose-500/20 text-rose-400 rounded font-mono text-sm border border-rose-500/30 font-bold">40.8°C</span>
+                        </li>
+                        
+                        <li class="flex items-center justify-between border-b border-slate-800 pb-2 last:border-0 last:pb-0">
+                            <div>
+                                <a href="kota.html" class="font-medium hover:text-blue-400 transition">Kota</a>
+                                <p class="text-xs text-slate-500">Rajasthan</p>
+                            </div>
+                            <span class="px-2 py-1 bg-rose-500/20 text-rose-400 rounded font-mono text-sm border border-rose-500/30 font-bold">40.3°C</span>
+                        </li>
+                        
+                        <li class="flex items-center justify-between border-b border-slate-800 pb-2 last:border-0 last:pb-0">
+                            <div>
+                                <a href="guntur.html" class="font-medium hover:text-blue-400 transition">Guntur</a>
+                                <p class="text-xs text-slate-500">Andhra Pradesh</p>
+                            </div>
+                            <span class="px-2 py-1 bg-rose-500/20 text-rose-400 rounded font-mono text-sm border border-rose-500/30 font-bold">40.2°C</span>
+                        </li>
+                        
+                        <li class="flex items-center justify-between border-b border-slate-800 pb-2 last:border-0 last:pb-0">
+                            <div>
+                                <a href="kurnool.html" class="font-medium hover:text-blue-400 transition">Kurnool</a>
+                                <p class="text-xs text-slate-500">Andhra Pradesh</p>
+                            </div>
+                            <span class="px-2 py-1 bg-rose-500/20 text-rose-400 rounded font-mono text-sm border border-rose-500/30 font-bold">40.2°C</span>
+                        </li>
+                        
+                        <li class="flex items-center justify-between border-b border-slate-800 pb-2 last:border-0 last:pb-0">
+                            <div>
+                                <a href="rajkot.html" class="font-medium hover:text-blue-400 transition">Rajkot</a>
+                                <p class="text-xs text-slate-500">Gujarat</p>
+                            </div>
+                            <span class="px-2 py-1 bg-rose-500/20 text-rose-400 rounded font-mono text-sm border border-rose-500/30 font-bold">40.0°C</span>
+                        </li>
+                        
+                        <li class="flex items-center justify-between border-b border-slate-800 pb-2 last:border-0 last:pb-0">
+                            <div>
+                                <a href="jodhpur.html" class="font-medium hover:text-blue-400 transition">Jodhpur</a>
+                                <p class="text-xs text-slate-500">Rajasthan</p>
+                            </div>
+                            <span class="px-2 py-1 bg-rose-500/20 text-rose-400 rounded font-mono text-sm border border-rose-500/30 font-bold">39.8°C</span>
+                        </li>
+                        
+                        <li class="flex items-center justify-between border-b border-slate-800 pb-2 last:border-0 last:pb-0">
+                            <div>
+                                <a href="nagpur.html" class="font-medium hover:text-blue-400 transition">Nagpur</a>
+                                <p class="text-xs text-slate-500">Maharashtra</p>
+                            </div>
+                            <span class="px-2 py-1 bg-rose-500/20 text-rose-400 rounded font-mono text-sm border border-rose-500/30 font-bold">39.5°C</span>
+                        </li>
+                        
+                        <li class="flex items-center justify-between border-b border-slate-800 pb-2 last:border-0 last:pb-0">
+                            <div>
+                                <a href="akola.html" class="font-medium hover:text-blue-400 transition">Akola</a>
+                                <p class="text-xs text-slate-500">Maharashtra</p>
+                            </div>
+                            <span class="px-2 py-1 bg-rose-500/20 text-rose-400 rounded font-mono text-sm border border-rose-500/30 font-bold">39.5°C</span>
+                        </li>
+                        
+                    </ul>
+                </div>
+
+                <!-- Temp - Coolest -->
+                <div id="lb-temp-coolest" class="glass-card rounded-xl p-6 border-t-4 border-t-blue-500 hidden">
+                    <h4 class="text-lg font-bold text-slate-200 mb-4 flex items-center gap-2">
+                        <span class="text-blue-500">❄️</span> Coolest Cities
+                    </h4>
+                    <ul class="space-y-3">
+                        
+                        <li class="flex items-center justify-between border-b border-slate-800 pb-2 last:border-0 last:pb-0">
+                            <div>
+                                <a href="manali.html" class="font-medium hover:text-blue-400 transition">Manali</a>
+                                <p class="text-xs text-slate-500">Himachal Pradesh</p>
+                            </div>
+                            <span class="px-2 py-1 bg-blue-500/20 text-blue-400 rounded font-mono text-sm border border-blue-500/30 font-bold">14.4°C</span>
+                        </li>
+                        
+                        <li class="flex items-center justify-between border-b border-slate-800 pb-2 last:border-0 last:pb-0">
+                            <div>
+                                <a href="gangtok.html" class="font-medium hover:text-blue-400 transition">Gangtok</a>
+                                <p class="text-xs text-slate-500">Sikkim</p>
+                            </div>
+                            <span class="px-2 py-1 bg-blue-500/20 text-blue-400 rounded font-mono text-sm border border-blue-500/30 font-bold">15.4°C</span>
+                        </li>
+                        
+                        <li class="flex items-center justify-between border-b border-slate-800 pb-2 last:border-0 last:pb-0">
+                            <div>
+                                <a href="mussoorie.html" class="font-medium hover:text-blue-400 transition">Mussoorie</a>
+                                <p class="text-xs text-slate-500">Uttarakhand</p>
+                            </div>
+                            <span class="px-2 py-1 bg-blue-500/20 text-blue-400 rounded font-mono text-sm border border-blue-500/30 font-bold">15.9°C</span>
+                        </li>
+                        
+                        <li class="flex items-center justify-between border-b border-slate-800 pb-2 last:border-0 last:pb-0">
+                            <div>
+                                <a href="nainital.html" class="font-medium hover:text-blue-400 transition">Nainital</a>
+                                <p class="text-xs text-slate-500">Uttarakhand</p>
+                            </div>
+                            <span class="px-2 py-1 bg-blue-500/20 text-blue-400 rounded font-mono text-sm border border-blue-500/30 font-bold">16.2°C</span>
+                        </li>
+                        
+                        <li class="flex items-center justify-between border-b border-slate-800 pb-2 last:border-0 last:pb-0">
+                            <div>
+                                <a href="shillong.html" class="font-medium hover:text-blue-400 transition">Shillong</a>
+                                <p class="text-xs text-slate-500">Meghalaya</p>
+                            </div>
+                            <span class="px-2 py-1 bg-blue-500/20 text-blue-400 rounded font-mono text-sm border border-blue-500/30 font-bold">17.0°C</span>
+                        </li>
+                        
+                        <li class="flex items-center justify-between border-b border-slate-800 pb-2 last:border-0 last:pb-0">
+                            <div>
+                                <a href="aizawl.html" class="font-medium hover:text-blue-400 transition">Aizawl</a>
+                                <p class="text-xs text-slate-500">Mizoram</p>
+                            </div>
+                            <span class="px-2 py-1 bg-blue-500/20 text-blue-400 rounded font-mono text-sm border border-blue-500/30 font-bold">17.2°C</span>
+                        </li>
+                        
+                        <li class="flex items-center justify-between border-b border-slate-800 pb-2 last:border-0 last:pb-0">
+                            <div>
+                                <a href="shimla.html" class="font-medium hover:text-blue-400 transition">Shimla</a>
+                                <p class="text-xs text-slate-500">Himachal Pradesh</p>
+                            </div>
+                            <span class="px-2 py-1 bg-blue-500/20 text-blue-400 rounded font-mono text-sm border border-blue-500/30 font-bold">17.4°C</span>
+                        </li>
+                        
+                        <li class="flex items-center justify-between border-b border-slate-800 pb-2 last:border-0 last:pb-0">
+                            <div>
+                                <a href="dehradun.html" class="font-medium hover:text-blue-400 transition">Dehradun</a>
+                                <p class="text-xs text-slate-500">Uttarakhand</p>
+                            </div>
+                            <span class="px-2 py-1 bg-blue-500/20 text-blue-400 rounded font-mono text-sm border border-blue-500/30 font-bold">17.8°C</span>
+                        </li>
+                        
+                        <li class="flex items-center justify-between border-b border-slate-800 pb-2 last:border-0 last:pb-0">
+                            <div>
+                                <a href="kohima.html" class="font-medium hover:text-blue-400 transition">Kohima</a>
+                                <p class="text-xs text-slate-500">Nagaland</p>
+                            </div>
+                            <span class="px-2 py-1 bg-blue-500/20 text-blue-400 rounded font-mono text-sm border border-blue-500/30 font-bold">17.8°C</span>
+                        </li>
+                        
+                        <li class="flex items-center justify-between border-b border-slate-800 pb-2 last:border-0 last:pb-0">
+                            <div>
+                                <a href="dalhousie.html" class="font-medium hover:text-blue-400 transition">Dalhousie</a>
+                                <p class="text-xs text-slate-500">Himachal Pradesh</p>
+                            </div>
+                            <span class="px-2 py-1 bg-blue-500/20 text-blue-400 rounded font-mono text-sm border border-blue-500/30 font-bold">18.1°C</span>
+                        </li>
+                        
+                    </ul>
+                </div>
+
+                <!-- Cigarette Equivalent -->
+                <div id="lb-aqi-cig" class="glass-card rounded-xl p-6 border-t-4 border-t-orange-500">
+                    <h4 class="text-lg font-bold text-slate-200 mb-4 flex items-center gap-2">
+                        <span class="text-orange-500">🚬</span> PM2.5 Cig Equivalent
+                    </h4>
+                    <ul class="space-y-3">
+                        
+                        <li class="flex items-center justify-between border-b border-slate-800 pb-2 last:border-0 last:pb-0">
+                            <div>
+                                <a href="gurgaon.html" class="font-medium hover:text-blue-400 transition">Gurgaon</a>
+                                <p class="text-xs text-slate-500">Haryana</p>
                             </div>
                             <div class="text-right">
-                                <span
-                                    class="block px-2 py-1 bg-orange-500/20 text-orange-400 rounded text-xs font-bold border border-orange-500/30">10/10</span>
+                                <span class="block px-2 py-1 bg-orange-500/20 text-orange-400 rounded text-xs font-bold border border-orange-500/30">5.7 cigs</span>
                             </div>
                         </li>
                         
-                        <li
-                            class="flex items-center justify-between border-b border-slate-800 pb-2 last:border-0 last:pb-0">
+                        <li class="flex items-center justify-between border-b border-slate-800 pb-2 last:border-0 last:pb-0">
                             <div>
-                                <a href="thiruvananthapuram.html"
-                                    class="font-medium hover:text-blue-400 transition">Thiruvananthapuram</a>
-                                <p class="text-xs text-slate-500">Kerala</p>
+                                <a href="noida.html" class="font-medium hover:text-blue-400 transition">Noida</a>
+                                <p class="text-xs text-slate-500">Uttar Pradesh</p>
                             </div>
                             <div class="text-right">
-                                <span
-                                    class="block px-2 py-1 bg-orange-500/20 text-orange-400 rounded text-xs font-bold border border-orange-500/30">10/10</span>
+                                <span class="block px-2 py-1 bg-orange-500/20 text-orange-400 rounded text-xs font-bold border border-orange-500/30">5.7 cigs</span>
                             </div>
                         </li>
                         
-                        <li
-                            class="flex items-center justify-between border-b border-slate-800 pb-2 last:border-0 last:pb-0">
+                        <li class="flex items-center justify-between border-b border-slate-800 pb-2 last:border-0 last:pb-0">
                             <div>
-                                <a href="thrissur.html"
-                                    class="font-medium hover:text-blue-400 transition">Thrissur</a>
-                                <p class="text-xs text-slate-500">Kerala</p>
+                                <a href="faridabad.html" class="font-medium hover:text-blue-400 transition">Faridabad</a>
+                                <p class="text-xs text-slate-500">Haryana</p>
                             </div>
                             <div class="text-right">
-                                <span
-                                    class="block px-2 py-1 bg-orange-500/20 text-orange-400 rounded text-xs font-bold border border-orange-500/30">10/10</span>
+                                <span class="block px-2 py-1 bg-orange-500/20 text-orange-400 rounded text-xs font-bold border border-orange-500/30">5.7 cigs</span>
                             </div>
                         </li>
                         
-                        <li
-                            class="flex items-center justify-between border-b border-slate-800 pb-2 last:border-0 last:pb-0">
+                        <li class="flex items-center justify-between border-b border-slate-800 pb-2 last:border-0 last:pb-0">
                             <div>
-                                <a href="kolkata.html"
-                                    class="font-medium hover:text-blue-400 transition">Kolkata</a>
+                                <a href="panipat.html" class="font-medium hover:text-blue-400 transition">Panipat</a>
+                                <p class="text-xs text-slate-500">Haryana</p>
+                            </div>
+                            <div class="text-right">
+                                <span class="block px-2 py-1 bg-orange-500/20 text-orange-400 rounded text-xs font-bold border border-orange-500/30">4.2 cigs</span>
+                            </div>
+                        </li>
+                        
+                        <li class="flex items-center justify-between border-b border-slate-800 pb-2 last:border-0 last:pb-0">
+                            <div>
+                                <a href="aligarh.html" class="font-medium hover:text-blue-400 transition">Aligarh</a>
+                                <p class="text-xs text-slate-500">Uttar Pradesh</p>
+                            </div>
+                            <div class="text-right">
+                                <span class="block px-2 py-1 bg-orange-500/20 text-orange-400 rounded text-xs font-bold border border-orange-500/30">3.8 cigs</span>
+                            </div>
+                        </li>
+                        
+                        <li class="flex items-center justify-between border-b border-slate-800 pb-2 last:border-0 last:pb-0">
+                            <div>
+                                <a href="rohtak.html" class="font-medium hover:text-blue-400 transition">Rohtak</a>
+                                <p class="text-xs text-slate-500">Haryana</p>
+                            </div>
+                            <div class="text-right">
+                                <span class="block px-2 py-1 bg-orange-500/20 text-orange-400 rounded text-xs font-bold border border-orange-500/30">3.7 cigs</span>
+                            </div>
+                        </li>
+                        
+                        <li class="flex items-center justify-between border-b border-slate-800 pb-2 last:border-0 last:pb-0">
+                            <div>
+                                <a href="delhi.html" class="font-medium hover:text-blue-400 transition">Delhi</a>
+                                <p class="text-xs text-slate-500">Delhi</p>
+                            </div>
+                            <div class="text-right">
+                                <span class="block px-2 py-1 bg-orange-500/20 text-orange-400 rounded text-xs font-bold border border-orange-500/30">3.5 cigs</span>
+                            </div>
+                        </li>
+                        
+                        <li class="flex items-center justify-between border-b border-slate-800 pb-2 last:border-0 last:pb-0">
+                            <div>
+                                <a href="patiala.html" class="font-medium hover:text-blue-400 transition">Patiala</a>
+                                <p class="text-xs text-slate-500">Punjab</p>
+                            </div>
+                            <div class="text-right">
+                                <span class="block px-2 py-1 bg-orange-500/20 text-orange-400 rounded text-xs font-bold border border-orange-500/30">3.3 cigs</span>
+                            </div>
+                        </li>
+                        
+                        <li class="flex items-center justify-between border-b border-slate-800 pb-2 last:border-0 last:pb-0">
+                            <div>
+                                <a href="durgapur.html" class="font-medium hover:text-blue-400 transition">Durgapur</a>
                                 <p class="text-xs text-slate-500">West Bengal</p>
                             </div>
                             <div class="text-right">
-                                <span
-                                    class="block px-2 py-1 bg-orange-500/20 text-orange-400 rounded text-xs font-bold border border-orange-500/30">7/10</span>
+                                <span class="block px-2 py-1 bg-orange-500/20 text-orange-400 rounded text-xs font-bold border border-orange-500/30">2.9 cigs</span>
                             </div>
                         </li>
                         
-                        <li
-                            class="flex items-center justify-between border-b border-slate-800 pb-2 last:border-0 last:pb-0">
+                        <li class="flex items-center justify-between border-b border-slate-800 pb-2 last:border-0 last:pb-0">
                             <div>
-                                <a href="mysore.html"
-                                    class="font-medium hover:text-blue-400 transition">Mysore</a>
-                                <p class="text-xs text-slate-500">Karnataka</p>
+                                <a href="mathura.html" class="font-medium hover:text-blue-400 transition">Mathura</a>
+                                <p class="text-xs text-slate-500">Uttar Pradesh</p>
                             </div>
                             <div class="text-right">
-                                <span
-                                    class="block px-2 py-1 bg-orange-500/20 text-orange-400 rounded text-xs font-bold border border-orange-500/30">7/10</span>
+                                <span class="block px-2 py-1 bg-orange-500/20 text-orange-400 rounded text-xs font-bold border border-orange-500/30">2.9 cigs</span>
                             </div>
+                        </li>
+                        
+                    </ul>
+                </div>
+
+                <!-- Temp - Humidity -->
+                <div id="lb-temp-humid" class="glass-card rounded-xl p-6 border-t-4 border-t-cyan-500 hidden">
+                    <h4 class="text-lg font-bold text-slate-200 mb-4 flex items-center gap-2">
+                        <span class="text-cyan-500">💧</span> Highest Humidity
+                    </h4>
+                    <ul class="space-y-3">
+                        
+                        <li class="flex items-center justify-between border-b border-slate-800 pb-2 last:border-0 last:pb-0">
+                            <div>
+                                <a href="munnar.html" class="font-medium hover:text-blue-400 transition">Munnar</a>
+                                <p class="text-xs text-slate-500">Kerala</p>
+                            </div>
+                            <span class="px-2 py-1 bg-cyan-500/20 text-cyan-400 rounded font-mono text-sm border border-cyan-500/30 font-bold">97%</span>
+                        </li>
+                        
+                        <li class="flex items-center justify-between border-b border-slate-800 pb-2 last:border-0 last:pb-0">
+                            <div>
+                                <a href="imphal.html" class="font-medium hover:text-blue-400 transition">Imphal</a>
+                                <p class="text-xs text-slate-500">Manipur</p>
+                            </div>
+                            <span class="px-2 py-1 bg-cyan-500/20 text-cyan-400 rounded font-mono text-sm border border-cyan-500/30 font-bold">94%</span>
+                        </li>
+                        
+                        <li class="flex items-center justify-between border-b border-slate-800 pb-2 last:border-0 last:pb-0">
+                            <div>
+                                <a href="silchar.html" class="font-medium hover:text-blue-400 transition">Silchar</a>
+                                <p class="text-xs text-slate-500">Assam</p>
+                            </div>
+                            <span class="px-2 py-1 bg-cyan-500/20 text-cyan-400 rounded font-mono text-sm border border-cyan-500/30 font-bold">94%</span>
+                        </li>
+                        
+                        <li class="flex items-center justify-between border-b border-slate-800 pb-2 last:border-0 last:pb-0">
+                            <div>
+                                <a href="aizawl.html" class="font-medium hover:text-blue-400 transition">Aizawl</a>
+                                <p class="text-xs text-slate-500">Mizoram</p>
+                            </div>
+                            <span class="px-2 py-1 bg-cyan-500/20 text-cyan-400 rounded font-mono text-sm border border-cyan-500/30 font-bold">93%</span>
+                        </li>
+                        
+                        <li class="flex items-center justify-between border-b border-slate-800 pb-2 last:border-0 last:pb-0">
+                            <div>
+                                <a href="kohima.html" class="font-medium hover:text-blue-400 transition">Kohima</a>
+                                <p class="text-xs text-slate-500">Nagaland</p>
+                            </div>
+                            <span class="px-2 py-1 bg-cyan-500/20 text-cyan-400 rounded font-mono text-sm border border-cyan-500/30 font-bold">92%</span>
+                        </li>
+                        
+                        <li class="flex items-center justify-between border-b border-slate-800 pb-2 last:border-0 last:pb-0">
+                            <div>
+                                <a href="muzaffarpur.html" class="font-medium hover:text-blue-400 transition">Muzaffarpur</a>
+                                <p class="text-xs text-slate-500">Bihar</p>
+                            </div>
+                            <span class="px-2 py-1 bg-cyan-500/20 text-cyan-400 rounded font-mono text-sm border border-cyan-500/30 font-bold">91%</span>
+                        </li>
+                        
+                        <li class="flex items-center justify-between border-b border-slate-800 pb-2 last:border-0 last:pb-0">
+                            <div>
+                                <a href="alappuzha.html" class="font-medium hover:text-blue-400 transition">Alappuzha</a>
+                                <p class="text-xs text-slate-500">Kerala</p>
+                            </div>
+                            <span class="px-2 py-1 bg-cyan-500/20 text-cyan-400 rounded font-mono text-sm border border-cyan-500/30 font-bold">90%</span>
+                        </li>
+                        
+                        <li class="flex items-center justify-between border-b border-slate-800 pb-2 last:border-0 last:pb-0">
+                            <div>
+                                <a href="dibrugarh.html" class="font-medium hover:text-blue-400 transition">Dibrugarh</a>
+                                <p class="text-xs text-slate-500">Assam</p>
+                            </div>
+                            <span class="px-2 py-1 bg-cyan-500/20 text-cyan-400 rounded font-mono text-sm border border-cyan-500/30 font-bold">89%</span>
+                        </li>
+                        
+                        <li class="flex items-center justify-between border-b border-slate-800 pb-2 last:border-0 last:pb-0">
+                            <div>
+                                <a href="thiruvananthapuram.html" class="font-medium hover:text-blue-400 transition">Thiruvananthapuram</a>
+                                <p class="text-xs text-slate-500">Kerala</p>
+                            </div>
+                            <span class="px-2 py-1 bg-cyan-500/20 text-cyan-400 rounded font-mono text-sm border border-cyan-500/30 font-bold">88%</span>
+                        </li>
+                        
+                        <li class="flex items-center justify-between border-b border-slate-800 pb-2 last:border-0 last:pb-0">
+                            <div>
+                                <a href="guwahati.html" class="font-medium hover:text-blue-400 transition">Guwahati</a>
+                                <p class="text-xs text-slate-500">Assam</p>
+                            </div>
+                            <span class="px-2 py-1 bg-cyan-500/20 text-cyan-400 rounded font-mono text-sm border border-cyan-500/30 font-bold">84%</span>
                         </li>
                         
                     </ul>
@@ -369,8 +740,8 @@
                 minZoom: 4
             }).setView([22.5, 79.5], 5); // Centers slightly to accommodate mainland India 
 
-            // Dark Map Tiles (CartoDB Dark Matter)
-            L.tileLayer('https://{s}.basemaps.cartocdn.com/dark_all/{z}/{x}/{y}{r}.png', {
+            // Light Map Tiles (CartoDB Positron)
+            L.tileLayer('https://{s}.basemaps.cartocdn.com/light_all/{z}/{x}/{y}{r}.png', {
                 attribution: '&copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> contributors &copy; <a href="https://carto.com/attributions">CARTO</a>',
                 subdomains: 'abcd',
                 maxZoom: 20
@@ -380,53 +751,119 @@
             try {
                 const response = await fetch('data/latest_scores.json?t=' + new Date().getTime());
                 const cities = await response.json();
+                
+                let currentMode = 'aqi';
+                let markers = [];
 
-                cities.forEach(city => {
-                    // Logic for Colors
-                    let color = '#10b981'; // Emerald Safe
-                    let fillColor = 'rgba(16, 185, 129, 0.4)';
+                function renderMapMarkers() {
+                    // Clear existing markers
+                    markers.forEach(m => map.removeLayer(m));
+                    markers = [];
 
-                    if (city.aqi > 200 || city.mosquito_risk > 8) {
-                        color = '#f43f5e'; // Rose Critical
-                        fillColor = 'rgba(244, 63, 94, 0.4)';
-                    } else if (city.aqi > 100) {
-                        color = '#f97316'; // Orange Warning
-                        fillColor = 'rgba(249, 115, 22, 0.4)';
-                    }
+                    cities.forEach(city => {
+                        let color, fillColor;
+                        
+                        if (currentMode === 'aqi') {
+                            color = '#10b981'; // Emerald Safe
+                            fillColor = 'rgba(16, 185, 129, 0.5)';
+                            if (city.aqi > 150) {
+                                color = '#f43f5e'; // Rose Critical
+                                fillColor = 'rgba(244, 63, 94, 0.5)';
+                            } else if (city.aqi > 100) {
+                                color = '#f97316'; // Orange Warning
+                                fillColor = 'rgba(249, 115, 22, 0.5)';
+                            }
+                        } else {
+                            color = '#3b82f6'; // Blue Cool
+                            fillColor = 'rgba(59, 130, 246, 0.5)';
+                            if (city.temp > 35) {
+                                color = '#f43f5e'; // Rose Hot
+                                fillColor = 'rgba(244, 63, 94, 0.5)';
+                            } else if (city.temp > 25) {
+                                color = '#f97316'; // Orange Warm
+                                fillColor = 'rgba(249, 115, 22, 0.5)';
+                            }
+                        }
 
-                    // Create Custom Marker
-                    const marker = L.circleMarker([city.latitude, city.longitude], {
-                        radius: 7,
-                        fillColor: fillColor,
-                        color: color,
-                        weight: 2,
-                        opacity: 1,
-                        fillOpacity: 0.8
-                    }).addTo(map);
+                        const marker = L.circleMarker([city.latitude, city.longitude], {
+                            radius: 7,
+                            fillColor: fillColor,
+                            color: color,
+                            weight: 2,
+                            opacity: 1,
+                            fillOpacity: 0.8
+                        }).addTo(map);
+                        
+                        markers.push(marker);
 
-                    // Popup Content
-                    const slug = city.city.toLowerCase().replace(/ /g, '-');
-                    const popupContent = `
-                        <div class="p-1 min-w-[180px]">
-                            <h3 class="font-bold text-lg text-white font-display">${city.city}</h3>
-                            <p class="text-xs text-slate-400 mb-2 border-b border-slate-700 pb-2">${city.state}</p>
-                            
-                            <div class="grid grid-cols-2 gap-2 mb-3 mt-2">
-                                <div class="bg-slate-800 rounded p-2 text-center border border-slate-700">
-                                    <div class="text-[10px] text-slate-400 uppercase">AQI</div>
-                                    <div class="font-bold text-white text-sm" style="color: ${city.aqi > 150 ? '#f43f5e' : (city.aqi > 100 ? '#f97316' : '#10b981')}">${city.aqi}</div>
+                        // Popup Content
+                        const slug = city.city.toLowerCase().replace(/ /g, '-');
+                        const popupContent = `
+                            <div class="p-1 min-w-[180px]">
+                                <h3 class="font-bold text-lg text-white font-display">${city.city}</h3>
+                                <p class="text-xs text-slate-400 mb-2 border-b border-slate-700 pb-2">${city.state}</p>
+                                
+                                <div class="grid grid-cols-2 gap-2 mb-3 mt-2">
+                                    <div class="bg-slate-800 rounded p-2 text-center border border-slate-700">
+                                        <div class="text-[10px] text-slate-400 uppercase">AQI</div>
+                                        <div class="font-bold text-white text-sm" style="color: ${city.aqi > 150 ? '#f43f5e' : (city.aqi > 100 ? '#f97316' : '#10b981')}">${city.aqi}</div>
+                                    </div>
+                                    <div class="bg-slate-800 rounded p-2 text-center border border-slate-700">
+                                        <div class="text-[10px] text-slate-400 uppercase">Temp</div>
+                                        <div class="font-bold text-white text-sm" style="color: ${city.temp > 35 ? '#f43f5e' : (city.temp > 25 ? '#f97316' : '#3b82f6')}">${Math.round(city.temp)}°</div>
+                                    </div>
                                 </div>
-                                <div class="bg-slate-800 rounded p-2 text-center border border-slate-700">
-                                    <div class="text-[10px] text-slate-400 uppercase">Temp</div>
-                                    <div class="font-bold text-white text-sm">${Math.round(city.temp)}°</div>
-                                </div>
+                                
+                                <a href="${slug}.html" class="block w-full bg-blue-500 hover:bg-blue-400 text-white text-center py-2 rounded-md text-sm transition font-bold shadow-md mt-1">View Dashboard</a>
                             </div>
-                            
-                            <a href="${slug}.html" class="block w-full bg-blue-500 hover:bg-blue-400 text-white text-center py-2 rounded-md text-sm transition font-bold shadow-md mt-1">View Dashboard</a>
-                        </div>
-                    `;
+                        `;
 
-                    marker.bindPopup(popupContent);
+                        marker.bindPopup(popupContent);
+                    });
+                }
+
+                // Initial render
+                renderMapMarkers();
+
+                // Toggle Logic
+                document.getElementById('toggle-aqi').addEventListener('click', () => {
+                    currentMode = 'aqi';
+                    document.getElementById('toggle-aqi').className = 'px-4 py-1.5 text-sm font-bold rounded-md bg-blue-500 text-white transition shadow-sm';
+                    document.getElementById('toggle-temp').className = 'px-4 py-1.5 text-sm font-bold rounded-md text-slate-400 hover:text-slate-200 transition';
+                    
+                    document.getElementById('lb-aqi-worst').classList.remove('hidden');
+                    document.getElementById('lb-aqi-best').classList.remove('hidden');
+                    document.getElementById('lb-aqi-cig').classList.remove('hidden');
+                    
+                    document.getElementById('lb-temp-hottest').classList.add('hidden');
+                    document.getElementById('lb-temp-coolest').classList.add('hidden');
+                    document.getElementById('lb-temp-humid').classList.add('hidden');
+                    
+                    document.getElementById('legend-title').innerText = 'Health Status (AQI)';
+                    document.getElementById('legend-aqi').classList.remove('hidden');
+                    document.getElementById('legend-temp').classList.add('hidden');
+                    
+                    renderMapMarkers();
+                });
+
+                document.getElementById('toggle-temp').addEventListener('click', () => {
+                    currentMode = 'temp';
+                    document.getElementById('toggle-temp').className = 'px-4 py-1.5 text-sm font-bold rounded-md bg-blue-500 text-white transition shadow-sm';
+                    document.getElementById('toggle-aqi').className = 'px-4 py-1.5 text-sm font-bold rounded-md text-slate-400 hover:text-slate-200 transition';
+                    
+                    document.getElementById('lb-temp-hottest').classList.remove('hidden');
+                    document.getElementById('lb-temp-coolest').classList.remove('hidden');
+                    document.getElementById('lb-temp-humid').classList.remove('hidden');
+                    
+                    document.getElementById('lb-aqi-worst').classList.add('hidden');
+                    document.getElementById('lb-aqi-best').classList.add('hidden');
+                    document.getElementById('lb-aqi-cig').classList.add('hidden');
+                    
+                    document.getElementById('legend-title').innerText = 'Temperature';
+                    document.getElementById('legend-temp').classList.remove('hidden');
+                    document.getElementById('legend-aqi').classList.add('hidden');
+
+                    renderMapMarkers();
                 });
 
             } catch (e) {

@@ -98,8 +98,8 @@
             <!-- Legend overlay -->
             <div
                 class="absolute bottom-6 right-6 z-[1000] bg-slate-900/90 backdrop-blur border border-slate-700 p-4 rounded-xl shadow-lg pb-3">
-                <h4 class="text-xs font-bold text-slate-300 uppercase tracking-wider mb-2">Health Status</h4>
-                <div class="space-y-2 text-sm">
+                <h4 class="text-xs font-bold text-slate-300 uppercase tracking-wider mb-2" id="legend-title">Health Status</h4>
+                <div class="space-y-2 text-sm" id="legend-aqi">
                     <div class="flex items-center gap-2"><span
                             class="w-3 h-3 rounded-full bg-emerald-500 shadow-[0_0_8px_rgba(16,185,129,0.5)]"></span>
                         Safe</div>
@@ -108,80 +108,138 @@
                         Warning (AQI > 100)</div>
                     <div class="flex items-center gap-2"><span
                             class="w-3 h-3 rounded-full bg-rose-500 shadow-[0_0_8px_rgba(244,63,94,0.5)]"></span>
-                        Critical (AQI > 200 or Bugs)</div>
+                        Critical (AQI > 150)</div>
+                </div>
+                <div class="space-y-2 text-sm hidden" id="legend-temp">
+                    <div class="flex items-center gap-2"><span
+                            class="w-3 h-3 rounded-full bg-blue-500 shadow-[0_0_8px_rgba(59,130,246,0.5)]"></span>
+                        Cool (&lt; 25°C)</div>
+                    <div class="flex items-center gap-2"><span
+                            class="w-3 h-3 rounded-full bg-orange-500 shadow-[0_0_8px_rgba(249,115,22,0.5)]"></span>
+                        Warm (&gt; 25°C)</div>
+                    <div class="flex items-center gap-2"><span
+                            class="w-3 h-3 rounded-full bg-rose-500 shadow-[0_0_8px_rgba(244,63,94,0.5)]"></span>
+                        Hot (&gt; 35°C)</div>
                 </div>
             </div>
         </div>
 
         <!-- Leaderboards Section -->
         <div>
-            <h3 class="text-2xl font-display font-bold text-white mb-6 border-b border-slate-800 pb-2">National Health
-                Leaderboards</h3>
+            <div class="flex flex-col md:flex-row justify-between items-start md:items-center border-b border-slate-800 mb-6 pb-2">
+                <h3 class="text-2xl font-display font-bold text-white mb-4 md:mb-0">National Health Leaderboards</h3>
+                <div class="flex bg-slate-800 p-1 rounded-lg">
+                    <button id="toggle-aqi" class="px-4 py-1.5 text-sm font-bold rounded-md bg-blue-500 text-white transition shadow-sm">Air Quality</button>
+                    <button id="toggle-temp" class="px-4 py-1.5 text-sm font-bold rounded-md text-slate-400 hover:text-slate-200 transition">Temperature</button>
+                </div>
+            </div>
             <div class="grid grid-cols-1 md:grid-cols-3 gap-6">
 
-                <!-- Most Polluted -->
-                <div class="glass-card rounded-xl p-6 border-t-4 border-t-rose-500">
+                <!-- AQI - Most Polluted -->
+                <div id="lb-aqi-worst" class="glass-card rounded-xl p-6 border-t-4 border-t-rose-500">
                     <h4 class="text-lg font-bold text-slate-200 mb-4 flex items-center gap-2">
                         <span class="text-rose-500">😷</span> Worst Air Quality
                     </h4>
                     <ul class="space-y-3">
                         {% for city in top_polluted %}
-                        <li
-                            class="flex items-center justify-between border-b border-slate-800 pb-2 last:border-0 last:pb-0">
+                        <li class="flex items-center justify-between border-b border-slate-800 pb-2 last:border-0 last:pb-0">
                             <div>
-                                <a href="{{ city.city|lower|replace(' ', '-') }}.html"
-                                    class="font-medium hover:text-blue-400 transition">{{ city.city }}</a>
+                                <a href="{{ city.city|lower|replace(' ', '-') }}.html" class="font-medium hover:text-blue-400 transition">{{ city.city }}</a>
                                 <p class="text-xs text-slate-500">{{ city.state }}</p>
                             </div>
-                            <span
-                                class="px-2 py-1 bg-rose-500/20 text-rose-400 rounded font-mono text-sm border border-rose-500/30 font-bold">{{
-                                city.aqi }} AQI</span>
+                            <span class="px-2 py-1 bg-rose-500/20 text-rose-400 rounded font-mono text-sm border border-rose-500/30 font-bold">{{ city.aqi }} AQI</span>
                         </li>
                         {% endfor %}
                     </ul>
                 </div>
 
-                <!-- Safest Cities -->
-                <div class="glass-card rounded-xl p-6 border-t-4 border-t-emerald-500">
+                <!-- AQI - Safest Cities -->
+                <div id="lb-aqi-best" class="glass-card rounded-xl p-6 border-t-4 border-t-emerald-500">
                     <h4 class="text-lg font-bold text-slate-200 mb-4 flex items-center gap-2">
                         <span class="text-emerald-500">🌿</span> Cleanest Air
                     </h4>
                     <ul class="space-y-3">
                         {% for city in top_safest %}
-                        <li
-                            class="flex items-center justify-between border-b border-slate-800 pb-2 last:border-0 last:pb-0">
+                        <li class="flex items-center justify-between border-b border-slate-800 pb-2 last:border-0 last:pb-0">
                             <div>
-                                <a href="{{ city.city|lower|replace(' ', '-') }}.html"
-                                    class="font-medium hover:text-blue-400 transition">{{ city.city }}</a>
+                                <a href="{{ city.city|lower|replace(' ', '-') }}.html" class="font-medium hover:text-blue-400 transition">{{ city.city }}</a>
                                 <p class="text-xs text-slate-500">{{ city.state }}</p>
                             </div>
-                            <span
-                                class="px-2 py-1 bg-emerald-500/20 text-emerald-400 rounded font-mono text-sm border border-emerald-500/30 font-bold">{{
-                                city.aqi }} AQI</span>
+                            <span class="px-2 py-1 bg-emerald-500/20 text-emerald-400 rounded font-mono text-sm border border-emerald-500/30 font-bold">{{ city.aqi }} AQI</span>
                         </li>
                         {% endfor %}
                     </ul>
                 </div>
 
-                <!-- Dengue Risk -->
-                <div class="glass-card rounded-xl p-6 border-t-4 border-t-orange-500">
+                <!-- Temp - Hottest -->
+                <div id="lb-temp-hottest" class="glass-card rounded-xl p-6 border-t-4 border-t-rose-500 hidden">
                     <h4 class="text-lg font-bold text-slate-200 mb-4 flex items-center gap-2">
-                        <span class="text-orange-500">🦟</span> Highest Mosquito Risk
+                        <span class="text-rose-500">🔥</span> Hottest Cities
                     </h4>
                     <ul class="space-y-3">
-                        {% for city in top_dengue %}
-                        <li
-                            class="flex items-center justify-between border-b border-slate-800 pb-2 last:border-0 last:pb-0">
+                        {% for city in top_hottest %}
+                        <li class="flex items-center justify-between border-b border-slate-800 pb-2 last:border-0 last:pb-0">
                             <div>
-                                <a href="{{ city.city|lower|replace(' ', '-') }}.html"
-                                    class="font-medium hover:text-blue-400 transition">{{ city.city }}</a>
+                                <a href="{{ city.city|lower|replace(' ', '-') }}.html" class="font-medium hover:text-blue-400 transition">{{ city.city }}</a>
+                                <p class="text-xs text-slate-500">{{ city.state }}</p>
+                            </div>
+                            <span class="px-2 py-1 bg-rose-500/20 text-rose-400 rounded font-mono text-sm border border-rose-500/30 font-bold">{{ city.temp | round(1) }}°C</span>
+                        </li>
+                        {% endfor %}
+                    </ul>
+                </div>
+
+                <!-- Temp - Coolest -->
+                <div id="lb-temp-coolest" class="glass-card rounded-xl p-6 border-t-4 border-t-blue-500 hidden">
+                    <h4 class="text-lg font-bold text-slate-200 mb-4 flex items-center gap-2">
+                        <span class="text-blue-500">❄️</span> Coolest Cities
+                    </h4>
+                    <ul class="space-y-3">
+                        {% for city in top_coolest %}
+                        <li class="flex items-center justify-between border-b border-slate-800 pb-2 last:border-0 last:pb-0">
+                            <div>
+                                <a href="{{ city.city|lower|replace(' ', '-') }}.html" class="font-medium hover:text-blue-400 transition">{{ city.city }}</a>
+                                <p class="text-xs text-slate-500">{{ city.state }}</p>
+                            </div>
+                            <span class="px-2 py-1 bg-blue-500/20 text-blue-400 rounded font-mono text-sm border border-blue-500/30 font-bold">{{ city.temp | round(1) }}°C</span>
+                        </li>
+                        {% endfor %}
+                    </ul>
+                </div>
+
+                <!-- Cigarette Equivalent -->
+                <div id="lb-aqi-cig" class="glass-card rounded-xl p-6 border-t-4 border-t-orange-500">
+                    <h4 class="text-lg font-bold text-slate-200 mb-4 flex items-center gap-2">
+                        <span class="text-orange-500">🚬</span> PM2.5 Cig Equivalent
+                    </h4>
+                    <ul class="space-y-3">
+                        {% for city in top_cig_eq %}
+                        <li class="flex items-center justify-between border-b border-slate-800 pb-2 last:border-0 last:pb-0">
+                            <div>
+                                <a href="{{ city.city|lower|replace(' ', '-') }}.html" class="font-medium hover:text-blue-400 transition">{{ city.city }}</a>
                                 <p class="text-xs text-slate-500">{{ city.state }}</p>
                             </div>
                             <div class="text-right">
-                                <span
-                                    class="block px-2 py-1 bg-orange-500/20 text-orange-400 rounded text-xs font-bold border border-orange-500/30">{{
-                                    city.mosquito_risk }}/10</span>
+                                <span class="block px-2 py-1 bg-orange-500/20 text-orange-400 rounded text-xs font-bold border border-orange-500/30">{{ city.cig_eq }} cigs</span>
                             </div>
+                        </li>
+                        {% endfor %}
+                    </ul>
+                </div>
+
+                <!-- Temp - Humidity -->
+                <div id="lb-temp-humid" class="glass-card rounded-xl p-6 border-t-4 border-t-cyan-500 hidden">
+                    <h4 class="text-lg font-bold text-slate-200 mb-4 flex items-center gap-2">
+                        <span class="text-cyan-500">💧</span> Highest Humidity
+                    </h4>
+                    <ul class="space-y-3">
+                        {% for city in top_humid %}
+                        <li class="flex items-center justify-between border-b border-slate-800 pb-2 last:border-0 last:pb-0">
+                            <div>
+                                <a href="{{ city.city|lower|replace(' ', '-') }}.html" class="font-medium hover:text-blue-400 transition">{{ city.city }}</a>
+                                <p class="text-xs text-slate-500">{{ city.state }}</p>
+                            </div>
+                            <span class="px-2 py-1 bg-cyan-500/20 text-cyan-400 rounded font-mono text-sm border border-cyan-500/30 font-bold">{{ city.humidity | round }}%</span>
                         </li>
                         {% endfor %}
                     </ul>
@@ -232,8 +290,8 @@
                 minZoom: 4
             }).setView([22.5, 79.5], 5); // Centers slightly to accommodate mainland India 
 
-            // Dark Map Tiles (CartoDB Dark Matter)
-            L.tileLayer('https://{s}.basemaps.cartocdn.com/dark_all/{z}/{x}/{y}{r}.png', {
+            // Light Map Tiles (CartoDB Positron)
+            L.tileLayer('https://{s}.basemaps.cartocdn.com/light_all/{z}/{x}/{y}{r}.png', {
                 attribution: '&copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> contributors &copy; <a href="https://carto.com/attributions">CARTO</a>',
                 subdomains: 'abcd',
                 maxZoom: 20
@@ -243,53 +301,119 @@
             try {
                 const response = await fetch('data/latest_scores.json?t=' + new Date().getTime());
                 const cities = await response.json();
+                
+                let currentMode = 'aqi';
+                let markers = [];
 
-                cities.forEach(city => {
-                    // Logic for Colors
-                    let color = '#10b981'; // Emerald Safe
-                    let fillColor = 'rgba(16, 185, 129, 0.4)';
+                function renderMapMarkers() {
+                    // Clear existing markers
+                    markers.forEach(m => map.removeLayer(m));
+                    markers = [];
 
-                    if (city.aqi > 200 || city.mosquito_risk > 8) {
-                        color = '#f43f5e'; // Rose Critical
-                        fillColor = 'rgba(244, 63, 94, 0.4)';
-                    } else if (city.aqi > 100) {
-                        color = '#f97316'; // Orange Warning
-                        fillColor = 'rgba(249, 115, 22, 0.4)';
-                    }
+                    cities.forEach(city => {
+                        let color, fillColor;
+                        
+                        if (currentMode === 'aqi') {
+                            color = '#10b981'; // Emerald Safe
+                            fillColor = 'rgba(16, 185, 129, 0.5)';
+                            if (city.aqi > 150) {
+                                color = '#f43f5e'; // Rose Critical
+                                fillColor = 'rgba(244, 63, 94, 0.5)';
+                            } else if (city.aqi > 100) {
+                                color = '#f97316'; // Orange Warning
+                                fillColor = 'rgba(249, 115, 22, 0.5)';
+                            }
+                        } else {
+                            color = '#3b82f6'; // Blue Cool
+                            fillColor = 'rgba(59, 130, 246, 0.5)';
+                            if (city.temp > 35) {
+                                color = '#f43f5e'; // Rose Hot
+                                fillColor = 'rgba(244, 63, 94, 0.5)';
+                            } else if (city.temp > 25) {
+                                color = '#f97316'; // Orange Warm
+                                fillColor = 'rgba(249, 115, 22, 0.5)';
+                            }
+                        }
 
-                    // Create Custom Marker
-                    const marker = L.circleMarker([city.latitude, city.longitude], {
-                        radius: 7,
-                        fillColor: fillColor,
-                        color: color,
-                        weight: 2,
-                        opacity: 1,
-                        fillOpacity: 0.8
-                    }).addTo(map);
+                        const marker = L.circleMarker([city.latitude, city.longitude], {
+                            radius: 7,
+                            fillColor: fillColor,
+                            color: color,
+                            weight: 2,
+                            opacity: 1,
+                            fillOpacity: 0.8
+                        }).addTo(map);
+                        
+                        markers.push(marker);
 
-                    // Popup Content
-                    const slug = city.city.toLowerCase().replace(/ /g, '-');
-                    const popupContent = `
-                        <div class="p-1 min-w-[180px]">
-                            <h3 class="font-bold text-lg text-white font-display">${city.city}</h3>
-                            <p class="text-xs text-slate-400 mb-2 border-b border-slate-700 pb-2">${city.state}</p>
-                            
-                            <div class="grid grid-cols-2 gap-2 mb-3 mt-2">
-                                <div class="bg-slate-800 rounded p-2 text-center border border-slate-700">
-                                    <div class="text-[10px] text-slate-400 uppercase">AQI</div>
-                                    <div class="font-bold text-white text-sm" style="color: ${city.aqi > 150 ? '#f43f5e' : (city.aqi > 100 ? '#f97316' : '#10b981')}">${city.aqi}</div>
+                        // Popup Content
+                        const slug = city.city.toLowerCase().replace(/ /g, '-');
+                        const popupContent = `
+                            <div class="p-1 min-w-[180px]">
+                                <h3 class="font-bold text-lg text-white font-display">${city.city}</h3>
+                                <p class="text-xs text-slate-400 mb-2 border-b border-slate-700 pb-2">${city.state}</p>
+                                
+                                <div class="grid grid-cols-2 gap-2 mb-3 mt-2">
+                                    <div class="bg-slate-800 rounded p-2 text-center border border-slate-700">
+                                        <div class="text-[10px] text-slate-400 uppercase">AQI</div>
+                                        <div class="font-bold text-white text-sm" style="color: ${city.aqi > 150 ? '#f43f5e' : (city.aqi > 100 ? '#f97316' : '#10b981')}">${city.aqi}</div>
+                                    </div>
+                                    <div class="bg-slate-800 rounded p-2 text-center border border-slate-700">
+                                        <div class="text-[10px] text-slate-400 uppercase">Temp</div>
+                                        <div class="font-bold text-white text-sm" style="color: ${city.temp > 35 ? '#f43f5e' : (city.temp > 25 ? '#f97316' : '#3b82f6')}">${Math.round(city.temp)}°</div>
+                                    </div>
                                 </div>
-                                <div class="bg-slate-800 rounded p-2 text-center border border-slate-700">
-                                    <div class="text-[10px] text-slate-400 uppercase">Temp</div>
-                                    <div class="font-bold text-white text-sm">${Math.round(city.temp)}°</div>
-                                </div>
+                                
+                                <a href="${slug}.html" class="block w-full bg-blue-500 hover:bg-blue-400 text-white text-center py-2 rounded-md text-sm transition font-bold shadow-md mt-1">View Dashboard</a>
                             </div>
-                            
-                            <a href="${slug}.html" class="block w-full bg-blue-500 hover:bg-blue-400 text-white text-center py-2 rounded-md text-sm transition font-bold shadow-md mt-1">View Dashboard</a>
-                        </div>
-                    `;
+                        `;
 
-                    marker.bindPopup(popupContent);
+                        marker.bindPopup(popupContent);
+                    });
+                }
+
+                // Initial render
+                renderMapMarkers();
+
+                // Toggle Logic
+                document.getElementById('toggle-aqi').addEventListener('click', () => {
+                    currentMode = 'aqi';
+                    document.getElementById('toggle-aqi').className = 'px-4 py-1.5 text-sm font-bold rounded-md bg-blue-500 text-white transition shadow-sm';
+                    document.getElementById('toggle-temp').className = 'px-4 py-1.5 text-sm font-bold rounded-md text-slate-400 hover:text-slate-200 transition';
+                    
+                    document.getElementById('lb-aqi-worst').classList.remove('hidden');
+                    document.getElementById('lb-aqi-best').classList.remove('hidden');
+                    document.getElementById('lb-aqi-cig').classList.remove('hidden');
+                    
+                    document.getElementById('lb-temp-hottest').classList.add('hidden');
+                    document.getElementById('lb-temp-coolest').classList.add('hidden');
+                    document.getElementById('lb-temp-humid').classList.add('hidden');
+                    
+                    document.getElementById('legend-title').innerText = 'Health Status (AQI)';
+                    document.getElementById('legend-aqi').classList.remove('hidden');
+                    document.getElementById('legend-temp').classList.add('hidden');
+                    
+                    renderMapMarkers();
+                });
+
+                document.getElementById('toggle-temp').addEventListener('click', () => {
+                    currentMode = 'temp';
+                    document.getElementById('toggle-temp').className = 'px-4 py-1.5 text-sm font-bold rounded-md bg-blue-500 text-white transition shadow-sm';
+                    document.getElementById('toggle-aqi').className = 'px-4 py-1.5 text-sm font-bold rounded-md text-slate-400 hover:text-slate-200 transition';
+                    
+                    document.getElementById('lb-temp-hottest').classList.remove('hidden');
+                    document.getElementById('lb-temp-coolest').classList.remove('hidden');
+                    document.getElementById('lb-temp-humid').classList.remove('hidden');
+                    
+                    document.getElementById('lb-aqi-worst').classList.add('hidden');
+                    document.getElementById('lb-aqi-best').classList.add('hidden');
+                    document.getElementById('lb-aqi-cig').classList.add('hidden');
+                    
+                    document.getElementById('legend-title').innerText = 'Temperature';
+                    document.getElementById('legend-temp').classList.remove('hidden');
+                    document.getElementById('legend-aqi').classList.add('hidden');
+
+                    renderMapMarkers();
                 });
 
             } catch (e) {
