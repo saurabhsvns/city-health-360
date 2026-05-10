@@ -534,7 +534,8 @@ def generate_pages():
         ('lung-capacity.html', 'lung-capacity.html', '30-Second Lung Capacity Test | AQI & Respiratory Health Check', 'Test your baseline respiratory endurance right now.'),
         ('local-radar.html', 'local-radar.html', 'Neighborhood Pollution Radar | Scan Local Industrial Threats', 'Scan your immediate 5km radius for hidden pollution emitters.'),
         ('eye-test.html', 'eye-test.html', 'Smog & Contrast Vision Test | Night Driving Safety', 'Test your contrast sensitivity against urban smog to evaluate night driving health.'),
-        ('color-test.html', 'color-test.html', 'Color Blindness Ishihara Test | Check Your Color Vision', 'Test your baseline color vision using an interactive procedural Ishihara plate generator.')
+        ('color-test.html', 'color-test.html', 'Color Blindness Ishihara Test | Check Your Color Vision', 'Test your baseline color vision using an interactive procedural Ishihara plate generator.'),
+        ('startle-test.html', 'startle-test.html', 'The Autonomic Startle Response Test | City Health 360', 'Test how unexpected traffic noise affects your motor-control accuracy.')
     ]
 
     for template_name, out_name, title, desc in spoke_pages:
