@@ -4,10 +4,10 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Is Mumbai Safe Today? Health & AQI Forecast Jun 30, 01:31 AM</title>
+    <title>Is Mumbai Safe Today? Health & AQI Forecast Jun 30, 03:40 AM</title>
     <meta name="description"
         content="Daily health report for Mumbai travelers. Mosquito risk: 10/10.
-AQI: 45. Check hospital lists and safe zones.">
+AQI: 48. Check hospital lists and safe zones.">
     
     <link rel="canonical" href="https://cityhealth360.in/docs/mumbai.html">
     
@@ -109,7 +109,7 @@ AQI: 45. Check hospital lists and safe zones.">
                 <div class="hidden sm:block text-right border-r border-slate-700 pr-4">
                     <div class="text-[10px] sm:text-xs font-bold uppercase tracking-widest text-slate-500 mb-0.5">Last
                         Update</div>
-                    <div class="font-mono text-blue-300 text-[10px] sm:text-xs">Jun 30, 01:31 AM</div>
+                    <div class="font-mono text-blue-300 text-[10px] sm:text-xs">Jun 30, 03:40 AM</div>
                 </div>
 
                 <!-- City Dropdown Functionality -->
@@ -137,7 +137,7 @@ AQI: 45. Check hospital lists and safe zones.">
     <div class="relative z-20 max-w-4xl mx-auto px-4 h-full flex flex-col justify-end pb-12">
         <div class="flex items-end gap-6 mb-4">
             <h1 class="text-5xl md:text-6xl font-bold text-white tracking-tight">Mumbai</h1>
-            <span class="text-3xl font-light text-slate-300 pb-1">25.6°C</span>
+            <span class="text-3xl font-light text-slate-300 pb-1">26.3°C</span>
         </div>
         <p class="text-lg text-slate-300 max-w-2xl mb-8">The bustling financial capital, known for its humid tropical climate and heavy monsoon rains.</p>
 
@@ -146,7 +146,7 @@ AQI: 45. Check hospital lists and safe zones.">
             class="flex items-center gap-6 p-6 glass-card rounded-2xl w-full md:w-auto inline-flex border border-white/10">
             <div
                 class="relative w-24 h-24 flex items-center justify-center rounded-full border-4 border-yellow-500 text-yellow-400 shadow-lg bg-slate-900/50">
-                <span class="text-4xl font-black">53</span>
+                <span class="text-4xl font-black">52</span>
             </div>
             <div class="space-y-1">
                 <h2 class="text-2xl font-bold text-white tracking-wide">Health Score</h2>
@@ -175,7 +175,7 @@ AQI: 45. Check hospital lists and safe zones.">
             <div class="bg-gray-800 p-4 rounded-xl border border-gray-700 shadow-inner">
               <div class="text-[10px] text-gray-400 font-bold uppercase tracking-widest mb-1">Live PM 2.5</div>
               <div class="text-2xl font-black text-white">
-                <span id="city-pm25-display">6.6</span> 
+                <span id="city-pm25-display">5.6</span> 
                 <span class="text-xs font-bold text-gray-500 ml-1">µg/m³</span>
               </div>
             </div>
@@ -185,19 +185,19 @@ AQI: 45. Check hospital lists and safe zones.">
               <div class="space-y-1 mt-1">
                 <div class="flex justify-between text-[10px] font-bold">
                   <span class="text-gray-500">NO₂</span>
-                  <span class="text-orange-400">6.9</span>
+                  <span class="text-orange-400">7.6</span>
                 </div>
                 <div class="flex justify-between text-[10px] font-bold">
                   <span class="text-gray-500">CO</span>
-                  <span class="text-orange-400">184.0</span>
+                  <span class="text-orange-400">112.0</span>
                 </div>
                 <div class="flex justify-between text-[10px] font-bold">
                   <span class="text-gray-500">O₃</span>
-                  <span class="text-orange-400">49.0</span>
+                  <span class="text-orange-400">50.0</span>
                 </div>
                 <div class="flex justify-between text-[10px] font-bold">
                   <span class="text-gray-500">SO₂</span>
-                  <span class="text-orange-400">5.6</span>
+                  <span class="text-orange-400">6.8</span>
                 </div>
               </div>
             </div>
@@ -704,7 +704,7 @@ AQI: 45. Check hospital lists and safe zones.">
 <footer class="bg-slate-900 border-t border-slate-800 py-8 mt-12">
     <div class="max-w-4xl mx-auto px-4 text-center text-slate-500 text-sm flex flex-col items-center">
         <div class="text-[10px] sm:text-xs font-bold uppercase tracking-widest mb-1">Last Update</div>
-        <div class="font-mono text-blue-300">Jun 30, 01:31 AM</div>
+        <div class="font-mono text-blue-300">Jun 30, 03:40 AM</div>
         <p class="mt-4">Data sources: Open-Meteo, Local Health Indices.</p>
         <a href="../index.html"
             class="inline-block mt-4 text-emerald-400 hover:text-emerald-300 underline font-medium">View Full
@@ -720,9 +720,9 @@ AQI: 45. Check hospital lists and safe zones.">
         const tempCtx = document.getElementById('tempChart').getContext('2d');
 
         const rawDates = ["2026-06-23", "2026-06-24", "2026-06-25", "2026-06-26", "2026-06-27", "2026-06-28", "2026-06-29", "2026-06-30", "2026-07-01", "2026-07-02", "2026-07-03", "2026-07-04", "2026-07-05", "2026-07-06", "2026-07-07"];
-    const rawAqis = [39, 51, 56, 65, 65, 60, 54, 46, 49, 49, 45, 44, 44, 44, 44];
-    const rawMaxTemps = [31.8, 27.6, 27.7, 29.7, 30.3, 31.1, 30.6, 28.4, 26.6, 27.2, 27.1, 26.0, 26.5, 28.7, 29.0];
-    const rawMinTemps = [25.4, 25.6, 24.9, 25.9, 26.2, 26.9, 25.7, 25.7, 25.5, 25.4, 25.3, 25.4, 25.4, 25.8, 27.9];
+    const rawAqis = [39, 51, 56, 65, 65, 60, 54, 50, 41, 42, 48, 48, 48, 48, 48];
+    const rawMaxTemps = [31.8, 27.6, 27.7, 29.7, 30.3, 31.1, 30.6, 28.4, 26.7, 28.1, 27.1, 27.1, 26.6, 29.1, 28.8];
+    const rawMinTemps = [25.4, 25.6, 24.9, 25.9, 26.2, 26.9, 25.7, 25.7, 25.9, 25.0, 25.2, 24.9, 25.9, 26.7, 28.6];
 
     if (!rawDates.length || !rawAqis.length || !rawMaxTemps.length) return;
 
