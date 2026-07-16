@@ -4,10 +4,10 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Is Erode Safe Today? Health & AQI Forecast Jul 16, 10:50 PM</title>
+    <title>Is Erode Safe Today? Health & AQI Forecast Jul 17, 12:45 AM</title>
     <meta name="description"
         content="Daily health report for Erode travelers. Mosquito risk: 7/10.
-AQI: 66. Check hospital lists and safe zones.">
+AQI: 65. Check hospital lists and safe zones.">
     
     <link rel="canonical" href="https://cityhealth360.in/docs/erode.html">
     
@@ -109,7 +109,7 @@ AQI: 66. Check hospital lists and safe zones.">
                 <div class="hidden sm:block text-right border-r border-slate-700 pr-4">
                     <div class="text-[10px] sm:text-xs font-bold uppercase tracking-widest text-slate-500 mb-0.5">Last
                         Update</div>
-                    <div class="font-mono text-blue-300 text-[10px] sm:text-xs">Jul 16, 10:50 PM</div>
+                    <div class="font-mono text-blue-300 text-[10px] sm:text-xs">Jul 17, 12:45 AM</div>
                 </div>
 
                 <!-- City Dropdown Functionality -->
@@ -137,7 +137,7 @@ AQI: 66. Check hospital lists and safe zones.">
     <div class="relative z-20 max-w-4xl mx-auto px-4 h-full flex flex-col justify-end pb-12">
         <div class="flex items-end gap-6 mb-4">
             <h1 class="text-5xl md:text-6xl font-bold text-white tracking-tight">Erode</h1>
-            <span class="text-3xl font-light text-slate-300 pb-1">27.5°C</span>
+            <span class="text-3xl font-light text-slate-300 pb-1">27.0°C</span>
         </div>
         <p class="text-lg text-slate-300 max-w-2xl mb-8">A major textile and turmeric trading hub on the banks of the Kaveri.</p>
 
@@ -175,7 +175,7 @@ AQI: 66. Check hospital lists and safe zones.">
             <div class="bg-gray-800 p-4 rounded-xl border border-gray-700 shadow-inner">
               <div class="text-[10px] text-gray-400 font-bold uppercase tracking-widest mb-1">Live PM 2.5</div>
               <div class="text-2xl font-black text-white">
-                <span id="city-pm25-display">18.6</span> 
+                <span id="city-pm25-display">17.3</span> 
                 <span class="text-xs font-bold text-gray-500 ml-1">µg/m³</span>
               </div>
             </div>
@@ -185,19 +185,19 @@ AQI: 66. Check hospital lists and safe zones.">
               <div class="space-y-1 mt-1">
                 <div class="flex justify-between text-[10px] font-bold">
                   <span class="text-gray-500">NO₂</span>
-                  <span class="text-orange-400">18.0</span>
+                  <span class="text-orange-400">17.3</span>
                 </div>
                 <div class="flex justify-between text-[10px] font-bold">
                   <span class="text-gray-500">CO</span>
-                  <span class="text-orange-400">194.0</span>
+                  <span class="text-orange-400">184.0</span>
                 </div>
                 <div class="flex justify-between text-[10px] font-bold">
                   <span class="text-gray-500">O₃</span>
-                  <span class="text-orange-400">37.0</span>
+                  <span class="text-orange-400">32.0</span>
                 </div>
                 <div class="flex justify-between text-[10px] font-bold">
                   <span class="text-gray-500">SO₂</span>
-                  <span class="text-orange-400">4.4</span>
+                  <span class="text-orange-400">4.5</span>
                 </div>
               </div>
             </div>
@@ -381,8 +381,8 @@ AQI: 66. Check hospital lists and safe zones.">
                 <div class="flex flex-col pb-2 border-b border-white/5">
                     <div class="flex justify-between items-center">
                         <span class="text-slate-400">Sleep Disruption</span>
-                        <span class="font-bold text-rose-400">
-                            High
+                        <span class="font-bold text-yellow-400">
+                            Medium
                         </span>
                     </div>
                     
@@ -646,7 +646,7 @@ AQI: 66. Check hospital lists and safe zones.">
 <footer class="bg-slate-900 border-t border-slate-800 py-8 mt-12">
     <div class="max-w-4xl mx-auto px-4 text-center text-slate-500 text-sm flex flex-col items-center">
         <div class="text-[10px] sm:text-xs font-bold uppercase tracking-widest mb-1">Last Update</div>
-        <div class="font-mono text-blue-300">Jul 16, 10:50 PM</div>
+        <div class="font-mono text-blue-300">Jul 17, 12:45 AM</div>
         <p class="mt-4">Data sources: Open-Meteo, Local Health Indices.</p>
         <a href="../index.html"
             class="inline-block mt-4 text-emerald-400 hover:text-emerald-300 underline font-medium">View Full
@@ -661,10 +661,10 @@ AQI: 66. Check hospital lists and safe zones.">
         const aqiCtx = document.getElementById('aqiChart').getContext('2d');
         const tempCtx = document.getElementById('tempChart').getContext('2d');
 
-        const rawDates = ["2026-07-09", "2026-07-10", "2026-07-11", "2026-07-12", "2026-07-13", "2026-07-14", "2026-07-15", "2026-07-16", "2026-07-17", "2026-07-18", "2026-07-19", "2026-07-20", "2026-07-21", "2026-07-22", "2026-07-23"];
-    const rawAqis = [56, 56, 58, 61, 61, 63, 66, 68, 65, 60, 59, 51, 52, 52, 52];
-    const rawMaxTemps = [35.4, 37.0, 37.1, 37.4, 38.2, 39.0, 40.2, 38.5, 37.3, 32.8, 36.2, 36.7, 35.7, 36.1, 34.9];
-    const rawMinTemps = [25.5, 24.9, 25.7, 24.7, 25.8, 25.4, 25.5, 25.7, 25.2, 25.1, 24.7, 24.2, 23.6, 23.7, 24.4];
+        const rawDates = ["2026-07-10", "2026-07-11", "2026-07-12", "2026-07-13", "2026-07-14", "2026-07-15", "2026-07-16", "2026-07-17", "2026-07-18", "2026-07-19", "2026-07-20", "2026-07-21", "2026-07-22", "2026-07-23", "2026-07-24"];
+    const rawAqis = [56, 58, 61, 61, 63, 66, 68, 65, 60, 59, 51, 52, 52, 52, 52];
+    const rawMaxTemps = [37.0, 37.1, 37.4, 38.2, 39.0, 40.2, 38.5, 37.3, 32.8, 36.8, 35.5, 36.9, 34.6, 37.0, 33.5];
+    const rawMinTemps = [24.9, 25.7, 24.7, 25.8, 25.4, 25.5, 25.7, 25.2, 25.7, 24.7, 24.4, 23.8, 24.3, 24.9, 24.2];
 
     if (!rawDates.length || !rawAqis.length || !rawMaxTemps.length) return;
 
