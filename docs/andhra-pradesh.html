@@ -50,6 +50,23 @@
             box-shadow: 0 10px 15px -3px rgba(0, 0, 0, 0.5);
             border: 1px solid rgba(255, 255, 255, 0.1);
         }
+
+        .leaflet-container {
+            background-color: #0f172a;
+        }
+
+        .osm-dark-tiles .leaflet-tile {
+            filter: brightness(0.6) invert(1) contrast(3) hue-rotate(200deg) saturate(0.3);
+        }
+
+        .leaflet-container .leaflet-control-attribution {
+            background: rgba(15, 23, 42, 0.75);
+            color: #94a3b8;
+        }
+
+        .leaflet-container .leaflet-control-attribution a {
+            color: #60a5fa;
+        }
     </style>
 </head>
 
@@ -78,7 +95,7 @@
                 <div class="text-right mr-4 border-r border-slate-700 pr-4">
                     <div class="text-[9px] sm:text-[10px] font-bold text-slate-500 uppercase tracking-widest">Last
                         Update</div>
-                    <div class="text-[10px] sm:text-xs font-mono text-blue-300">Oct 31, 11:57 PM</div>
+                    <div class="text-[10px] sm:text-xs font-mono text-blue-300">Nov 01, 12:29 AM</div>
                 </div>
                 <a href="india.html" class="text-sm font-medium text-blue-400 hover:text-blue-300 transition">🌍
                     National Map</a>
@@ -353,10 +370,10 @@
         document.addEventListener('DOMContentLoaded', async () => {
             const map = L.map('map');
 
-            L.tileLayer('https://{s}.basemaps.cartocdn.com/dark_all/{z}/{x}/{y}{r}.png', {
-                attribution: '&copy; OpenStreetMap contributors',
-                subdomains: 'abcd',
-                maxZoom: 20
+            L.tileLayer('https://tile.openstreetmap.org/{z}/{x}/{y}.png', {
+                attribution: '&copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> contributors',
+                maxZoom: 19,
+                className: 'osm-dark-tiles'
             }).addTo(map);
 
             try {

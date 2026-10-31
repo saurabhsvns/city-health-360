@@ -48,6 +48,23 @@
             box-shadow: 0 10px 15px -3px rgba(0, 0, 0, 0.5);
             border: 1px solid rgba(255, 255, 255, 0.1);
         }
+
+        .leaflet-container {
+            background-color: #0f172a;
+        }
+
+        .osm-dark-tiles .leaflet-tile {
+            filter: brightness(0.6) invert(1) contrast(3) hue-rotate(200deg) saturate(0.3);
+        }
+
+        .leaflet-container .leaflet-control-attribution {
+            background: rgba(15, 23, 42, 0.75);
+            color: #94a3b8;
+        }
+
+        .leaflet-container .leaflet-control-attribution a {
+            color: #60a5fa;
+        }
     </style>
 </head>
 
@@ -75,7 +92,7 @@
                 <div class="text-right">
                     <div class="text-[9px] sm:text-[10px] font-bold text-slate-500 uppercase tracking-widest">Last
                         Update</div>
-                    <div class="text-[10px] sm:text-xs font-mono text-blue-300">Oct 31, 11:57 PM</div>
+                    <div class="text-[10px] sm:text-xs font-mono text-blue-300">Nov 01, 12:29 AM</div>
                 </div>
                 <a href="../index.html" class="text-sm text-slate-400 hover:text-white transition">← Back to
                     Dashboard</a>
@@ -327,15 +344,15 @@
                                 <a href="pondicherry.html" class="font-medium hover:text-blue-400 transition">Pondicherry</a>
                                 <p class="text-xs text-slate-500">Puducherry</p>
                             </div>
-                            <span class="px-2 py-1 bg-rose-500/20 text-rose-400 rounded font-mono text-sm border border-rose-500/30 font-bold">28.0°C</span>
+                            <span class="px-2 py-1 bg-rose-500/20 text-rose-400 rounded font-mono text-sm border border-rose-500/30 font-bold">28.5°C</span>
                         </li>
                         
                         <li class="flex items-center justify-between border-b border-slate-800 pb-2 last:border-0 last:pb-0">
                             <div>
-                                <a href="surat.html" class="font-medium hover:text-blue-400 transition">Surat</a>
-                                <p class="text-xs text-slate-500">Gujarat</p>
+                                <a href="mumbai.html" class="font-medium hover:text-blue-400 transition">Mumbai</a>
+                                <p class="text-xs text-slate-500">Maharashtra</p>
                             </div>
-                            <span class="px-2 py-1 bg-rose-500/20 text-rose-400 rounded font-mono text-sm border border-rose-500/30 font-bold">27.5°C</span>
+                            <span class="px-2 py-1 bg-rose-500/20 text-rose-400 rounded font-mono text-sm border border-rose-500/30 font-bold">27.8°C</span>
                         </li>
                         
                         <li class="flex items-center justify-between border-b border-slate-800 pb-2 last:border-0 last:pb-0">
@@ -343,7 +360,7 @@
                                 <a href="chennai.html" class="font-medium hover:text-blue-400 transition">Chennai</a>
                                 <p class="text-xs text-slate-500">Tamil Nadu</p>
                             </div>
-                            <span class="px-2 py-1 bg-rose-500/20 text-rose-400 rounded font-mono text-sm border border-rose-500/30 font-bold">27.4°C</span>
+                            <span class="px-2 py-1 bg-rose-500/20 text-rose-400 rounded font-mono text-sm border border-rose-500/30 font-bold">27.6°C</span>
                         </li>
                         
                         <li class="flex items-center justify-between border-b border-slate-800 pb-2 last:border-0 last:pb-0">
@@ -356,10 +373,10 @@
                         
                         <li class="flex items-center justify-between border-b border-slate-800 pb-2 last:border-0 last:pb-0">
                             <div>
-                                <a href="kurnool.html" class="font-medium hover:text-blue-400 transition">Kurnool</a>
-                                <p class="text-xs text-slate-500">Andhra Pradesh</p>
+                                <a href="alappuzha.html" class="font-medium hover:text-blue-400 transition">Alappuzha</a>
+                                <p class="text-xs text-slate-500">Kerala</p>
                             </div>
-                            <span class="px-2 py-1 bg-rose-500/20 text-rose-400 rounded font-mono text-sm border border-rose-500/30 font-bold">27.4°C</span>
+                            <span class="px-2 py-1 bg-rose-500/20 text-rose-400 rounded font-mono text-sm border border-rose-500/30 font-bold">27.2°C</span>
                         </li>
                         
                         <li class="flex items-center justify-between border-b border-slate-800 pb-2 last:border-0 last:pb-0">
@@ -367,13 +384,21 @@
                                 <a href="vadodara.html" class="font-medium hover:text-blue-400 transition">Vadodara</a>
                                 <p class="text-xs text-slate-500">Gujarat</p>
                             </div>
-                            <span class="px-2 py-1 bg-rose-500/20 text-rose-400 rounded font-mono text-sm border border-rose-500/30 font-bold">27.3°C</span>
+                            <span class="px-2 py-1 bg-rose-500/20 text-rose-400 rounded font-mono text-sm border border-rose-500/30 font-bold">27.1°C</span>
                         </li>
                         
                         <li class="flex items-center justify-between border-b border-slate-800 pb-2 last:border-0 last:pb-0">
                             <div>
-                                <a href="mumbai.html" class="font-medium hover:text-blue-400 transition">Mumbai</a>
+                                <a href="solapur.html" class="font-medium hover:text-blue-400 transition">Solapur</a>
                                 <p class="text-xs text-slate-500">Maharashtra</p>
+                            </div>
+                            <span class="px-2 py-1 bg-rose-500/20 text-rose-400 rounded font-mono text-sm border border-rose-500/30 font-bold">27.1°C</span>
+                        </li>
+                        
+                        <li class="flex items-center justify-between border-b border-slate-800 pb-2 last:border-0 last:pb-0">
+                            <div>
+                                <a href="tirunelveli.html" class="font-medium hover:text-blue-400 transition">Tirunelveli</a>
+                                <p class="text-xs text-slate-500">Tamil Nadu</p>
                             </div>
                             <span class="px-2 py-1 bg-rose-500/20 text-rose-400 rounded font-mono text-sm border border-rose-500/30 font-bold">27.0°C</span>
                         </li>
@@ -383,23 +408,15 @@
                                 <a href="mangalore.html" class="font-medium hover:text-blue-400 transition">Mangalore</a>
                                 <p class="text-xs text-slate-500">Karnataka</p>
                             </div>
-                            <span class="px-2 py-1 bg-rose-500/20 text-rose-400 rounded font-mono text-sm border border-rose-500/30 font-bold">26.7°C</span>
+                            <span class="px-2 py-1 bg-rose-500/20 text-rose-400 rounded font-mono text-sm border border-rose-500/30 font-bold">26.9°C</span>
                         </li>
                         
                         <li class="flex items-center justify-between border-b border-slate-800 pb-2 last:border-0 last:pb-0">
                             <div>
-                                <a href="alappuzha.html" class="font-medium hover:text-blue-400 transition">Alappuzha</a>
+                                <a href="kochi.html" class="font-medium hover:text-blue-400 transition">Kochi</a>
                                 <p class="text-xs text-slate-500">Kerala</p>
                             </div>
-                            <span class="px-2 py-1 bg-rose-500/20 text-rose-400 rounded font-mono text-sm border border-rose-500/30 font-bold">26.7°C</span>
-                        </li>
-                        
-                        <li class="flex items-center justify-between border-b border-slate-800 pb-2 last:border-0 last:pb-0">
-                            <div>
-                                <a href="port-blair.html" class="font-medium hover:text-blue-400 transition">Port Blair</a>
-                                <p class="text-xs text-slate-500">Andaman and Nicobar Islands</p>
-                            </div>
-                            <span class="px-2 py-1 bg-rose-500/20 text-rose-400 rounded font-mono text-sm border border-rose-500/30 font-bold">26.6°C</span>
+                            <span class="px-2 py-1 bg-rose-500/20 text-rose-400 rounded font-mono text-sm border border-rose-500/30 font-bold">26.9°C</span>
                         </li>
                         
                     </ul>
@@ -417,7 +434,7 @@
                                 <a href="shimla.html" class="font-medium hover:text-blue-400 transition">Shimla</a>
                                 <p class="text-xs text-slate-500">Himachal Pradesh</p>
                             </div>
-                            <span class="px-2 py-1 bg-blue-500/20 text-blue-400 rounded font-mono text-sm border border-blue-500/30 font-bold">6.4°C</span>
+                            <span class="px-2 py-1 bg-blue-500/20 text-blue-400 rounded font-mono text-sm border border-blue-500/30 font-bold">6.5°C</span>
                         </li>
                         
                         <li class="flex items-center justify-between border-b border-slate-800 pb-2 last:border-0 last:pb-0">
@@ -425,7 +442,7 @@
                                 <a href="dalhousie.html" class="font-medium hover:text-blue-400 transition">Dalhousie</a>
                                 <p class="text-xs text-slate-500">Himachal Pradesh</p>
                             </div>
-                            <span class="px-2 py-1 bg-blue-500/20 text-blue-400 rounded font-mono text-sm border border-blue-500/30 font-bold">6.4°C</span>
+                            <span class="px-2 py-1 bg-blue-500/20 text-blue-400 rounded font-mono text-sm border border-blue-500/30 font-bold">6.7°C</span>
                         </li>
                         
                         <li class="flex items-center justify-between border-b border-slate-800 pb-2 last:border-0 last:pb-0">
@@ -438,26 +455,10 @@
                         
                         <li class="flex items-center justify-between border-b border-slate-800 pb-2 last:border-0 last:pb-0">
                             <div>
-                                <a href="nainital.html" class="font-medium hover:text-blue-400 transition">Nainital</a>
-                                <p class="text-xs text-slate-500">Uttarakhand</p>
-                            </div>
-                            <span class="px-2 py-1 bg-blue-500/20 text-blue-400 rounded font-mono text-sm border border-blue-500/30 font-bold">9.6°C</span>
-                        </li>
-                        
-                        <li class="flex items-center justify-between border-b border-slate-800 pb-2 last:border-0 last:pb-0">
-                            <div>
-                                <a href="dehradun.html" class="font-medium hover:text-blue-400 transition">Dehradun</a>
-                                <p class="text-xs text-slate-500">Uttarakhand</p>
-                            </div>
-                            <span class="px-2 py-1 bg-blue-500/20 text-blue-400 rounded font-mono text-sm border border-blue-500/30 font-bold">9.7°C</span>
-                        </li>
-                        
-                        <li class="flex items-center justify-between border-b border-slate-800 pb-2 last:border-0 last:pb-0">
-                            <div>
                                 <a href="manali.html" class="font-medium hover:text-blue-400 transition">Manali</a>
                                 <p class="text-xs text-slate-500">Himachal Pradesh</p>
                             </div>
-                            <span class="px-2 py-1 bg-blue-500/20 text-blue-400 rounded font-mono text-sm border border-blue-500/30 font-bold">9.9°C</span>
+                            <span class="px-2 py-1 bg-blue-500/20 text-blue-400 rounded font-mono text-sm border border-blue-500/30 font-bold">8.7°C</span>
                         </li>
                         
                         <li class="flex items-center justify-between border-b border-slate-800 pb-2 last:border-0 last:pb-0">
@@ -465,7 +466,23 @@
                                 <a href="mussoorie.html" class="font-medium hover:text-blue-400 transition">Mussoorie</a>
                                 <p class="text-xs text-slate-500">Uttarakhand</p>
                             </div>
-                            <span class="px-2 py-1 bg-blue-500/20 text-blue-400 rounded font-mono text-sm border border-blue-500/30 font-bold">10.6°C</span>
+                            <span class="px-2 py-1 bg-blue-500/20 text-blue-400 rounded font-mono text-sm border border-blue-500/30 font-bold">9.1°C</span>
+                        </li>
+                        
+                        <li class="flex items-center justify-between border-b border-slate-800 pb-2 last:border-0 last:pb-0">
+                            <div>
+                                <a href="nainital.html" class="font-medium hover:text-blue-400 transition">Nainital</a>
+                                <p class="text-xs text-slate-500">Uttarakhand</p>
+                            </div>
+                            <span class="px-2 py-1 bg-blue-500/20 text-blue-400 rounded font-mono text-sm border border-blue-500/30 font-bold">9.3°C</span>
+                        </li>
+                        
+                        <li class="flex items-center justify-between border-b border-slate-800 pb-2 last:border-0 last:pb-0">
+                            <div>
+                                <a href="dehradun.html" class="font-medium hover:text-blue-400 transition">Dehradun</a>
+                                <p class="text-xs text-slate-500">Uttarakhand</p>
+                            </div>
+                            <span class="px-2 py-1 bg-blue-500/20 text-blue-400 rounded font-mono text-sm border border-blue-500/30 font-bold">9.5°C</span>
                         </li>
                         
                         <li class="flex items-center justify-between border-b border-slate-800 pb-2 last:border-0 last:pb-0">
@@ -473,7 +490,7 @@
                                 <a href="gangtok.html" class="font-medium hover:text-blue-400 transition">Gangtok</a>
                                 <p class="text-xs text-slate-500">Sikkim</p>
                             </div>
-                            <span class="px-2 py-1 bg-blue-500/20 text-blue-400 rounded font-mono text-sm border border-blue-500/30 font-bold">12.7°C</span>
+                            <span class="px-2 py-1 bg-blue-500/20 text-blue-400 rounded font-mono text-sm border border-blue-500/30 font-bold">13.3°C</span>
                         </li>
                         
                         <li class="flex items-center justify-between border-b border-slate-800 pb-2 last:border-0 last:pb-0">
@@ -481,7 +498,7 @@
                                 <a href="dharamshala.html" class="font-medium hover:text-blue-400 transition">Dharamshala</a>
                                 <p class="text-xs text-slate-500">Himachal Pradesh</p>
                             </div>
-                            <span class="px-2 py-1 bg-blue-500/20 text-blue-400 rounded font-mono text-sm border border-blue-500/30 font-bold">14.6°C</span>
+                            <span class="px-2 py-1 bg-blue-500/20 text-blue-400 rounded font-mono text-sm border border-blue-500/30 font-bold">15.1°C</span>
                         </li>
                         
                         <li class="flex items-center justify-between border-b border-slate-800 pb-2 last:border-0 last:pb-0">
@@ -489,7 +506,7 @@
                                 <a href="munnar.html" class="font-medium hover:text-blue-400 transition">Munnar</a>
                                 <p class="text-xs text-slate-500">Kerala</p>
                             </div>
-                            <span class="px-2 py-1 bg-blue-500/20 text-blue-400 rounded font-mono text-sm border border-blue-500/30 font-bold">15.0°C</span>
+                            <span class="px-2 py-1 bg-blue-500/20 text-blue-400 rounded font-mono text-sm border border-blue-500/30 font-bold">15.2°C</span>
                         </li>
                         
                     </ul>
@@ -614,7 +631,7 @@
                         
                         <li class="flex items-center justify-between border-b border-slate-800 pb-2 last:border-0 last:pb-0">
                             <div>
-                                <a href="dhanbad.html" class="font-medium hover:text-blue-400 transition">Dhanbad</a>
+                                <a href="ranchi.html" class="font-medium hover:text-blue-400 transition">Ranchi</a>
                                 <p class="text-xs text-slate-500">Jharkhand</p>
                             </div>
                             <span class="px-2 py-1 bg-cyan-500/20 text-cyan-400 rounded font-mono text-sm border border-cyan-500/30 font-bold">100%</span>
@@ -630,16 +647,24 @@
                         
                         <li class="flex items-center justify-between border-b border-slate-800 pb-2 last:border-0 last:pb-0">
                             <div>
-                                <a href="ranchi.html" class="font-medium hover:text-blue-400 transition">Ranchi</a>
-                                <p class="text-xs text-slate-500">Jharkhand</p>
+                                <a href="nainital.html" class="font-medium hover:text-blue-400 transition">Nainital</a>
+                                <p class="text-xs text-slate-500">Uttarakhand</p>
+                            </div>
+                            <span class="px-2 py-1 bg-cyan-500/20 text-cyan-400 rounded font-mono text-sm border border-cyan-500/30 font-bold">100%</span>
+                        </li>
+                        
+                        <li class="flex items-center justify-between border-b border-slate-800 pb-2 last:border-0 last:pb-0">
+                            <div>
+                                <a href="dehradun.html" class="font-medium hover:text-blue-400 transition">Dehradun</a>
+                                <p class="text-xs text-slate-500">Uttarakhand</p>
                             </div>
                             <span class="px-2 py-1 bg-cyan-500/20 text-cyan-400 rounded font-mono text-sm border border-cyan-500/30 font-bold">99%</span>
                         </li>
                         
                         <li class="flex items-center justify-between border-b border-slate-800 pb-2 last:border-0 last:pb-0">
                             <div>
-                                <a href="jamshedpur.html" class="font-medium hover:text-blue-400 transition">Jamshedpur</a>
-                                <p class="text-xs text-slate-500">Jharkhand</p>
+                                <a href="muzaffarpur.html" class="font-medium hover:text-blue-400 transition">Muzaffarpur</a>
+                                <p class="text-xs text-slate-500">Bihar</p>
                             </div>
                             <span class="px-2 py-1 bg-cyan-500/20 text-cyan-400 rounded font-mono text-sm border border-cyan-500/30 font-bold">99%</span>
                         </li>
@@ -654,15 +679,7 @@
                         
                         <li class="flex items-center justify-between border-b border-slate-800 pb-2 last:border-0 last:pb-0">
                             <div>
-                                <a href="durgapur.html" class="font-medium hover:text-blue-400 transition">Durgapur</a>
-                                <p class="text-xs text-slate-500">West Bengal</p>
-                            </div>
-                            <span class="px-2 py-1 bg-cyan-500/20 text-cyan-400 rounded font-mono text-sm border border-cyan-500/30 font-bold">99%</span>
-                        </li>
-                        
-                        <li class="flex items-center justify-between border-b border-slate-800 pb-2 last:border-0 last:pb-0">
-                            <div>
-                                <a href="muzaffarpur.html" class="font-medium hover:text-blue-400 transition">Muzaffarpur</a>
+                                <a href="patna.html" class="font-medium hover:text-blue-400 transition">Patna</a>
                                 <p class="text-xs text-slate-500">Bihar</p>
                             </div>
                             <span class="px-2 py-1 bg-cyan-500/20 text-cyan-400 rounded font-mono text-sm border border-cyan-500/30 font-bold">98%</span>
@@ -670,15 +687,7 @@
                         
                         <li class="flex items-center justify-between border-b border-slate-800 pb-2 last:border-0 last:pb-0">
                             <div>
-                                <a href="bhagalpur.html" class="font-medium hover:text-blue-400 transition">Bhagalpur</a>
-                                <p class="text-xs text-slate-500">Bihar</p>
-                            </div>
-                            <span class="px-2 py-1 bg-cyan-500/20 text-cyan-400 rounded font-mono text-sm border border-cyan-500/30 font-bold">98%</span>
-                        </li>
-                        
-                        <li class="flex items-center justify-between border-b border-slate-800 pb-2 last:border-0 last:pb-0">
-                            <div>
-                                <a href="bokaro.html" class="font-medium hover:text-blue-400 transition">Bokaro</a>
+                                <a href="dhanbad.html" class="font-medium hover:text-blue-400 transition">Dhanbad</a>
                                 <p class="text-xs text-slate-500">Jharkhand</p>
                             </div>
                             <span class="px-2 py-1 bg-cyan-500/20 text-cyan-400 rounded font-mono text-sm border border-cyan-500/30 font-bold">98%</span>
@@ -686,8 +695,16 @@
                         
                         <li class="flex items-center justify-between border-b border-slate-800 pb-2 last:border-0 last:pb-0">
                             <div>
-                                <a href="ayodhya.html" class="font-medium hover:text-blue-400 transition">Ayodhya</a>
-                                <p class="text-xs text-slate-500">Uttar Pradesh</p>
+                                <a href="rourkela.html" class="font-medium hover:text-blue-400 transition">Rourkela</a>
+                                <p class="text-xs text-slate-500">Odisha</p>
+                            </div>
+                            <span class="px-2 py-1 bg-cyan-500/20 text-cyan-400 rounded font-mono text-sm border border-cyan-500/30 font-bold">98%</span>
+                        </li>
+                        
+                        <li class="flex items-center justify-between border-b border-slate-800 pb-2 last:border-0 last:pb-0">
+                            <div>
+                                <a href="kohima.html" class="font-medium hover:text-blue-400 transition">Kohima</a>
+                                <p class="text-xs text-slate-500">Nagaland</p>
                             </div>
                             <span class="px-2 py-1 bg-cyan-500/20 text-cyan-400 rounded font-mono text-sm border border-cyan-500/30 font-bold">98%</span>
                         </li>
@@ -740,11 +757,11 @@
                 minZoom: 4
             }).setView([22.5, 79.5], 5); // Centers slightly to accommodate mainland India 
 
-            // Light Map Tiles (CartoDB Positron)
-            L.tileLayer('https://{s}.basemaps.cartocdn.com/light_all/{z}/{x}/{y}{r}.png', {
-                attribution: '&copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> contributors &copy; <a href="https://carto.com/attributions">CARTO</a>',
-                subdomains: 'abcd',
-                maxZoom: 20
+            // OpenStreetMap Tiles with Dark CSS Filter
+            L.tileLayer('https://tile.openstreetmap.org/{z}/{x}/{y}.png', {
+                attribution: '&copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> contributors',
+                maxZoom: 19,
+                className: 'osm-dark-tiles'
             }).addTo(map);
 
             // Fetch the JSON data
